@@ -1,0 +1,1 @@
+export { UpdateTenantRequest } from "./UpdateTenantRequest";

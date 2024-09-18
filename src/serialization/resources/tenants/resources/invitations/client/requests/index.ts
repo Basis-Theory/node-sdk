@@ -1,0 +1,1 @@
+export { CreateTenantInvitationRequest } from "./CreateTenantInvitationRequest";
