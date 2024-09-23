@@ -10,7 +10,6 @@ export const TenantConnectionOptions: core.serialization.ObjectSchema<
     serializers.TenantConnectionOptions.Raw,
     BasisTheory.TenantConnectionOptions
 > = core.serialization.object({
-    scopes: core.serialization.string().optional(),
     domainAliases: core.serialization.property(
         "domain_aliases",
         core.serialization.list(core.serialization.string()).optional()
@@ -19,7 +18,6 @@ export const TenantConnectionOptions: core.serialization.ObjectSchema<
 
 export declare namespace TenantConnectionOptions {
     interface Raw {
-        scopes?: string | null;
         domain_aliases?: string[] | null;
     }
 }

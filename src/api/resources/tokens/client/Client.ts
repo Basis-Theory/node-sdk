@@ -12,7 +12,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace Tokens {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Tokens {
 }
 
 export class Tokens {
-    constructor(protected readonly _options: Tokens.Options) {}
+    constructor(protected readonly _options: Tokens.Options = {}) {}
 
     /**
      * @param {BasisTheory.TokensListRequest} request

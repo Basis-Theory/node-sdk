@@ -7,6 +7,7 @@ import * as core from "./core";
 import { Applications } from "./api/resources/applications/client/Client";
 import { ApplicationKeys } from "./api/resources/applicationKeys/client/Client";
 import { ApplicationTemplates } from "./api/resources/applicationTemplates/client/Client";
+import { Detokenize } from "./api/resources/detokenize/client/Client";
 import { Logs } from "./api/resources/logs/client/Client";
 import { Permissions } from "./api/resources/permissions/client/Client";
 import { Proxies } from "./api/resources/proxies/client/Client";
@@ -17,12 +18,13 @@ import { Sessions } from "./api/resources/sessions/client/Client";
 import { Threeds } from "./api/resources/threeds/client/Client";
 import { Tokenize } from "./api/resources/tokenize/client/Client";
 import { Tokens } from "./api/resources/tokens/client/Client";
+import { Webhooks } from "./api/resources/webhooks/client/Client";
 import { Tenants } from "./api/resources/tenants/client/Client";
 
 export declare namespace BasisTheoryClient {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -37,7 +39,7 @@ export declare namespace BasisTheoryClient {
 }
 
 export class BasisTheoryClient {
-    constructor(protected readonly _options: BasisTheoryClient.Options) {}
+    constructor(protected readonly _options: BasisTheoryClient.Options = {}) {}
 
     protected _applications: Applications | undefined;
 
@@ -55,6 +57,12 @@ export class BasisTheoryClient {
 
     public get applicationTemplates(): ApplicationTemplates {
         return (this._applicationTemplates ??= new ApplicationTemplates(this._options));
+    }
+
+    protected _detokenize: Detokenize | undefined;
+
+    public get detokenize(): Detokenize {
+        return (this._detokenize ??= new Detokenize(this._options));
     }
 
     protected _logs: Logs | undefined;
@@ -115,6 +123,12 @@ export class BasisTheoryClient {
 
     public get tokens(): Tokens {
         return (this._tokens ??= new Tokens(this._options));
+    }
+
+    protected _webhooks: Webhooks | undefined;
+
+    public get webhooks(): Webhooks {
+        return (this._webhooks ??= new Webhooks(this._options));
     }
 
     protected _tenants: Tenants | undefined;

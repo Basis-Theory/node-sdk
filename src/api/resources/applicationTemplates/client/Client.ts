@@ -12,7 +12,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace ApplicationTemplates {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -27,7 +27,7 @@ export declare namespace ApplicationTemplates {
 }
 
 export class ApplicationTemplates {
-    constructor(protected readonly _options: ApplicationTemplates.Options) {}
+    constructor(protected readonly _options: ApplicationTemplates.Options = {}) {}
 
     /**
      * @param {ApplicationTemplates.RequestOptions} requestOptions - Request-specific configuration.

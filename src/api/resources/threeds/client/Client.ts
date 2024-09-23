@@ -12,7 +12,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace Threeds {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Threeds {
 }
 
 export class Threeds {
-    constructor(protected readonly _options: Threeds.Options) {}
+    constructor(protected readonly _options: Threeds.Options = {}) {}
 
     /**
      * @param {string} sessionId

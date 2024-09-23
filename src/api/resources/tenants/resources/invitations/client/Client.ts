@@ -12,7 +12,7 @@ import * as errors from "../../../../../../errors/index";
 export declare namespace Invitations {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Invitations {
 }
 
 export class Invitations {
-    constructor(protected readonly _options: Invitations.Options) {}
+    constructor(protected readonly _options: Invitations.Options = {}) {}
 
     /**
      * @param {BasisTheory.tenants.InvitationsListRequest} request

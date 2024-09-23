@@ -12,7 +12,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace Applications {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Applications {
 }
 
 export class Applications {
-    constructor(protected readonly _options: Applications.Options) {}
+    constructor(protected readonly _options: Applications.Options = {}) {}
 
     /**
      * @param {BasisTheory.ApplicationsListRequest} request

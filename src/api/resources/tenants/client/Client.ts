@@ -12,7 +12,7 @@ import { Self } from "../resources/self/client/Client";
 export declare namespace Tenants {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -27,7 +27,7 @@ export declare namespace Tenants {
 }
 
 export class Tenants {
-    constructor(protected readonly _options: Tenants.Options) {}
+    constructor(protected readonly _options: Tenants.Options = {}) {}
 
     protected _connections: Connections | undefined;
 

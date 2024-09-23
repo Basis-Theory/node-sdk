@@ -12,7 +12,7 @@ import * as serializers from "../../../../serialization/index";
 export declare namespace Tokenize {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Tokenize {
 }
 
 export class Tokenize {
-    constructor(protected readonly _options: Tokenize.Options) {}
+    constructor(protected readonly _options: Tokenize.Options = {}) {}
 
     /**
      * @param {unknown} request

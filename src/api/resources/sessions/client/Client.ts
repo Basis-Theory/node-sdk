@@ -12,7 +12,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace Sessions {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Sessions {
 }
 
 export class Sessions {
-    constructor(protected readonly _options: Sessions.Options) {}
+    constructor(protected readonly _options: Sessions.Options = {}) {}
 
     /**
      * @param {Sessions.IdempotentRequestOptions} requestOptions - Request-specific configuration.

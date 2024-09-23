@@ -8,11 +8,12 @@ import * as BasisTheory from "../../../index";
 import urlJoin from "url-join";
 import * as serializers from "../../../../serialization/index";
 import * as errors from "../../../../errors/index";
+import { Results } from "../resources/results/client/Client";
 
 export declare namespace Reactors {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +32,7 @@ export declare namespace Reactors {
 }
 
 export class Reactors {
-    constructor(protected readonly _options: Reactors.Options) {}
+    constructor(protected readonly _options: Reactors.Options = {}) {}
 
     /**
      * @param {BasisTheory.ReactorsListRequest} request
@@ -770,6 +771,130 @@ export class Reactors {
                     message: _response.error.errorMessage,
                 });
         }
+    }
+
+    /**
+     * @param {string} id
+     * @param {BasisTheory.ReactRequestAsync} request
+     * @param {Reactors.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link BasisTheory.BadRequestError}
+     * @throws {@link BasisTheory.UnauthorizedError}
+     * @throws {@link BasisTheory.ForbiddenError}
+     * @throws {@link BasisTheory.NotFoundError}
+     * @throws {@link BasisTheory.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.reactors.reactAsync("id")
+     */
+    public async reactAsync(
+        id: string,
+        request: BasisTheory.ReactRequestAsync = {},
+        requestOptions?: Reactors.RequestOptions
+    ): Promise<BasisTheory.ReactResponse> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
+                `reactors/${encodeURIComponent(id)}/react-async`
+            ),
+            method: "POST",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@basis-theory/basis-theory-js",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/basis-theory-js/0.0.1",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: serializers.ReactRequestAsync.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.ReactResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new BasisTheory.BadRequestError(
+                        serializers.ValidationProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 401:
+                    throw new BasisTheory.UnauthorizedError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 403:
+                    throw new BasisTheory.ForbiddenError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 404:
+                    throw new BasisTheory.NotFoundError(_response.error.body);
+                case 422:
+                    throw new BasisTheory.UnprocessableEntityError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.BasisTheoryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.BasisTheoryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.BasisTheoryTimeoutError();
+            case "unknown":
+                throw new errors.BasisTheoryError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    protected _results: Results | undefined;
+
+    public get results(): Results {
+        return (this._results ??= new Results(this._options));
     }
 
     protected async _getCustomAuthorizationHeaders() {

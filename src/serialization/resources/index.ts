@@ -17,4 +17,6 @@ export * as threeds from "./threeds";
 export * from "./threeds/client/requests";
 export * as tokens from "./tokens";
 export * from "./tokens/client/requests";
+export * as webhooks from "./webhooks";
+export * from "./webhooks/client/requests";
 export * as tenants from "./tenants";

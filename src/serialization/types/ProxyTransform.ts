@@ -10,11 +10,19 @@ export const ProxyTransform: core.serialization.ObjectSchema<
     serializers.ProxyTransform.Raw,
     BasisTheory.ProxyTransform
 > = core.serialization.object({
+    type: core.serialization.string().optional(),
     code: core.serialization.string().optional(),
+    matcher: core.serialization.string().optional(),
+    expression: core.serialization.string().optional(),
+    replacement: core.serialization.string().optional(),
 });
 
 export declare namespace ProxyTransform {
     interface Raw {
+        type?: string | null;
         code?: string | null;
+        matcher?: string | null;
+        expression?: string | null;
+        replacement?: string | null;
     }
 }

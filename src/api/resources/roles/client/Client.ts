@@ -12,7 +12,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace Roles {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -27,7 +27,7 @@ export declare namespace Roles {
 }
 
 export class Roles {
-    constructor(protected readonly _options: Roles.Options) {}
+    constructor(protected readonly _options: Roles.Options = {}) {}
 
     /**
      * @param {Roles.RequestOptions} requestOptions - Request-specific configuration.

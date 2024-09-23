@@ -12,7 +12,7 @@ import * as errors from "../../../../../../errors/index";
 export declare namespace Self {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Self {
 }
 
 export class Self {
-    constructor(protected readonly _options: Self.Options) {}
+    constructor(protected readonly _options: Self.Options = {}) {}
 
     /**
      * @param {Self.RequestOptions} requestOptions - Request-specific configuration.
