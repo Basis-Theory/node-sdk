@@ -12,7 +12,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace Logs {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -27,7 +27,7 @@ export declare namespace Logs {
 }
 
 export class Logs {
-    constructor(protected readonly _options: Logs.Options) {}
+    constructor(protected readonly _options: Logs.Options = {}) {}
 
     /**
      * @param {BasisTheory.LogsListRequest} request

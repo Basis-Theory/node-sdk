@@ -12,7 +12,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace Proxies {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Proxies {
 }
 
 export class Proxies {
-    constructor(protected readonly _options: Proxies.Options) {}
+    constructor(protected readonly _options: Proxies.Options = {}) {}
 
     /**
      * @param {BasisTheory.ProxiesListRequest} request

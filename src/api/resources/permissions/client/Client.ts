@@ -12,7 +12,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace Permissions {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -27,7 +27,7 @@ export declare namespace Permissions {
 }
 
 export class Permissions {
-    constructor(protected readonly _options: Permissions.Options) {}
+    constructor(protected readonly _options: Permissions.Options = {}) {}
 
     /**
      * @param {BasisTheory.PermissionsGetRequest} request

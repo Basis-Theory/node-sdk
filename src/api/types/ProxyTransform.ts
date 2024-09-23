@@ -3,5 +3,9 @@
  */
 
 export interface ProxyTransform {
+    type?: string;
     code?: string;
+    matcher?: string;
+    expression?: string;
+    replacement?: string;
 }

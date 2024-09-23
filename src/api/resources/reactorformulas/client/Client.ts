@@ -12,7 +12,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace Reactorformulas {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Reactorformulas {
 }
 
 export class Reactorformulas {
-    constructor(protected readonly _options: Reactorformulas.Options) {}
+    constructor(protected readonly _options: Reactorformulas.Options = {}) {}
 
     /**
      * @param {BasisTheory.ReactorformulasListRequest} request

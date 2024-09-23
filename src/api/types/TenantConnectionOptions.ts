@@ -3,6 +3,5 @@
  */
 
 export interface TenantConnectionOptions {
-    scopes?: string;
     domainAliases?: string[];
 }

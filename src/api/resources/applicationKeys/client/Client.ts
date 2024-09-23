@@ -12,7 +12,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace ApplicationKeys {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace ApplicationKeys {
 }
 
 export class ApplicationKeys {
-    constructor(protected readonly _options: ApplicationKeys.Options) {}
+    constructor(protected readonly _options: ApplicationKeys.Options = {}) {}
 
     /**
      * @param {string} id
