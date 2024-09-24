@@ -1,2 +1,1 @@
-yarn install
-semantic-release
+yarn run semantic-release
