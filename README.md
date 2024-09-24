@@ -1,7 +1,7 @@
 # BasisTheory TypeScript Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-SDK%20generated%20by%20Fern-brightgreen)](https://github.com/fern-api/fern)
-[![npm shield](https://img.shields.io/npm/v/@basis-theory/basis-theory-js)](https://www.npmjs.com/package/@basis-theory/basis-theory-js)
+[![npm shield](https://img.shields.io/npm/v/@basis-theory/node-sdk)](https://www.npmjs.com/package/@basis-theory/node-sdk)
 
 The BasisTheory TypeScript library provides convenient access to the BasisTheory API from TypeScript.
 
@@ -12,7 +12,7 @@ API reference documentation is available [here](https://api.basistheory.com).
 ## Installation
 
 ```sh
-npm i -s @basis-theory/basis-theory-js
+npm i -s @basis-theory/node-sdk
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ npm i -s @basis-theory/basis-theory-js
 Instantiate and use the client with the following:
 
 ```typescript
-import { BasisTheoryClient } from "@basis-theory/basis-theory-js";
+import { BasisTheoryClient } from "@basis-theory/node-sdk";
 
 const client = new BasisTheoryClient({ apiKey: "YOUR_API_KEY" });
 await client.tenants.self.get();
@@ -32,7 +32,7 @@ The SDK exports all request and response types as TypeScript interfaces. Simply 
 following namespace:
 
 ```typescript
-import { BasisTheory } from "@basis-theory/basis-theory-js";
+import { BasisTheory } from "@basis-theory/node-sdk";
 
 const request: BasisTheory.ApplicationsListRequest = {
     ...
@@ -45,7 +45,7 @@ When the API returns a non-success status code (4xx or 5xx response), a subclass
 will be thrown.
 
 ```typescript
-import { BasisTheoryError } from "@basis-theory/basis-theory-js";
+import { BasisTheoryError } from "@basis-theory/node-sdk";
 
 try {
     await client.tenants.self.get(...);
@@ -120,7 +120,7 @@ The SDK provides a way for your to customize the underlying HTTP client / Fetch 
 unsupported environment, this provides a way for you to break glass and ensure the SDK works.
 
 ```typescript
-import { BasisTheoryClient } from "@basis-theory/basis-theory-js";
+import { BasisTheoryClient } from "@basis-theory/node-sdk";
 
 const client = new BasisTheoryClient({
     ...

@@ -78,9 +78,9 @@ export class Proxies {
                 method: "GET",
                 headers: {
                     "X-Fern-Language": "JavaScript",
-                    "X-Fern-SDK-Name": "@basis-theory/basis-theory-js",
+                    "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                     "X-Fern-SDK-Version": "0.0.1",
-                    "User-Agent": "@basis-theory/basis-theory-js/0.0.1",
+                    "User-Agent": "@basis-theory/node-sdk/0.0.1",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...(await this._getCustomAuthorizationHeaders()),
@@ -184,9 +184,9 @@ export class Proxies {
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@basis-theory/basis-theory-js",
+                "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                 "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "@basis-theory/basis-theory-js/0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 "BT-IDEMPOTENCY-KEY":
@@ -285,9 +285,9 @@ export class Proxies {
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@basis-theory/basis-theory-js",
+                "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                 "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "@basis-theory/basis-theory-js/0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -384,9 +384,9 @@ export class Proxies {
             method: "PUT",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@basis-theory/basis-theory-js",
+                "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                 "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "@basis-theory/basis-theory-js/0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 "BT-IDEMPOTENCY-KEY":
@@ -487,9 +487,9 @@ export class Proxies {
             method: "DELETE",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@basis-theory/basis-theory-js",
+                "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                 "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "@basis-theory/basis-theory-js/0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -577,9 +577,9 @@ export class Proxies {
             method: "PATCH",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@basis-theory/basis-theory-js",
+                "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                 "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "@basis-theory/basis-theory-js/0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 "BT-IDEMPOTENCY-KEY":
