@@ -651,9 +651,9 @@ await client.applicationTemplates.get("id");
 </dl>
 </details>
 
-## Detokenize
+## Tokens
 
-<details><summary><code>client.detokenize.<a href="/src/api/resources/detokenize/client/Client.ts">detokenize</a>({ ...params }) -> void</code></summary>
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">detokenize</a>({ ...params }) -> void</code></summary>
 <dl>
 <dd>
 
@@ -666,7 +666,7 @@ await client.applicationTemplates.get("id");
 <dd>
 
 ```typescript
-await client.detokenize.detokenize({
+await client.tokens.detokenize({
     key: "value",
 });
 ```
@@ -692,7 +692,473 @@ await client.detokenize.detokenize({
 <dl>
 <dd>
 
-**requestOptions:** `Detokenize.RequestOptions`
+**requestOptions:** `Tokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">tokenize</a>({ ...params }) -> unknown</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tokens.tokenize({
+    key: "value",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `unknown`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tokens.IdempotentRequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Token></code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tokens.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.TokensListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">create</a>({ ...params }) -> BasisTheory.Token</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tokens.create({
+    id: "string",
+    type: "string",
+    data: {
+        key: "value",
+    },
+    privacy: {
+        classification: "string",
+        impactLevel: "string",
+        restrictionPolicy: "string",
+    },
+    metadata: {
+        string: {
+            key: "value",
+        },
+    },
+    searchIndexes: ["string"],
+    fingerprintExpression: "string",
+    mask: {
+        key: "value",
+    },
+    deduplicateToken: true,
+    expiresAt: "string",
+    containers: ["string"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.CreateTokenRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tokens.IdempotentRequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">search</a>({ ...params }) -> core.Page<BasisTheory.Token></code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tokens.search();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.SearchTokensRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tokens.IdempotentRequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">get</a>(id) -> BasisTheory.Token</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tokens.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tokens.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">update</a>(id, { ...params }) -> BasisTheory.Token</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tokens.update("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.UpdateTokenRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tokens.IdempotentRequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">listV2</a>({ ...params }) -> core.Page<BasisTheory.Token></code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tokens.listV2();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.TokensListV2Request`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">searchV2</a>({ ...params }) -> core.Page<BasisTheory.Token></code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tokens.searchV2();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.SearchTokensRequestV2`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tokens.IdempotentRequestOptions`
 
 </dd>
 </dl>
@@ -2117,476 +2583,6 @@ await client.threeds.getSessionById("id");
 <dd>
 
 **requestOptions:** `Threeds.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Tokenize
-
-<details><summary><code>client.tokenize.<a href="/src/api/resources/tokenize/client/Client.ts">tokenize</a>({ ...params }) -> unknown</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.tokenize.tokenize({
-    key: "value",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `unknown`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tokenize.IdempotentRequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Tokens
-
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Token></code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.tokens.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `BasisTheory.TokensListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tokens.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">create</a>({ ...params }) -> BasisTheory.Token</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.tokens.create({
-    id: "string",
-    type: "string",
-    data: {
-        key: "value",
-    },
-    privacy: {
-        classification: "string",
-        impactLevel: "string",
-        restrictionPolicy: "string",
-    },
-    metadata: {
-        string: {
-            key: "value",
-        },
-    },
-    searchIndexes: ["string"],
-    fingerprintExpression: "string",
-    mask: {
-        key: "value",
-    },
-    deduplicateToken: true,
-    expiresAt: "string",
-    containers: ["string"],
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `BasisTheory.CreateTokenRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tokens.IdempotentRequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">search</a>({ ...params }) -> core.Page<BasisTheory.Token></code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.tokens.search();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `BasisTheory.SearchTokensRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tokens.IdempotentRequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">get</a>(id) -> BasisTheory.Token</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.tokens.get("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tokens.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">delete</a>(id) -> void</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.tokens.delete("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tokens.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">update</a>(id, { ...params }) -> BasisTheory.Token</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.tokens.update("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `BasisTheory.UpdateTokenRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tokens.IdempotentRequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">listV2</a>({ ...params }) -> core.Page<BasisTheory.Token></code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.tokens.listV2();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `BasisTheory.TokensListV2Request`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tokens.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">searchV2</a>({ ...params }) -> core.Page<BasisTheory.Token></code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.tokens.searchV2();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `BasisTheory.SearchTokensRequestV2`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tokens.IdempotentRequestOptions`
 
 </dd>
 </dl>

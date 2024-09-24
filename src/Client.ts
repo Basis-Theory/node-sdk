@@ -7,7 +7,7 @@ import * as core from "./core";
 import { Applications } from "./api/resources/applications/client/Client";
 import { ApplicationKeys } from "./api/resources/applicationKeys/client/Client";
 import { ApplicationTemplates } from "./api/resources/applicationTemplates/client/Client";
-import { Detokenize } from "./api/resources/detokenize/client/Client";
+import { Tokens } from "./api/resources/tokens/client/Client";
 import { Logs } from "./api/resources/logs/client/Client";
 import { Permissions } from "./api/resources/permissions/client/Client";
 import { Proxies } from "./api/resources/proxies/client/Client";
@@ -16,8 +16,6 @@ import { Reactors } from "./api/resources/reactors/client/Client";
 import { Roles } from "./api/resources/roles/client/Client";
 import { Sessions } from "./api/resources/sessions/client/Client";
 import { Threeds } from "./api/resources/threeds/client/Client";
-import { Tokenize } from "./api/resources/tokenize/client/Client";
-import { Tokens } from "./api/resources/tokens/client/Client";
 import { Webhooks } from "./api/resources/webhooks/client/Client";
 import { Tenants } from "./api/resources/tenants/client/Client";
 
@@ -59,10 +57,10 @@ export class BasisTheoryClient {
         return (this._applicationTemplates ??= new ApplicationTemplates(this._options));
     }
 
-    protected _detokenize: Detokenize | undefined;
+    protected _tokens: Tokens | undefined;
 
-    public get detokenize(): Detokenize {
-        return (this._detokenize ??= new Detokenize(this._options));
+    public get tokens(): Tokens {
+        return (this._tokens ??= new Tokens(this._options));
     }
 
     protected _logs: Logs | undefined;
@@ -111,18 +109,6 @@ export class BasisTheoryClient {
 
     public get threeds(): Threeds {
         return (this._threeds ??= new Threeds(this._options));
-    }
-
-    protected _tokenize: Tokenize | undefined;
-
-    public get tokenize(): Tokenize {
-        return (this._tokenize ??= new Tokenize(this._options));
-    }
-
-    protected _tokens: Tokens | undefined;
-
-    public get tokens(): Tokens {
-        return (this._tokens ??= new Tokens(this._options));
     }
 
     protected _webhooks: Webhooks | undefined;
