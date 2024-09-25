@@ -9,9 +9,12 @@ libPackage.scripts = {
   postversion: 'cd .. && node bump.js',
 };
 
+libPackage.publishConfig = {
+  access: 'public',
+}
+
 // include all 'dist/*' files, but bundles
 libPackage.files = ['*', '!*.bundle.js'];
-
 
 fs.mkdirSync('./dist', { recursive: true });
 fs.copyFileSync('README.md', './dist/README.md');
