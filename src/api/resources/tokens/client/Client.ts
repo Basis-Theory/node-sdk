@@ -391,9 +391,7 @@ export class Tokens {
      *             restrictionPolicy: "string"
      *         },
      *         metadata: {
-     *             "string": {
-     *                 "key": "value"
-     *             }
+     *             "string": undefined
      *         },
      *         searchIndexes: ["string"],
      *         fingerprintExpression: "string",
