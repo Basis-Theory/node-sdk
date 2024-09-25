@@ -2,6 +2,7 @@
 
 .github/workflows/release.yml
 .gitignore
+.releaserc.json
 
 scripts/build.sh
 scripts/release.sh
