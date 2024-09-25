@@ -8,6 +8,7 @@ scripts/release.sh
 .gitignore
 .releaserc.json
 bump.js
+CHANGELOG.md
 LICENSE
 prepare.js
 
