@@ -14,4 +14,8 @@ fi
 
 yarn build
 
+
+
 cd "$current_directory"
+
+node ./prepare.js
