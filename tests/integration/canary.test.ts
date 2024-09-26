@@ -1,5 +1,7 @@
 import { BasisTheoryClient } from "../../src";
 import { NotFoundError, UnauthorizedError } from "../../src/api";
+import { randomUUID } from "node:crypto";
+import { Tokens } from "../../src/api/resources/tokens/client/Client";
 
 
 function getManagementClient() {
@@ -16,7 +18,7 @@ function getPrivateClient() {
     });
 }
 
-async function createToken(client: BasisTheoryClient, cardNumber: string) {
+async function createToken(client: BasisTheoryClient, cardNumber: string, requestOptions?: Tokens.IdempotentRequestOptions) {
     let token = await client.tokens.create({
         type: "card",
         data: {
@@ -36,7 +38,7 @@ async function createToken(client: BasisTheoryClient, cardNumber: string) {
         },
         deduplicateToken: false,
         containers: ["/pci/high/"],
-    });
+    }, requestOptions);
     let tokenId = token.id;
     return tokenId;
 }
@@ -156,5 +158,34 @@ describe('Canary', () => {
 
         await client.tokens.delete(tokenId!);
         await ensureTokenDeleted(client, tokenId!);
+    });
+
+    it('should support idempotency headers', async () => {
+        const client = getPrivateClient();
+        const idempotencyKey = randomUUID();
+
+        const firstTokenId = await createToken(client, "6011000990139424", {idempotencyKey: idempotencyKey});
+        const secondTokenId = await createToken(client, "4242424242424242", {idempotencyKey: idempotencyKey});
+
+        expect(firstTokenId).toBe(secondTokenId);
+    });
+
+    it('should paginate on tokens/list v1', async () => {
+        const client = getPrivateClient();
+        const pageSize = 3;
+
+        const tokens = await client.tokens.list({
+            page: 1,
+            size: pageSize
+        });
+
+        let count = 0;
+        for await (const token of tokens) {
+            count++;
+            if (count > pageSize) {
+                break;
+            }
+        }
+        expect(count).toBeGreaterThan(pageSize);
     })
 })
