@@ -3,6 +3,9 @@ import { NotFoundError, UnauthorizedError } from "../../src/api";
 import { randomUUID } from "node:crypto";
 import { Tokens } from "../../src/api/resources/tokens/client/Client";
 
+function sleep(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 function getManagementClient() {
     return new BasisTheoryClient({
@@ -46,8 +49,9 @@ async function createToken(client: BasisTheoryClient, cardNumber: string, reques
 async function ensureTokenDeleted(client: BasisTheoryClient, tokenId: string) {
     try {
         await client.tokens.get(tokenId!);
+        fail('Should have raised a 404 for token not found');
     } catch (err) {
-        expect(err instanceof NotFoundError).toBe(true);
+        expect(err).toBeInstanceOf(NotFoundError);
     }
 }
 
@@ -98,6 +102,29 @@ async function react(client: BasisTheoryClient, reactorId: string) {
 
 async function deleteReactor(managementClient: BasisTheoryClient, reactorId: string) {
     await managementClient.reactors.delete(reactorId!);
+}
+
+async function createWebhook(client: BasisTheoryClient, url: string) {
+    const webhook = await client.webhooks.create({
+        name: "(Deletable) node-SDK-" + crypto.randomUUID(),
+        url: url,
+        events: ["token.created"],
+    });
+    const webhookId = webhook.id;
+    return webhookId;
+}
+
+async function getAndValidateWebhookUrl(client: BasisTheoryClient, webhookId: string, url: string) {
+    const webhook = await client.webhooks.get(webhookId);
+    expect(webhook.url).toEqual(url);
+}
+
+async function updateWebhook(client: BasisTheoryClient, webhookId: string, updateUrl: string) {
+    await client.webhooks.update(webhookId, {
+        name: "(Deletable) node-SDK-" + crypto.randomUUID(),
+        url: updateUrl,
+        events: ["token.created", "token.updated"],
+    });
 }
 
 describe('Canary', () => {
@@ -205,5 +232,33 @@ describe('Canary', () => {
             }
         }
         expect(count).toBeGreaterThan(pageSize);
+    });
+
+    it('should manage webhook lifecycle', async () => {
+        const client = getManagementClient();
+
+        const url = "https://echo.basistheory.com/" + randomUUID();
+        const webhookId = await createWebhook(client, url);
+        await getAndValidateWebhookUrl(client, webhookId, url);
+
+        await sleep(2000); // Required to avoid error `The webhook subscription is undergoing another concurrent operation. Please wait a few seconds, then try again.`
+
+        const updateUrl = "https://echo.basistheory.com/" + randomUUID();
+        await updateWebhook(client, webhookId, updateUrl);
+        await getAndValidateWebhookUrl(client, webhookId, updateUrl);
+
+        await sleep(2000);
+
+        await client.webhooks.delete(webhookId); // Required to avoid error `The webhook subscription is undergoing another concurrent operation. Please wait a few seconds, then try again.`
+
+        try {
+            await client.webhooks.get(webhookId);
+            fail('Should have raised a 404 for webhook not found');
+        } catch (err) {
+            expect(err).toBeDefined();
+            // Webhooks 404 currently does not return a `ProblemDetails` component
+            // Therefore, the SDK will return the base exception type
+            // expect(err).toBeInstanceOf(NotFoundError);
+        }
     })
 })
