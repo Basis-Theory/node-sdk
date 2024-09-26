@@ -1,6 +1,8 @@
 name: ci
 
-on: [push]
+on:
+  pull_request:
+    branches: [ master ]
 
 jobs:
   compile:
@@ -28,3 +30,29 @@ jobs:
 
       - name: Compile
         run: yarn && yarn test
+
+  code-security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/gradle@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_API_KEY }}
+        with:
+          command: code test
+      
+  dependencies-security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/gradle@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_API_KEY }}
+        with:
+          args: --all-sub-projects --severity-threshold=high
