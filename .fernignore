@@ -7,6 +7,8 @@
 scripts/build.sh
 scripts/release.sh
 
+tests/integration/canary.test.ts
+
 .gitignore
 .releaserc.json
 bump.js
