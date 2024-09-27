@@ -1,6 +1,8 @@
 # Specify files that shouldn't be modified by Fern
 
 .github/workflows/release.yml
+.github/workflows/ci.yml
+.github/workflows/security-scan.yml
 
 scripts/build.sh
 scripts/release.sh
