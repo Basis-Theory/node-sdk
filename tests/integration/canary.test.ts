@@ -185,7 +185,7 @@ describe('Canary', () => {
 
         await client.tokens.delete(tokenId!);
         await ensureTokenDeleted(client, tokenId!);
-    });
+    }, 10000);
 
     it('should support idempotency headers', async () => {
         const client = getPrivateClient();
@@ -260,5 +260,5 @@ describe('Canary', () => {
             // Therefore, the SDK will return the base exception type
             // expect(err).toBeInstanceOf(NotFoundError);
         }
-    })
+    }, 10000)
 })
