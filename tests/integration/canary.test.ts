@@ -165,7 +165,7 @@ describe('Canary', () => {
         // Create Application
         const application = await managementClient.applications.create({
             type: 'private',
-            name: '(Deletable) node-SDK-' + crypto.randomUUID(),
+            name: '(Deletable) node-SDK-' + randomUUID(),
             permissions: ['token:use']
         });
         let applicationId = application.id;
