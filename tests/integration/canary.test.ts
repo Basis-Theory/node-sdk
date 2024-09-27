@@ -62,8 +62,8 @@ async function getAndValidateCardNumber(client: BasisTheoryClient, tokenId: stri
 
 async function createProxy(managementClient: BasisTheoryClient, applicationId: string) {
     const proxy = await managementClient.proxies.create({
-        name: "(Deletable) node-SDK-" + crypto.randomUUID(),
-        destinationUrl: "https://echo.basistheory.com/" + crypto.randomUUID(),
+        name: "(Deletable) node-SDK-" + randomUUID(),
+        destinationUrl: "https://echo.basistheory.com/" + randomUUID(),
         application: {
             id: applicationId,
         },
@@ -78,7 +78,7 @@ async function deleteProxy(managementClient: BasisTheoryClient, proxyId: string)
 
 async function createReactor(managementClient: BasisTheoryClient, applicationId: string) {
     let reactor = await managementClient.reactors.create({
-        name: "(Deletable) node-SDK-" + crypto.randomUUID(),
+        name: "(Deletable) node-SDK-" + randomUUID(),
         code: "module.exports = function (req) {return {raw: req.args}}",
         application: {
             id: applicationId,
@@ -90,8 +90,8 @@ async function createReactor(managementClient: BasisTheoryClient, applicationId:
 
 async function react(client: BasisTheoryClient, reactorId: string) {
     let expected = {
-        key1: "Key1-" + crypto.randomUUID(),
-        key2: "Key2-" + crypto.randomUUID(),
+        key1: "Key1-" + randomUUID(),
+        key2: "Key2-" + randomUUID(),
     };
     let react = await client.reactors.react(reactorId!, {
         args: expected,
@@ -106,7 +106,7 @@ async function deleteReactor(managementClient: BasisTheoryClient, reactorId: str
 
 async function createWebhook(client: BasisTheoryClient, url: string) {
     const webhook = await client.webhooks.create({
-        name: "(Deletable) node-SDK-" + crypto.randomUUID(),
+        name: "(Deletable) node-SDK-" + randomUUID(),
         url: url,
         events: ["token.created"],
     });
@@ -121,7 +121,7 @@ async function getAndValidateWebhookUrl(client: BasisTheoryClient, webhookId: st
 
 async function updateWebhook(client: BasisTheoryClient, webhookId: string, updateUrl: string) {
     await client.webhooks.update(webhookId, {
-        name: "(Deletable) node-SDK-" + crypto.randomUUID(),
+        name: "(Deletable) node-SDK-" + randomUUID(),
         url: updateUrl,
         events: ["token.created", "token.updated"],
     });
