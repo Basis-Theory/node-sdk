@@ -80,8 +80,8 @@ export class Reactors {
                 headers: {
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                    "X-Fern-SDK-Version": "0.0.1",
-                    "User-Agent": "@basis-theory/node-sdk/0.0.1",
+                    "X-Fern-SDK-Version": "1.0.3",
+                    "User-Agent": "@basis-theory/node-sdk/1.0.3",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...(await this._getCustomAuthorizationHeaders()),
@@ -186,8 +186,8 @@ export class Reactors {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "@basis-theory/node-sdk/0.0.1",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "@basis-theory/node-sdk/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 "BT-IDEMPOTENCY-KEY":
@@ -287,8 +287,8 @@ export class Reactors {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "@basis-theory/node-sdk/0.0.1",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "@basis-theory/node-sdk/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -386,8 +386,8 @@ export class Reactors {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "@basis-theory/node-sdk/0.0.1",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "@basis-theory/node-sdk/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 "BT-IDEMPOTENCY-KEY":
@@ -489,8 +489,8 @@ export class Reactors {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "@basis-theory/node-sdk/0.0.1",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "@basis-theory/node-sdk/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -579,15 +579,15 @@ export class Reactors {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "@basis-theory/node-sdk/0.0.1",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "@basis-theory/node-sdk/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
             },
-            contentType: "application/json",
+            contentType: "application/merge-patch+json",
             requestType: "json",
             body: serializers.PatchReactorRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -683,8 +683,8 @@ export class Reactors {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "@basis-theory/node-sdk/0.0.1",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "@basis-theory/node-sdk/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -801,8 +801,8 @@ export class Reactors {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "@basis-theory/node-sdk/0.0.1",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "@basis-theory/node-sdk/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
