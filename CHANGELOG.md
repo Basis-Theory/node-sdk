@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/Basis-Theory/node-sdk/compare/v1.0.2...v1.0.3) (2024-09-30)
+
+
+### Bug Fixes
+
+* Support correct PATCH content-type ([#21](https://github.com/Basis-Theory/node-sdk/issues/21)) ([8b59ea5](https://github.com/Basis-Theory/node-sdk/commit/8b59ea504ffc3a4df526d3c33be2838f6b12efa4))
+
 ## [1.0.2](https://github.com/Basis-Theory/js-sdk/compare/v1.0.1...v1.0.2) (2024-09-25)
 
 
