@@ -127,8 +127,8 @@ async function updateWebhook(client: BasisTheoryClient, webhookId: string, updat
     });
 }
 
-function updateToken(client: BasisTheoryClient, tokenId: string, updateCardNumber: string) {
-    client.tokens.update(tokenId!, {
+async function updateToken(client: BasisTheoryClient, tokenId: string, updateCardNumber: string) {
+    await client.tokens.update(tokenId!, {
         data: {
             number: updateCardNumber,
         },
@@ -171,7 +171,7 @@ describe('Canary', () => {
         await getAndValidateCardNumber(client, tokenId!, cardNumber);
 
         const updateCardNumber = "4242424242424242";
-        updateToken(client, tokenId!, updateCardNumber);
+        await updateToken(client, tokenId!, updateCardNumber);
         await getAndValidateCardNumber(client, tokenId!, updateCardNumber);
 
         // Create Application
