@@ -6,7 +6,7 @@ on:
 
 jobs:
   compile:
-    runs-on: bt-dev
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
@@ -19,7 +19,7 @@ jobs:
         run: yarn && yarn build
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: bt-dev
 
     steps:
       - name: Checkout repo
