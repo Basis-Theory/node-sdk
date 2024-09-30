@@ -127,6 +127,14 @@ async function updateWebhook(client: BasisTheoryClient, webhookId: string, updat
     });
 }
 
+async function updateToken(client: BasisTheoryClient, tokenId: string, updateCardNumber: string) {
+    await client.tokens.update(tokenId!, {
+        data: {
+            number: updateCardNumber,
+        },
+    });
+}
+
 describe('Canary', () => {
     it.skip('should fail on unauthorized', async () => {
         // Open API spec invalidly specify a `ProblemDetails` error body
@@ -161,6 +169,10 @@ describe('Canary', () => {
         const cardNumber = "6011000990139424";
         let tokenId = await createToken(client, cardNumber);
         await getAndValidateCardNumber(client, tokenId!, cardNumber);
+
+        const updateCardNumber = "4242424242424242";
+        await updateToken(client, tokenId!, updateCardNumber);
+        await getAndValidateCardNumber(client, tokenId!, updateCardNumber);
 
         // Create Application
         const application = await managementClient.applications.create({

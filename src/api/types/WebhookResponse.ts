@@ -13,6 +13,6 @@ export interface WebhookResponse {
     events: string[];
     createdBy: string;
     createdAt: Date;
-    modifiedBy: string;
-    modifiedAt: Date;
+    modifiedBy?: string;
+    modifiedAt?: Date;
 }

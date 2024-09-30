@@ -19,8 +19,8 @@ export const WebhookResponse: core.serialization.ObjectSchema<
     events: core.serialization.list(core.serialization.string()),
     createdBy: core.serialization.property("created_by", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
-    modifiedBy: core.serialization.property("modified_by", core.serialization.string()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date()),
+    modifiedBy: core.serialization.property("modified_by", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace WebhookResponse {
@@ -33,7 +33,7 @@ export declare namespace WebhookResponse {
         events: string[];
         created_by: string;
         created_at: string;
-        modified_by: string;
-        modified_at: string;
+        modified_by?: string | null;
+        modified_at?: string | null;
     }
 }
