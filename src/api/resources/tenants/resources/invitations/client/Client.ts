@@ -73,8 +73,8 @@ export class Invitations {
                 headers: {
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                    "X-Fern-SDK-Version": "1.0.3",
-                    "User-Agent": "@basis-theory/node-sdk/1.0.3",
+                    "X-Fern-SDK-Version": "0.0.1",
+                    "User-Agent": "@basis-theory/node-sdk/0.0.1",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...(await this._getCustomAuthorizationHeaders()),
@@ -179,8 +179,8 @@ export class Invitations {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "1.0.3",
-                "User-Agent": "@basis-theory/node-sdk/1.0.3",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 "BT-IDEMPOTENCY-KEY":
@@ -285,8 +285,8 @@ export class Invitations {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "1.0.3",
-                "User-Agent": "@basis-theory/node-sdk/1.0.3",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 "BT-IDEMPOTENCY-KEY":
@@ -385,8 +385,8 @@ export class Invitations {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "1.0.3",
-                "User-Agent": "@basis-theory/node-sdk/1.0.3",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

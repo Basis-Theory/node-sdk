@@ -49,8 +49,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "1.0.3",
-                "User-Agent": "@basis-theory/node-sdk/1.0.3",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -99,7 +99,7 @@ export class Webhooks {
      * @example
      *     await client.webhooks.get("id")
      */
-    public async get(id: string, requestOptions?: Webhooks.RequestOptions): Promise<BasisTheory.WebhookResponse> {
+    public async get(id: string, requestOptions?: Webhooks.RequestOptions): Promise<BasisTheory.Webhook> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
@@ -109,8 +109,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "1.0.3",
-                "User-Agent": "@basis-theory/node-sdk/1.0.3",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -122,7 +122,7 @@ export class Webhooks {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.WebhookResponse.parseOrThrow(_response.body, {
+            return serializers.Webhook.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -180,7 +180,7 @@ export class Webhooks {
      * Update a new webhook
      *
      * @param {string} id
-     * @param {BasisTheory.WebhookUpdateRequest} request
+     * @param {BasisTheory.UpdateWebhookRequest} request
      * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
@@ -198,9 +198,9 @@ export class Webhooks {
      */
     public async update(
         id: string,
-        request: BasisTheory.WebhookUpdateRequest,
+        request: BasisTheory.UpdateWebhookRequest,
         requestOptions?: Webhooks.RequestOptions
-    ): Promise<BasisTheory.WebhookResponse> {
+    ): Promise<BasisTheory.Webhook> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
@@ -210,21 +210,21 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "1.0.3",
-                "User-Agent": "@basis-theory/node-sdk/1.0.3",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.WebhookUpdateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.UpdateWebhookRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.WebhookResponse.parseOrThrow(_response.body, {
+            return serializers.Webhook.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -325,8 +325,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "1.0.3",
-                "User-Agent": "@basis-theory/node-sdk/1.0.3",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -419,7 +419,7 @@ export class Webhooks {
      * @example
      *     await client.webhooks.list()
      */
-    public async list(requestOptions?: Webhooks.RequestOptions): Promise<BasisTheory.WebhookListResponse> {
+    public async list(requestOptions?: Webhooks.RequestOptions): Promise<BasisTheory.WebhookList> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
@@ -429,8 +429,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "1.0.3",
-                "User-Agent": "@basis-theory/node-sdk/1.0.3",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -442,7 +442,7 @@ export class Webhooks {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.WebhookListResponse.parseOrThrow(_response.body, {
+            return serializers.WebhookList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -499,7 +499,7 @@ export class Webhooks {
     /**
      * Create a new webhook
      *
-     * @param {BasisTheory.WebhookCreateRequest} request
+     * @param {BasisTheory.CreateWebhookRequest} request
      * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
@@ -515,9 +515,9 @@ export class Webhooks {
      *     })
      */
     public async create(
-        request: BasisTheory.WebhookCreateRequest,
+        request: BasisTheory.CreateWebhookRequest,
         requestOptions?: Webhooks.RequestOptions
-    ): Promise<BasisTheory.WebhookResponse> {
+    ): Promise<BasisTheory.Webhook> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
@@ -527,21 +527,21 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "1.0.3",
-                "User-Agent": "@basis-theory/node-sdk/1.0.3",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.WebhookCreateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.CreateWebhookRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.WebhookResponse.parseOrThrow(_response.body, {
+            return serializers.Webhook.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,

@@ -2648,7 +2648,7 @@ await client.webhooks.ping();
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">get</a>(id) -> BasisTheory.WebhookResponse</code></summary>
+<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">get</a>(id) -> BasisTheory.Webhook</code></summary>
 <dl>
 <dd>
 
@@ -2711,7 +2711,7 @@ await client.webhooks.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">update</a>(id, { ...params }) -> BasisTheory.WebhookResponse</code></summary>
+<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">update</a>(id, { ...params }) -> BasisTheory.Webhook</code></summary>
 <dl>
 <dd>
 
@@ -2767,7 +2767,7 @@ await client.webhooks.update("id", {
 <dl>
 <dd>
 
-**request:** `BasisTheory.WebhookUpdateRequest`
+**request:** `BasisTheory.UpdateWebhookRequest`
 
 </dd>
 </dl>
@@ -2849,7 +2849,7 @@ await client.webhooks.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">list</a>() -> BasisTheory.WebhookListResponse</code></summary>
+<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">list</a>() -> BasisTheory.WebhookList</code></summary>
 <dl>
 <dd>
 
@@ -2904,7 +2904,7 @@ await client.webhooks.list();
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">create</a>({ ...params }) -> BasisTheory.WebhookResponse</code></summary>
+<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">create</a>({ ...params }) -> BasisTheory.Webhook</code></summary>
 <dl>
 <dd>
 
@@ -2952,7 +2952,7 @@ await client.webhooks.create({
 <dl>
 <dd>
 
-**request:** `BasisTheory.WebhookCreateRequest`
+**request:** `BasisTheory.CreateWebhookRequest`
 
 </dd>
 </dl>

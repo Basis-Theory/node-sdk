@@ -1,2 +1,2 @@
-export { type WebhookUpdateRequest } from "./WebhookUpdateRequest";
-export { type WebhookCreateRequest } from "./WebhookCreateRequest";
+export { type UpdateWebhookRequest } from "./UpdateWebhookRequest";
+export { type CreateWebhookRequest } from "./CreateWebhookRequest";

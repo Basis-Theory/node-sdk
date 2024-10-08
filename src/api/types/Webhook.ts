@@ -4,10 +4,10 @@
 
 import * as BasisTheory from "../index";
 
-export interface WebhookResponse {
+export interface Webhook {
     id: string;
     tenantId: string;
-    status: BasisTheory.WebhookResponseStatus;
+    status: BasisTheory.WebhookStatus;
     name: string;
     url: string;
     events: string[];

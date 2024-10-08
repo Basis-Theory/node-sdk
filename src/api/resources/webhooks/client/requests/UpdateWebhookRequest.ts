@@ -10,7 +10,7 @@
  *         events: ["token:created"]
  *     }
  */
-export interface WebhookUpdateRequest {
+export interface UpdateWebhookRequest {
     /** The name of the webhook */
     name: string;
     /** The URL to which the webhook will send events */
