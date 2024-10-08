@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Basis-Theory/node-sdk/compare/v1.0.3...v1.1.0) (2024-10-08)
+
+
+### Features
+
+* Rename Webhook components ([#22](https://github.com/Basis-Theory/node-sdk/issues/22)) ([5f112af](https://github.com/Basis-Theory/node-sdk/commit/5f112afe166cd9632370d1edc1cfacc6bb06a2fd))
+
 ## [1.0.3](https://github.com/Basis-Theory/node-sdk/compare/v1.0.2...v1.0.3) (2024-09-30)
 
 
