@@ -1,2 +1,2 @@
-export { WebhookUpdateRequest } from "./WebhookUpdateRequest";
-export { WebhookCreateRequest } from "./WebhookCreateRequest";
+export { UpdateWebhookRequest } from "./UpdateWebhookRequest";
+export { CreateWebhookRequest } from "./CreateWebhookRequest";

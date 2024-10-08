@@ -6,16 +6,16 @@ import * as serializers from "../../../../index";
 import * as BasisTheory from "../../../../../api/index";
 import * as core from "../../../../../core";
 
-export const WebhookCreateRequest: core.serialization.Schema<
-    serializers.WebhookCreateRequest.Raw,
-    BasisTheory.WebhookCreateRequest
+export const UpdateWebhookRequest: core.serialization.Schema<
+    serializers.UpdateWebhookRequest.Raw,
+    BasisTheory.UpdateWebhookRequest
 > = core.serialization.object({
     name: core.serialization.string(),
     url: core.serialization.string(),
     events: core.serialization.list(core.serialization.string()),
 });
 
-export declare namespace WebhookCreateRequest {
+export declare namespace UpdateWebhookRequest {
     interface Raw {
         name: string;
         url: string;

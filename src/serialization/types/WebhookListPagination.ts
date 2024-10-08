@@ -6,15 +6,15 @@ import * as serializers from "../index";
 import * as BasisTheory from "../../api/index";
 import * as core from "../../core";
 
-export const WebhookListResponsePagination: core.serialization.ObjectSchema<
-    serializers.WebhookListResponsePagination.Raw,
-    BasisTheory.WebhookListResponsePagination
+export const WebhookListPagination: core.serialization.ObjectSchema<
+    serializers.WebhookListPagination.Raw,
+    BasisTheory.WebhookListPagination
 > = core.serialization.object({
     pageSize: core.serialization.property("page_size", core.serialization.number().optional()),
     next: core.serialization.string().optional(),
 });
 
-export declare namespace WebhookListResponsePagination {
+export declare namespace WebhookListPagination {
     interface Raw {
         page_size?: number | null;
         next?: string | null;
