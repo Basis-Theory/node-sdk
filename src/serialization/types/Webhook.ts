@@ -14,6 +14,7 @@ export const Webhook: core.serialization.ObjectSchema<serializers.Webhook.Raw, B
         status: WebhookStatus,
         name: core.serialization.string(),
         url: core.serialization.string(),
+        notifyEmail: core.serialization.property("notify_email", core.serialization.string().optional()),
         events: core.serialization.list(core.serialization.string()),
         createdBy: core.serialization.property("created_by", core.serialization.string()),
         createdAt: core.serialization.property("created_at", core.serialization.date()),
@@ -28,6 +29,7 @@ export declare namespace Webhook {
         status: WebhookStatus.Raw;
         name: string;
         url: string;
+        notify_email?: string | null;
         events: string[];
         created_by: string;
         created_at: string;

@@ -95,6 +95,7 @@ export class Webhooks {
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
+     * @throws {@link BasisTheory.NotFoundError}
      *
      * @example
      *     await client.webhooks.get("id")
@@ -153,6 +154,8 @@ export class Webhooks {
                             breadcrumbsPrefix: ["response"],
                         })
                     );
+                case 404:
+                    throw new BasisTheory.NotFoundError(_response.error.body);
                 default:
                     throw new errors.BasisTheoryError({
                         statusCode: _response.error.statusCode,
@@ -413,6 +416,7 @@ export class Webhooks {
      *
      * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
      *
+     * @throws {@link BasisTheory.BadRequestError}
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
      *
@@ -453,6 +457,16 @@ export class Webhooks {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
+                case 400:
+                    throw new BasisTheory.BadRequestError(
+                        serializers.ValidationProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
                         serializers.ProblemDetails.parseOrThrow(_response.error.body, {

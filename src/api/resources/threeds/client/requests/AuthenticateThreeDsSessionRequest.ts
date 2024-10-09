@@ -8,13 +8,13 @@ import * as BasisTheory from "../../../../index";
  * @example
  *     {
  *         authenticationCategory: "authentication_category",
- *         authenticationType: "authentication_type",
  *         requestorInfo: {}
  *     }
  */
 export interface AuthenticateThreeDsSessionRequest {
     authenticationCategory: string;
-    authenticationType: string;
+    authenticationType?: string;
+    merchantAuthenticationType?: string;
     challengePreference?: string;
     purchaseInfo?: BasisTheory.ThreeDsPurchaseInfo;
     merchantInfo?: BasisTheory.ThreeDsMerchantInfo;
