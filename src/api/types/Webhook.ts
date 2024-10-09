@@ -10,6 +10,8 @@ export interface Webhook {
     status: BasisTheory.WebhookStatus;
     name: string;
     url: string;
+    /** The email address to use for management notification events. Ie: webhook disabled */
+    notifyEmail?: string;
     events: string[];
     createdBy: string;
     createdAt: Date;

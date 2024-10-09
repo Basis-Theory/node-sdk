@@ -12,6 +12,7 @@ export const UpdateWebhookRequest: core.serialization.Schema<
 > = core.serialization.object({
     name: core.serialization.string(),
     url: core.serialization.string(),
+    notifyEmail: core.serialization.property("notify_email", core.serialization.string().optional()),
     events: core.serialization.list(core.serialization.string()),
 });
 
@@ -19,6 +20,7 @@ export declare namespace UpdateWebhookRequest {
     interface Raw {
         name: string;
         url: string;
+        notify_email?: string | null;
         events: string[];
     }
 }

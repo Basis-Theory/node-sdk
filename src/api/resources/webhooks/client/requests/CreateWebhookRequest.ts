@@ -15,6 +15,8 @@ export interface CreateWebhookRequest {
     name: string;
     /** The URL to which the webhook will send events */
     url: string;
+    /** The email address to use for management notification events. Ie: webhook disabled */
+    notifyEmail?: string;
     /** An array of event types that the webhook will listen for */
     events: string[];
 }

@@ -2450,7 +2450,6 @@ await client.sessions.authorize({
 ```typescript
 await client.threeds.authenticateSession("sessionId", {
     authenticationCategory: "authentication_category",
-    authenticationType: "authentication_type",
     requestorInfo: {},
 });
 ```
