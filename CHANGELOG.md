@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Basis-Theory/node-sdk/compare/v1.1.0...v1.2.0) (2024-10-09)
+
+
+### Features
+
+* Adds notify_email to webhooks ([#23](https://github.com/Basis-Theory/node-sdk/issues/23)) ([a7562a0](https://github.com/Basis-Theory/node-sdk/commit/a7562a0b21db3ba7bff8b673a5e800bccf8421cb))
+
 # [1.1.0](https://github.com/Basis-Theory/node-sdk/compare/v1.0.3...v1.1.0) (2024-10-08)
 
 
