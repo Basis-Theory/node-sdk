@@ -379,32 +379,10 @@ export class Tokens {
      * @throws {@link BasisTheory.ConflictError}
      *
      * @example
-     *     await client.tokens.create({
-     *         id: "string",
-     *         type: "string",
-     *         data: {
-     *             "key": "value"
-     *         },
-     *         privacy: {
-     *             classification: "string",
-     *             impactLevel: "string",
-     *             restrictionPolicy: "string"
-     *         },
-     *         metadata: {
-     *             "string": undefined
-     *         },
-     *         searchIndexes: ["string"],
-     *         fingerprintExpression: "string",
-     *         mask: {
-     *             "key": "value"
-     *         },
-     *         deduplicateToken: true,
-     *         expiresAt: "string",
-     *         containers: ["string"]
-     *     })
+     *     await client.tokens.create()
      */
     public async create(
-        request: BasisTheory.CreateTokenRequest,
+        request: BasisTheory.CreateTokenRequest = {},
         requestOptions?: Tokens.IdempotentRequestOptions
     ): Promise<BasisTheory.Token> {
         const _response = await (this._options.fetcher ?? core.fetcher)({

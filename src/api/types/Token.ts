@@ -23,4 +23,5 @@ export interface Token {
     expiresAt?: Date;
     containers?: string[];
     aliases?: string[];
+    extras?: BasisTheory.TokenExtras;
 }

@@ -6,6 +6,8 @@ import * as BasisTheory from "../index";
 
 export interface ThreeDsAuthentication {
     panTokenId?: string;
+    tokenId?: string;
+    tokenIntentId?: string;
     threedsVersion?: string;
     acsTransactionId?: string;
     dsTransactionId?: string;

@@ -7,6 +7,8 @@ export * as applications from "./applications";
 export * from "./applications/client/requests";
 export * as tokens from "./tokens";
 export * from "./tokens/client/requests";
+export * as enrichments from "./enrichments";
+export * from "./enrichments/client/requests";
 export * as proxies from "./proxies";
 export * from "./proxies/client/requests";
 export * as reactorformulas from "./reactorformulas";

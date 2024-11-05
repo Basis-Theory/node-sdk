@@ -814,29 +814,7 @@ await client.tokens.list();
 <dd>
 
 ```typescript
-await client.tokens.create({
-    id: "string",
-    type: "string",
-    data: {
-        key: "value",
-    },
-    privacy: {
-        classification: "string",
-        impactLevel: "string",
-        restrictionPolicy: "string",
-    },
-    metadata: {
-        string: undefined,
-    },
-    searchIndexes: ["string"],
-    fingerprintExpression: "string",
-    mask: {
-        key: "value",
-    },
-    deduplicateToken: true,
-    expiresAt: "string",
-    containers: ["string"],
-});
+await client.tokens.create();
 ```
 
 </dd>
@@ -1157,6 +1135,58 @@ await client.tokens.searchV2();
 <dd>
 
 **requestOptions:** `Tokens.IdempotentRequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Enrichments
+
+<details><summary><code>client.enrichments.<a href="/src/api/resources/enrichments/client/Client.ts">bankaccountverify</a>({ ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.enrichments.bankaccountverify({
+    tokenId: "token_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.BankVerificationRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrichments.RequestOptions`
 
 </dd>
 </dl>
@@ -2435,7 +2465,7 @@ await client.sessions.authorize({
 
 ## Threeds
 
-<details><summary><code>client.threeds.<a href="/src/api/resources/threeds/client/Client.ts">authenticateSession</a>(sessionId, { ...params }) -> BasisTheory.ThreeDsAuthentication</code></summary>
+<details><summary><code>client.threeds.<a href="/src/api/resources/threeds/client/Client.ts">createsession</a>({ ...params }) -> BasisTheory.CreateThreeDsSessionResponse</code></summary>
 <dl>
 <dd>
 
@@ -2448,10 +2478,7 @@ await client.sessions.authorize({
 <dd>
 
 ```typescript
-await client.threeds.authenticateSession("sessionId", {
-    authenticationCategory: "authentication_category",
-    requestorInfo: {},
-});
+await client.threeds.createsession();
 ```
 
 </dd>
@@ -2467,111 +2494,7 @@ await client.threeds.authenticateSession("sessionId", {
 <dl>
 <dd>
 
-**sessionId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `BasisTheory.AuthenticateThreeDsSessionRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Threeds.IdempotentRequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.threeds.<a href="/src/api/resources/threeds/client/Client.ts">getChallengeResult</a>(sessionId) -> BasisTheory.ThreeDsAuthentication</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.threeds.getChallengeResult("sessionId");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sessionId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Threeds.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.threeds.<a href="/src/api/resources/threeds/client/Client.ts">getSessionById</a>(id) -> BasisTheory.ThreeDsSession</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.threeds.getSessionById("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
+**request:** `BasisTheory.CreateThreeDsSessionRequest`
 
 </dd>
 </dl>
@@ -3473,6 +3396,48 @@ await client.tenants.members.delete("memberId");
 </dl>
 </details>
 
+## Tenants Owner
+
+<details><summary><code>client.tenants.owner.<a href="/src/api/resources/tenants/resources/owner/client/Client.ts">get</a>() -> BasisTheory.TenantMemberResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.owner.get();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Owner.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Tenants Self
 
 <details><summary><code>client.tenants.self.<a href="/src/api/resources/tenants/resources/self/client/Client.ts">getUsageReports</a>() -> BasisTheory.TenantUsageReport</code></summary>
@@ -3635,6 +3600,164 @@ await client.tenants.self.delete();
 <dd>
 
 **requestOptions:** `Self.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Threeds Sessions
+
+<details><summary><code>client.threeds.sessions.<a href="/src/api/resources/threeds/resources/sessions/client/Client.ts">authenticate</a>(sessionId, { ...params }) -> BasisTheory.ThreeDsAuthentication</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.threeds.sessions.authenticate("sessionId", {
+    authenticationCategory: "authentication_category",
+    authenticationType: "authentication_type",
+    requestorInfo: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.threeds.AuthenticateThreeDsSessionRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Sessions.IdempotentRequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.threeds.sessions.<a href="/src/api/resources/threeds/resources/sessions/client/Client.ts">getChallengeResult</a>(sessionId) -> BasisTheory.ThreeDsAuthentication</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.threeds.sessions.getChallengeResult("sessionId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Sessions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.threeds.sessions.<a href="/src/api/resources/threeds/resources/sessions/client/Client.ts">get</a>(id) -> BasisTheory.ThreeDsSession</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.threeds.sessions.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Sessions.RequestOptions`
 
 </dd>
 </dl>

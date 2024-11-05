@@ -6,8 +6,11 @@ import * as BasisTheory from "../index";
 
 export interface ThreeDsSession {
     id?: string;
+    type?: string;
     tenantId?: string;
     panTokenId?: string;
+    tokenId?: string;
+    tokenIntentId?: string;
     cardBrand?: string;
     expirationDate?: Date;
     createdDate?: Date;

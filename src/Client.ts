@@ -8,6 +8,7 @@ import { Applications } from "./api/resources/applications/client/Client";
 import { ApplicationKeys } from "./api/resources/applicationKeys/client/Client";
 import { ApplicationTemplates } from "./api/resources/applicationTemplates/client/Client";
 import { Tokens } from "./api/resources/tokens/client/Client";
+import { Enrichments } from "./api/resources/enrichments/client/Client";
 import { Logs } from "./api/resources/logs/client/Client";
 import { Permissions } from "./api/resources/permissions/client/Client";
 import { Proxies } from "./api/resources/proxies/client/Client";
@@ -61,6 +62,12 @@ export class BasisTheoryClient {
 
     public get tokens(): Tokens {
         return (this._tokens ??= new Tokens(this._options));
+    }
+
+    protected _enrichments: Enrichments | undefined;
+
+    public get enrichments(): Enrichments {
+        return (this._enrichments ??= new Enrichments(this._options));
     }
 
     protected _logs: Logs | undefined;
