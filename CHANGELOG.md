@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Basis-Theory/node-sdk/compare/v1.2.0...v1.3.0) (2024-11-05)
+
+
+### Features
+
+* Update to latest ([#25](https://github.com/Basis-Theory/node-sdk/issues/25)) ([1a5454f](https://github.com/Basis-Theory/node-sdk/commit/1a5454f00c30d1a4709890aebf1c7c10c92903da))
+
 # [1.2.0](https://github.com/Basis-Theory/node-sdk/compare/v1.1.0...v1.2.0) (2024-10-09)
 
 
