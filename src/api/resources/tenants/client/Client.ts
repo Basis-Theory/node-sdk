@@ -7,6 +7,7 @@ import * as core from "../../../../core";
 import { Connections } from "../resources/connections/client/Client";
 import { Invitations } from "../resources/invitations/client/Client";
 import { Members } from "../resources/members/client/Client";
+import { Owner } from "../resources/owner/client/Client";
 import { Self } from "../resources/self/client/Client";
 
 export declare namespace Tenants {
@@ -45,6 +46,12 @@ export class Tenants {
 
     public get members(): Members {
         return (this._members ??= new Members(this._options));
+    }
+
+    protected _owner: Owner | undefined;
+
+    public get owner(): Owner {
+        return (this._owner ??= new Owner(this._options));
     }
 
     protected _self: Self | undefined;

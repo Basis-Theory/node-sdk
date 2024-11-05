@@ -13,7 +13,7 @@ export const CreateTokenRequest: core.serialization.Schema<
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     type: core.serialization.string().optional(),
-    data: core.serialization.unknown(),
+    data: core.serialization.unknown().optional(),
     privacy: Privacy.optional(),
     metadata: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
     searchIndexes: core.serialization.property(
@@ -28,13 +28,14 @@ export const CreateTokenRequest: core.serialization.Schema<
     deduplicateToken: core.serialization.property("deduplicate_token", core.serialization.boolean().optional()),
     expiresAt: core.serialization.property("expires_at", core.serialization.string().optional()),
     containers: core.serialization.list(core.serialization.string()).optional(),
+    tokenIntentId: core.serialization.property("token_intent_id", core.serialization.string().optional()),
 });
 
 export declare namespace CreateTokenRequest {
     interface Raw {
         id?: string | null;
         type?: string | null;
-        data?: unknown;
+        data?: unknown | null;
         privacy?: Privacy.Raw | null;
         metadata?: Record<string, string | null | undefined> | null;
         search_indexes?: string[] | null;
@@ -43,5 +44,6 @@ export declare namespace CreateTokenRequest {
         deduplicate_token?: boolean | null;
         expires_at?: string | null;
         containers?: string[] | null;
+        token_intent_id?: string | null;
     }
 }

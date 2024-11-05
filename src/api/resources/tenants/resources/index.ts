@@ -1,6 +1,7 @@
 export * as connections from "./connections";
 export * as invitations from "./invitations";
 export * as members from "./members";
+export * as owner from "./owner";
 export * as self from "./self";
 export * from "./connections/client/requests";
 export * from "./invitations/client/requests";

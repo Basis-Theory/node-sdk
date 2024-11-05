@@ -1,1 +1,1 @@
-export { AuthenticateThreeDsSessionRequest } from "./AuthenticateThreeDsSessionRequest";
+export { CreateThreeDsSessionRequest } from "./CreateThreeDsSessionRequest";
