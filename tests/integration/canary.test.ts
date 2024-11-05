@@ -267,10 +267,7 @@ describe('Canary', () => {
             await client.webhooks.get(webhookId);
             fail('Should have raised a 404 for webhook not found');
         } catch (err) {
-            expect(err).toBeDefined();
-            // Webhooks 404 currently does not return a `ProblemDetails` component
-            // Therefore, the SDK will return the base exception type
-            // expect(err).toBeInstanceOf(NotFoundError);
+            expect(err).toBeInstanceOf(NotFoundError);
         }
     }, 10000)
 })
