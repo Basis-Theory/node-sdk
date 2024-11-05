@@ -6,29 +6,7 @@ import * as BasisTheory from "../../../../index";
 
 /**
  * @example
- *     {
- *         id: "string",
- *         type: "string",
- *         data: {
- *             "key": "value"
- *         },
- *         privacy: {
- *             classification: "string",
- *             impactLevel: "string",
- *             restrictionPolicy: "string"
- *         },
- *         metadata: {
- *             "string": undefined
- *         },
- *         searchIndexes: ["string"],
- *         fingerprintExpression: "string",
- *         mask: {
- *             "key": "value"
- *         },
- *         deduplicateToken: true,
- *         expiresAt: "string",
- *         containers: ["string"]
- *     }
+ *     {}
  */
 export interface CreateTokenRequest {
     id?: string;
@@ -42,4 +20,5 @@ export interface CreateTokenRequest {
     deduplicateToken?: boolean;
     expiresAt?: string;
     containers?: string[];
+    tokenIntentId?: string;
 }

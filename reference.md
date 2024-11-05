@@ -814,29 +814,7 @@ await client.tokens.list();
 <dd>
 
 ```typescript
-await client.tokens.create({
-    id: "string",
-    type: "string",
-    data: {
-        key: "value",
-    },
-    privacy: {
-        classification: "string",
-        impactLevel: "string",
-        restrictionPolicy: "string",
-    },
-    metadata: {
-        string: undefined,
-    },
-    searchIndexes: ["string"],
-    fingerprintExpression: "string",
-    mask: {
-        key: "value",
-    },
-    deduplicateToken: true,
-    expiresAt: "string",
-    containers: ["string"],
-});
+await client.tokens.create();
 ```
 
 </dd>
@@ -1157,6 +1135,58 @@ await client.tokens.searchV2();
 <dd>
 
 **requestOptions:** `Tokens.IdempotentRequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Enrichments
+
+<details><summary><code>client.enrichments.<a href="/src/api/resources/enrichments/client/Client.ts">bankaccountverify</a>({ ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.enrichments.bankaccountverify({
+    tokenId: "token_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.BankVerificationRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrichments.RequestOptions`
 
 </dd>
 </dl>
@@ -2433,7 +2463,97 @@ await client.sessions.authorize({
 </dl>
 </details>
 
+## Tenants
+
+<details><summary><code>client.tenants.<a href="/src/api/resources/tenants/client/Client.ts">ownerGet</a>() -> BasisTheory.TenantMemberResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.ownerGet();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tenants.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Threeds
+
+<details><summary><code>client.threeds.<a href="/src/api/resources/threeds/client/Client.ts">createsession</a>({ ...params }) -> BasisTheory.CreateThreeDsSessionResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.threeds.createsession();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.CreateThreeDsSessionRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Threeds.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
 
 <details><summary><code>client.threeds.<a href="/src/api/resources/threeds/client/Client.ts">authenticateSession</a>(sessionId, { ...params }) -> BasisTheory.ThreeDsAuthentication</code></summary>
 <dl>
@@ -2450,6 +2570,7 @@ await client.sessions.authorize({
 ```typescript
 await client.threeds.authenticateSession("sessionId", {
     authenticationCategory: "authentication_category",
+    authenticationType: "authentication_type",
     requestorInfo: {},
 });
 ```

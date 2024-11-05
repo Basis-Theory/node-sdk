@@ -13,6 +13,8 @@ export const ThreeDsAuthentication: core.serialization.ObjectSchema<
     BasisTheory.ThreeDsAuthentication
 > = core.serialization.object({
     panTokenId: core.serialization.property("pan_token_id", core.serialization.string().optional()),
+    tokenId: core.serialization.property("token_id", core.serialization.string().optional()),
+    tokenIntentId: core.serialization.property("token_intent_id", core.serialization.string().optional()),
     threedsVersion: core.serialization.property("threeds_version", core.serialization.string().optional()),
     acsTransactionId: core.serialization.property("acs_transaction_id", core.serialization.string().optional()),
     dsTransactionId: core.serialization.property("ds_transaction_id", core.serialization.string().optional()),
@@ -62,6 +64,8 @@ export const ThreeDsAuthentication: core.serialization.ObjectSchema<
 export declare namespace ThreeDsAuthentication {
     interface Raw {
         pan_token_id?: string | null;
+        token_id?: string | null;
+        token_intent_id?: string | null;
         threeds_version?: string | null;
         acs_transaction_id?: string | null;
         ds_transaction_id?: string | null;

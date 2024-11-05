@@ -15,8 +15,11 @@ export const ThreeDsSession: core.serialization.ObjectSchema<
     BasisTheory.ThreeDsSession
 > = core.serialization.object({
     id: core.serialization.string().optional(),
+    type: core.serialization.string().optional(),
     tenantId: core.serialization.property("tenant_id", core.serialization.string().optional()),
     panTokenId: core.serialization.property("pan_token_id", core.serialization.string().optional()),
+    tokenId: core.serialization.property("token_id", core.serialization.string().optional()),
+    tokenIntentId: core.serialization.property("token_intent_id", core.serialization.string().optional()),
     cardBrand: core.serialization.property("card_brand", core.serialization.string().optional()),
     expirationDate: core.serialization.property("expiration_date", core.serialization.date().optional()),
     createdDate: core.serialization.property("created_date", core.serialization.date().optional()),
@@ -33,8 +36,11 @@ export const ThreeDsSession: core.serialization.ObjectSchema<
 export declare namespace ThreeDsSession {
     interface Raw {
         id?: string | null;
+        type?: string | null;
         tenant_id?: string | null;
         pan_token_id?: string | null;
+        token_id?: string | null;
+        token_intent_id?: string | null;
         card_brand?: string | null;
         expiration_date?: string | null;
         created_date?: string | null;

@@ -16,11 +16,7 @@ export const AuthenticateThreeDsSessionRequest: core.serialization.Schema<
     BasisTheory.AuthenticateThreeDsSessionRequest
 > = core.serialization.object({
     authenticationCategory: core.serialization.property("authentication_category", core.serialization.string()),
-    authenticationType: core.serialization.property("authentication_type", core.serialization.string().optional()),
-    merchantAuthenticationType: core.serialization.property(
-        "merchant_authentication_type",
-        core.serialization.string().optional()
-    ),
+    authenticationType: core.serialization.property("authentication_type", core.serialization.string()),
     challengePreference: core.serialization.property("challenge_preference", core.serialization.string().optional()),
     purchaseInfo: core.serialization.property("purchase_info", ThreeDsPurchaseInfo.optional()),
     merchantInfo: core.serialization.property("merchant_info", ThreeDsMerchantInfo.optional()),
@@ -36,8 +32,7 @@ export const AuthenticateThreeDsSessionRequest: core.serialization.Schema<
 export declare namespace AuthenticateThreeDsSessionRequest {
     interface Raw {
         authentication_category: string;
-        authentication_type?: string | null;
-        merchant_authentication_type?: string | null;
+        authentication_type: string;
         challenge_preference?: string | null;
         purchase_info?: ThreeDsPurchaseInfo.Raw | null;
         merchant_info?: ThreeDsMerchantInfo.Raw | null;

@@ -5,15 +5,11 @@
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import * as BasisTheory from "../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
-import { Connections } from "../resources/connections/client/Client";
-import { Invitations } from "../resources/invitations/client/Client";
-import { Members } from "../resources/members/client/Client";
-import { Self } from "../resources/self/client/Client";
 
-export declare namespace Tenants {
+export declare namespace Enrichments {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
         apiKey?: core.Supplier<string | undefined>;
@@ -30,26 +26,32 @@ export declare namespace Tenants {
     }
 }
 
-export class Tenants {
-    constructor(protected readonly _options: Tenants.Options = {}) {}
+export class Enrichments {
+    constructor(protected readonly _options: Enrichments.Options = {}) {}
 
     /**
-     * @param {Tenants.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {BasisTheory.BankVerificationRequest} request
+     * @param {Enrichments.RequestOptions} requestOptions - Request-specific configuration.
      *
+     * @throws {@link BasisTheory.BadRequestError}
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
-     * @throws {@link BasisTheory.NotFoundError}
      *
      * @example
-     *     await client.tenants.ownerGet()
+     *     await client.enrichments.bankaccountverify({
+     *         tokenId: "token_id"
+     *     })
      */
-    public async ownerGet(requestOptions?: Tenants.RequestOptions): Promise<BasisTheory.TenantMemberResponse> {
+    public async bankaccountverify(
+        request: BasisTheory.BankVerificationRequest,
+        requestOptions?: Enrichments.RequestOptions
+    ): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "tenants/self/owner"
+                "enrichments/bank-account-verify"
             ),
-            method: "GET",
+            method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
@@ -61,22 +63,27 @@ export class Tenants {
             },
             contentType: "application/json",
             requestType: "json",
+            body: serializers.BankVerificationRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.TenantMemberResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return;
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
+                case 400:
+                    throw new BasisTheory.BadRequestError(
+                        serializers.ValidationProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
                         serializers.ProblemDetails.parseOrThrow(_response.error.body, {
@@ -97,8 +104,6 @@ export class Tenants {
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case 404:
-                    throw new BasisTheory.NotFoundError(_response.error.body);
                 default:
                     throw new errors.BasisTheoryError({
                         statusCode: _response.error.statusCode,
@@ -120,30 +125,6 @@ export class Tenants {
                     message: _response.error.errorMessage,
                 });
         }
-    }
-
-    protected _connections: Connections | undefined;
-
-    public get connections(): Connections {
-        return (this._connections ??= new Connections(this._options));
-    }
-
-    protected _invitations: Invitations | undefined;
-
-    public get invitations(): Invitations {
-        return (this._invitations ??= new Invitations(this._options));
-    }
-
-    protected _members: Members | undefined;
-
-    public get members(): Members {
-        return (this._members ??= new Members(this._options));
-    }
-
-    protected _self: Self | undefined;
-
-    public get self(): Self {
-        return (this._self ??= new Self(this._options));
     }
 
     protected async _getCustomAuthorizationHeaders() {

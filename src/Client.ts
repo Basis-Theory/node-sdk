@@ -8,6 +8,7 @@ import { Applications } from "./api/resources/applications/client/Client";
 import { ApplicationKeys } from "./api/resources/applicationKeys/client/Client";
 import { ApplicationTemplates } from "./api/resources/applicationTemplates/client/Client";
 import { Tokens } from "./api/resources/tokens/client/Client";
+import { Enrichments } from "./api/resources/enrichments/client/Client";
 import { Logs } from "./api/resources/logs/client/Client";
 import { Permissions } from "./api/resources/permissions/client/Client";
 import { Proxies } from "./api/resources/proxies/client/Client";
@@ -15,9 +16,9 @@ import { Reactorformulas } from "./api/resources/reactorformulas/client/Client";
 import { Reactors } from "./api/resources/reactors/client/Client";
 import { Roles } from "./api/resources/roles/client/Client";
 import { Sessions } from "./api/resources/sessions/client/Client";
+import { Tenants } from "./api/resources/tenants/client/Client";
 import { Threeds } from "./api/resources/threeds/client/Client";
 import { Webhooks } from "./api/resources/webhooks/client/Client";
-import { Tenants } from "./api/resources/tenants/client/Client";
 
 export declare namespace BasisTheoryClient {
     interface Options {
@@ -63,6 +64,12 @@ export class BasisTheoryClient {
         return (this._tokens ??= new Tokens(this._options));
     }
 
+    protected _enrichments: Enrichments | undefined;
+
+    public get enrichments(): Enrichments {
+        return (this._enrichments ??= new Enrichments(this._options));
+    }
+
     protected _logs: Logs | undefined;
 
     public get logs(): Logs {
@@ -105,6 +112,12 @@ export class BasisTheoryClient {
         return (this._sessions ??= new Sessions(this._options));
     }
 
+    protected _tenants: Tenants | undefined;
+
+    public get tenants(): Tenants {
+        return (this._tenants ??= new Tenants(this._options));
+    }
+
     protected _threeds: Threeds | undefined;
 
     public get threeds(): Threeds {
@@ -115,11 +128,5 @@ export class BasisTheoryClient {
 
     public get webhooks(): Webhooks {
         return (this._webhooks ??= new Webhooks(this._options));
-    }
-
-    protected _tenants: Tenants | undefined;
-
-    public get tenants(): Tenants {
-        return (this._tenants ??= new Tenants(this._options));
     }
 }
