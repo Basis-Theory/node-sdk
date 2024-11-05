@@ -24,7 +24,7 @@ A full reference for this library is available [here](./reference.md).
 Instantiate and use the client with the following:
 
 ```typescript
-import { BasisTheoryClient } from "@basis-theory/node-sdk";
+import { BasisTheoryClient, BasisTheory } from "@basis-theory/node-sdk";
 
 const client = new BasisTheoryClient({ apiKey: "YOUR_API_KEY" });
 await client.tenants.self.get();

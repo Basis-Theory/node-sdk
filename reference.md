@@ -15,7 +15,16 @@
 <dd>
 
 ```typescript
-await client.applications.list();
+const response = await client.applications.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.applications.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
 ```
 
 </dd>
@@ -766,7 +775,16 @@ await client.tokens.tokenize({
 <dd>
 
 ```typescript
-await client.tokens.list();
+const response = await client.tokens.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.tokens.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
 ```
 
 </dd>
@@ -862,7 +880,16 @@ await client.tokens.create();
 <dd>
 
 ```typescript
-await client.tokens.search();
+const response = await client.tokens.search();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.tokens.search();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
 ```
 
 </dd>
@@ -1062,7 +1089,16 @@ await client.tokens.update("id");
 <dd>
 
 ```typescript
-await client.tokens.listV2();
+const response = await client.tokens.listV2();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.tokens.listV2();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
 ```
 
 </dd>
@@ -1110,7 +1146,16 @@ await client.tokens.listV2();
 <dd>
 
 ```typescript
-await client.tokens.searchV2();
+const response = await client.tokens.searchV2();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.tokens.searchV2();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
 ```
 
 </dd>
@@ -1212,7 +1257,16 @@ await client.enrichments.bankaccountverify({
 <dd>
 
 ```typescript
-await client.logs.list();
+const response = await client.logs.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.logs.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
 ```
 
 </dd>
@@ -1352,7 +1406,16 @@ await client.permissions.get();
 <dd>
 
 ```typescript
-await client.proxies.list();
+const response = await client.proxies.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.proxies.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
 ```
 
 </dd>
@@ -1664,7 +1727,16 @@ await client.proxies.patch("id");
 <dd>
 
 ```typescript
-await client.reactorformulas.list();
+const response = await client.reactorformulas.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.reactorformulas.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
 ```
 
 </dd>
@@ -1920,7 +1992,16 @@ await client.reactorformulas.delete("id");
 <dd>
 
 ```typescript
-await client.reactors.list();
+const response = await client.reactors.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.reactors.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
 ```
 
 </dd>
@@ -3059,7 +3140,16 @@ await client.tenants.connections.delete();
 <dd>
 
 ```typescript
-await client.tenants.invitations.list();
+const response = await client.tenants.invitations.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.tenants.invitations.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
 ```
 
 </dd>
