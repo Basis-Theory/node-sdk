@@ -16,7 +16,6 @@ jobs:
 
   dependency-scan:
     name: SCA scan
-    needs: build
     uses: Basis-Theory/security-workflows/.github/workflows/dependency-scan.yml@master
     secrets: inherit
     with:
