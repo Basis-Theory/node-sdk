@@ -19,7 +19,7 @@ jobs:
         run: yarn && yarn build
 
   test:
-    runs-on: bt-dev
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
