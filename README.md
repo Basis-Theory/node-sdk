@@ -26,7 +26,7 @@ Instantiate and use the client with the following:
 ```typescript
 import { BasisTheoryClient, BasisTheory } from "@basis-theory/node-sdk";
 
-const client = new BasisTheoryClient({ apiKey: "YOUR_API_KEY" });
+const client = new BasisTheoryClient({ apiKey: "YOUR_API_KEY", correlationId: "YOUR_CORRELATION_ID" });
 await client.tenants.self.get();
 ```
 

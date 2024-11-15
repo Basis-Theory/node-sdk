@@ -14,6 +14,8 @@ export declare namespace Reactors {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
         apiKey?: core.Supplier<string | undefined>;
+        /** Override the BT-TRACE-ID header */
+        correlationId?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -24,6 +26,8 @@ export declare namespace Reactors {
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
+        /** Override the BT-TRACE-ID header */
+        correlationId?: string | undefined;
     }
 
     interface IdempotentRequestOptions extends RequestOptions {
@@ -78,6 +82,10 @@ export class Reactors {
                 ),
                 method: "GET",
                 headers: {
+                    "BT-TRACE-ID":
+                        (await core.Supplier.get(this._options.correlationId)) != null
+                            ? await core.Supplier.get(this._options.correlationId)
+                            : undefined,
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                     "X-Fern-SDK-Version": "0.0.1",
@@ -184,6 +192,10 @@ export class Reactors {
             ),
             method: "POST",
             headers: {
+                "BT-TRACE-ID":
+                    (await core.Supplier.get(this._options.correlationId)) != null
+                        ? await core.Supplier.get(this._options.correlationId)
+                        : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                 "X-Fern-SDK-Version": "0.0.1",
@@ -285,6 +297,10 @@ export class Reactors {
             ),
             method: "GET",
             headers: {
+                "BT-TRACE-ID":
+                    (await core.Supplier.get(this._options.correlationId)) != null
+                        ? await core.Supplier.get(this._options.correlationId)
+                        : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                 "X-Fern-SDK-Version": "0.0.1",
@@ -384,6 +400,10 @@ export class Reactors {
             ),
             method: "PUT",
             headers: {
+                "BT-TRACE-ID":
+                    (await core.Supplier.get(this._options.correlationId)) != null
+                        ? await core.Supplier.get(this._options.correlationId)
+                        : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                 "X-Fern-SDK-Version": "0.0.1",
@@ -487,6 +507,10 @@ export class Reactors {
             ),
             method: "DELETE",
             headers: {
+                "BT-TRACE-ID":
+                    (await core.Supplier.get(this._options.correlationId)) != null
+                        ? await core.Supplier.get(this._options.correlationId)
+                        : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                 "X-Fern-SDK-Version": "0.0.1",
@@ -577,6 +601,10 @@ export class Reactors {
             ),
             method: "PATCH",
             headers: {
+                "BT-TRACE-ID":
+                    (await core.Supplier.get(this._options.correlationId)) != null
+                        ? await core.Supplier.get(this._options.correlationId)
+                        : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                 "X-Fern-SDK-Version": "0.0.1",
@@ -681,6 +709,10 @@ export class Reactors {
             ),
             method: "POST",
             headers: {
+                "BT-TRACE-ID":
+                    (await core.Supplier.get(this._options.correlationId)) != null
+                        ? await core.Supplier.get(this._options.correlationId)
+                        : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                 "X-Fern-SDK-Version": "0.0.1",
@@ -799,6 +831,10 @@ export class Reactors {
             ),
             method: "POST",
             headers: {
+                "BT-TRACE-ID":
+                    (await core.Supplier.get(this._options.correlationId)) != null
+                        ? await core.Supplier.get(this._options.correlationId)
+                        : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                 "X-Fern-SDK-Version": "0.0.1",
