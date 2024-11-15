@@ -13,6 +13,8 @@ export declare namespace Permissions {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
         apiKey?: core.Supplier<string | undefined>;
+        /** Override the BT-TRACE-ID header */
+        correlationId?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -23,6 +25,8 @@ export declare namespace Permissions {
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
+        /** Override the BT-TRACE-ID header */
+        correlationId?: string | undefined;
     }
 }
 
@@ -57,6 +61,10 @@ export class Permissions {
             ),
             method: "GET",
             headers: {
+                "BT-TRACE-ID":
+                    (await core.Supplier.get(this._options.correlationId)) != null
+                        ? await core.Supplier.get(this._options.correlationId)
+                        : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@basis-theory/node-sdk",
                 "X-Fern-SDK-Version": "0.0.1",
