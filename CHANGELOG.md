@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/Basis-Theory/node-sdk/compare/v1.3.0...v1.4.0) (2024-11-15)
+
+
+### Features
+
+* Add correlation id ([#34](https://github.com/Basis-Theory/node-sdk/issues/34)) ([98cbd30](https://github.com/Basis-Theory/node-sdk/commit/98cbd30c27f806b45abde30b1c0ba7912027fb1a))
+
 # [1.3.0](https://github.com/Basis-Theory/node-sdk/compare/v1.2.0...v1.3.0) (2024-11-05)
 
 
