@@ -24,6 +24,8 @@ export declare namespace BasisTheoryClient {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
         apiKey?: core.Supplier<string | undefined>;
+        /** Override the BT-TRACE-ID header */
+        correlationId?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -34,6 +36,8 @@ export declare namespace BasisTheoryClient {
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
+        /** Override the BT-TRACE-ID header */
+        correlationId?: string | undefined;
     }
 }
 
