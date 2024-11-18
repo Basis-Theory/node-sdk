@@ -1,7 +1,25 @@
 import { BasisTheoryClient } from "../../src";
-import { NotFoundError, UnauthorizedError } from "../../src/api";
+import { BadRequestError, NotFoundError, UnauthorizedError } from "../../src/api";
 import { randomUUID } from "node:crypto";
 import { Tokens } from "../../src/api/resources/tokens/client/Client";
+
+expect.extend({
+    toBeGuid(received) {
+        const guidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+        const pass = guidPattern.test(received);
+        if (pass) {
+            return {
+                message: () => `expected ${received} not to be a GUID`,
+                pass: true,
+            };
+        } else {
+            return {
+                message: () => `expected ${received} to be a GUID`,
+                pass: false,
+            };
+        }
+    },
+});
 
 function sleep(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -135,7 +153,7 @@ async function updateToken(client: BasisTheoryClient, tokenId: string, updateCar
     });
 }
 
-describe('Canary', () => {
+describe ('Authentication', () => {
     it.skip('should fail on unauthorized', async () => {
         // Open API spec invalidly specify a `ProblemDetails` error body
         // when actually no response body is returned
@@ -145,16 +163,234 @@ describe('Canary', () => {
         });
         try {
             let tenant = await client.tenants.self.get();
-            console.log(tenant);
+            fail('Should have raised an UnauthorizedError');
         } catch (error) {
-            console.log(error);
             if (!(error instanceof UnauthorizedError)) {
                 throw error;
             }
             expect(error.message).toEqual("UnauthorizedError");
         }
-    })
+    });
 
+    it('should authenticate at instance', async () => {
+        const client = new BasisTheoryClient({
+            apiKey: process.env.BT_MGT_API_KEY,
+            environment: process.env.BT_API_URL,
+        });
+        await client.tenants.self.get();
+    });
+});
+
+describe('Request Correlation', () => {
+    it('should support request headers', async () => {
+        const client = getManagementClient();
+        await client.tenants.self.get({
+            correlationId: randomUUID()
+        });
+    });
+});
+
+describe('Tokens', () => {
+   it('should create and update', async () => {
+       const client = getPrivateClient();
+       const token = await client.tokens.create({
+               type: "token",
+               data: "Sensitive Value",
+               mask: "{{ data | reveal_last: 4 }}",
+               containers: ["/general/high/"],
+               metadata: {
+                   nonSensitiveField: "Non-Sensitive Value",
+               },
+               searchIndexes: ["{{ data }}", "{{ data | last4 }}"],
+               fingerprintExpression: "{{ data }}",
+               deduplicateToken: true,
+               expiresAt: "8/26/2030 7:23:57 PM -07:00",
+           }
+       );
+       expect(token.id).toBeDefined();
+
+       const updateToken = await client.tokens.update(token.id!, {
+           data: "Sensitive Value",
+           mask: "{{ data | reveal_last: 4 }}",
+           metadata: {
+               nonSensitiveField: "Non-Sensitive Value",
+           },
+           searchIndexes: ["{{ data }}", "{{ data | last4 }}"],
+           fingerprintExpression: "{{ data }}",
+           deduplicateToken: true,
+       });
+       expect(updateToken.id).toBe(token.id);
+   })
+});
+
+describe ('Tokenize', () => {
+    it('should tokenize (basic)', async () => {
+        const client = getPrivateClient();
+        const response = await client.tokens.tokenize({
+            "first_name": "John",
+            "last_name": "Doe"
+        });
+        // @ts-ignore
+        expect(response.first_name).toBeDefined();
+        // @ts-ignore
+        expect(response.last_name).toBeDefined();
+    });
+
+    it('should tokenize', async () => {
+        const client = getPrivateClient();
+        const token = await client.tokens.tokenize({
+            type: "token",
+            data: "Sensitive Value",
+            metadata: {
+                "nonSensitive": "Non-Sensitive Value"
+            },
+            search_indexes: [
+                "{{ data }}"
+            ],
+            fingerprint_expression: "{{ data }}"
+
+        });
+        // @ts-ignore
+        expect(token.id).toBeDefined();
+    });
+
+    it('should tokenize (card)', async () => {
+        const client = getPrivateClient();
+        const token = await client.tokens.tokenize({
+            type: "card",
+            data: {
+                number: "4242424242424242",
+                expiration_month: 12,
+                expiration_year: 2025,
+                cvc: "123",
+            },
+            metadata: {
+                nonSensitiveField: "Non-Sensitive Value",
+            },
+        });
+        // @ts-ignore
+        expect(token.id).toBeDefined();
+    });
+
+    it ('should tokenize (array)', async () => {
+        const client = getPrivateClient();
+        const response = await client.tokens.tokenize([
+            "John",
+            "Doe",
+            {
+                type: "card",
+                data: {
+                    number: "4242424242424242",
+                    expiration_month: 12,
+                    expiration_year: 2025,
+                    cvc: "123",
+                },
+                metadata: {
+                    nonSensitiveField: "Non-Sensitive Value",
+                },
+            },
+            {
+                type: "token",
+                data: "Sensitive Value",
+            },
+        ]);
+        // @ts-ignore
+        expect(response.length).toBe(4);
+        // @ts-ignore
+        expect(response[0]).toBeGuid()
+        // @ts-ignore
+        expect(response[1]).toBeGuid()
+        // @ts-ignore
+        expect(response[2].id).toBeGuid()
+        // @ts-ignore
+        expect(response[3].id).toBeGuid()
+    });
+
+    it('should tokenize (composite)', async () => {
+       const client = getPrivateClient();
+       const response = await client.tokens.tokenize({
+           first_name: "John",
+           last_name: "Doe",
+           primary_card: {
+               type: "card",
+               data: {
+                   number: "4242424242424242",
+                   expiration_month: 12,
+                   expiration_year: 2025,
+                   cvc: "123",
+               },
+           },
+           sensitive_tags: [
+               "preferred",
+               {
+                   type: "token",
+                   data: "vip",
+               },
+           ],
+        });
+        // @ts-ignore
+        expect(response.first_name).toBeGuid();
+        // @ts-ignore
+        expect(response.last_name).toBeGuid();
+        // @ts-ignore
+        expect(response.primary_card.id).toBeGuid();
+        // @ts-ignore
+        expect(response.sensitive_tags.length).toBe(2);
+        // @ts-ignore
+        expect(response.sensitive_tags[0]).toBeGuid();
+        // @ts-ignore
+        expect(response.sensitive_tags[1].id).toBeGuid();
+    });
+});
+
+describe.skip('detokenize', () => {
+    it('should detokenize', async () => {
+        const client = getPrivateClient();
+        const tokenId = await createToken(client, "4242424242424242");
+        const actual = await client.tokens.detokenize({
+            "card_number": `{{ ${tokenId} | json: '$.number' }}`
+        });
+        //@ts-ignore
+        expect(actual.card_number).toBe("XXXXXXXXXXXX4242")
+    });
+
+    it('should detokenize (array)', async () => {
+       const client = getPrivateClient();
+       const tokenId = await createToken(client, "4242424242424242");
+       const tokenId2 = await createToken(client, "4111111111111111");
+       const actual = await client.tokens.detokenize({
+           "tokens":[
+               `{{ ${tokenId} }}`,
+               `{{ ${tokenId2} }}`,
+           ]
+       });
+       //@ts-ignore
+        expect(actual.tokens[0].number).toBe("XXXXXXXXXXXX4242");
+       //@ts-ignore
+        expect(actual.tokens[1].number).toBe("XXXXXXXXXXXX1111");
+    });
+});
+
+describe.skip('enrichments', () => {
+    it('should return bank account verification', async () => {
+        const client = getPrivateClient();
+        const token = await client.tokens.create({
+            type: "bank",
+                data: {
+                    routing_number: "021000021",
+                    account_number: "00001"
+            }
+        });
+        const actual = await client.enrichments.bankaccountverify({
+            tokenId: token.id!
+        });
+        //@ts-ignore
+        //This should work, but the Open API spec does not specify a response object (ie: it is defined as `void`)
+        expect(actual.status).toBe("enabled");
+    });
+});
+
+describe('Canary', () => {
     it('should call tenant/self', async () => {
         const client = getManagementClient();
         let tenant = await client.tenants.self.get();
