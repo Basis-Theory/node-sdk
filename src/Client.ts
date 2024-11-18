@@ -16,9 +16,9 @@ import { Reactorformulas } from "./api/resources/reactorformulas/client/Client";
 import { Reactors } from "./api/resources/reactors/client/Client";
 import { Roles } from "./api/resources/roles/client/Client";
 import { Sessions } from "./api/resources/sessions/client/Client";
-import { Threeds } from "./api/resources/threeds/client/Client";
 import { Webhooks } from "./api/resources/webhooks/client/Client";
 import { Tenants } from "./api/resources/tenants/client/Client";
+import { Threeds } from "./api/resources/threeds/client/Client";
 
 export declare namespace BasisTheoryClient {
     interface Options {
@@ -116,12 +116,6 @@ export class BasisTheoryClient {
         return (this._sessions ??= new Sessions(this._options));
     }
 
-    protected _threeds: Threeds | undefined;
-
-    public get threeds(): Threeds {
-        return (this._threeds ??= new Threeds(this._options));
-    }
-
     protected _webhooks: Webhooks | undefined;
 
     public get webhooks(): Webhooks {
@@ -132,5 +126,11 @@ export class BasisTheoryClient {
 
     public get tenants(): Tenants {
         return (this._tenants ??= new Tenants(this._options));
+    }
+
+    protected _threeds: Threeds | undefined;
+
+    public get threeds(): Threeds {
+        return (this._threeds ??= new Threeds(this._options));
     }
 }
