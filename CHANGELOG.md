@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/Basis-Theory/node-sdk/compare/v1.4.0...v1.4.1) (2024-11-18)
+
+
+### Bug Fixes
+
+* Move 3DS create session ([#35](https://github.com/Basis-Theory/node-sdk/issues/35)) ([6737667](https://github.com/Basis-Theory/node-sdk/commit/6737667c42c69882b19faa14e07285b7e39c0774))
+
 # [1.4.0](https://github.com/Basis-Theory/node-sdk/compare/v1.3.0...v1.4.0) (2024-11-15)
 
 
