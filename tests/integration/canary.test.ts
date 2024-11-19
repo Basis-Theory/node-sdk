@@ -343,7 +343,7 @@ describe ('Tokenize', () => {
     });
 });
 
-describe.skip('detokenize', () => {
+describe('detokenize', () => {
     it('should detokenize', async () => {
         const client = getPrivateClient();
         const tokenId = await createToken(client, "4242424242424242");
@@ -351,7 +351,7 @@ describe.skip('detokenize', () => {
             "card_number": `{{ ${tokenId} | json: '$.number' }}`
         });
         //@ts-ignore
-        expect(actual.card_number).toBe("XXXXXXXXXXXX4242")
+        expect(actual.card_number).toBe("4242424242424242")
     });
 
     it('should detokenize (array)', async () => {
@@ -365,13 +365,13 @@ describe.skip('detokenize', () => {
            ]
        });
        //@ts-ignore
-        expect(actual.tokens[0].number).toBe("XXXXXXXXXXXX4242");
+        expect(actual.tokens[0].number).toBe("4242424242424242");
        //@ts-ignore
-        expect(actual.tokens[1].number).toBe("XXXXXXXXXXXX1111");
+        expect(actual.tokens[1].number).toBe("4111111111111111");
     });
 });
 
-describe.skip('enrichments', () => {
+describe('enrichments', () => {
     it('should return bank account verification', async () => {
         const client = getPrivateClient();
         const token = await client.tokens.create({
