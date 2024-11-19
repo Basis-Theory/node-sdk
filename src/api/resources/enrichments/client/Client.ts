@@ -42,11 +42,11 @@ export class Enrichments {
      * @throws {@link BasisTheory.ForbiddenError}
      *
      * @example
-     *     await client.enrichments.bankaccountverify({
+     *     await client.enrichments.bankAccountVerify({
      *         tokenId: "token_id"
      *     })
      */
-    public async bankaccountverify(
+    public async bankAccountVerify(
         request: BasisTheory.BankVerificationRequest,
         requestOptions?: Enrichments.RequestOptions
     ): Promise<BasisTheory.BankVerificationResponse> {
