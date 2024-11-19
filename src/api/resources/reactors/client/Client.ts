@@ -823,7 +823,7 @@ export class Reactors {
         id: string,
         request: BasisTheory.ReactRequestAsync = {},
         requestOptions?: Reactors.RequestOptions
-    ): Promise<BasisTheory.ReactResponse> {
+    ): Promise<BasisTheory.AsyncReactResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
@@ -851,7 +851,7 @@ export class Reactors {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ReactResponse.parseOrThrow(_response.body, {
+            return serializers.AsyncReactResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,

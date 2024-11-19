@@ -16,6 +16,8 @@ export interface AuthenticateThreeDsSessionRequest {
     authenticationCategory: string;
     authenticationType: string;
     challengePreference?: string;
+    requestDecoupledChallenge?: boolean;
+    decoupledChallengeMaxTime?: number;
     purchaseInfo?: BasisTheory.ThreeDsPurchaseInfo;
     merchantInfo?: BasisTheory.ThreeDsMerchantInfo;
     requestorInfo: BasisTheory.ThreeDsRequestorInfo;

@@ -18,6 +18,14 @@ export const AuthenticateThreeDsSessionRequest: core.serialization.Schema<
     authenticationCategory: core.serialization.property("authentication_category", core.serialization.string()),
     authenticationType: core.serialization.property("authentication_type", core.serialization.string()),
     challengePreference: core.serialization.property("challenge_preference", core.serialization.string().optional()),
+    requestDecoupledChallenge: core.serialization.property(
+        "request_decoupled_challenge",
+        core.serialization.boolean().optional()
+    ),
+    decoupledChallengeMaxTime: core.serialization.property(
+        "decoupled_challenge_max_time",
+        core.serialization.number().optional()
+    ),
     purchaseInfo: core.serialization.property("purchase_info", ThreeDsPurchaseInfo.optional()),
     merchantInfo: core.serialization.property("merchant_info", ThreeDsMerchantInfo.optional()),
     requestorInfo: core.serialization.property("requestor_info", ThreeDsRequestorInfo),
@@ -34,6 +42,8 @@ export declare namespace AuthenticateThreeDsSessionRequest {
         authentication_category: string;
         authentication_type: string;
         challenge_preference?: string | null;
+        request_decoupled_challenge?: boolean | null;
+        decoupled_challenge_max_time?: number | null;
         purchase_info?: ThreeDsPurchaseInfo.Raw | null;
         merchant_info?: ThreeDsMerchantInfo.Raw | null;
         requestor_info: ThreeDsRequestorInfo.Raw;

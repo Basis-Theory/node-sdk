@@ -51,7 +51,7 @@ export class Tokens {
      *         "key": "value"
      *     })
      */
-    public async detokenize(request?: unknown, requestOptions?: Tokens.RequestOptions): Promise<void> {
+    public async detokenize(request?: unknown, requestOptions?: Tokens.RequestOptions): Promise<unknown> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
@@ -79,7 +79,7 @@ export class Tokens {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return;
+            return _response.body;
         }
 
         if (_response.error.reason === "status-code") {
