@@ -1,3 +1,10 @@
+## [1.4.5](https://github.com/Basis-Theory/node-sdk/compare/v1.4.4...v1.4.5) (2024-11-19)
+
+
+### Bug Fixes
+
+* permissions.list method ([#42](https://github.com/Basis-Theory/node-sdk/issues/42)) ([b2aaf65](https://github.com/Basis-Theory/node-sdk/commit/b2aaf6538eec2a8dcea5b5e59cd2b986be21b2b3))
+
 ## [1.4.4](https://github.com/Basis-Theory/node-sdk/compare/v1.4.3...v1.4.4) (2024-11-19)
 
 
