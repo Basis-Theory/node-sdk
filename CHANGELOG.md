@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/Basis-Theory/node-sdk/compare/v1.4.1...v1.4.2) (2024-11-19)
+
+
+### Bug Fixes
+
+* Rename methods, fix return objects ([#37](https://github.com/Basis-Theory/node-sdk/issues/37)) ([a1c264d](https://github.com/Basis-Theory/node-sdk/commit/a1c264db3ff4687227546a66c552d95e749221ac))
+
 ## [1.4.1](https://github.com/Basis-Theory/node-sdk/compare/v1.4.0...v1.4.1) (2024-11-18)
 
 
