@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/Basis-Theory/node-sdk/compare/v1.4.3...v1.4.4) (2024-11-19)
+
+
+### Bug Fixes
+
+* Fix bankAccountVerify method name ([#41](https://github.com/Basis-Theory/node-sdk/issues/41)) ([6b673ea](https://github.com/Basis-Theory/node-sdk/commit/6b673ea8a39ba50d47351e4a7f6e0e1a0e443036))
+
 ## [1.4.3](https://github.com/Basis-Theory/node-sdk/compare/v1.4.2...v1.4.3) (2024-11-19)
 
 
