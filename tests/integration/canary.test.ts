@@ -200,6 +200,96 @@ describe('Request Correlation', () => {
     });
 });
 
+describe('Proxies', () => {
+    it('should support lifecycle', async () => {
+        const client = getManagementClient();
+        const applicationId = await createApplication(client);
+        const proxy = await client.proxies.create({
+            name: "(Deletable) node-SDK-" + randomUUID(),
+            destinationUrl: 'https://example.com/api',
+            requestTransform: {
+                code: `
+                  module.exports = async function (req) {
+                    // Do something with req.configuration.SERVICE_API_KEY
+            
+                    return {
+                      headers: req.args.headers,
+                      body: req.args.body
+                    };
+                  };
+                `
+            },
+            responseTransform: {
+                code: `
+                  module.exports = async function (req) {
+                    // Do something with req.configuration.SERVICE_API_KEY
+            
+                    return {
+                      headers: req.args.headers,
+                      body: req.args.body
+                    };
+                  };
+                `
+            },
+            configuration: {
+                SERVICE_API_KEY: 'key_abcd1234',
+            },
+            application: {
+                id: applicationId
+            },
+            requireAuth: true
+        });
+        const proxyId = proxy.id!;
+
+        const updatedProxy = await client.proxies.update(
+            proxyId,
+            {
+            name: "(Deletable) node-SDK-" + randomUUID(),
+            destinationUrl: 'https://example.com/api',
+            requestTransform: {
+                code: `
+                  module.exports = async function (req) {
+                    // Do something with req.configuration.SERVICE_API_KEY
+            
+                    return {
+                      headers: req.args.headers,
+                      body: req.args.body
+                    };
+                  };
+                `
+            },
+            responseTransform: {
+                code: `
+                  module.exports = async function (req) {
+                    // Do something with req.configuration.SERVICE_API_KEY
+            
+                    return {
+                      headers: req.args.headers,
+                      body: req.args.body
+                    };
+                  };
+                `
+            },
+            configuration: {
+                SERVICE_API_KEY: 'key_abcd1234',
+            },
+            application: {
+                id: applicationId
+            },
+            requireAuth: true
+        });
+        expect(updatedProxy.id).toBe(proxyId);
+
+        await client.proxies.update(proxyId, {
+            name: "(Deletable) node-SDK-" + randomUUID(),
+            destinationUrl: "https://example.com/api",
+            configuration: {
+                SERVICE_API_KEY: "key_abcd1234",
+            }
+        });
+    });
+});
+
 describe('Reactors', () => {
     it('should support lifecycle', async () => {
         const managementClient = getManagementClient();
