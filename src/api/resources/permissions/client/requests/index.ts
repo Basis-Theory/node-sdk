@@ -1,1 +1,1 @@
-export { type PermissionsGetRequest } from "./PermissionsGetRequest";
+export { type PermissionsListRequest } from "./PermissionsListRequest";

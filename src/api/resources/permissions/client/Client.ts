@@ -34,7 +34,7 @@ export class Permissions {
     constructor(protected readonly _options: Permissions.Options = {}) {}
 
     /**
-     * @param {BasisTheory.PermissionsGetRequest} request
+     * @param {BasisTheory.PermissionsListRequest} request
      * @param {Permissions.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
@@ -42,10 +42,10 @@ export class Permissions {
      * @throws {@link BasisTheory.ForbiddenError}
      *
      * @example
-     *     await client.permissions.get()
+     *     await client.permissions.list()
      */
-    public async get(
-        request: BasisTheory.PermissionsGetRequest = {},
+    public async list(
+        request: BasisTheory.PermissionsListRequest = {},
         requestOptions?: Permissions.RequestOptions
     ): Promise<BasisTheory.Permission[]> {
         const { applicationType } = request;
@@ -81,7 +81,7 @@ export class Permissions {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.permissions.get.Response.parseOrThrow(_response.body, {
+            return serializers.permissions.list.Response.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,

@@ -7,7 +7,7 @@ import * as BasisTheory from "../../../../api/index";
 import * as core from "../../../../core";
 import { Permission } from "../../../types/Permission";
 
-export const Response: core.serialization.Schema<serializers.permissions.get.Response.Raw, BasisTheory.Permission[]> =
+export const Response: core.serialization.Schema<serializers.permissions.list.Response.Raw, BasisTheory.Permission[]> =
     core.serialization.list(Permission);
 
 export declare namespace Response {
