@@ -153,6 +153,16 @@ async function updateToken(client: BasisTheoryClient, tokenId: string, updateCar
     });
 }
 
+async function createApplication(managementClient: BasisTheoryClient) {
+    const application = await managementClient.applications.create({
+        type: "private",
+        name: "(Deletable) node-SDK-" + randomUUID(),
+        permissions: ["token:use"],
+    });
+    let applicationId = application.id;
+    return applicationId;
+}
+
 describe ('Authentication', () => {
     it.skip('should fail on unauthorized', async () => {
         // Open API spec invalidly specify a `ProblemDetails` error body
@@ -187,6 +197,92 @@ describe('Request Correlation', () => {
         await client.tenants.self.get({
             correlationId: randomUUID()
         });
+    });
+});
+
+describe('Reactors', () => {
+    it('should support lifecycle', async () => {
+        const managementClient = getManagementClient();
+        const applicationId = await createApplication(managementClient);
+        const reactor = await managementClient.reactors.create({
+            name: "(Deletable) node-SDK-" + randomUUID(),
+            code: `
+                module.exports = async function (req) {
+                  // Do something with req.configuration.SERVICE_API_KEY
+            
+                  return {
+                    raw: {
+                      foo: "bar"
+                    }
+                  };
+                };
+              `,
+            configuration: {
+                SERVICE_API_KEY: "key_abcd1234",
+            },
+            application: {
+                id: applicationId,
+            }
+        });
+        const reactorId = reactor.id!;
+
+        const updateReactor = await managementClient.reactors.update(
+            reactorId,
+            {
+                name: "(Deletable) node-SDK-" + randomUUID(),
+                code: `
+                module.exports = async function (req) {
+                  // Do something with req.configuration.SERVICE_API_KEY
+            
+                  return {
+                    raw: {
+                      foo: "bar"
+                    }
+                  };
+                };
+              `,
+                configuration: {
+                    SERVICE_API_KEY: "key_abcd1234",
+                },
+                application: {
+                    id: applicationId,
+                }
+            }
+        );
+        expect(updateReactor.id).toEqual(reactorId);
+
+        const patchReactor = await managementClient.reactors.patch(
+            reactorId,
+            {
+                name: "(Deletable) node-SDK-" + randomUUID(),
+                configuration: {
+                    SERVICE_API_KEY: "key_abcd1234",
+                }
+            }
+        );
+
+        const client = getPrivateClient();
+        const reactResponse = await client.reactors.react(
+            reactorId,
+            {
+                args: {
+                    foo: "bar"
+                }
+            }
+        );
+        // @ts-ignore
+        expect(reactResponse.raw.foo).toEqual("bar");
+
+        const reactAsyncResponse = await client.reactors.reactAsync(
+            reactorId,
+            {
+                args: {
+                    foo: "bar"
+                }
+            }
+        );
+        // @ts-ignore
+        expect(reactAsyncResponse.asyncReactorRequestId).toBeDefined();
     });
 });
 
