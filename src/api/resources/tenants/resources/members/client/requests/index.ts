@@ -1,2 +1,2 @@
-export { type MembersGetRequest } from "./MembersGetRequest";
+export { type MembersListRequest } from "./MembersListRequest";
 export { type UpdateTenantMemberRequest } from "./UpdateTenantMemberRequest";

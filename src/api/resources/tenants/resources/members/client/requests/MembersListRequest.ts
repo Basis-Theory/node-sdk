@@ -6,7 +6,7 @@
  * @example
  *     {}
  */
-export interface MembersGetRequest {
+export interface MembersListRequest {
     userId?: string | string[];
     page?: number;
     start?: string;

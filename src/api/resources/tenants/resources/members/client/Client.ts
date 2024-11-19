@@ -38,17 +38,17 @@ export class Members {
     constructor(protected readonly _options: Members.Options = {}) {}
 
     /**
-     * @param {BasisTheory.tenants.MembersGetRequest} request
+     * @param {BasisTheory.tenants.MembersListRequest} request
      * @param {Members.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
      *
      * @example
-     *     await client.tenants.members.get()
+     *     await client.tenants.members.list()
      */
-    public async get(
-        request: BasisTheory.tenants.MembersGetRequest = {},
+    public async list(
+        request: BasisTheory.tenants.MembersListRequest = {},
         requestOptions?: Members.RequestOptions
     ): Promise<BasisTheory.TenantMemberResponsePaginatedList> {
         const { userId, page, start, size } = request;

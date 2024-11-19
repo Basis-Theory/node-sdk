@@ -662,7 +662,7 @@ await client.applicationTemplates.get("id");
 
 ## Tokens
 
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">detokenize</a>({ ...params }) -> void</code></summary>
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">detokenize</a>({ ...params }) -> unknown</code></summary>
 <dl>
 <dd>
 
@@ -2354,7 +2354,7 @@ await client.reactors.react("id");
 </dl>
 </details>
 
-<details><summary><code>client.reactors.<a href="/src/api/resources/reactors/client/Client.ts">reactAsync</a>(id, { ...params }) -> BasisTheory.ReactResponse</code></summary>
+<details><summary><code>client.reactors.<a href="/src/api/resources/reactors/client/Client.ts">reactAsync</a>(id, { ...params }) -> BasisTheory.AsyncReactResponse</code></summary>
 <dl>
 <dd>
 
@@ -3232,6 +3232,54 @@ await client.tenants.invitations.resend("invitationId");
 </dl>
 </details>
 
+<details><summary><code>client.tenants.invitations.<a href="/src/api/resources/tenants/resources/invitations/client/Client.ts">get</a>(invitationId) -> BasisTheory.TenantInvitationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.invitations.get("invitationId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invitationId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Invitations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.tenants.invitations.<a href="/src/api/resources/tenants/resources/invitations/client/Client.ts">delete</a>(invitationId) -> void</code></summary>
 <dl>
 <dd>
@@ -3282,7 +3330,7 @@ await client.tenants.invitations.delete("invitationId");
 
 ## Tenants Members
 
-<details><summary><code>client.tenants.members.<a href="/src/api/resources/tenants/resources/members/client/Client.ts">get</a>({ ...params }) -> BasisTheory.TenantMemberResponsePaginatedList</code></summary>
+<details><summary><code>client.tenants.members.<a href="/src/api/resources/tenants/resources/members/client/Client.ts">list</a>({ ...params }) -> BasisTheory.TenantMemberResponsePaginatedList</code></summary>
 <dl>
 <dd>
 
@@ -3295,7 +3343,7 @@ await client.tenants.invitations.delete("invitationId");
 <dd>
 
 ```typescript
-await client.tenants.members.get();
+await client.tenants.members.list();
 ```
 
 </dd>
@@ -3311,7 +3359,7 @@ await client.tenants.members.get();
 <dl>
 <dd>
 
-**request:** `BasisTheory.tenants.MembersGetRequest`
+**request:** `BasisTheory.tenants.MembersListRequest`
 
 </dd>
 </dl>
