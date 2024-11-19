@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/Basis-Theory/node-sdk/compare/v1.4.2...v1.4.3) (2024-11-19)
+
+
+### Bug Fixes
+
+* Fixes response object for bank-account-verify ([#38](https://github.com/Basis-Theory/node-sdk/issues/38)) ([7289785](https://github.com/Basis-Theory/node-sdk/commit/7289785028c638234d21acedb99612418836052d))
+
 ## [1.4.2](https://github.com/Basis-Theory/node-sdk/compare/v1.4.1...v1.4.2) (2024-11-19)
 
 
