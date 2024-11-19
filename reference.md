@@ -1192,7 +1192,7 @@ while (page.hasNextPage()) {
 
 ## Enrichments
 
-<details><summary><code>client.enrichments.<a href="/src/api/resources/enrichments/client/Client.ts">bankaccountverify</a>({ ...params }) -> BasisTheory.BankVerificationResponse</code></summary>
+<details><summary><code>client.enrichments.<a href="/src/api/resources/enrichments/client/Client.ts">bankAccountVerify</a>({ ...params }) -> BasisTheory.BankVerificationResponse</code></summary>
 <dl>
 <dd>
 
@@ -1205,7 +1205,7 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.enrichments.bankaccountverify({
+await client.enrichments.bankAccountVerify({
     tokenId: "token_id",
 });
 ```
