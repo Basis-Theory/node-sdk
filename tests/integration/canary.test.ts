@@ -477,7 +477,7 @@ describe('enrichments', () => {
                     account_number: "00001"
             }
         });
-        const actual = await client.enrichments.bankaccountverify({
+        const actual = await client.enrichments.bankAccountVerify({
             tokenId: token.id!
         });
         //@ts-ignore
