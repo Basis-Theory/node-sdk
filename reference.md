@@ -1343,7 +1343,7 @@ await client.logs.getEntityTypes();
 
 ## Permissions
 
-<details><summary><code>client.permissions.<a href="/src/api/resources/permissions/client/Client.ts">get</a>({ ...params }) -> BasisTheory.Permission[]</code></summary>
+<details><summary><code>client.permissions.<a href="/src/api/resources/permissions/client/Client.ts">list</a>({ ...params }) -> BasisTheory.Permission[]</code></summary>
 <dl>
 <dd>
 
@@ -1356,7 +1356,7 @@ await client.logs.getEntityTypes();
 <dd>
 
 ```typescript
-await client.permissions.get();
+await client.permissions.list();
 ```
 
 </dd>
@@ -1372,7 +1372,7 @@ await client.permissions.get();
 <dl>
 <dd>
 
-**request:** `BasisTheory.PermissionsGetRequest`
+**request:** `BasisTheory.PermissionsListRequest`
 
 </dd>
 </dl>

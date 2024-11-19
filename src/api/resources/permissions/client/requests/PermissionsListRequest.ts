@@ -6,6 +6,6 @@
  * @example
  *     {}
  */
-export interface PermissionsGetRequest {
+export interface PermissionsListRequest {
     applicationType?: string;
 }
