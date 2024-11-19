@@ -4,6 +4,7 @@ export * from "./ApplicationKey";
 export * from "./ApplicationPaginatedList";
 export * from "./ApplicationTemplate";
 export * from "./AsyncReactResponse";
+export * from "./BankVerificationResponse";
 export * from "./BinDetails";
 export * from "./BinDetailsBank";
 export * from "./BinDetailsCountry";

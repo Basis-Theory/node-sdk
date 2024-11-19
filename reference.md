@@ -1192,7 +1192,7 @@ while (page.hasNextPage()) {
 
 ## Enrichments
 
-<details><summary><code>client.enrichments.<a href="/src/api/resources/enrichments/client/Client.ts">bankaccountverify</a>({ ...params }) -> void</code></summary>
+<details><summary><code>client.enrichments.<a href="/src/api/resources/enrichments/client/Client.ts">bankaccountverify</a>({ ...params }) -> BasisTheory.BankVerificationResponse</code></summary>
 <dl>
 <dd>
 

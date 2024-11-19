@@ -49,7 +49,7 @@ export class Enrichments {
     public async bankaccountverify(
         request: BasisTheory.BankVerificationRequest,
         requestOptions?: Enrichments.RequestOptions
-    ): Promise<void> {
+    ): Promise<BasisTheory.BankVerificationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
@@ -77,7 +77,13 @@ export class Enrichments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return;
+            return serializers.BankVerificationResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
         }
 
         if (_response.error.reason === "status-code") {
