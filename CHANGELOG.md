@@ -1,3 +1,10 @@
+## [1.4.6](https://github.com/Basis-Theory/node-sdk/compare/v1.4.5...v1.4.6) (2024-11-20)
+
+
+### Bug Fixes
+
+* Remove deprecated endpoints ([#44](https://github.com/Basis-Theory/node-sdk/issues/44)) ([62146a8](https://github.com/Basis-Theory/node-sdk/commit/62146a8e14425a752fe9c74d7f0747b818c736bb))
+
 ## [1.4.5](https://github.com/Basis-Theory/node-sdk/compare/v1.4.4...v1.4.5) (2024-11-19)
 
 
