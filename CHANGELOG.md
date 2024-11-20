@@ -1,3 +1,10 @@
+## [1.4.7](https://github.com/Basis-Theory/node-sdk/compare/v1.4.6...v1.4.7) (2024-11-20)
+
+
+### Bug Fixes
+
+* Add token-intents ([#45](https://github.com/Basis-Theory/node-sdk/issues/45)) ([c21bcca](https://github.com/Basis-Theory/node-sdk/commit/c21bcca824385795085c239dcf135fde384fd40e))
+
 ## [1.4.6](https://github.com/Basis-Theory/node-sdk/compare/v1.4.5...v1.4.6) (2024-11-20)
 
 
