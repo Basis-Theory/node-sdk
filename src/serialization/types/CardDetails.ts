@@ -10,11 +10,21 @@ export const CardDetails: core.serialization.ObjectSchema<serializers.CardDetail
     core.serialization.object({
         bin: core.serialization.string().optional(),
         last4: core.serialization.string().optional(),
+        expirationMonth: core.serialization.property("expiration_month", core.serialization.number().optional()),
+        expirationYear: core.serialization.property("expiration_year", core.serialization.number().optional()),
+        brand: core.serialization.string().optional(),
+        funding: core.serialization.string().optional(),
+        authentication: core.serialization.string().optional(),
     });
 
 export declare namespace CardDetails {
     interface Raw {
         bin?: string | null;
         last4?: string | null;
+        expiration_month?: number | null;
+        expiration_year?: number | null;
+        brand?: string | null;
+        funding?: string | null;
+        authentication?: string | null;
     }
 }

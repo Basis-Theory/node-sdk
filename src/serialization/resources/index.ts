@@ -15,6 +15,8 @@ export * as reactors from "./reactors";
 export * from "./reactors/client/requests";
 export * as sessions from "./sessions";
 export * from "./sessions/client/requests";
+export * as tokenIntents from "./tokenIntents";
+export * from "./tokenIntents/client/requests";
 export * as webhooks from "./webhooks";
 export * from "./webhooks/client/requests";
 export * as tenants from "./tenants";

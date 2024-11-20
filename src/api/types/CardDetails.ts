@@ -5,4 +5,9 @@
 export interface CardDetails {
     bin?: string;
     last4?: string;
+    expirationMonth?: number;
+    expirationYear?: number;
+    brand?: string;
+    funding?: string;
+    authentication?: string;
 }

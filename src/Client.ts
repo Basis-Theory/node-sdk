@@ -15,6 +15,7 @@ import { Proxies } from "./api/resources/proxies/client/Client";
 import { Reactors } from "./api/resources/reactors/client/Client";
 import { Roles } from "./api/resources/roles/client/Client";
 import { Sessions } from "./api/resources/sessions/client/Client";
+import { TokenIntents } from "./api/resources/tokenIntents/client/Client";
 import { Webhooks } from "./api/resources/webhooks/client/Client";
 import { Tenants } from "./api/resources/tenants/client/Client";
 import { Threeds } from "./api/resources/threeds/client/Client";
@@ -107,6 +108,12 @@ export class BasisTheoryClient {
 
     public get sessions(): Sessions {
         return (this._sessions ??= new Sessions(this._options));
+    }
+
+    protected _tokenIntents: TokenIntents | undefined;
+
+    public get tokenIntents(): TokenIntents {
+        return (this._tokenIntents ??= new TokenIntents(this._options));
     }
 
     protected _webhooks: Webhooks | undefined;
