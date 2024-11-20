@@ -9,7 +9,6 @@ import * as errors from "../../../../errors/index";
 import * as BasisTheory from "../../../index";
 import * as serializers from "../../../../serialization/index";
 import { Events } from "../resources/events/client/Client";
-import { SigningKey } from "../resources/signingKey/client/Client";
 
 export declare namespace Webhooks {
     interface Options {
@@ -661,12 +660,6 @@ export class Webhooks {
 
     public get events(): Events {
         return (this._events ??= new Events(this._options));
-    }
-
-    protected _signingKey: SigningKey | undefined;
-
-    public get signingKey(): SigningKey {
-        return (this._signingKey ??= new SigningKey(this._options));
     }
 
     protected async _getCustomAuthorizationHeaders() {
