@@ -576,6 +576,23 @@ describe('enrichments', () => {
     });
 });
 
+describe('token intents', () => {
+    it('should call token intents', async () => {
+        const client = getPrivateClient();
+        const tokenIntent = await client.tokenIntents.create({
+            type: "card",
+            data: {
+                number: '4242424242424242',
+                expiration_month: 12,
+                expiration_year: 2025,
+                cvc: '123'
+            },
+        });
+        //@ts-ignore
+        expect(tokenIntent.id!).toBeGuid();
+    });
+});
+
 describe('Canary', () => {
     it('should call tenant/self', async () => {
         const client = getManagementClient();
