@@ -2231,6 +2231,109 @@ await client.sessions.authorize({
 </dl>
 </details>
 
+## TokenIntents
+
+<details><summary><code>client.tokenIntents.<a href="/src/api/resources/tokenIntents/client/Client.ts">create</a>({ ...params }) -> BasisTheory.CreateTokenIntentResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tokenIntents.create({
+    type: "string",
+    data: {
+        key: "value",
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.CreateTokenIntentRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TokenIntents.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tokenIntents.<a href="/src/api/resources/tokenIntents/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tokenIntents.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TokenIntents.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Webhooks
 
 <details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">ping</a>() -> void</code></summary>

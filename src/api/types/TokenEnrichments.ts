@@ -6,5 +6,5 @@ import * as BasisTheory from "../index";
 
 export interface TokenEnrichments {
     binDetails?: BasisTheory.BinDetails;
-    cardDetails?: BasisTheory.CardDetails;
+    cardDetails?: BasisTheory.TokenEnrichmentsCardDetails;
 }

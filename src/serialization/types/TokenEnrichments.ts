@@ -6,19 +6,19 @@ import * as serializers from "../index";
 import * as BasisTheory from "../../api/index";
 import * as core from "../../core";
 import { BinDetails } from "./BinDetails";
-import { CardDetails } from "./CardDetails";
+import { TokenEnrichmentsCardDetails } from "./TokenEnrichmentsCardDetails";
 
 export const TokenEnrichments: core.serialization.ObjectSchema<
     serializers.TokenEnrichments.Raw,
     BasisTheory.TokenEnrichments
 > = core.serialization.object({
     binDetails: core.serialization.property("bin_details", BinDetails.optional()),
-    cardDetails: core.serialization.property("card_details", CardDetails.optional()),
+    cardDetails: core.serialization.property("card_details", TokenEnrichmentsCardDetails.optional()),
 });
 
 export declare namespace TokenEnrichments {
     interface Raw {
         bin_details?: BinDetails.Raw | null;
-        card_details?: CardDetails.Raw | null;
+        card_details?: TokenEnrichmentsCardDetails.Raw | null;
     }
 }
