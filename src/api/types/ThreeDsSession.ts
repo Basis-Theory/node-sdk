@@ -19,6 +19,7 @@ export interface ThreeDsSession {
     modifiedBy?: string;
     device?: string;
     deviceInfo?: BasisTheory.ThreeDsDeviceInfo;
+    webChallengeMode?: string;
     version?: BasisTheory.ThreeDsVersion;
     method?: BasisTheory.ThreeDsMethod;
     authentication?: BasisTheory.ThreeDsAuthentication;

@@ -2247,7 +2247,7 @@ await client.sessions.authorize({
 
 ```typescript
 await client.tokenIntents.create({
-    type: "string",
+    type: "x",
     data: {
         key: "value",
     },

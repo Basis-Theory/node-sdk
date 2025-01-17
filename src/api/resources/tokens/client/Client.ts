@@ -956,8 +956,20 @@ export class Tokens {
         const list = async (
             request: BasisTheory.TokensListV2Request
         ): Promise<BasisTheory.TokenCursorPaginatedList> => {
-            const { start, size } = request;
+            const { type: type_, container, fingerprint, metadata, start, size } = request;
             const _queryParams: Record<string, string | string[] | object | object[]> = {};
+            if (type_ != null) {
+                _queryParams["type"] = type_;
+            }
+            if (container != null) {
+                _queryParams["container"] = container;
+            }
+            if (fingerprint != null) {
+                _queryParams["fingerprint"] = fingerprint;
+            }
+            if (metadata != null) {
+                _queryParams["metadata"] = JSON.stringify(metadata);
+            }
             if (start != null) {
                 _queryParams["start"] = start;
             }

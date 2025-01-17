@@ -28,6 +28,7 @@ export const ThreeDsSession: core.serialization.ObjectSchema<
     modifiedBy: core.serialization.property("modified_by", core.serialization.string().optional()),
     device: core.serialization.string().optional(),
     deviceInfo: core.serialization.property("device_info", ThreeDsDeviceInfo.optional()),
+    webChallengeMode: core.serialization.property("web_challenge_mode", core.serialization.string().optional()),
     version: ThreeDsVersion.optional(),
     method: ThreeDsMethod.optional(),
     authentication: ThreeDsAuthentication.optional(),
@@ -49,6 +50,7 @@ export declare namespace ThreeDsSession {
         modified_by?: string | null;
         device?: string | null;
         device_info?: ThreeDsDeviceInfo.Raw | null;
+        web_challenge_mode?: string | null;
         version?: ThreeDsVersion.Raw | null;
         method?: ThreeDsMethod.Raw | null;
         authentication?: ThreeDsAuthentication.Raw | null;

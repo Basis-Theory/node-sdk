@@ -7,6 +7,10 @@
  *     {}
  */
 export interface TokensListV2Request {
+    type?: string;
+    container?: string;
+    fingerprint?: string;
+    metadata?: Record<string, string | undefined>;
     start?: string;
     size?: number;
 }

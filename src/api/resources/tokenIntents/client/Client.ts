@@ -43,7 +43,7 @@ export class TokenIntents {
      *
      * @example
      *     await client.tokenIntents.create({
-     *         type: "string",
+     *         type: "x",
      *         data: {
      *             "key": "value"
      *         }
