@@ -13,6 +13,7 @@ export interface Token {
     enrichments?: BasisTheory.TokenEnrichments;
     createdBy?: string;
     createdAt?: Date;
+    card?: BasisTheory.CardDetails;
     modifiedBy?: string;
     modifiedAt?: Date;
     fingerprint?: string;

@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as BasisTheory from "../../api/index";
 import * as core from "../../core";
+import { AdditionalCardDetails } from "./AdditionalCardDetails";
 
 export const CardDetails: core.serialization.ObjectSchema<serializers.CardDetails.Raw, BasisTheory.CardDetails> =
     core.serialization.object({
@@ -15,6 +16,7 @@ export const CardDetails: core.serialization.ObjectSchema<serializers.CardDetail
         brand: core.serialization.string().optional(),
         funding: core.serialization.string().optional(),
         authentication: core.serialization.string().optional(),
+        additional: core.serialization.list(AdditionalCardDetails).optional(),
     });
 
 export declare namespace CardDetails {
@@ -26,5 +28,6 @@ export declare namespace CardDetails {
         brand?: string | null;
         funding?: string | null;
         authentication?: string | null;
+        additional?: AdditionalCardDetails.Raw[] | null;
     }
 }

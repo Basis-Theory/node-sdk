@@ -6,6 +6,7 @@ import * as serializers from "../index";
 import * as BasisTheory from "../../api/index";
 import * as core from "../../core";
 import { TokenEnrichments } from "./TokenEnrichments";
+import { CardDetails } from "./CardDetails";
 import { Privacy } from "./Privacy";
 import { TokenExtras } from "./TokenExtras";
 
@@ -21,6 +22,7 @@ export const Token: core.serialization.ObjectSchema<serializers.Token.Raw, Basis
         enrichments: TokenEnrichments.optional(),
         createdBy: core.serialization.property("created_by", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        card: CardDetails.optional(),
         modifiedBy: core.serialization.property("modified_by", core.serialization.string().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fingerprint: core.serialization.string().optional(),
@@ -50,6 +52,7 @@ export declare namespace Token {
         enrichments?: TokenEnrichments.Raw | null;
         created_by?: string | null;
         created_at?: string | null;
+        card?: CardDetails.Raw | null;
         modified_by?: string | null;
         modified_at?: string | null;
         fingerprint?: string | null;

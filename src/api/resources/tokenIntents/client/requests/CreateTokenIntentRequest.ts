@@ -5,7 +5,7 @@
 /**
  * @example
  *     {
- *         type: "string",
+ *         type: "x",
  *         data: {
  *             "key": "value"
  *         }
