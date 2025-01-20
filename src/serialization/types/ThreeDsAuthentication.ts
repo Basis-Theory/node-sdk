@@ -44,9 +44,18 @@ export const ThreeDsAuthentication: core.serialization.ObjectSchema<
     acsRenderingType: core.serialization.property("acs_rendering_type", ThreeDsAcsRenderingType.optional()),
     acsSignedContent: core.serialization.property("acs_signed_content", core.serialization.string().optional()),
     acsChallengeUrl: core.serialization.property("acs_challenge_url", core.serialization.string().optional()),
+    challengePreference: core.serialization.property("challenge_preference", core.serialization.string().optional()),
+    challengePreferenceCode: core.serialization.property(
+        "challenge_preference_code",
+        core.serialization.string().optional()
+    ),
     challengeAttempts: core.serialization.property("challenge_attempts", core.serialization.string().optional()),
     challengeCancelReason: core.serialization.property(
         "challenge_cancel_reason",
+        core.serialization.string().optional()
+    ),
+    challengeCancelReasonCode: core.serialization.property(
+        "challenge_cancel_reason_code",
         core.serialization.string().optional()
     ),
     cardholderInfo: core.serialization.property("cardholder_info", core.serialization.string().optional()),
@@ -83,8 +92,11 @@ export declare namespace ThreeDsAuthentication {
         acs_rendering_type?: ThreeDsAcsRenderingType.Raw | null;
         acs_signed_content?: string | null;
         acs_challenge_url?: string | null;
+        challenge_preference?: string | null;
+        challenge_preference_code?: string | null;
         challenge_attempts?: string | null;
         challenge_cancel_reason?: string | null;
+        challenge_cancel_reason_code?: string | null;
         cardholder_info?: string | null;
         whitelist_status?: string | null;
         whitelist_status_source?: string | null;

@@ -25,8 +25,11 @@ export interface ThreeDsAuthentication {
     acsRenderingType?: BasisTheory.ThreeDsAcsRenderingType;
     acsSignedContent?: string;
     acsChallengeUrl?: string;
+    challengePreference?: string;
+    challengePreferenceCode?: string;
     challengeAttempts?: string;
     challengeCancelReason?: string;
+    challengeCancelReasonCode?: string;
     cardholderInfo?: string;
     whitelistStatus?: string;
     whitelistStatusSource?: string;

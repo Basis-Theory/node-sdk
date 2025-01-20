@@ -14,5 +14,6 @@ export interface CreateThreeDsSessionRequest {
     tokenIntentId?: string;
     type?: string;
     device?: string;
+    webChallengeMode?: string;
     deviceInfo?: BasisTheory.ThreeDsDeviceInfo;
 }

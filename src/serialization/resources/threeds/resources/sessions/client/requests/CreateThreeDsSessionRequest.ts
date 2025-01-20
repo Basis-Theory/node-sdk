@@ -16,6 +16,7 @@ export const CreateThreeDsSessionRequest: core.serialization.Schema<
     tokenIntentId: core.serialization.property("token_intent_id", core.serialization.string().optional()),
     type: core.serialization.string().optional(),
     device: core.serialization.string().optional(),
+    webChallengeMode: core.serialization.property("web_challenge_mode", core.serialization.string().optional()),
     deviceInfo: core.serialization.property("device_info", ThreeDsDeviceInfo.optional()),
 });
 
@@ -26,6 +27,7 @@ export declare namespace CreateThreeDsSessionRequest {
         token_intent_id?: string | null;
         type?: string | null;
         device?: string | null;
+        web_challenge_mode?: string | null;
         device_info?: ThreeDsDeviceInfo.Raw | null;
     }
 }

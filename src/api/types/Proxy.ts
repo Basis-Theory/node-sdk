@@ -18,6 +18,7 @@ export interface Proxy {
     applicationId?: string;
     configuration?: Record<string, string | undefined>;
     proxyHost?: string;
+    timeout?: number;
     createdBy?: string;
     createdAt?: Date;
     modifiedBy?: string;

@@ -1,4 +1,5 @@
 export * from "./AccessRule";
+export * from "./AdditionalCardDetails";
 export * from "./Application";
 export * from "./ApplicationKey";
 export * from "./ApplicationPaginatedList";
@@ -27,6 +28,9 @@ export * from "./GetTenantInvitations";
 export * from "./GetTenantMembers";
 export * from "./GetTokens";
 export * from "./GetTokensV2";
+export * from "./GooglePayTokenizeRequest";
+export * from "./GooglePaymentMethodToken";
+export * from "./IntermediateSigningKey";
 export * from "./Log";
 export * from "./LogEntityType";
 export * from "./LogPaginatedList";
