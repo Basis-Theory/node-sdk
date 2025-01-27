@@ -13,4 +13,6 @@ export interface CreateTokenIntentResponse {
     createdAt?: Date;
     expiresAt?: Date;
     card?: BasisTheory.CardDetails;
+    authentication?: BasisTheory.TokenAuthentication;
+    extras?: BasisTheory.TokenIntentExtras;
 }

@@ -4,6 +4,6 @@
 
 import * as BasisTheory from "../index";
 
-export interface GooglePayTokenizeRequest {
-    googlePaymentMethodToken?: BasisTheory.GooglePaymentMethodToken;
+export interface TokenIntentExtras {
+    tspDetails?: BasisTheory.TokenServiceProviderDetails;
 }

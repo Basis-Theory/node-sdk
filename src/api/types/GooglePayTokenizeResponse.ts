@@ -4,7 +4,6 @@
 
 import * as BasisTheory from "../index";
 
-export interface TokenExtras {
-    deduplicated?: boolean;
-    tspDetails?: BasisTheory.TokenServiceProviderDetails;
+export interface GooglePayTokenizeResponse {
+    tokenIntent?: BasisTheory.CreateTokenIntentResponse;
 }

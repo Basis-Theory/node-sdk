@@ -8,6 +8,7 @@ import * as core from "../../core";
 import { TokenEnrichments } from "./TokenEnrichments";
 import { CardDetails } from "./CardDetails";
 import { Privacy } from "./Privacy";
+import { TokenAuthentication } from "./TokenAuthentication";
 import { TokenExtras } from "./TokenExtras";
 
 export const Token: core.serialization.ObjectSchema<serializers.Token.Raw, BasisTheory.Token> =
@@ -39,6 +40,7 @@ export const Token: core.serialization.ObjectSchema<serializers.Token.Raw, Basis
         expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
         containers: core.serialization.list(core.serialization.string()).optional(),
         aliases: core.serialization.list(core.serialization.string()).optional(),
+        authentication: TokenAuthentication.optional(),
         extras: core.serialization.property("_extras", TokenExtras.optional()),
     });
 
@@ -63,6 +65,7 @@ export declare namespace Token {
         expires_at?: string | null;
         containers?: string[] | null;
         aliases?: string[] | null;
+        authentication?: TokenAuthentication.Raw | null;
         _extras?: TokenExtras.Raw | null;
     }
 }

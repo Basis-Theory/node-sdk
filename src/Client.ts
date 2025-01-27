@@ -9,6 +9,7 @@ import { ApplicationKeys } from "./api/resources/applicationKeys/client/Client";
 import { ApplicationTemplates } from "./api/resources/applicationTemplates/client/Client";
 import { Tokens } from "./api/resources/tokens/client/Client";
 import { Enrichments } from "./api/resources/enrichments/client/Client";
+import { Googlepay } from "./api/resources/googlepay/client/Client";
 import { Logs } from "./api/resources/logs/client/Client";
 import { Permissions } from "./api/resources/permissions/client/Client";
 import { Proxies } from "./api/resources/proxies/client/Client";
@@ -72,6 +73,12 @@ export class BasisTheoryClient {
 
     public get enrichments(): Enrichments {
         return (this._enrichments ??= new Enrichments(this._options));
+    }
+
+    protected _googlepay: Googlepay | undefined;
+
+    public get googlepay(): Googlepay {
+        return (this._googlepay ??= new Googlepay(this._options));
     }
 
     protected _logs: Logs | undefined;
