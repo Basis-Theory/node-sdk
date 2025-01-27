@@ -5,14 +5,17 @@
 import * as serializers from "../index";
 import * as BasisTheory from "../../api/index";
 import * as core from "../../core";
+import { TokenServiceProviderDetails } from "./TokenServiceProviderDetails";
 
 export const TokenExtras: core.serialization.ObjectSchema<serializers.TokenExtras.Raw, BasisTheory.TokenExtras> =
     core.serialization.object({
         deduplicated: core.serialization.boolean().optional(),
+        tspDetails: core.serialization.property("tsp_details", TokenServiceProviderDetails.optional()),
     });
 
 export declare namespace TokenExtras {
     interface Raw {
         deduplicated?: boolean | null;
+        tsp_details?: TokenServiceProviderDetails.Raw | null;
     }
 }

@@ -9,6 +9,8 @@ export * as tokens from "./tokens";
 export * from "./tokens/client/requests";
 export * as enrichments from "./enrichments";
 export * from "./enrichments/client/requests";
+export * as googlepay from "./googlepay";
+export * from "./googlepay/client/requests";
 export * as proxies from "./proxies";
 export * from "./proxies/client/requests";
 export * as reactors from "./reactors";
