@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/Basis-Theory/node-sdk/compare/v1.4.7...v1.5.0) (2025-01-27)
+
+
+### Features
+
+* Google Pay ([5a1573b](https://github.com/Basis-Theory/node-sdk/commit/5a1573b95aaee4c14a1237361a1cf41de46fc86c))
+
 ## [1.4.7](https://github.com/Basis-Theory/node-sdk/compare/v1.4.6...v1.4.7) (2024-11-20)
 
 
