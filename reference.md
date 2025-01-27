@@ -2714,6 +2714,56 @@ await client.webhooks.create({
 </dl>
 </details>
 
+## Connections Googlepay
+
+<details><summary><code>client.connections.googlepay.<a href="/src/api/resources/connections/resources/googlepay/client/Client.ts">tokenize</a>({ ...params }) -> BasisTheory.CreateTokenIntentResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.googlepay.tokenize();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.connections.GooglePayTokenizeRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Googlepay.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Reactors Results
 
 <details><summary><code>client.reactors.results.<a href="/src/api/resources/reactors/resources/results/client/Client.ts">get</a>(id, requestId) -> unknown</code></summary>
@@ -3539,3 +3589,214 @@ await client.threeds.sessions.create();
 </details>
 
 <details><summary><code>client.threeds.sessions.<a href="/src/api/resources/threeds/resources/sessions/client/Client.ts">authenticate</a>(sessionId, { ...params }) -> BasisTheory.ThreeDsAuthentication</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.threeds.sessions.authenticate("sessionId", {
+    authenticationCategory: "authentication_category",
+    authenticationType: "authentication_type",
+    requestorInfo: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.threeds.AuthenticateThreeDsSessionRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Sessions.IdempotentRequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.threeds.sessions.<a href="/src/api/resources/threeds/resources/sessions/client/Client.ts">getChallengeResult</a>(sessionId) -> BasisTheory.ThreeDsAuthentication</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.threeds.sessions.getChallengeResult("sessionId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Sessions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.threeds.sessions.<a href="/src/api/resources/threeds/resources/sessions/client/Client.ts">get</a>(id) -> BasisTheory.ThreeDsSession</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.threeds.sessions.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Sessions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Webhooks Events
+
+<details><summary><code>client.webhooks.events.<a href="/src/api/resources/webhooks/resources/events/client/Client.ts">list</a>() -> BasisTheory.EventTypes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Return a list of available event types
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.webhooks.events.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Events.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
