@@ -24,6 +24,7 @@ export const Token: core.serialization.ObjectSchema<serializers.Token.Raw, Basis
         createdBy: core.serialization.property("created_by", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         card: CardDetails.optional(),
+        networkToken: core.serialization.property("network_token", CardDetails.optional()),
         modifiedBy: core.serialization.property("modified_by", core.serialization.string().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fingerprint: core.serialization.string().optional(),
@@ -55,6 +56,7 @@ export declare namespace Token {
         created_by?: string | null;
         created_at?: string | null;
         card?: CardDetails.Raw | null;
+        network_token?: CardDetails.Raw | null;
         modified_by?: string | null;
         modified_at?: string | null;
         fingerprint?: string | null;

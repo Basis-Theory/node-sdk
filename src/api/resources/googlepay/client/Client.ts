@@ -41,6 +41,7 @@ export class Googlepay {
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
      * @throws {@link BasisTheory.ConflictError}
+     * @throws {@link BasisTheory.UnprocessableEntityError}
      *
      * @example
      *     await client.googlepay.tokenize()
@@ -119,6 +120,16 @@ export class Googlepay {
                     );
                 case 409:
                     throw new BasisTheory.ConflictError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 422:
+                    throw new BasisTheory.UnprocessableEntityError(
                         serializers.ProblemDetails.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
