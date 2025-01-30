@@ -14,6 +14,7 @@ export interface Token {
     createdBy?: string;
     createdAt?: Date;
     card?: BasisTheory.CardDetails;
+    networkToken?: BasisTheory.CardDetails;
     modifiedBy?: string;
     modifiedAt?: Date;
     fingerprint?: string;

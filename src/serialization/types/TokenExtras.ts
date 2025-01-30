@@ -11,11 +11,16 @@ export const TokenExtras: core.serialization.ObjectSchema<serializers.TokenExtra
     core.serialization.object({
         deduplicated: core.serialization.boolean().optional(),
         tspDetails: core.serialization.property("tsp_details", TokenServiceProviderDetails.optional()),
+        deduplicationBehavior: core.serialization.property(
+            "deduplication_behavior",
+            core.serialization.string().optional()
+        ),
     });
 
 export declare namespace TokenExtras {
     interface Raw {
         deduplicated?: boolean | null;
         tsp_details?: TokenServiceProviderDetails.Raw | null;
+        deduplication_behavior?: string | null;
     }
 }

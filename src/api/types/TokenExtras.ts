@@ -7,4 +7,5 @@ import * as BasisTheory from "../index";
 export interface TokenExtras {
     deduplicated?: boolean;
     tspDetails?: BasisTheory.TokenServiceProviderDetails;
+    deduplicationBehavior?: string;
 }
