@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/Basis-Theory/node-sdk/compare/v1.5.0...v1.5.1) (2025-01-30)
+
+
+### Bug Fixes
+
+* New `network_token` card details object ([08789e0](https://github.com/Basis-Theory/node-sdk/commit/08789e0881008ae46a4e50d4961a3ac55e610c78))
+
 # [1.5.0](https://github.com/Basis-Theory/node-sdk/compare/v1.4.7...v1.5.0) (2025-01-27)
 
 
