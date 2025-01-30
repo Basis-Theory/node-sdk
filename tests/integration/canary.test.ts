@@ -1,5 +1,5 @@
 import { BasisTheoryClient } from "../../src";
-import { NotFoundError, UnauthorizedError } from "../../src/api";
+import { NotFoundError, UnauthorizedError, UnprocessableEntityError } from "../../src/api";
 import { randomUUID } from "node:crypto";
 import { Tokens } from "../../src/api/resources/tokens/client/Client";
 
@@ -591,12 +591,8 @@ describe('google pay', () => {
                 googlePaymentMethodToken: jsonObject
             });
         } catch (err) {
-            if (err instanceof Error && 'statusCode' in err) {
-                expect((err as any).statusCode).toBe(422);
-                expect((err as any).body.detail).toContain('expired intermediateSigningKey');
-            } else {
-                throw err;
-            }
+            expect(err).toBeInstanceOf(UnprocessableEntityError);
+            expect((err as any).body.detail).toContain('expired intermediateSigningKey');
         }
     });
 });
