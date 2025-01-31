@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/Basis-Theory/node-sdk/compare/v1.5.1...v1.5.2) (2025-01-31)
+
+
+### Bug Fixes
+
+* Add `network_token` to token intents ([adbc492](https://github.com/Basis-Theory/node-sdk/commit/adbc492f4ca42f443fab204fb28ecea6e1ca80b8))
+
 ## [1.5.1](https://github.com/Basis-Theory/node-sdk/compare/v1.5.0...v1.5.1) (2025-01-30)
 
 
