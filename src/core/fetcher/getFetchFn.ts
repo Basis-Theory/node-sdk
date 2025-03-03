@@ -6,7 +6,10 @@ import { RUNTIME } from "../runtime";
 export async function getFetchFn(): Promise<any> {
     // In Node.js 18+ environments, use native fetch
     if (RUNTIME.type === "node" && RUNTIME.parsedVersion != null && RUNTIME.parsedVersion >= 18) {
-        return fetch;
+        if (typeof fetch == "function") {
+            return fetch;
+        }
+        return (await import("node-fetch")).default as any;
     }
 
     // In Node.js 18 or lower environments, the SDK always uses`node-fetch`.

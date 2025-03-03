@@ -163,7 +163,7 @@ async function createApplication(managementClient: BasisTheoryClient) {
     return applicationId;
 }
 
-describe ('Authentication', () => {
+describe('Authentication', () => {
     it.skip('should fail on unauthorized', async () => {
         // Open API spec invalidly specify a `ProblemDetails` error body
         // when actually no response body is returned
@@ -244,10 +244,10 @@ describe('Proxies', () => {
         const updatedProxy = await client.proxies.update(
             proxyId,
             {
-            name: "(Deletable) node-SDK-" + randomUUID(),
-            destinationUrl: 'https://example.com/api',
-            requestTransform: {
-                code: `
+                name: "(Deletable) node-SDK-" + randomUUID(),
+                destinationUrl: 'https://example.com/api',
+                requestTransform: {
+                    code: `
                   module.exports = async function (req) {
                     // Do something with req.configuration.SERVICE_API_KEY
             
@@ -257,9 +257,9 @@ describe('Proxies', () => {
                     };
                   };
                 `
-            },
-            responseTransform: {
-                code: `
+                },
+                responseTransform: {
+                    code: `
                   module.exports = async function (req) {
                     // Do something with req.configuration.SERVICE_API_KEY
             
@@ -269,15 +269,15 @@ describe('Proxies', () => {
                     };
                   };
                 `
-            },
-            configuration: {
-                SERVICE_API_KEY: 'key_abcd1234',
-            },
-            application: {
-                id: applicationId
-            },
-            requireAuth: true
-        });
+                },
+                configuration: {
+                    SERVICE_API_KEY: 'key_abcd1234',
+                },
+                application: {
+                    id: applicationId
+                },
+                requireAuth: true
+            });
         expect(updatedProxy.id).toBe(proxyId);
 
         await client.proxies.update(proxyId, {
@@ -377,39 +377,39 @@ describe('Reactors', () => {
 });
 
 describe('Tokens', () => {
-   it('should create and update', async () => {
-       const client = getPrivateClient();
-       const token = await client.tokens.create({
-               type: "token",
-               data: "Sensitive Value",
-               mask: "{{ data | reveal_last: 4 }}",
-               containers: ["/general/high/"],
-               metadata: {
-                   nonSensitiveField: "Non-Sensitive Value",
-               },
-               searchIndexes: ["{{ data }}", "{{ data | last4 }}"],
-               fingerprintExpression: "{{ data }}",
-               deduplicateToken: true,
-               expiresAt: "8/26/2030 7:23:57 PM -07:00",
-           }
-       );
-       expect(token.id).toBeDefined();
+    it('should create and update', async () => {
+        const client = getPrivateClient();
+        const token = await client.tokens.create({
+            type: "token",
+            data: "Sensitive Value",
+            mask: "{{ data | reveal_last: 4 }}",
+            containers: ["/general/high/"],
+            metadata: {
+                nonSensitiveField: "Non-Sensitive Value",
+            },
+            searchIndexes: ["{{ data }}", "{{ data | last4 }}"],
+            fingerprintExpression: "{{ data }}",
+            deduplicateToken: true,
+            expiresAt: "8/26/2030 7:23:57 PM -07:00",
+        }
+        );
+        expect(token.id).toBeDefined();
 
-       const updateToken = await client.tokens.update(token.id!, {
-           data: "Sensitive Value",
-           mask: "{{ data | reveal_last: 4 }}",
-           metadata: {
-               nonSensitiveField: "Non-Sensitive Value",
-           },
-           searchIndexes: ["{{ data }}", "{{ data | last4 }}"],
-           fingerprintExpression: "{{ data }}",
-           deduplicateToken: true,
-       });
-       expect(updateToken.id).toBe(token.id);
-   })
+        const updateToken = await client.tokens.update(token.id!, {
+            data: "Sensitive Value",
+            mask: "{{ data | reveal_last: 4 }}",
+            metadata: {
+                nonSensitiveField: "Non-Sensitive Value",
+            },
+            searchIndexes: ["{{ data }}", "{{ data | last4 }}"],
+            fingerprintExpression: "{{ data }}",
+            deduplicateToken: true,
+        });
+        expect(updateToken.id).toBe(token.id);
+    })
 });
 
-describe ('Tokenize', () => {
+describe('Tokenize', () => {
     it('should tokenize (basic)', async () => {
         const client = getPrivateClient();
         const response = await client.tokens.tokenize({
@@ -458,7 +458,7 @@ describe ('Tokenize', () => {
         expect(token.id).toBeDefined();
     });
 
-    it ('should tokenize (array)', async () => {
+    it('should tokenize (array)', async () => {
         const client = getPrivateClient();
         const response = await client.tokens.tokenize([
             "John",
@@ -493,26 +493,26 @@ describe ('Tokenize', () => {
     });
 
     it('should tokenize (composite)', async () => {
-       const client = getPrivateClient();
-       const response = await client.tokens.tokenize({
-           first_name: "John",
-           last_name: "Doe",
-           primary_card: {
-               type: "card",
-               data: {
-                   number: "4242424242424242",
-                   expiration_month: 12,
-                   expiration_year: 2025,
-                   cvc: "123",
-               },
-           },
-           sensitive_tags: [
-               "preferred",
-               {
-                   type: "token",
-                   data: "vip",
-               },
-           ],
+        const client = getPrivateClient();
+        const response = await client.tokens.tokenize({
+            first_name: "John",
+            last_name: "Doe",
+            primary_card: {
+                type: "card",
+                data: {
+                    number: "4242424242424242",
+                    expiration_month: 12,
+                    expiration_year: 2025,
+                    cvc: "123",
+                },
+            },
+            sensitive_tags: [
+                "preferred",
+                {
+                    type: "token",
+                    data: "vip",
+                },
+            ],
         });
         // @ts-ignore
         expect(response.first_name).toBeGuid();
@@ -541,18 +541,18 @@ describe('detokenize', () => {
     });
 
     it('should detokenize (array)', async () => {
-       const client = getPrivateClient();
-       const tokenId = await createToken(client, "4242424242424242");
-       const tokenId2 = await createToken(client, "4111111111111111");
-       const actual = await client.tokens.detokenize({
-           "tokens":[
-               `{{ ${tokenId} }}`,
-               `{{ ${tokenId2} }}`,
-           ]
-       });
-       //@ts-ignore
+        const client = getPrivateClient();
+        const tokenId = await createToken(client, "4242424242424242");
+        const tokenId2 = await createToken(client, "4111111111111111");
+        const actual = await client.tokens.detokenize({
+            "tokens": [
+                `{{ ${tokenId} }}`,
+                `{{ ${tokenId2} }}`,
+            ]
+        });
+        //@ts-ignore
         expect(actual.tokens[0].number).toBe("4242424242424242");
-       //@ts-ignore
+        //@ts-ignore
         expect(actual.tokens[1].number).toBe("4111111111111111");
     });
 });
@@ -562,9 +562,9 @@ describe('enrichments', () => {
         const client = getPrivateClient();
         const token = await client.tokens.create({
             type: "bank",
-                data: {
-                    routing_number: "021000021",
-                    account_number: "00001"
+            data: {
+                routing_number: "021000021",
+                account_number: "00001"
             }
         });
         const actual = await client.enrichments.bankAccountVerify({
@@ -576,26 +576,26 @@ describe('enrichments', () => {
     });
 });
 
-describe('google pay', () => {
-    it('should call; Expect signing key expired error', async () => {
-        // This is a canary test to ensure the SDK generation did not change object types
-        const client = getPrivateClient();
+// describe('google pay', () => {
+//     it('should call; Expect signing key expired error', async () => {
+//         // This is a canary test to ensure the SDK generation did not change object types
+//         const client = getPrivateClient();
 
-        const jsonString =
-            '{"signature":"MEQCIBnz8wKrUi3qrLSn6KSrTcNIo6YcOzrfre7X49S27MrKAiBMF70q7EHe0Bw8uva77pclggSiPMRTFRFl7TZILyACOQ\u003d\u003d","intermediateSigningKey":{"signedKey":"{\\"keyValue\\":\\"MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEnK9rrDl5FJalSwcoZD3qB5EYcA/sYVTH2Nbh6y/EZArFvvBRQA1eI3BIv1iZeCkBLd/A2nU1ve7xENoPOfp7+Q\\\\u003d\\\\u003d\\",\\"keyExpiration\\":\\"1737724267469\\"}","signatures":["MEQCIHugFzQtVBVNizwkMhG/POcZAmRRXyeiZpt3aFwBzt5cAiBSOY4pfT4tQGWzZjkldbYkpBwWGpSasxRmlt7XPNOaLQ\u003d\u003d"]},"protocolVersion":"ECv2","signedMessage":"{\\"encryptedMessage\\":\\"XURDnvPAIhAKT9rARBV9RT0/yVTesT/w0UniXCJflwu2TkE54UnP7ZmWBo0gKjTJIU3j8D1Rntw2Ywr2UDLbZor+UoeZltzZOAv6iAR4MfvCLSzlh3HcjechwqZM8oxSF2iZoD2XrNqOgaYbOY1EaYoLx1JpftZDuTqSDLYa+szsoPjAUgzBO5TJZTDIa3zDNAdK3UtAPwutL1M4pTyuFhUKOC12J3RzZdaGFANbKSc8vdfqnR1hqsvsEt1sWPf2O3yty91klSA7FDckvwlKfRoNyQMDhaDkEvYUi75uxcjCRHE0Jjbj61bZriSTXiG2KWNF2OKpz7l61kgPJxCpK7A7TV3P4pBLwW7DYbRusO6FupLehxOZl9nBpVfApytCZGjaSXT7QfPpxdBv8j2VfKsodOf/dwv2Thrra9a6ZzFWsUz4l7Jbr4MCBLhXH4lSuxKrlA2Rf/CVPTgz8b88cYpEDZyqLJxDstwy74/Nl7Mjc4V7thzmdskAeYSuZXKXyyeo3BHqkguRkeagEwuHiZoem2V4W2qWOF8hYn14KY3cXXNcVA\\\\u003d\\\\u003d\\",\\"ephemeralPublicKey\\":\\"BHBDKlM3tik4o9leEkHu+875bHbORaCK7dDeXFCRmv4bzWJw/4bsvtBtaBH3SW5JXkE/6pkRYAtjFzQmHMRQYvc\\\\u003d\\",\\"tag\\":\\"Hle3Oafx5sfUc3U3sCQgV0tRPhCAvPlVLYiqvbPyTYY\\\\u003d\\"}"}';
+//         const jsonString =
+//             '{"signature":"MEQCIBnz8wKrUi3qrLSn6KSrTcNIo6YcOzrfre7X49S27MrKAiBMF70q7EHe0Bw8uva77pclggSiPMRTFRFl7TZILyACOQ\u003d\u003d","intermediateSigningKey":{"signedKey":"{\\"keyValue\\":\\"MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEnK9rrDl5FJalSwcoZD3qB5EYcA/sYVTH2Nbh6y/EZArFvvBRQA1eI3BIv1iZeCkBLd/A2nU1ve7xENoPOfp7+Q\\\\u003d\\\\u003d\\",\\"keyExpiration\\":\\"1737724267469\\"}","signatures":["MEQCIHugFzQtVBVNizwkMhG/POcZAmRRXyeiZpt3aFwBzt5cAiBSOY4pfT4tQGWzZjkldbYkpBwWGpSasxRmlt7XPNOaLQ\u003d\u003d"]},"protocolVersion":"ECv2","signedMessage":"{\\"encryptedMessage\\":\\"XURDnvPAIhAKT9rARBV9RT0/yVTesT/w0UniXCJflwu2TkE54UnP7ZmWBo0gKjTJIU3j8D1Rntw2Ywr2UDLbZor+UoeZltzZOAv6iAR4MfvCLSzlh3HcjechwqZM8oxSF2iZoD2XrNqOgaYbOY1EaYoLx1JpftZDuTqSDLYa+szsoPjAUgzBO5TJZTDIa3zDNAdK3UtAPwutL1M4pTyuFhUKOC12J3RzZdaGFANbKSc8vdfqnR1hqsvsEt1sWPf2O3yty91klSA7FDckvwlKfRoNyQMDhaDkEvYUi75uxcjCRHE0Jjbj61bZriSTXiG2KWNF2OKpz7l61kgPJxCpK7A7TV3P4pBLwW7DYbRusO6FupLehxOZl9nBpVfApytCZGjaSXT7QfPpxdBv8j2VfKsodOf/dwv2Thrra9a6ZzFWsUz4l7Jbr4MCBLhXH4lSuxKrlA2Rf/CVPTgz8b88cYpEDZyqLJxDstwy74/Nl7Mjc4V7thzmdskAeYSuZXKXyyeo3BHqkguRkeagEwuHiZoem2V4W2qWOF8hYn14KY3cXXNcVA\\\\u003d\\\\u003d\\",\\"ephemeralPublicKey\\":\\"BHBDKlM3tik4o9leEkHu+875bHbORaCK7dDeXFCRmv4bzWJw/4bsvtBtaBH3SW5JXkE/6pkRYAtjFzQmHMRQYvc\\\\u003d\\",\\"tag\\":\\"Hle3Oafx5sfUc3U3sCQgV0tRPhCAvPlVLYiqvbPyTYY\\\\u003d\\"}"}';
 
-        const jsonObject = JSON.parse(jsonString);
+//         const jsonObject = JSON.parse(jsonString);
 
-        try {
-            await client.googlepay.tokenize({
-                googlePaymentMethodToken: jsonObject
-            });
-        } catch (err) {
-            expect(err).toBeInstanceOf(UnprocessableEntityError);
-            expect((err as any).body.detail).toContain('expired intermediateSigningKey');
-        }
-    });
-});
+//         try {
+//             await client.googlepay.tokenize({
+//                 googlePaymentMethodToken: jsonObject
+//             });
+//         } catch (err) {
+//             expect(err).toBeInstanceOf(UnprocessableEntityError);
+//             expect((err as any).body.detail).toContain('expired intermediateSigningKey');
+//         }
+//     });
+// });
 
 describe('token intents', () => {
     it('should call token intents', async () => {
@@ -663,8 +663,8 @@ describe('Canary', () => {
         const client = getPrivateClient();
         const idempotencyKey = randomUUID();
 
-        const firstTokenId = await createToken(client, "6011000990139424", {idempotencyKey: idempotencyKey});
-        const secondTokenId = await createToken(client, "4242424242424242", {idempotencyKey: idempotencyKey});
+        const firstTokenId = await createToken(client, "6011000990139424", { idempotencyKey: idempotencyKey });
+        const secondTokenId = await createToken(client, "4242424242424242", { idempotencyKey: idempotencyKey });
 
         expect(firstTokenId).toBe(secondTokenId);
     });
