@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/Basis-Theory/node-sdk/compare/v1.5.2...v1.5.3) (2025-03-03)
+
+
+### Bug Fixes
+
+* falling back to node-fetch if fetch doesn't exist ([#55](https://github.com/Basis-Theory/node-sdk/issues/55)) ([a972405](https://github.com/Basis-Theory/node-sdk/commit/a972405b2c5f3ba834b865ab14366226264f766d))
+
 ## [1.5.2](https://github.com/Basis-Theory/node-sdk/compare/v1.5.1...v1.5.2) (2025-01-31)
 
 
