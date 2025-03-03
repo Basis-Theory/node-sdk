@@ -11,15 +11,17 @@ import * as errors from "../../../../errors/index";
 import { Results } from "../resources/results/client/Client";
 
 export declare namespace Reactors {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<string | undefined>;
         /** Override the BT-TRACE-ID header */
         correlationId?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -28,15 +30,19 @@ export declare namespace Reactors {
         abortSignal?: AbortSignal;
         /** Override the BT-TRACE-ID header */
         correlationId?: string | undefined;
-    }
-
-    interface IdempotentRequestOptions extends RequestOptions {
-        idempotencyKey?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
 export class Reactors {
+    protected _results: Results | undefined;
+
     constructor(protected readonly _options: Reactors.Options = {}) {}
+
+    public get results(): Results {
+        return (this._results ??= new Results(this._options));
+    }
 
     /**
      * @param {BasisTheory.ReactorsListRequest} request
@@ -51,11 +57,11 @@ export class Reactors {
      */
     public async list(
         request: BasisTheory.ReactorsListRequest = {},
-        requestOptions?: Reactors.RequestOptions
+        requestOptions?: Reactors.RequestOptions,
     ): Promise<core.Page<BasisTheory.Reactor>> {
         const list = async (request: BasisTheory.ReactorsListRequest): Promise<BasisTheory.ReactorPaginatedList> => {
             const { id, name, page, start, size } = request;
-            const _queryParams: Record<string, string | string[] | object | object[]> = {};
+            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
             if (id != null) {
                 if (Array.isArray(id)) {
                     _queryParams["id"] = id.map((item) => item);
@@ -77,8 +83,10 @@ export class Reactors {
             }
             const _response = await (this._options.fetcher ?? core.fetcher)({
                 url: urlJoin(
-                    (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                    "reactors"
+                    (await core.Supplier.get(this._options.baseUrl)) ??
+                        (await core.Supplier.get(this._options.environment)) ??
+                        environments.BasisTheoryEnvironment.Default,
+                    "reactors",
                 ),
                 method: "GET",
                 headers: {
@@ -93,6 +101,7 @@ export class Reactors {
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...(await this._getCustomAuthorizationHeaders()),
+                    ...requestOptions?.headers,
                 },
                 contentType: "application/json",
                 queryParameters: _queryParams,
@@ -120,7 +129,7 @@ export class Reactors {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     case 403:
                         throw new BasisTheory.ForbiddenError(
@@ -130,7 +139,7 @@ export class Reactors {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     case 404:
                         throw new BasisTheory.NotFoundError(_response.error.body);
@@ -148,7 +157,7 @@ export class Reactors {
                         body: _response.error.rawBody,
                     });
                 case "timeout":
-                    throw new errors.BasisTheoryTimeoutError();
+                    throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /reactors.");
                 case "unknown":
                     throw new errors.BasisTheoryError({
                         message: _response.error.errorMessage,
@@ -183,12 +192,14 @@ export class Reactors {
      */
     public async create(
         request: BasisTheory.CreateReactorRequest,
-        requestOptions?: Reactors.IdempotentRequestOptions
+        requestOptions?: Reactors.IdempotentRequestOptions,
     ): Promise<BasisTheory.Reactor> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "reactors"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                "reactors",
             ),
             method: "POST",
             headers: {
@@ -205,6 +216,7 @@ export class Reactors {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -233,7 +245,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -243,7 +255,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -253,7 +265,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -270,7 +282,7 @@ export class Reactors {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /reactors.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -292,8 +304,10 @@ export class Reactors {
     public async get(id: string, requestOptions?: Reactors.RequestOptions): Promise<BasisTheory.Reactor> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `reactors/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `reactors/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -308,6 +322,7 @@ export class Reactors {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -335,7 +350,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -345,7 +360,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -364,7 +379,7 @@ export class Reactors {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /reactors/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -391,12 +406,14 @@ export class Reactors {
     public async update(
         id: string,
         request: BasisTheory.UpdateReactorRequest,
-        requestOptions?: Reactors.IdempotentRequestOptions
+        requestOptions?: Reactors.IdempotentRequestOptions,
     ): Promise<BasisTheory.Reactor> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `reactors/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `reactors/${encodeURIComponent(id)}`,
             ),
             method: "PUT",
             headers: {
@@ -413,6 +430,7 @@ export class Reactors {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -441,7 +459,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -451,7 +469,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -461,7 +479,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -480,7 +498,7 @@ export class Reactors {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling PUT /reactors/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -502,8 +520,10 @@ export class Reactors {
     public async delete(id: string, requestOptions?: Reactors.RequestOptions): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `reactors/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `reactors/${encodeURIComponent(id)}`,
             ),
             method: "DELETE",
             headers: {
@@ -518,6 +538,7 @@ export class Reactors {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -539,7 +560,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -549,7 +570,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -568,7 +589,7 @@ export class Reactors {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling DELETE /reactors/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -592,12 +613,14 @@ export class Reactors {
     public async patch(
         id: string,
         request: BasisTheory.PatchReactorRequest = {},
-        requestOptions?: Reactors.IdempotentRequestOptions
+        requestOptions?: Reactors.IdempotentRequestOptions,
     ): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `reactors/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `reactors/${encodeURIComponent(id)}`,
             ),
             method: "PATCH",
             headers: {
@@ -614,6 +637,7 @@ export class Reactors {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/merge-patch+json",
             requestType: "json",
@@ -636,7 +660,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -646,7 +670,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -656,7 +680,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -675,7 +699,7 @@ export class Reactors {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling PATCH /reactors/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -700,12 +724,14 @@ export class Reactors {
     public async react(
         id: string,
         request: BasisTheory.ReactRequest = {},
-        requestOptions?: Reactors.RequestOptions
+        requestOptions?: Reactors.RequestOptions,
     ): Promise<BasisTheory.ReactResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `reactors/${encodeURIComponent(id)}/react`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `reactors/${encodeURIComponent(id)}/react`,
             ),
             method: "POST",
             headers: {
@@ -720,6 +746,7 @@ export class Reactors {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -748,7 +775,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -758,7 +785,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -768,7 +795,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -780,7 +807,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -797,7 +824,7 @@ export class Reactors {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /reactors/{id}/react.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -822,12 +849,14 @@ export class Reactors {
     public async reactAsync(
         id: string,
         request: BasisTheory.ReactRequestAsync = {},
-        requestOptions?: Reactors.RequestOptions
+        requestOptions?: Reactors.RequestOptions,
     ): Promise<BasisTheory.AsyncReactResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `reactors/${encodeURIComponent(id)}/react-async`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `reactors/${encodeURIComponent(id)}/react-async`,
             ),
             method: "POST",
             headers: {
@@ -842,6 +871,7 @@ export class Reactors {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -870,7 +900,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -880,7 +910,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -890,7 +920,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -902,7 +932,7 @@ export class Reactors {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -919,18 +949,14 @@ export class Reactors {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError(
+                    "Timeout exceeded when calling POST /reactors/{id}/react-async.",
+                );
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
                 });
         }
-    }
-
-    protected _results: Results | undefined;
-
-    public get results(): Results {
-        return (this._results ??= new Results(this._options));
     }
 
     protected async _getCustomAuthorizationHeaders() {

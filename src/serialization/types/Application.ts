@@ -26,7 +26,7 @@ export const Application: core.serialization.ObjectSchema<serializers.Applicatio
     });
 
 export declare namespace Application {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         tenant_id?: string | null;
         name?: string | null;

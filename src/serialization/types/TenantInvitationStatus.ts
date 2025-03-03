@@ -12,5 +12,5 @@ export const TenantInvitationStatus: core.serialization.Schema<
 > = core.serialization.enum_(["PENDING", "EXPIRED"]);
 
 export declare namespace TenantInvitationStatus {
-    type Raw = "PENDING" | "EXPIRED";
+    export type Raw = "PENDING" | "EXPIRED";
 }

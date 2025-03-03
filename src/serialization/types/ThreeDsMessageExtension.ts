@@ -17,7 +17,7 @@ export const ThreeDsMessageExtension: core.serialization.ObjectSchema<
 });
 
 export declare namespace ThreeDsMessageExtension {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         name?: string | null;
         critical?: boolean | null;

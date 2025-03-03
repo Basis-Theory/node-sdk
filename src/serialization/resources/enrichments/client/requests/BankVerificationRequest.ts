@@ -16,7 +16,7 @@ export const BankVerificationRequest: core.serialization.Schema<
 });
 
 export declare namespace BankVerificationRequest {
-    interface Raw {
+    export interface Raw {
         token_id: string;
         country_code?: string | null;
         routing_number?: string | null;

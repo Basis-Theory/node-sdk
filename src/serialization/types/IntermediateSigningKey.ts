@@ -15,7 +15,7 @@ export const IntermediateSigningKey: core.serialization.ObjectSchema<
 });
 
 export declare namespace IntermediateSigningKey {
-    interface Raw {
+    export interface Raw {
         signedKey?: string | null;
         signatures?: string[] | null;
     }

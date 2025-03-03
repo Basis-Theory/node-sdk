@@ -17,7 +17,7 @@ export const TokenCursorPaginatedList: core.serialization.ObjectSchema<
 });
 
 export declare namespace TokenCursorPaginatedList {
-    interface Raw {
+    export interface Raw {
         pagination?: CursorPagination.Raw | null;
         data?: Token.Raw[] | null;
     }

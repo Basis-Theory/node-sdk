@@ -13,7 +13,7 @@ export const TokenMetrics: core.serialization.ObjectSchema<serializers.TokenMetr
     });
 
 export declare namespace TokenMetrics {
-    interface Raw {
+    export interface Raw {
         count?: number | null;
         last_created_at?: string | null;
     }

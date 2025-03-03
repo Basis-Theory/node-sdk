@@ -15,7 +15,7 @@ export const CreateTenantInvitationRequest: core.serialization.Schema<
 });
 
 export declare namespace CreateTenantInvitationRequest {
-    interface Raw {
+    export interface Raw {
         email: string;
         role?: string | null;
     }

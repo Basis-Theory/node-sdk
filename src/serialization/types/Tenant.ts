@@ -22,7 +22,7 @@ export const Tenant: core.serialization.ObjectSchema<serializers.Tenant.Raw, Bas
     });
 
 export declare namespace Tenant {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         owner_id?: string | null;
         name?: string | null;

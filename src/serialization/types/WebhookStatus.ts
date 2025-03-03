@@ -10,5 +10,5 @@ export const WebhookStatus: core.serialization.Schema<serializers.WebhookStatus.
     core.serialization.enum_(["enabled", "disabled"]);
 
 export declare namespace WebhookStatus {
-    type Raw = "enabled" | "disabled";
+    export type Raw = "enabled" | "disabled";
 }

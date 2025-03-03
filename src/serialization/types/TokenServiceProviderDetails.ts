@@ -19,7 +19,7 @@ export const TokenServiceProviderDetails: core.serialization.ObjectSchema<
 });
 
 export declare namespace TokenServiceProviderDetails {
-    interface Raw {
+    export interface Raw {
         tsp?: string | null;
         auth_method?: string | null;
         message_id?: string | null;

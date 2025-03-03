@@ -11,15 +11,17 @@ import { Owner } from "../resources/owner/client/Client";
 import { Self } from "../resources/self/client/Client";
 
 export declare namespace Tenants {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<string | undefined>;
         /** Override the BT-TRACE-ID header */
         correlationId?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -28,37 +30,35 @@ export declare namespace Tenants {
         abortSignal?: AbortSignal;
         /** Override the BT-TRACE-ID header */
         correlationId?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
 export class Tenants {
-    constructor(protected readonly _options: Tenants.Options = {}) {}
-
     protected _connections: Connections | undefined;
+    protected _invitations: Invitations | undefined;
+    protected _members: Members | undefined;
+    protected _owner: Owner | undefined;
+    protected _self: Self | undefined;
+
+    constructor(protected readonly _options: Tenants.Options = {}) {}
 
     public get connections(): Connections {
         return (this._connections ??= new Connections(this._options));
     }
 
-    protected _invitations: Invitations | undefined;
-
     public get invitations(): Invitations {
         return (this._invitations ??= new Invitations(this._options));
     }
-
-    protected _members: Members | undefined;
 
     public get members(): Members {
         return (this._members ??= new Members(this._options));
     }
 
-    protected _owner: Owner | undefined;
-
     public get owner(): Owner {
         return (this._owner ??= new Owner(this._options));
     }
-
-    protected _self: Self | undefined;
 
     public get self(): Self {
         return (this._self ??= new Self(this._options));

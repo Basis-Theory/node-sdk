@@ -10,15 +10,17 @@ import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Connections {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<string | undefined>;
         /** Override the BT-TRACE-ID header */
         correlationId?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -27,10 +29,8 @@ export declare namespace Connections {
         abortSignal?: AbortSignal;
         /** Override the BT-TRACE-ID header */
         correlationId?: string | undefined;
-    }
-
-    interface IdempotentRequestOptions extends RequestOptions {
-        idempotencyKey?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -53,12 +53,14 @@ export class Connections {
      */
     public async create(
         request: BasisTheory.tenants.CreateTenantConnectionRequest,
-        requestOptions?: Connections.IdempotentRequestOptions
+        requestOptions?: Connections.IdempotentRequestOptions,
     ): Promise<BasisTheory.CreateTenantConnectionResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "tenants/self/connections"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                "tenants/self/connections",
             ),
             method: "POST",
             headers: {
@@ -75,6 +77,7 @@ export class Connections {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -105,7 +108,7 @@ export class Connections {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -115,7 +118,7 @@ export class Connections {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -125,7 +128,7 @@ export class Connections {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -142,7 +145,9 @@ export class Connections {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError(
+                    "Timeout exceeded when calling POST /tenants/self/connections.",
+                );
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -161,12 +166,14 @@ export class Connections {
      *     await client.tenants.connections.delete()
      */
     public async delete(
-        requestOptions?: Connections.RequestOptions
+        requestOptions?: Connections.RequestOptions,
     ): Promise<BasisTheory.CreateTenantConnectionResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "tenants/self/connections"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                "tenants/self/connections",
             ),
             method: "DELETE",
             headers: {
@@ -181,6 +188,7 @@ export class Connections {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -208,7 +216,7 @@ export class Connections {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -218,7 +226,7 @@ export class Connections {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -237,7 +245,9 @@ export class Connections {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError(
+                    "Timeout exceeded when calling DELETE /tenants/self/connections.",
+                );
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,

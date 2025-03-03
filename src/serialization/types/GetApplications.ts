@@ -18,7 +18,7 @@ export const GetApplications: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetApplications {
-    interface Raw {
+    export interface Raw {
         id?: string[] | null;
         type?: string[] | null;
         page?: number | null;

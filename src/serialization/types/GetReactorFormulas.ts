@@ -17,7 +17,7 @@ export const GetReactorFormulas: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetReactorFormulas {
-    interface Raw {
+    export interface Raw {
         name?: string | null;
         page?: number | null;
         start?: string | null;

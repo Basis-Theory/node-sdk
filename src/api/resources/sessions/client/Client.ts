@@ -10,15 +10,17 @@ import * as serializers from "../../../../serialization/index";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Sessions {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<string | undefined>;
         /** Override the BT-TRACE-ID header */
         correlationId?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -27,10 +29,8 @@ export declare namespace Sessions {
         abortSignal?: AbortSignal;
         /** Override the BT-TRACE-ID header */
         correlationId?: string | undefined;
-    }
-
-    interface IdempotentRequestOptions extends RequestOptions {
-        idempotencyKey?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -48,12 +48,14 @@ export class Sessions {
      *     await client.sessions.create()
      */
     public async create(
-        requestOptions?: Sessions.IdempotentRequestOptions
+        requestOptions?: Sessions.IdempotentRequestOptions,
     ): Promise<BasisTheory.CreateSessionResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "sessions"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                "sessions",
             ),
             method: "POST",
             headers: {
@@ -70,6 +72,7 @@ export class Sessions {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -97,7 +100,7 @@ export class Sessions {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -107,7 +110,7 @@ export class Sessions {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -117,7 +120,7 @@ export class Sessions {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -134,7 +137,7 @@ export class Sessions {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /sessions.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -159,12 +162,14 @@ export class Sessions {
      */
     public async authorize(
         request: BasisTheory.AuthorizeSessionRequest,
-        requestOptions?: Sessions.IdempotentRequestOptions
+        requestOptions?: Sessions.IdempotentRequestOptions,
     ): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "sessions/authorize"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                "sessions/authorize",
             ),
             method: "POST",
             headers: {
@@ -181,6 +186,7 @@ export class Sessions {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -203,7 +209,7 @@ export class Sessions {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -213,7 +219,7 @@ export class Sessions {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -223,7 +229,7 @@ export class Sessions {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -235,7 +241,7 @@ export class Sessions {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -252,7 +258,7 @@ export class Sessions {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /sessions/authorize.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,

@@ -20,7 +20,7 @@ export const CreateApplicationRequest: core.serialization.Schema<
 });
 
 export declare namespace CreateApplicationRequest {
-    interface Raw {
+    export interface Raw {
         name: string;
         type: string;
         expires_at?: string | null;

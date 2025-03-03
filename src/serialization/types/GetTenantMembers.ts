@@ -17,7 +17,7 @@ export const GetTenantMembers: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetTenantMembers {
-    interface Raw {
+    export interface Raw {
         user_id?: string[] | null;
         page?: number | null;
         start?: string | null;

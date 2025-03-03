@@ -11,21 +11,21 @@ export const TokenReport: core.serialization.ObjectSchema<serializers.TokenRepor
     core.serialization.object({
         includedMonthlyActiveTokens: core.serialization.property(
             "included_monthly_active_tokens",
-            core.serialization.number().optional()
+            core.serialization.number().optional(),
         ),
         monthlyActiveTokens: core.serialization.property(
             "monthly_active_tokens",
-            core.serialization.number().optional()
+            core.serialization.number().optional(),
         ),
         metricsByType: core.serialization.property(
             "metrics_by_type",
-            core.serialization.record(core.serialization.string(), TokenMetrics.optional()).optional()
+            core.serialization.record(core.serialization.string(), TokenMetrics.optional()).optional(),
         ),
         totalTokens: core.serialization.property("total_tokens", core.serialization.number().optional()),
     });
 
 export declare namespace TokenReport {
-    interface Raw {
+    export interface Raw {
         included_monthly_active_tokens?: number | null;
         monthly_active_tokens?: number | null;
         metrics_by_type?: Record<string, TokenMetrics.Raw | null | undefined> | null;

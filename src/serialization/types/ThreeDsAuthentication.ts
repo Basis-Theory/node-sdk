@@ -25,21 +25,21 @@ export const ThreeDsAuthentication: core.serialization.ObjectSchema<
     authenticationStatus: core.serialization.property("authentication_status", core.serialization.string().optional()),
     authenticationStatusCode: core.serialization.property(
         "authentication_status_code",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     authenticationStatusReason: core.serialization.property(
         "authentication_status_reason",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     eci: core.serialization.string().optional(),
     acsChallengeMandated: core.serialization.property("acs_challenge_mandated", core.serialization.string().optional()),
     acsDecoupledAuthentication: core.serialization.property(
         "acs_decoupled_authentication",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     authenticationChallengeType: core.serialization.property(
         "authentication_challenge_type",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     acsRenderingType: core.serialization.property("acs_rendering_type", ThreeDsAcsRenderingType.optional()),
     acsSignedContent: core.serialization.property("acs_signed_content", core.serialization.string().optional()),
@@ -47,31 +47,31 @@ export const ThreeDsAuthentication: core.serialization.ObjectSchema<
     challengePreference: core.serialization.property("challenge_preference", core.serialization.string().optional()),
     challengePreferenceCode: core.serialization.property(
         "challenge_preference_code",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     challengeAttempts: core.serialization.property("challenge_attempts", core.serialization.string().optional()),
     challengeCancelReason: core.serialization.property(
         "challenge_cancel_reason",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     challengeCancelReasonCode: core.serialization.property(
         "challenge_cancel_reason_code",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     cardholderInfo: core.serialization.property("cardholder_info", core.serialization.string().optional()),
     whitelistStatus: core.serialization.property("whitelist_status", core.serialization.string().optional()),
     whitelistStatusSource: core.serialization.property(
         "whitelist_status_source",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     messageExtensions: core.serialization.property(
         "message_extensions",
-        core.serialization.list(ThreeDsMessageExtension).optional()
+        core.serialization.list(ThreeDsMessageExtension).optional(),
     ),
 });
 
 export declare namespace ThreeDsAuthentication {
-    interface Raw {
+    export interface Raw {
         pan_token_id?: string | null;
         token_id?: string | null;
         token_intent_id?: string | null;

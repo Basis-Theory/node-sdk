@@ -11,5 +11,5 @@ export const Response: core.serialization.Schema<serializers.permissions.list.Re
     core.serialization.list(Permission);
 
 export declare namespace Response {
-    type Raw = Permission.Raw[];
+    export type Raw = Permission.Raw[];
 }

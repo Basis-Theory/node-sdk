@@ -24,7 +24,7 @@ export const TenantInvitationResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace TenantInvitationResponse {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         tenant_id?: string | null;
         email?: string | null;

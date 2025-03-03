@@ -10,5 +10,5 @@ export const PublicKey: core.serialization.Schema<serializers.PublicKey.Raw, Bas
     core.serialization.string();
 
 export declare namespace PublicKey {
-    type Raw = string;
+    export type Raw = string;
 }

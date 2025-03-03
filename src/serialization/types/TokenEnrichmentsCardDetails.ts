@@ -15,7 +15,7 @@ export const TokenEnrichmentsCardDetails: core.serialization.ObjectSchema<
 });
 
 export declare namespace TokenEnrichmentsCardDetails {
-    interface Raw {
+    export interface Raw {
         bin?: string | null;
         last4?: string | null;
     }

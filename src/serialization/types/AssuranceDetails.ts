@@ -13,12 +13,12 @@ export const AssuranceDetails: core.serialization.ObjectSchema<
     accountVerified: core.serialization.property("account_verified", core.serialization.boolean().optional()),
     cardHolderAuthenticated: core.serialization.property(
         "card_holder_authenticated",
-        core.serialization.boolean().optional()
+        core.serialization.boolean().optional(),
     ),
 });
 
 export declare namespace AssuranceDetails {
-    interface Raw {
+    export interface Raw {
         account_verified?: boolean | null;
         card_holder_authenticated?: boolean | null;
     }

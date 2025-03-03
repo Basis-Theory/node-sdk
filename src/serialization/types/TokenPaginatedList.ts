@@ -17,7 +17,7 @@ export const TokenPaginatedList: core.serialization.ObjectSchema<
 });
 
 export declare namespace TokenPaginatedList {
-    interface Raw {
+    export interface Raw {
         pagination?: Pagination.Raw | null;
         data?: Token.Raw[] | null;
     }

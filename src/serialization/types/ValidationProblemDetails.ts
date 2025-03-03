@@ -9,24 +9,27 @@ import * as core from "../../core";
 export const ValidationProblemDetails: core.serialization.ObjectSchema<
     serializers.ValidationProblemDetails.Raw,
     BasisTheory.ValidationProblemDetails
-> = core.serialization.object({
-    errors: core.serialization
-        .record(core.serialization.string(), core.serialization.list(core.serialization.string()).optional())
-        .optional(),
-    type: core.serialization.string().optional(),
-    title: core.serialization.string().optional(),
-    status: core.serialization.number().optional(),
-    detail: core.serialization.string().optional(),
-    instance: core.serialization.string().optional(),
-});
+> = core.serialization
+    .object({
+        errors: core.serialization
+            .record(core.serialization.string(), core.serialization.list(core.serialization.string()).optional())
+            .optional(),
+        type: core.serialization.string().optional(),
+        title: core.serialization.string().optional(),
+        status: core.serialization.number().optional(),
+        detail: core.serialization.string().optional(),
+        instance: core.serialization.string().optional(),
+    })
+    .passthrough();
 
 export declare namespace ValidationProblemDetails {
-    interface Raw {
+    export interface Raw {
         errors?: Record<string, string[] | null | undefined> | null;
         type?: string | null;
         title?: string | null;
         status?: number | null;
         detail?: string | null;
         instance?: string | null;
+        [key: string]: any;
     }
 }

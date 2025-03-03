@@ -16,7 +16,7 @@ export const GetReactors: core.serialization.ObjectSchema<serializers.GetReactor
     });
 
 export declare namespace GetReactors {
-    interface Raw {
+    export interface Raw {
         id?: string[] | null;
         name?: string | null;
         page?: number | null;

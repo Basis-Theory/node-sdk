@@ -18,7 +18,7 @@ export const GetTokens: core.serialization.ObjectSchema<serializers.GetTokens.Ra
     });
 
 export declare namespace GetTokens {
-    interface Raw {
+    export interface Raw {
         id?: string[] | null;
         metadata?: Record<string, string | null | undefined> | null;
         page?: number | null;

@@ -8,17 +8,20 @@ import * as BasisTheory from "../../../index";
 import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 import * as serializers from "../../../../serialization/index";
+import { toJson } from "../../../../core/json";
 
 export declare namespace Tokens {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<string | undefined>;
         /** Override the BT-TRACE-ID header */
         correlationId?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -27,10 +30,8 @@ export declare namespace Tokens {
         abortSignal?: AbortSignal;
         /** Override the BT-TRACE-ID header */
         correlationId?: string | undefined;
-    }
-
-    interface IdempotentRequestOptions extends RequestOptions {
-        idempotencyKey?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -54,8 +55,10 @@ export class Tokens {
     public async detokenize(request?: unknown, requestOptions?: Tokens.RequestOptions): Promise<unknown> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "detokenize"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                "detokenize",
             ),
             method: "POST",
             headers: {
@@ -70,6 +73,7 @@ export class Tokens {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -92,7 +96,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -102,7 +106,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -112,7 +116,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 409:
                     throw new BasisTheory.ConflictError(
@@ -122,7 +126,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -139,7 +143,7 @@ export class Tokens {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /detokenize.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -164,8 +168,10 @@ export class Tokens {
     public async tokenize(request?: unknown, requestOptions?: Tokens.IdempotentRequestOptions): Promise<unknown> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "tokenize"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                "tokenize",
             ),
             method: "POST",
             headers: {
@@ -182,6 +188,7 @@ export class Tokens {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -204,7 +211,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -214,7 +221,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -224,7 +231,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 409:
                     throw new BasisTheory.ConflictError(
@@ -234,7 +241,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -251,7 +258,7 @@ export class Tokens {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /tokenize.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -271,11 +278,11 @@ export class Tokens {
      */
     public async list(
         request: BasisTheory.TokensListRequest = {},
-        requestOptions?: Tokens.RequestOptions
+        requestOptions?: Tokens.RequestOptions,
     ): Promise<core.Page<BasisTheory.Token>> {
         const list = async (request: BasisTheory.TokensListRequest): Promise<BasisTheory.TokenPaginatedList> => {
             const { id, metadata, page, start, size } = request;
-            const _queryParams: Record<string, string | string[] | object | object[]> = {};
+            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
             if (id != null) {
                 if (Array.isArray(id)) {
                     _queryParams["id"] = id.map((item) => item);
@@ -284,7 +291,7 @@ export class Tokens {
                 }
             }
             if (metadata != null) {
-                _queryParams["metadata"] = JSON.stringify(metadata);
+                _queryParams["metadata"] = toJson(metadata);
             }
             if (page != null) {
                 _queryParams["page"] = page.toString();
@@ -297,8 +304,10 @@ export class Tokens {
             }
             const _response = await (this._options.fetcher ?? core.fetcher)({
                 url: urlJoin(
-                    (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                    "tokens"
+                    (await core.Supplier.get(this._options.baseUrl)) ??
+                        (await core.Supplier.get(this._options.environment)) ??
+                        environments.BasisTheoryEnvironment.Default,
+                    "tokens",
                 ),
                 method: "GET",
                 headers: {
@@ -313,6 +322,7 @@ export class Tokens {
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...(await this._getCustomAuthorizationHeaders()),
+                    ...requestOptions?.headers,
                 },
                 contentType: "application/json",
                 queryParameters: _queryParams,
@@ -340,7 +350,7 @@ export class Tokens {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     case 403:
                         throw new BasisTheory.ForbiddenError(
@@ -350,7 +360,7 @@ export class Tokens {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     default:
                         throw new errors.BasisTheoryError({
@@ -366,7 +376,7 @@ export class Tokens {
                         body: _response.error.rawBody,
                     });
                 case "timeout":
-                    throw new errors.BasisTheoryTimeoutError();
+                    throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /tokens.");
                 case "unknown":
                     throw new errors.BasisTheoryError({
                         message: _response.error.errorMessage,
@@ -399,12 +409,14 @@ export class Tokens {
      */
     public async create(
         request: BasisTheory.CreateTokenRequest = {},
-        requestOptions?: Tokens.IdempotentRequestOptions
+        requestOptions?: Tokens.IdempotentRequestOptions,
     ): Promise<BasisTheory.Token> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "tokens"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                "tokens",
             ),
             method: "POST",
             headers: {
@@ -421,6 +433,7 @@ export class Tokens {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -449,7 +462,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -459,7 +472,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -469,7 +482,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 409:
                     throw new BasisTheory.ConflictError(
@@ -479,7 +492,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -496,7 +509,7 @@ export class Tokens {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /tokens.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -517,13 +530,15 @@ export class Tokens {
      */
     public async search(
         request: BasisTheory.SearchTokensRequest = {},
-        requestOptions?: Tokens.IdempotentRequestOptions
+        requestOptions?: Tokens.IdempotentRequestOptions,
     ): Promise<core.Page<BasisTheory.Token>> {
         const list = async (request: BasisTheory.SearchTokensRequest): Promise<BasisTheory.TokenPaginatedList> => {
             const _response = await (this._options.fetcher ?? core.fetcher)({
                 url: urlJoin(
-                    (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                    "tokens/search"
+                    (await core.Supplier.get(this._options.baseUrl)) ??
+                        (await core.Supplier.get(this._options.environment)) ??
+                        environments.BasisTheoryEnvironment.Default,
+                    "tokens/search",
                 ),
                 method: "POST",
                 headers: {
@@ -540,6 +555,7 @@ export class Tokens {
                     "BT-IDEMPOTENCY-KEY":
                         requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                     ...(await this._getCustomAuthorizationHeaders()),
+                    ...requestOptions?.headers,
                 },
                 contentType: "application/json",
                 requestType: "json",
@@ -567,7 +583,7 @@ export class Tokens {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     case 401:
                         throw new BasisTheory.UnauthorizedError(
@@ -577,7 +593,7 @@ export class Tokens {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     case 403:
                         throw new BasisTheory.ForbiddenError(
@@ -587,7 +603,7 @@ export class Tokens {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     default:
                         throw new errors.BasisTheoryError({
@@ -603,7 +619,7 @@ export class Tokens {
                         body: _response.error.rawBody,
                     });
                 case "timeout":
-                    throw new errors.BasisTheoryTimeoutError();
+                    throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /tokens/search.");
                 case "unknown":
                     throw new errors.BasisTheoryError({
                         message: _response.error.errorMessage,
@@ -636,8 +652,10 @@ export class Tokens {
     public async get(id: string, requestOptions?: Tokens.RequestOptions): Promise<BasisTheory.Token> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `tokens/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `tokens/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -652,6 +670,7 @@ export class Tokens {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -679,7 +698,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -689,7 +708,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -708,7 +727,7 @@ export class Tokens {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /tokens/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -731,8 +750,10 @@ export class Tokens {
     public async delete(id: string, requestOptions?: Tokens.RequestOptions): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `tokens/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `tokens/${encodeURIComponent(id)}`,
             ),
             method: "DELETE",
             headers: {
@@ -747,6 +768,7 @@ export class Tokens {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -768,7 +790,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -778,7 +800,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -788,7 +810,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -807,7 +829,7 @@ export class Tokens {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling DELETE /tokens/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -832,12 +854,14 @@ export class Tokens {
     public async update(
         id: string,
         request: BasisTheory.UpdateTokenRequest = {},
-        requestOptions?: Tokens.IdempotentRequestOptions
+        requestOptions?: Tokens.IdempotentRequestOptions,
     ): Promise<BasisTheory.Token> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `tokens/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `tokens/${encodeURIComponent(id)}`,
             ),
             method: "PATCH",
             headers: {
@@ -854,6 +878,7 @@ export class Tokens {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/merge-patch+json",
             requestType: "json",
@@ -882,7 +907,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -892,7 +917,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -902,7 +927,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -914,7 +939,7 @@ export class Tokens {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -931,7 +956,7 @@ export class Tokens {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling PATCH /tokens/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -951,13 +976,13 @@ export class Tokens {
      */
     public async listV2(
         request: BasisTheory.TokensListV2Request = {},
-        requestOptions?: Tokens.RequestOptions
+        requestOptions?: Tokens.RequestOptions,
     ): Promise<core.Page<BasisTheory.Token>> {
         const list = async (
-            request: BasisTheory.TokensListV2Request
+            request: BasisTheory.TokensListV2Request,
         ): Promise<BasisTheory.TokenCursorPaginatedList> => {
             const { type: type_, container, fingerprint, metadata, start, size } = request;
-            const _queryParams: Record<string, string | string[] | object | object[]> = {};
+            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
             if (type_ != null) {
                 _queryParams["type"] = type_;
             }
@@ -968,7 +993,7 @@ export class Tokens {
                 _queryParams["fingerprint"] = fingerprint;
             }
             if (metadata != null) {
-                _queryParams["metadata"] = JSON.stringify(metadata);
+                _queryParams["metadata"] = toJson(metadata);
             }
             if (start != null) {
                 _queryParams["start"] = start;
@@ -978,8 +1003,10 @@ export class Tokens {
             }
             const _response = await (this._options.fetcher ?? core.fetcher)({
                 url: urlJoin(
-                    (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                    "v2/tokens"
+                    (await core.Supplier.get(this._options.baseUrl)) ??
+                        (await core.Supplier.get(this._options.environment)) ??
+                        environments.BasisTheoryEnvironment.Default,
+                    "v2/tokens",
                 ),
                 method: "GET",
                 headers: {
@@ -994,6 +1021,7 @@ export class Tokens {
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...(await this._getCustomAuthorizationHeaders()),
+                    ...requestOptions?.headers,
                 },
                 contentType: "application/json",
                 queryParameters: _queryParams,
@@ -1021,7 +1049,7 @@ export class Tokens {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     case 403:
                         throw new BasisTheory.ForbiddenError(
@@ -1031,7 +1059,7 @@ export class Tokens {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     default:
                         throw new errors.BasisTheoryError({
@@ -1047,7 +1075,7 @@ export class Tokens {
                         body: _response.error.rawBody,
                     });
                 case "timeout":
-                    throw new errors.BasisTheoryTimeoutError();
+                    throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /v2/tokens.");
                 case "unknown":
                     throw new errors.BasisTheoryError({
                         message: _response.error.errorMessage,
@@ -1077,15 +1105,17 @@ export class Tokens {
      */
     public async searchV2(
         request: BasisTheory.SearchTokensRequestV2 = {},
-        requestOptions?: Tokens.IdempotentRequestOptions
+        requestOptions?: Tokens.IdempotentRequestOptions,
     ): Promise<core.Page<BasisTheory.Token>> {
         const list = async (
-            request: BasisTheory.SearchTokensRequestV2
+            request: BasisTheory.SearchTokensRequestV2,
         ): Promise<BasisTheory.TokenCursorPaginatedList> => {
             const _response = await (this._options.fetcher ?? core.fetcher)({
                 url: urlJoin(
-                    (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                    "v2/tokens/search"
+                    (await core.Supplier.get(this._options.baseUrl)) ??
+                        (await core.Supplier.get(this._options.environment)) ??
+                        environments.BasisTheoryEnvironment.Default,
+                    "v2/tokens/search",
                 ),
                 method: "POST",
                 headers: {
@@ -1102,6 +1132,7 @@ export class Tokens {
                     "BT-IDEMPOTENCY-KEY":
                         requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                     ...(await this._getCustomAuthorizationHeaders()),
+                    ...requestOptions?.headers,
                 },
                 contentType: "application/json",
                 requestType: "json",
@@ -1129,7 +1160,7 @@ export class Tokens {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     case 401:
                         throw new BasisTheory.UnauthorizedError(
@@ -1139,7 +1170,7 @@ export class Tokens {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     case 403:
                         throw new BasisTheory.ForbiddenError(
@@ -1149,7 +1180,7 @@ export class Tokens {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     default:
                         throw new errors.BasisTheoryError({
@@ -1165,7 +1196,7 @@ export class Tokens {
                         body: _response.error.rawBody,
                     });
                 case "timeout":
-                    throw new errors.BasisTheoryTimeoutError();
+                    throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /v2/tokens/search.");
                 case "unknown":
                     throw new errors.BasisTheoryError({
                         message: _response.error.errorMessage,

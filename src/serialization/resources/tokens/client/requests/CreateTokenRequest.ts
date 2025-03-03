@@ -18,11 +18,11 @@ export const CreateTokenRequest: core.serialization.Schema<
     metadata: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
     searchIndexes: core.serialization.property(
         "search_indexes",
-        core.serialization.list(core.serialization.string()).optional()
+        core.serialization.list(core.serialization.string()).optional(),
     ),
     fingerprintExpression: core.serialization.property(
         "fingerprint_expression",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     mask: core.serialization.unknown().optional(),
     deduplicateToken: core.serialization.property("deduplicate_token", core.serialization.boolean().optional()),
@@ -32,7 +32,7 @@ export const CreateTokenRequest: core.serialization.Schema<
 });
 
 export declare namespace CreateTokenRequest {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         type?: string | null;
         data?: unknown | null;

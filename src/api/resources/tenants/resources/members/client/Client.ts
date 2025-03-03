@@ -10,15 +10,17 @@ import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Members {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<string | undefined>;
         /** Override the BT-TRACE-ID header */
         correlationId?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -27,10 +29,8 @@ export declare namespace Members {
         abortSignal?: AbortSignal;
         /** Override the BT-TRACE-ID header */
         correlationId?: string | undefined;
-    }
-
-    interface IdempotentRequestOptions extends RequestOptions {
-        idempotencyKey?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -49,10 +49,10 @@ export class Members {
      */
     public async list(
         request: BasisTheory.tenants.MembersListRequest = {},
-        requestOptions?: Members.RequestOptions
+        requestOptions?: Members.RequestOptions,
     ): Promise<BasisTheory.TenantMemberResponsePaginatedList> {
         const { userId, page, start, size } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (userId != null) {
             if (Array.isArray(userId)) {
                 _queryParams["user_id"] = userId.map((item) => item);
@@ -75,8 +75,10 @@ export class Members {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "tenants/self/members"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                "tenants/self/members",
             ),
             method: "GET",
             headers: {
@@ -91,6 +93,7 @@ export class Members {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -119,7 +122,7 @@ export class Members {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -129,7 +132,7 @@ export class Members {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -146,7 +149,7 @@ export class Members {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /tenants/self/members.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -171,12 +174,14 @@ export class Members {
     public async update(
         memberId: string,
         request: BasisTheory.tenants.UpdateTenantMemberRequest,
-        requestOptions?: Members.IdempotentRequestOptions
+        requestOptions?: Members.IdempotentRequestOptions,
     ): Promise<BasisTheory.TenantMemberResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `tenants/self/members/${encodeURIComponent(memberId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `tenants/self/members/${encodeURIComponent(memberId)}`,
             ),
             method: "PUT",
             headers: {
@@ -193,6 +198,7 @@ export class Members {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json-patch+json",
             requestType: "json",
@@ -223,7 +229,7 @@ export class Members {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -233,7 +239,7 @@ export class Members {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -252,7 +258,9 @@ export class Members {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError(
+                    "Timeout exceeded when calling PUT /tenants/self/members/{memberId}.",
+                );
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -275,8 +283,10 @@ export class Members {
     public async delete(memberId: string, requestOptions?: Members.RequestOptions): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `tenants/self/members/${encodeURIComponent(memberId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `tenants/self/members/${encodeURIComponent(memberId)}`,
             ),
             method: "DELETE",
             headers: {
@@ -291,6 +301,7 @@ export class Members {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -312,7 +323,7 @@ export class Members {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -322,7 +333,7 @@ export class Members {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -334,7 +345,7 @@ export class Members {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -351,7 +362,9 @@ export class Members {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError(
+                    "Timeout exceeded when calling DELETE /tenants/self/members/{memberId}.",
+                );
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,

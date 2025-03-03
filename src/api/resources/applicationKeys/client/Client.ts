@@ -10,15 +10,17 @@ import * as serializers from "../../../../serialization/index";
 import * as errors from "../../../../errors/index";
 
 export declare namespace ApplicationKeys {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<string | undefined>;
         /** Override the BT-TRACE-ID header */
         correlationId?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -27,10 +29,8 @@ export declare namespace ApplicationKeys {
         abortSignal?: AbortSignal;
         /** Override the BT-TRACE-ID header */
         correlationId?: string | undefined;
-    }
-
-    interface IdempotentRequestOptions extends RequestOptions {
-        idempotencyKey?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -52,10 +52,10 @@ export class ApplicationKeys {
     public async list(
         id: string,
         request: BasisTheory.ApplicationKeysListRequest = {},
-        requestOptions?: ApplicationKeys.RequestOptions
+        requestOptions?: ApplicationKeys.RequestOptions,
     ): Promise<BasisTheory.ApplicationKey[]> {
         const { id: id_, type: type_ } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (id_ != null) {
             if (Array.isArray(id_)) {
                 _queryParams["id"] = id_.map((item) => item);
@@ -74,8 +74,10 @@ export class ApplicationKeys {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `applications/${encodeURIComponent(id)}/keys`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `applications/${encodeURIComponent(id)}/keys`,
             ),
             method: "GET",
             headers: {
@@ -90,6 +92,7 @@ export class ApplicationKeys {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -118,7 +121,7 @@ export class ApplicationKeys {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -128,7 +131,7 @@ export class ApplicationKeys {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -147,7 +150,7 @@ export class ApplicationKeys {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /applications/{id}/keys.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -168,12 +171,14 @@ export class ApplicationKeys {
      */
     public async create(
         id: string,
-        requestOptions?: ApplicationKeys.IdempotentRequestOptions
+        requestOptions?: ApplicationKeys.IdempotentRequestOptions,
     ): Promise<BasisTheory.ApplicationKey> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `applications/${encodeURIComponent(id)}/keys`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `applications/${encodeURIComponent(id)}/keys`,
             ),
             method: "POST",
             headers: {
@@ -190,6 +195,7 @@ export class ApplicationKeys {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -217,7 +223,7 @@ export class ApplicationKeys {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -227,7 +233,7 @@ export class ApplicationKeys {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 422:
                     throw new BasisTheory.UnprocessableEntityError(
@@ -237,7 +243,7 @@ export class ApplicationKeys {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -254,7 +260,7 @@ export class ApplicationKeys {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /applications/{id}/keys.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -277,12 +283,14 @@ export class ApplicationKeys {
     public async get(
         id: string,
         keyId: string,
-        requestOptions?: ApplicationKeys.RequestOptions
+        requestOptions?: ApplicationKeys.RequestOptions,
     ): Promise<BasisTheory.ApplicationKey> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `applications/${encodeURIComponent(id)}/keys/${encodeURIComponent(keyId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `applications/${encodeURIComponent(id)}/keys/${encodeURIComponent(keyId)}`,
             ),
             method: "GET",
             headers: {
@@ -297,6 +305,7 @@ export class ApplicationKeys {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -324,7 +333,7 @@ export class ApplicationKeys {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -334,7 +343,7 @@ export class ApplicationKeys {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -353,7 +362,9 @@ export class ApplicationKeys {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError(
+                    "Timeout exceeded when calling GET /applications/{id}/keys/{keyId}.",
+                );
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -376,8 +387,10 @@ export class ApplicationKeys {
     public async delete(id: string, keyId: string, requestOptions?: ApplicationKeys.RequestOptions): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `applications/${encodeURIComponent(id)}/keys/${encodeURIComponent(keyId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `applications/${encodeURIComponent(id)}/keys/${encodeURIComponent(keyId)}`,
             ),
             method: "DELETE",
             headers: {
@@ -392,6 +405,7 @@ export class ApplicationKeys {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -413,7 +427,7 @@ export class ApplicationKeys {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -423,7 +437,7 @@ export class ApplicationKeys {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -442,7 +456,9 @@ export class ApplicationKeys {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError(
+                    "Timeout exceeded when calling DELETE /applications/{id}/keys/{keyId}.",
+                );
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,

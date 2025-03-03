@@ -16,7 +16,7 @@ export const GetProxies: core.serialization.ObjectSchema<serializers.GetProxies.
     });
 
 export declare namespace GetProxies {
-    interface Raw {
+    export interface Raw {
         id?: string[] | null;
         name?: string | null;
         page?: number | null;

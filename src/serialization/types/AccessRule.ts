@@ -18,7 +18,7 @@ export const AccessRule: core.serialization.ObjectSchema<serializers.AccessRule.
     });
 
 export declare namespace AccessRule {
-    interface Raw {
+    export interface Raw {
         description?: string | null;
         priority?: number | null;
         container?: string | null;

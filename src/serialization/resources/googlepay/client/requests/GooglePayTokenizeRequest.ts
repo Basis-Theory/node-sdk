@@ -13,12 +13,12 @@ export const GooglePayTokenizeRequest: core.serialization.Schema<
 > = core.serialization.object({
     googlePaymentMethodToken: core.serialization.property(
         "google_payment_method_token",
-        GooglePaymentMethodToken.optional()
+        GooglePaymentMethodToken.optional(),
     ),
 });
 
 export declare namespace GooglePayTokenizeRequest {
-    interface Raw {
+    export interface Raw {
         google_payment_method_token?: GooglePaymentMethodToken.Raw | null;
     }
 }

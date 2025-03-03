@@ -13,12 +13,12 @@ export const ThreeDsMobileSdkRenderOptions: core.serialization.ObjectSchema<
     sdkInterface: core.serialization.property("sdk_interface", core.serialization.string().optional()),
     sdkUiType: core.serialization.property(
         "sdk_ui_type",
-        core.serialization.list(core.serialization.string()).optional()
+        core.serialization.list(core.serialization.string()).optional(),
     ),
 });
 
 export declare namespace ThreeDsMobileSdkRenderOptions {
-    interface Raw {
+    export interface Raw {
         sdk_interface?: string | null;
         sdk_ui_type?: string[] | null;
     }

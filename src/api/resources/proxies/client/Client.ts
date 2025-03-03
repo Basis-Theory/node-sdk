@@ -10,15 +10,17 @@ import * as serializers from "../../../../serialization/index";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Proxies {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<string | undefined>;
         /** Override the BT-TRACE-ID header */
         correlationId?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -27,10 +29,8 @@ export declare namespace Proxies {
         abortSignal?: AbortSignal;
         /** Override the BT-TRACE-ID header */
         correlationId?: string | undefined;
-    }
-
-    interface IdempotentRequestOptions extends RequestOptions {
-        idempotencyKey?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -50,11 +50,11 @@ export class Proxies {
      */
     public async list(
         request: BasisTheory.ProxiesListRequest = {},
-        requestOptions?: Proxies.RequestOptions
+        requestOptions?: Proxies.RequestOptions,
     ): Promise<core.Page<BasisTheory.Proxy>> {
         const list = async (request: BasisTheory.ProxiesListRequest): Promise<BasisTheory.ProxyPaginatedList> => {
             const { id, name, page, start, size } = request;
-            const _queryParams: Record<string, string | string[] | object | object[]> = {};
+            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
             if (id != null) {
                 if (Array.isArray(id)) {
                     _queryParams["id"] = id.map((item) => item);
@@ -76,8 +76,10 @@ export class Proxies {
             }
             const _response = await (this._options.fetcher ?? core.fetcher)({
                 url: urlJoin(
-                    (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                    "proxies"
+                    (await core.Supplier.get(this._options.baseUrl)) ??
+                        (await core.Supplier.get(this._options.environment)) ??
+                        environments.BasisTheoryEnvironment.Default,
+                    "proxies",
                 ),
                 method: "GET",
                 headers: {
@@ -92,6 +94,7 @@ export class Proxies {
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...(await this._getCustomAuthorizationHeaders()),
+                    ...requestOptions?.headers,
                 },
                 contentType: "application/json",
                 queryParameters: _queryParams,
@@ -119,7 +122,7 @@ export class Proxies {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     case 403:
                         throw new BasisTheory.ForbiddenError(
@@ -129,7 +132,7 @@ export class Proxies {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     case 404:
                         throw new BasisTheory.NotFoundError(_response.error.body);
@@ -147,7 +150,7 @@ export class Proxies {
                         body: _response.error.rawBody,
                     });
                 case "timeout":
-                    throw new errors.BasisTheoryTimeoutError();
+                    throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /proxies.");
                 case "unknown":
                     throw new errors.BasisTheoryError({
                         message: _response.error.errorMessage,
@@ -182,12 +185,14 @@ export class Proxies {
      */
     public async create(
         request: BasisTheory.CreateProxyRequest,
-        requestOptions?: Proxies.IdempotentRequestOptions
+        requestOptions?: Proxies.IdempotentRequestOptions,
     ): Promise<BasisTheory.Proxy> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "proxies"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                "proxies",
             ),
             method: "POST",
             headers: {
@@ -204,6 +209,7 @@ export class Proxies {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -232,7 +238,7 @@ export class Proxies {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -242,7 +248,7 @@ export class Proxies {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -252,7 +258,7 @@ export class Proxies {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -269,7 +275,7 @@ export class Proxies {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /proxies.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -291,8 +297,10 @@ export class Proxies {
     public async get(id: string, requestOptions?: Proxies.RequestOptions): Promise<BasisTheory.Proxy> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `proxies/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `proxies/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -307,6 +315,7 @@ export class Proxies {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -334,7 +343,7 @@ export class Proxies {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -344,7 +353,7 @@ export class Proxies {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -363,7 +372,7 @@ export class Proxies {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /proxies/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -390,12 +399,14 @@ export class Proxies {
     public async update(
         id: string,
         request: BasisTheory.UpdateProxyRequest,
-        requestOptions?: Proxies.IdempotentRequestOptions
+        requestOptions?: Proxies.IdempotentRequestOptions,
     ): Promise<BasisTheory.Proxy> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `proxies/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `proxies/${encodeURIComponent(id)}`,
             ),
             method: "PUT",
             headers: {
@@ -412,6 +423,7 @@ export class Proxies {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -440,7 +452,7 @@ export class Proxies {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -450,7 +462,7 @@ export class Proxies {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -460,7 +472,7 @@ export class Proxies {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -479,7 +491,7 @@ export class Proxies {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling PUT /proxies/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -501,8 +513,10 @@ export class Proxies {
     public async delete(id: string, requestOptions?: Proxies.RequestOptions): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `proxies/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `proxies/${encodeURIComponent(id)}`,
             ),
             method: "DELETE",
             headers: {
@@ -517,6 +531,7 @@ export class Proxies {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -538,7 +553,7 @@ export class Proxies {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -548,7 +563,7 @@ export class Proxies {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -567,7 +582,7 @@ export class Proxies {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling DELETE /proxies/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -591,12 +606,14 @@ export class Proxies {
     public async patch(
         id: string,
         request: BasisTheory.PatchProxyRequest = {},
-        requestOptions?: Proxies.IdempotentRequestOptions
+        requestOptions?: Proxies.IdempotentRequestOptions,
     ): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `proxies/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `proxies/${encodeURIComponent(id)}`,
             ),
             method: "PATCH",
             headers: {
@@ -613,6 +630,7 @@ export class Proxies {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/merge-patch+json",
             requestType: "json",
@@ -635,7 +653,7 @@ export class Proxies {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -645,7 +663,7 @@ export class Proxies {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -655,7 +673,7 @@ export class Proxies {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -674,7 +692,7 @@ export class Proxies {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling PATCH /proxies/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
