@@ -15,7 +15,6 @@ export interface Application {
     createdAt?: Date;
     modifiedBy?: string;
     modifiedAt?: Date;
-    expiresAt?: Date;
     permissions?: string[];
     rules?: BasisTheory.AccessRule[];
 }
