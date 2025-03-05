@@ -304,6 +304,54 @@ await client.applications.getByKey();
 </dl>
 </details>
 
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">regeneratekey</a>(id) -> BasisTheory.Application</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.regeneratekey("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Applications.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## ApplicationKeys
 
 <details><summary><code>client.applicationKeys.<a href="/src/api/resources/applicationKeys/client/Client.ts">list</a>(id, { ...params }) -> BasisTheory.ApplicationKey[]</code></summary>
@@ -1714,6 +1762,262 @@ await client.proxies.patch("id");
 </dl>
 </details>
 
+## Reactorformulas
+
+<details><summary><code>client.reactorformulas.<a href="/src/api/resources/reactorformulas/client/Client.ts">get</a>({ ...params }) -> BasisTheory.ReactorFormulaPaginatedList</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.reactorformulas.get();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.ReactorFormulasGetRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Reactorformulas.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reactorformulas.<a href="/src/api/resources/reactorformulas/client/Client.ts">create</a>({ ...params }) -> BasisTheory.ReactorFormula</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.reactorformulas.create({
+    type: "type",
+    name: "name",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.CreateReactorFormulaRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Reactorformulas.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reactorformulas.<a href="/src/api/resources/reactorformulas/client/Client.ts">getbyid</a>(id) -> BasisTheory.ReactorFormula</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.reactorformulas.getbyid("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Reactorformulas.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reactorformulas.<a href="/src/api/resources/reactorformulas/client/Client.ts">update</a>(id, { ...params }) -> BasisTheory.ReactorFormula</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.reactorformulas.update("id", {
+    type: "type",
+    name: "name",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.UpdateReactorFormulaRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Reactorformulas.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reactorformulas.<a href="/src/api/resources/reactorformulas/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.reactorformulas.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Reactorformulas.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Reactors
 
 <details><summary><code>client.reactors.<a href="/src/api/resources/reactors/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Reactor></code></summary>
@@ -2283,7 +2587,7 @@ await client.sessions.authorize({
 
 ## TokenIntents
 
-<details><summary><code>client.tokenIntents.<a href="/src/api/resources/tokenIntents/client/Client.ts">create</a>({ ...params }) -> BasisTheory.CreateTokenIntentResponse</code></summary>
+<details><summary><code>client.tokenIntents.<a href="/src/api/resources/tokenIntents/client/Client.ts">get</a>(id) -> BasisTheory.TokenIntent</code></summary>
 <dl>
 <dd>
 
@@ -2296,12 +2600,7 @@ await client.sessions.authorize({
 <dd>
 
 ```typescript
-await client.tokenIntents.create({
-    type: "x",
-    data: {
-        key: "value",
-    },
-});
+await client.tokenIntents.get("id");
 ```
 
 </dd>
@@ -2317,7 +2616,7 @@ await client.tokenIntents.create({
 <dl>
 <dd>
 
-**request:** `BasisTheory.CreateTokenIntentRequest`
+**id:** `string`
 
 </dd>
 </dl>
@@ -2366,6 +2665,59 @@ await client.tokenIntents.delete("id");
 <dd>
 
 **id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TokenIntents.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tokenIntents.<a href="/src/api/resources/tokenIntents/client/Client.ts">create</a>({ ...params }) -> BasisTheory.CreateTokenIntentResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tokenIntents.create({
+    type: "x",
+    data: {
+        key: "value",
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.CreateTokenIntentRequest`
 
 </dd>
 </dl>

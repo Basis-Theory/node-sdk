@@ -13,6 +13,7 @@ import { Googlepay } from "./api/resources/googlepay/client/Client";
 import { Logs } from "./api/resources/logs/client/Client";
 import { Permissions } from "./api/resources/permissions/client/Client";
 import { Proxies } from "./api/resources/proxies/client/Client";
+import { Reactorformulas } from "./api/resources/reactorformulas/client/Client";
 import { Reactors } from "./api/resources/reactors/client/Client";
 import { Roles } from "./api/resources/roles/client/Client";
 import { Sessions } from "./api/resources/sessions/client/Client";
@@ -97,6 +98,12 @@ export class BasisTheoryClient {
 
     public get proxies(): Proxies {
         return (this._proxies ??= new Proxies(this._options));
+    }
+
+    protected _reactorformulas: Reactorformulas | undefined;
+
+    public get reactorformulas(): Reactorformulas {
+        return (this._reactorformulas ??= new Reactorformulas(this._options));
     }
 
     protected _reactors: Reactors | undefined;

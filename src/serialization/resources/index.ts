@@ -13,6 +13,8 @@ export * as googlepay from "./googlepay";
 export * from "./googlepay/client/requests";
 export * as proxies from "./proxies";
 export * from "./proxies/client/requests";
+export * as reactorformulas from "./reactorformulas";
+export * from "./reactorformulas/client/requests";
 export * as reactors from "./reactors";
 export * from "./reactors/client/requests";
 export * as sessions from "./sessions";

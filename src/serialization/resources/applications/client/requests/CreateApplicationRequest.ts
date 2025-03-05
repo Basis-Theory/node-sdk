@@ -13,7 +13,6 @@ export const CreateApplicationRequest: core.serialization.Schema<
 > = core.serialization.object({
     name: core.serialization.string(),
     type: core.serialization.string(),
-    expiresAt: core.serialization.property("expires_at", core.serialization.string().optional()),
     permissions: core.serialization.list(core.serialization.string()).optional(),
     rules: core.serialization.list(AccessRule).optional(),
     createKey: core.serialization.property("create_key", core.serialization.boolean().optional()),
@@ -23,7 +22,6 @@ export declare namespace CreateApplicationRequest {
     interface Raw {
         name: string;
         type: string;
-        expires_at?: string | null;
         permissions?: string[] | null;
         rules?: AccessRule.Raw[] | null;
         create_key?: boolean | null;

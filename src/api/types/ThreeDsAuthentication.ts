@@ -14,6 +14,7 @@ export interface ThreeDsAuthentication {
     sdkTransactionId?: string;
     acsReferenceNumber?: string;
     dsReferenceNumber?: string;
+    liabilityShifted?: boolean;
     authenticationValue?: string;
     authenticationStatus?: string;
     authenticationStatusCode?: string;

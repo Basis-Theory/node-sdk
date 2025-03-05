@@ -20,7 +20,6 @@ export const Application: core.serialization.ObjectSchema<serializers.Applicatio
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedBy: core.serialization.property("modified_by", core.serialization.string().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
-        expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
         permissions: core.serialization.list(core.serialization.string()).optional(),
         rules: core.serialization.list(AccessRule).optional(),
     });
@@ -37,7 +36,6 @@ export declare namespace Application {
         created_at?: string | null;
         modified_by?: string | null;
         modified_at?: string | null;
-        expires_at?: string | null;
         permissions?: string[] | null;
         rules?: AccessRule.Raw[] | null;
     }

@@ -10,4 +10,12 @@ export interface TokenServiceProviderDetails {
     messageId?: string;
     eciIndicator?: string;
     assuranceDetails?: BasisTheory.AssuranceDetails;
+    transactionId?: string;
+    currencyCode?: string;
+    transactionAmount?: number;
+    cardholderName?: string;
+    deviceManufacturerIdentifier?: string;
+    paymentDataType?: string;
+    merchantTokenIdentifier?: string;
+    authenticationResponses?: BasisTheory.AuthenticationResponse[];
 }

@@ -5,17 +5,16 @@
 import * as serializers from "../index";
 import * as BasisTheory from "../../api/index";
 import * as core from "../../core";
-import { TokenReport } from "./TokenReport";
 
 export const TenantUsageReport: core.serialization.ObjectSchema<
     serializers.TenantUsageReport.Raw,
     BasisTheory.TenantUsageReport
 > = core.serialization.object({
-    tokenReport: core.serialization.property("token_report", TokenReport.optional()),
+    totalTokens: core.serialization.property("total_tokens", core.serialization.number().optional()),
 });
 
 export declare namespace TenantUsageReport {
     interface Raw {
-        token_report?: TokenReport.Raw | null;
+        total_tokens?: number | null;
     }
 }

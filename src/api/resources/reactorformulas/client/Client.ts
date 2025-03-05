@@ -9,7 +9,7 @@ import urlJoin from "url-join";
 import * as serializers from "../../../../serialization/index";
 import * as errors from "../../../../errors/index";
 
-export declare namespace Applications {
+export declare namespace Reactorformulas {
     interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
         apiKey?: core.Supplier<string | undefined>;
@@ -28,172 +28,157 @@ export declare namespace Applications {
         /** Override the BT-TRACE-ID header */
         correlationId?: string | undefined;
     }
-
-    interface IdempotentRequestOptions extends RequestOptions {
-        idempotencyKey?: string | undefined;
-    }
 }
 
-export class Applications {
-    constructor(protected readonly _options: Applications.Options = {}) {}
+export class Reactorformulas {
+    constructor(protected readonly _options: Reactorformulas.Options = {}) {}
 
     /**
-     * @param {BasisTheory.ApplicationsListRequest} request
-     * @param {Applications.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link BasisTheory.UnauthorizedError}
-     * @throws {@link BasisTheory.ForbiddenError}
-     * @throws {@link BasisTheory.NotFoundError}
-     *
-     * @example
-     *     await client.applications.list()
-     */
-    public async list(
-        request: BasisTheory.ApplicationsListRequest = {},
-        requestOptions?: Applications.RequestOptions
-    ): Promise<core.Page<BasisTheory.Application>> {
-        const list = async (
-            request: BasisTheory.ApplicationsListRequest
-        ): Promise<BasisTheory.ApplicationPaginatedList> => {
-            const { id, type: type_, page, start, size } = request;
-            const _queryParams: Record<string, string | string[] | object | object[]> = {};
-            if (id != null) {
-                if (Array.isArray(id)) {
-                    _queryParams["id"] = id.map((item) => item);
-                } else {
-                    _queryParams["id"] = id;
-                }
-            }
-            if (type_ != null) {
-                if (Array.isArray(type_)) {
-                    _queryParams["type"] = type_.map((item) => item);
-                } else {
-                    _queryParams["type"] = type_;
-                }
-            }
-            if (page != null) {
-                _queryParams["page"] = page.toString();
-            }
-            if (start != null) {
-                _queryParams["start"] = start;
-            }
-            if (size != null) {
-                _queryParams["size"] = size.toString();
-            }
-            const _response = await (this._options.fetcher ?? core.fetcher)({
-                url: urlJoin(
-                    (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                    "applications"
-                ),
-                method: "GET",
-                headers: {
-                    "BT-TRACE-ID":
-                        (await core.Supplier.get(this._options.correlationId)) != null
-                            ? await core.Supplier.get(this._options.correlationId)
-                            : undefined,
-                    "X-Fern-Language": "JavaScript",
-                    "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                    "X-Fern-SDK-Version": "0.0.1",
-                    "User-Agent": "@basis-theory/node-sdk/0.0.1",
-                    "X-Fern-Runtime": core.RUNTIME.type,
-                    "X-Fern-Runtime-Version": core.RUNTIME.version,
-                    ...(await this._getCustomAuthorizationHeaders()),
-                },
-                contentType: "application/json",
-                queryParameters: _queryParams,
-                requestType: "json",
-                timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-                maxRetries: requestOptions?.maxRetries,
-                abortSignal: requestOptions?.abortSignal,
-            });
-            if (_response.ok) {
-                return serializers.ApplicationPaginatedList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                });
-            }
-            if (_response.error.reason === "status-code") {
-                switch (_response.error.statusCode) {
-                    case 401:
-                        throw new BasisTheory.UnauthorizedError(
-                            serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                                unrecognizedObjectKeys: "passthrough",
-                                allowUnrecognizedUnionMembers: true,
-                                allowUnrecognizedEnumValues: true,
-                                skipValidation: true,
-                                breadcrumbsPrefix: ["response"],
-                            })
-                        );
-                    case 403:
-                        throw new BasisTheory.ForbiddenError(
-                            serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                                unrecognizedObjectKeys: "passthrough",
-                                allowUnrecognizedUnionMembers: true,
-                                allowUnrecognizedEnumValues: true,
-                                skipValidation: true,
-                                breadcrumbsPrefix: ["response"],
-                            })
-                        );
-                    case 404:
-                        throw new BasisTheory.NotFoundError(_response.error.body);
-                    default:
-                        throw new errors.BasisTheoryError({
-                            statusCode: _response.error.statusCode,
-                            body: _response.error.body,
-                        });
-                }
-            }
-            switch (_response.error.reason) {
-                case "non-json":
-                    throw new errors.BasisTheoryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.rawBody,
-                    });
-                case "timeout":
-                    throw new errors.BasisTheoryTimeoutError();
-                case "unknown":
-                    throw new errors.BasisTheoryError({
-                        message: _response.error.errorMessage,
-                    });
-            }
-        };
-        let _offset = request?.page != null ? request?.page : 1;
-        return new core.Pageable<BasisTheory.ApplicationPaginatedList, BasisTheory.Application>({
-            response: await list(request),
-            hasNextPage: (response) => (response?.data ?? []).length > 0,
-            getItems: (response) => response?.data ?? [],
-            loadPage: (_response) => {
-                _offset += 1;
-                return list(core.setObjectProperty(request, "page", _offset));
-            },
-        });
-    }
-
-    /**
-     * @param {BasisTheory.CreateApplicationRequest} request
-     * @param {Applications.IdempotentRequestOptions} requestOptions - Request-specific configuration.
+     * @param {BasisTheory.ReactorFormulasGetRequest} request
+     * @param {Reactorformulas.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
      *
      * @example
-     *     await client.applications.create({
-     *         name: "name",
-     *         type: "type"
-     *     })
+     *     await client.reactorformulas.get()
      */
-    public async create(
-        request: BasisTheory.CreateApplicationRequest,
-        requestOptions?: Applications.IdempotentRequestOptions
-    ): Promise<BasisTheory.Application> {
+    public async get(
+        request: BasisTheory.ReactorFormulasGetRequest = {},
+        requestOptions?: Reactorformulas.RequestOptions
+    ): Promise<BasisTheory.ReactorFormulaPaginatedList> {
+        const { name, page, start, size } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (name != null) {
+            _queryParams["name"] = name;
+        }
+
+        if (page != null) {
+            _queryParams["page"] = page.toString();
+        }
+
+        if (start != null) {
+            _queryParams["start"] = start;
+        }
+
+        if (size != null) {
+            _queryParams["size"] = size.toString();
+        }
+
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "applications"
+                "reactor-formulas"
+            ),
+            method: "GET",
+            headers: {
+                "BT-TRACE-ID":
+                    (await core.Supplier.get(this._options.correlationId)) != null
+                        ? await core.Supplier.get(this._options.correlationId)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@basis-theory/node-sdk",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.ReactorFormulaPaginatedList.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new BasisTheory.BadRequestError(
+                        serializers.ValidationProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 401:
+                    throw new BasisTheory.UnauthorizedError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 403:
+                    throw new BasisTheory.ForbiddenError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.BasisTheoryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.BasisTheoryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.BasisTheoryTimeoutError();
+            case "unknown":
+                throw new errors.BasisTheoryError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {BasisTheory.CreateReactorFormulaRequest} request
+     * @param {Reactorformulas.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link BasisTheory.BadRequestError}
+     * @throws {@link BasisTheory.UnauthorizedError}
+     * @throws {@link BasisTheory.ForbiddenError}
+     *
+     * @example
+     *     await client.reactorformulas.create({
+     *         type: "type",
+     *         name: "name"
+     *     })
+     */
+    public async create(
+        request: BasisTheory.CreateReactorFormulaRequest,
+        requestOptions?: Reactorformulas.RequestOptions
+    ): Promise<BasisTheory.ReactorFormula> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
+                "reactor-formulas"
             ),
             method: "POST",
             headers: {
@@ -207,19 +192,17 @@ export class Applications {
                 "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
-                "BT-IDEMPOTENCY-KEY":
-                    requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.CreateApplicationRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.CreateReactorFormulaRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.Application.parseOrThrow(_response.body, {
+            return serializers.ReactorFormula.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -285,20 +268,23 @@ export class Applications {
 
     /**
      * @param {string} id
-     * @param {Applications.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {Reactorformulas.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
      * @throws {@link BasisTheory.NotFoundError}
      *
      * @example
-     *     await client.applications.get("id")
+     *     await client.reactorformulas.getbyid("id")
      */
-    public async get(id: string, requestOptions?: Applications.RequestOptions): Promise<BasisTheory.Application> {
+    public async getbyid(
+        id: string,
+        requestOptions?: Reactorformulas.RequestOptions
+    ): Promise<BasisTheory.ReactorFormula> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `applications/${encodeURIComponent(id)}`
+                `reactor-formulas/${encodeURIComponent(id)}`
             ),
             method: "GET",
             headers: {
@@ -321,7 +307,7 @@ export class Applications {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.Application.parseOrThrow(_response.body, {
+            return serializers.ReactorFormula.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -379,8 +365,8 @@ export class Applications {
 
     /**
      * @param {string} id
-     * @param {BasisTheory.UpdateApplicationRequest} request
-     * @param {Applications.IdempotentRequestOptions} requestOptions - Request-specific configuration.
+     * @param {BasisTheory.UpdateReactorFormulaRequest} request
+     * @param {Reactorformulas.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
      * @throws {@link BasisTheory.UnauthorizedError}
@@ -388,19 +374,20 @@ export class Applications {
      * @throws {@link BasisTheory.NotFoundError}
      *
      * @example
-     *     await client.applications.update("id", {
+     *     await client.reactorformulas.update("id", {
+     *         type: "type",
      *         name: "name"
      *     })
      */
     public async update(
         id: string,
-        request: BasisTheory.UpdateApplicationRequest,
-        requestOptions?: Applications.IdempotentRequestOptions
-    ): Promise<BasisTheory.Application> {
+        request: BasisTheory.UpdateReactorFormulaRequest,
+        requestOptions?: Reactorformulas.RequestOptions
+    ): Promise<BasisTheory.ReactorFormula> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `applications/${encodeURIComponent(id)}`
+                `reactor-formulas/${encodeURIComponent(id)}`
             ),
             method: "PUT",
             headers: {
@@ -414,19 +401,17 @@ export class Applications {
                 "User-Agent": "@basis-theory/node-sdk/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
-                "BT-IDEMPOTENCY-KEY":
-                    requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.UpdateApplicationRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.UpdateReactorFormulaRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.Application.parseOrThrow(_response.body, {
+            return serializers.ReactorFormula.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -494,20 +479,20 @@ export class Applications {
 
     /**
      * @param {string} id
-     * @param {Applications.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {Reactorformulas.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
      * @throws {@link BasisTheory.NotFoundError}
      *
      * @example
-     *     await client.applications.delete("id")
+     *     await client.reactorformulas.delete("id")
      */
-    public async delete(id: string, requestOptions?: Applications.RequestOptions): Promise<void> {
+    public async delete(id: string, requestOptions?: Reactorformulas.RequestOptions): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `applications/${encodeURIComponent(id)}`
+                `reactor-formulas/${encodeURIComponent(id)}`
             ),
             method: "DELETE",
             headers: {
@@ -557,196 +542,6 @@ export class Applications {
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
-                default:
-                    throw new errors.BasisTheoryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {Applications.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link BasisTheory.UnauthorizedError}
-     * @throws {@link BasisTheory.NotFoundError}
-     *
-     * @example
-     *     await client.applications.getByKey()
-     */
-    public async getByKey(requestOptions?: Applications.RequestOptions): Promise<BasisTheory.Application> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "applications/key"
-            ),
-            method: "GET",
-            headers: {
-                "BT-TRACE-ID":
-                    (await core.Supplier.get(this._options.correlationId)) != null
-                        ? await core.Supplier.get(this._options.correlationId)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "@basis-theory/node-sdk/0.0.1",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...(await this._getCustomAuthorizationHeaders()),
-            },
-            contentType: "application/json",
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.Application.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 401:
-                    throw new BasisTheory.UnauthorizedError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 404:
-                    throw new BasisTheory.NotFoundError(_response.error.body);
-                default:
-                    throw new errors.BasisTheoryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {string} id
-     * @param {Applications.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link BasisTheory.UnauthorizedError}
-     * @throws {@link BasisTheory.ForbiddenError}
-     * @throws {@link BasisTheory.NotFoundError}
-     * @throws {@link BasisTheory.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.applications.regeneratekey("id")
-     */
-    public async regeneratekey(
-        id: string,
-        requestOptions?: Applications.RequestOptions
-    ): Promise<BasisTheory.Application> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `applications/${encodeURIComponent(id)}/regenerate`
-            ),
-            method: "POST",
-            headers: {
-                "BT-TRACE-ID":
-                    (await core.Supplier.get(this._options.correlationId)) != null
-                        ? await core.Supplier.get(this._options.correlationId)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@basis-theory/node-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "@basis-theory/node-sdk/0.0.1",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...(await this._getCustomAuthorizationHeaders()),
-            },
-            contentType: "application/json",
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.Application.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 401:
-                    throw new BasisTheory.UnauthorizedError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new BasisTheory.ForbiddenError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 404:
-                    throw new BasisTheory.NotFoundError(_response.error.body);
-                case 422:
-                    throw new BasisTheory.UnprocessableEntityError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
                 default:
                     throw new errors.BasisTheoryError({
                         statusCode: _response.error.statusCode,
