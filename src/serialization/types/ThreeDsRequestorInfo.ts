@@ -13,6 +13,10 @@ export const ThreeDsRequestorInfo: core.serialization.ObjectSchema<
     id: core.serialization.string().optional(),
     name: core.serialization.string().optional(),
     url: core.serialization.string().optional(),
+    discoverClientId: core.serialization.property("discover_client_id", core.serialization.string().optional()),
+    discoverRequestorId: core.serialization.property("discover_requestor_id", core.serialization.string().optional()),
+    amexRequestorType: core.serialization.property("amex_requestor_type", core.serialization.string().optional()),
+    cbSiretNumber: core.serialization.property("cb_siret_number", core.serialization.string().optional()),
 });
 
 export declare namespace ThreeDsRequestorInfo {
@@ -20,5 +24,9 @@ export declare namespace ThreeDsRequestorInfo {
         id?: string | null;
         name?: string | null;
         url?: string | null;
+        discover_client_id?: string | null;
+        discover_requestor_id?: string | null;
+        amex_requestor_type?: string | null;
+        cb_siret_number?: string | null;
     }
 }

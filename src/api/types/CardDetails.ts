@@ -12,5 +12,6 @@ export interface CardDetails {
     brand?: string;
     funding?: string;
     authentication?: string;
+    issuerCountry?: BasisTheory.CardIssuerCountry;
     additional?: BasisTheory.AdditionalCardDetails[];
 }

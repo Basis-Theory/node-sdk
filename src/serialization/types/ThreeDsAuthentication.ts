@@ -21,6 +21,7 @@ export const ThreeDsAuthentication: core.serialization.ObjectSchema<
     sdkTransactionId: core.serialization.property("sdk_transaction_id", core.serialization.string().optional()),
     acsReferenceNumber: core.serialization.property("acs_reference_number", core.serialization.string().optional()),
     dsReferenceNumber: core.serialization.property("ds_reference_number", core.serialization.string().optional()),
+    liabilityShifted: core.serialization.property("liability_shifted", core.serialization.boolean().optional()),
     authenticationValue: core.serialization.property("authentication_value", core.serialization.string().optional()),
     authenticationStatus: core.serialization.property("authentication_status", core.serialization.string().optional()),
     authenticationStatusCode: core.serialization.property(
@@ -81,6 +82,7 @@ export declare namespace ThreeDsAuthentication {
         sdk_transaction_id?: string | null;
         acs_reference_number?: string | null;
         ds_reference_number?: string | null;
+        liability_shifted?: boolean | null;
         authentication_value?: string | null;
         authentication_status?: string | null;
         authentication_status_code?: string | null;
