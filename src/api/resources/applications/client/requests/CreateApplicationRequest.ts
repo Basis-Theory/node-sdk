@@ -14,7 +14,6 @@ import * as BasisTheory from "../../../../index";
 export interface CreateApplicationRequest {
     name: string;
     type: string;
-    expiresAt?: string;
     permissions?: string[];
     rules?: BasisTheory.AccessRule[];
     createKey?: boolean;

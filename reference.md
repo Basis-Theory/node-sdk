@@ -2283,7 +2283,7 @@ await client.sessions.authorize({
 
 ## TokenIntents
 
-<details><summary><code>client.tokenIntents.<a href="/src/api/resources/tokenIntents/client/Client.ts">create</a>({ ...params }) -> BasisTheory.CreateTokenIntentResponse</code></summary>
+<details><summary><code>client.tokenIntents.<a href="/src/api/resources/tokenIntents/client/Client.ts">get</a>(id) -> BasisTheory.TokenIntent</code></summary>
 <dl>
 <dd>
 
@@ -2296,12 +2296,7 @@ await client.sessions.authorize({
 <dd>
 
 ```typescript
-await client.tokenIntents.create({
-    type: "x",
-    data: {
-        key: "value",
-    },
-});
+await client.tokenIntents.get("id");
 ```
 
 </dd>
@@ -2317,7 +2312,7 @@ await client.tokenIntents.create({
 <dl>
 <dd>
 
-**request:** `BasisTheory.CreateTokenIntentRequest`
+**id:** `string`
 
 </dd>
 </dl>
@@ -2366,6 +2361,59 @@ await client.tokenIntents.delete("id");
 <dd>
 
 **id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TokenIntents.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tokenIntents.<a href="/src/api/resources/tokenIntents/client/Client.ts">create</a>({ ...params }) -> BasisTheory.CreateTokenIntentResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tokenIntents.create({
+    type: "x",
+    data: {
+        key: "value",
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.CreateTokenIntentRequest`
 
 </dd>
 </dl>
