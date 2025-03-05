@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/Basis-Theory/node-sdk/compare/v1.5.3...v2.0.0) (2025-03-05)
+
+
+### Features
+
+* adding get token intents ([51743fe](https://github.com/Basis-Theory/node-sdk/commit/51743fe9dd58eb729e7e4ecd3abe79bdee1e9b71))
+
+
+### BREAKING CHANGES
+
+* Updated Token Usage response and removes expires_at from Applications
+
 ## [1.5.3](https://github.com/Basis-Theory/node-sdk/compare/v1.5.2...v1.5.3) (2025-03-03)
 
 
