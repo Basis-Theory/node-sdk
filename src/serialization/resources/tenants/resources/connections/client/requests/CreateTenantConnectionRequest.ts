@@ -16,7 +16,7 @@ export const CreateTenantConnectionRequest: core.serialization.Schema<
 });
 
 export declare namespace CreateTenantConnectionRequest {
-    interface Raw {
+    export interface Raw {
         strategy: string;
         options: TenantConnectionOptions.Raw;
     }

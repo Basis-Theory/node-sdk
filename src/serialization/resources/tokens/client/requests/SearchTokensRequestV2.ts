@@ -16,7 +16,7 @@ export const SearchTokensRequestV2: core.serialization.Schema<
 });
 
 export declare namespace SearchTokensRequestV2 {
-    interface Raw {
+    export interface Raw {
         query?: string | null;
         start?: string | null;
         size?: number | null;

@@ -14,7 +14,7 @@ export const Privacy: core.serialization.ObjectSchema<serializers.Privacy.Raw, B
     });
 
 export declare namespace Privacy {
-    interface Raw {
+    export interface Raw {
         classification?: string | null;
         impact_level?: string | null;
         restriction_policy?: string | null;

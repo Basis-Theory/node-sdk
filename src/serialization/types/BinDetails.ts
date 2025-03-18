@@ -34,7 +34,7 @@ export const BinDetails: core.serialization.ObjectSchema<serializers.BinDetails.
     });
 
 export declare namespace BinDetails {
-    interface Raw {
+    export interface Raw {
         card_brand?: string | null;
         type?: string | null;
         prepaid?: boolean | null;

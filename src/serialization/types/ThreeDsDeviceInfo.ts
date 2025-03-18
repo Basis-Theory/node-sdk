@@ -15,7 +15,7 @@ export const ThreeDsDeviceInfo: core.serialization.ObjectSchema<
     browserIp: core.serialization.property("browser_ip", core.serialization.string().optional()),
     browserJavascriptEnabled: core.serialization.property(
         "browser_javascript_enabled",
-        core.serialization.boolean().optional()
+        core.serialization.boolean().optional(),
     ),
     browserJavaEnabled: core.serialization.property("browser_java_enabled", core.serialization.boolean().optional()),
     browserLanguage: core.serialization.property("browser_language", core.serialization.string().optional()),
@@ -29,7 +29,7 @@ export const ThreeDsDeviceInfo: core.serialization.ObjectSchema<
     sdkEncryptionData: core.serialization.property("sdk_encryption_data", core.serialization.string().optional()),
     sdkEphemeralPublicKey: core.serialization.property(
         "sdk_ephemeral_public_key",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     sdkMaxTimeout: core.serialization.property("sdk_max_timeout", core.serialization.string().optional()),
     sdkReferenceNumber: core.serialization.property("sdk_reference_number", core.serialization.string().optional()),
@@ -37,7 +37,7 @@ export const ThreeDsDeviceInfo: core.serialization.ObjectSchema<
 });
 
 export declare namespace ThreeDsDeviceInfo {
-    interface Raw {
+    export interface Raw {
         browser_accept_header?: string | null;
         browser_ip?: string | null;
         browser_javascript_enabled?: boolean | null;

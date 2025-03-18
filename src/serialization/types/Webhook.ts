@@ -23,7 +23,7 @@ export const Webhook: core.serialization.ObjectSchema<serializers.Webhook.Raw, B
     });
 
 export declare namespace Webhook {
-    interface Raw {
+    export interface Raw {
         id: string;
         tenant_id: string;
         status: WebhookStatus.Raw;

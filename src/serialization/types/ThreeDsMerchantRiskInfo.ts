@@ -22,7 +22,7 @@ export const ThreeDsMerchantRiskInfo: core.serialization.ObjectSchema<
 });
 
 export declare namespace ThreeDsMerchantRiskInfo {
-    interface Raw {
+    export interface Raw {
         delivery_email?: string | null;
         delivery_time_frame?: string | null;
         gift_card_amount?: string | null;

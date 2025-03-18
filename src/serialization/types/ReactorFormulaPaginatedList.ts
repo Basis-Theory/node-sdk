@@ -17,7 +17,7 @@ export const ReactorFormulaPaginatedList: core.serialization.ObjectSchema<
 });
 
 export declare namespace ReactorFormulaPaginatedList {
-    interface Raw {
+    export interface Raw {
         pagination?: Pagination.Raw | null;
         data?: ReactorFormula.Raw[] | null;
     }

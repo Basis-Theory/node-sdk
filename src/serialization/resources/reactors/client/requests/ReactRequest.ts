@@ -13,7 +13,7 @@ export const ReactRequest: core.serialization.Schema<serializers.ReactRequest.Ra
     });
 
 export declare namespace ReactRequest {
-    interface Raw {
+    export interface Raw {
         args?: unknown | null;
         callback_url?: string | null;
     }

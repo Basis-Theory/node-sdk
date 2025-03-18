@@ -20,11 +20,11 @@ export const AuthenticateThreeDsSessionRequest: core.serialization.Schema<
     challengePreference: core.serialization.property("challenge_preference", core.serialization.string().optional()),
     requestDecoupledChallenge: core.serialization.property(
         "request_decoupled_challenge",
-        core.serialization.boolean().optional()
+        core.serialization.boolean().optional(),
     ),
     decoupledChallengeMaxTime: core.serialization.property(
         "decoupled_challenge_max_time",
-        core.serialization.number().optional()
+        core.serialization.number().optional(),
     ),
     purchaseInfo: core.serialization.property("purchase_info", ThreeDsPurchaseInfo.optional()),
     merchantInfo: core.serialization.property("merchant_info", ThreeDsMerchantInfo.optional()),
@@ -33,12 +33,12 @@ export const AuthenticateThreeDsSessionRequest: core.serialization.Schema<
     broadcastInfo: core.serialization.property("broadcast_info", core.serialization.unknown().optional()),
     messageExtensions: core.serialization.property(
         "message_extensions",
-        core.serialization.list(ThreeDsMessageExtension).optional()
+        core.serialization.list(ThreeDsMessageExtension).optional(),
     ),
 });
 
 export declare namespace AuthenticateThreeDsSessionRequest {
-    interface Raw {
+    export interface Raw {
         authentication_category: string;
         authentication_type: string;
         challenge_preference?: string | null;

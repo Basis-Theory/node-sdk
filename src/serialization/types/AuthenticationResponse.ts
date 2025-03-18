@@ -16,7 +16,7 @@ export const AuthenticationResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace AuthenticationResponse {
-    interface Raw {
+    export interface Raw {
         merchant_identifier?: string | null;
         authentication_data?: string | null;
         transaction_amount?: string | null;

@@ -13,7 +13,7 @@ export const UpdatePrivacy: core.serialization.ObjectSchema<serializers.UpdatePr
     });
 
 export declare namespace UpdatePrivacy {
-    interface Raw {
+    export interface Raw {
         impact_level?: string | null;
         restriction_policy?: string | null;
     }

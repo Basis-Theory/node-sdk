@@ -35,7 +35,7 @@ export const ThreeDsSession: core.serialization.ObjectSchema<
 });
 
 export declare namespace ThreeDsSession {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         type?: string | null;
         tenant_id?: string | null;

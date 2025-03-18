@@ -16,7 +16,7 @@ export const CardIssuerCountry: core.serialization.ObjectSchema<
 });
 
 export declare namespace CardIssuerCountry {
-    interface Raw {
+    export interface Raw {
         alpha2?: string | null;
         name?: string | null;
         numeric?: string | null;

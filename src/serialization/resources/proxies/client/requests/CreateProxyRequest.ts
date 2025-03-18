@@ -26,7 +26,7 @@ export const CreateProxyRequest: core.serialization.Schema<
 });
 
 export declare namespace CreateProxyRequest {
-    interface Raw {
+    export interface Raw {
         name: string;
         destination_url: string;
         request_reactor_id?: string | null;

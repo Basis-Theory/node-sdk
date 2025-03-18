@@ -18,7 +18,7 @@ export const AuthorizeSessionRequest: core.serialization.Schema<
 });
 
 export declare namespace AuthorizeSessionRequest {
-    interface Raw {
+    export interface Raw {
         nonce: string;
         expires_at?: string | null;
         permissions?: string[] | null;

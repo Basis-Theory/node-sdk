@@ -15,7 +15,7 @@ export const ThreeDsCardholderPhoneNumber: core.serialization.ObjectSchema<
 });
 
 export declare namespace ThreeDsCardholderPhoneNumber {
-    interface Raw {
+    export interface Raw {
         country_code?: string | null;
         number?: string | null;
     }

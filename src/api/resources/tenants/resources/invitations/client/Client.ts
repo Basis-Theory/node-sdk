@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as BasisTheory from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Invitations {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<string | undefined>;
         /** Override the BT-TRACE-ID header */
         correlationId?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -27,9 +29,11 @@ export declare namespace Invitations {
         abortSignal?: AbortSignal;
         /** Override the BT-TRACE-ID header */
         correlationId?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 
-    interface IdempotentRequestOptions extends RequestOptions {
+    export interface IdempotentRequestOptions extends RequestOptions {
         idempotencyKey?: string | undefined;
     }
 }
@@ -49,15 +53,17 @@ export class Invitations {
      */
     public async list(
         request: BasisTheory.tenants.InvitationsListRequest = {},
-        requestOptions?: Invitations.RequestOptions
+        requestOptions?: Invitations.RequestOptions,
     ): Promise<core.Page<BasisTheory.TenantInvitationResponse>> {
         const list = async (
-            request: BasisTheory.tenants.InvitationsListRequest
+            request: BasisTheory.tenants.InvitationsListRequest,
         ): Promise<BasisTheory.TenantInvitationResponsePaginatedList> => {
             const { status, page, start, size } = request;
-            const _queryParams: Record<string, string | string[] | object | object[]> = {};
+            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
             if (status != null) {
-                _queryParams["status"] = status;
+                _queryParams["status"] = serializers.TenantInvitationStatus.jsonOrThrow(status, {
+                    unrecognizedObjectKeys: "strip",
+                });
             }
             if (page != null) {
                 _queryParams["page"] = page.toString();
@@ -70,8 +76,10 @@ export class Invitations {
             }
             const _response = await (this._options.fetcher ?? core.fetcher)({
                 url: urlJoin(
-                    (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                    "tenants/self/invitations"
+                    (await core.Supplier.get(this._options.baseUrl)) ??
+                        (await core.Supplier.get(this._options.environment)) ??
+                        environments.BasisTheoryEnvironment.Default,
+                    "tenants/self/invitations",
                 ),
                 method: "GET",
                 headers: {
@@ -86,6 +94,7 @@ export class Invitations {
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...(await this._getCustomAuthorizationHeaders()),
+                    ...requestOptions?.headers,
                 },
                 contentType: "application/json",
                 queryParameters: _queryParams,
@@ -113,7 +122,7 @@ export class Invitations {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     case 403:
                         throw new BasisTheory.ForbiddenError(
@@ -123,7 +132,7 @@ export class Invitations {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     default:
                         throw new errors.BasisTheoryError({
@@ -139,7 +148,9 @@ export class Invitations {
                         body: _response.error.rawBody,
                     });
                 case "timeout":
-                    throw new errors.BasisTheoryTimeoutError();
+                    throw new errors.BasisTheoryTimeoutError(
+                        "Timeout exceeded when calling GET /tenants/self/invitations.",
+                    );
                 case "unknown":
                     throw new errors.BasisTheoryError({
                         message: _response.error.errorMessage,
@@ -176,12 +187,14 @@ export class Invitations {
      */
     public async create(
         request: BasisTheory.tenants.CreateTenantInvitationRequest,
-        requestOptions?: Invitations.IdempotentRequestOptions
+        requestOptions?: Invitations.IdempotentRequestOptions,
     ): Promise<BasisTheory.TenantInvitationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "tenants/self/invitations"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                "tenants/self/invitations",
             ),
             method: "POST",
             headers: {
@@ -198,6 +211,7 @@ export class Invitations {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -228,7 +242,7 @@ export class Invitations {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -238,7 +252,7 @@ export class Invitations {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -248,7 +262,7 @@ export class Invitations {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -265,7 +279,9 @@ export class Invitations {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError(
+                    "Timeout exceeded when calling POST /tenants/self/invitations.",
+                );
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -286,12 +302,14 @@ export class Invitations {
      */
     public async resend(
         invitationId: string,
-        requestOptions?: Invitations.IdempotentRequestOptions
+        requestOptions?: Invitations.IdempotentRequestOptions,
     ): Promise<BasisTheory.TenantInvitationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `tenants/self/invitations/${encodeURIComponent(invitationId)}/resend`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `tenants/self/invitations/${encodeURIComponent(invitationId)}/resend`,
             ),
             method: "POST",
             headers: {
@@ -308,6 +326,7 @@ export class Invitations {
                 "BT-IDEMPOTENCY-KEY":
                     requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -335,7 +354,7 @@ export class Invitations {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new BasisTheory.UnauthorizedError(
@@ -345,7 +364,7 @@ export class Invitations {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -355,7 +374,7 @@ export class Invitations {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -372,7 +391,9 @@ export class Invitations {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError(
+                    "Timeout exceeded when calling POST /tenants/self/invitations/{invitationId}/resend.",
+                );
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -393,12 +414,14 @@ export class Invitations {
      */
     public async get(
         invitationId: string,
-        requestOptions?: Invitations.RequestOptions
+        requestOptions?: Invitations.RequestOptions,
     ): Promise<BasisTheory.TenantInvitationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `tenants/self/invitations/${encodeURIComponent(invitationId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `tenants/self/invitations/${encodeURIComponent(invitationId)}`,
             ),
             method: "GET",
             headers: {
@@ -413,6 +436,7 @@ export class Invitations {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -440,7 +464,7 @@ export class Invitations {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -450,7 +474,7 @@ export class Invitations {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -469,7 +493,9 @@ export class Invitations {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError(
+                    "Timeout exceeded when calling GET /tenants/self/invitations/{invitationId}.",
+                );
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -491,8 +517,10 @@ export class Invitations {
     public async delete(invitationId: string, requestOptions?: Invitations.RequestOptions): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                `tenants/self/invitations/${encodeURIComponent(invitationId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `tenants/self/invitations/${encodeURIComponent(invitationId)}`,
             ),
             method: "DELETE",
             headers: {
@@ -507,6 +535,7 @@ export class Invitations {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -528,7 +557,7 @@ export class Invitations {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -538,7 +567,7 @@ export class Invitations {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body);
@@ -557,7 +586,9 @@ export class Invitations {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError(
+                    "Timeout exceeded when calling DELETE /tenants/self/invitations/{invitationId}.",
+                );
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,

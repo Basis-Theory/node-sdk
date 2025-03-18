@@ -12,12 +12,12 @@ export const TenantConnectionOptions: core.serialization.ObjectSchema<
 > = core.serialization.object({
     domainAliases: core.serialization.property(
         "domain_aliases",
-        core.serialization.list(core.serialization.string()).optional()
+        core.serialization.list(core.serialization.string()).optional(),
     ),
 });
 
 export declare namespace TenantConnectionOptions {
-    interface Raw {
+    export interface Raw {
         domain_aliases?: string[] | null;
     }
 }

@@ -20,7 +20,7 @@ export const UpdateReactorRequest: core.serialization.Schema<
 });
 
 export declare namespace UpdateReactorRequest {
-    interface Raw {
+    export interface Raw {
         name: string;
         application?: Application.Raw | null;
         code: string;

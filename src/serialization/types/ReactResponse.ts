@@ -15,7 +15,7 @@ export const ReactResponse: core.serialization.ObjectSchema<serializers.ReactRes
     });
 
 export declare namespace ReactResponse {
-    interface Raw {
+    export interface Raw {
         tokens?: unknown | null;
         raw?: unknown | null;
         body?: unknown | null;

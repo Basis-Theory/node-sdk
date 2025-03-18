@@ -14,7 +14,7 @@ export const ReactRequestAsync: core.serialization.Schema<
 });
 
 export declare namespace ReactRequestAsync {
-    interface Raw {
+    export interface Raw {
         args?: unknown | null;
     }
 }

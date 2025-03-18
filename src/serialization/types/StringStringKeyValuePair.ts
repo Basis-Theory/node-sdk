@@ -15,7 +15,7 @@ export const StringStringKeyValuePair: core.serialization.ObjectSchema<
 });
 
 export declare namespace StringStringKeyValuePair {
-    interface Raw {
+    export interface Raw {
         key: string;
         value: string;
     }

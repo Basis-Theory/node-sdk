@@ -14,7 +14,7 @@ export const AsyncReactResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace AsyncReactResponse {
-    interface Raw {
+    export interface Raw {
         asyncReactorRequestId?: string | null;
     }
 }

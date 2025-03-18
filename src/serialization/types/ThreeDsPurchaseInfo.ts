@@ -21,7 +21,7 @@ export const ThreeDsPurchaseInfo: core.serialization.ObjectSchema<
 });
 
 export declare namespace ThreeDsPurchaseInfo {
-    interface Raw {
+    export interface Raw {
         amount?: string | null;
         currency?: string | null;
         exponent?: string | null;

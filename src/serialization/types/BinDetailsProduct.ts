@@ -15,7 +15,7 @@ export const BinDetailsProduct: core.serialization.ObjectSchema<
 });
 
 export declare namespace BinDetailsProduct {
-    interface Raw {
+    export interface Raw {
         code?: string | null;
         name?: string | null;
     }

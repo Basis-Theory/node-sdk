@@ -16,43 +16,43 @@ export const ThreeDsCardholderAccountInfo: core.serialization.ObjectSchema<
     accountCreatedDate: core.serialization.property("account_created_date", core.serialization.string().optional()),
     accountPwdLastChanged: core.serialization.property(
         "account_pwd_last_changed",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     accountPwdChangeDate: core.serialization.property(
         "account_pwd_change_date",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     purchaseCountHalfYear: core.serialization.property(
         "purchase_count_half_year",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     transactionCountDay: core.serialization.property("transaction_count_day", core.serialization.string().optional()),
     paymentAccountAge: core.serialization.property("payment_account_age", core.serialization.string().optional()),
     transactionCountYear: core.serialization.property("transaction_count_year", core.serialization.string().optional()),
     paymentAccountCreated: core.serialization.property(
         "payment_account_created",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     shippingAddressFirstUsed: core.serialization.property(
         "shipping_address_first_used",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     shippingAddressUsageDate: core.serialization.property(
         "shipping_address_usage_date",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     shippingAccountNameMatch: core.serialization.property(
         "shipping_account_name_match",
-        core.serialization.boolean().optional()
+        core.serialization.boolean().optional(),
     ),
     suspiciousActivityObserved: core.serialization.property(
         "suspicious_activity_observed",
-        core.serialization.boolean().optional()
+        core.serialization.boolean().optional(),
     ),
 });
 
 export declare namespace ThreeDsCardholderAccountInfo {
-    interface Raw {
+    export interface Raw {
         account_age?: string | null;
         account_last_changed?: string | null;
         account_change_date?: string | null;

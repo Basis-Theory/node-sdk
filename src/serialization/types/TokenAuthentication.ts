@@ -15,7 +15,7 @@ export const TokenAuthentication: core.serialization.ObjectSchema<
 });
 
 export declare namespace TokenAuthentication {
-    interface Raw {
+    export interface Raw {
         threeds_cryptogram?: string | null;
         eci_indicator?: string | null;
     }

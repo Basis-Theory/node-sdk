@@ -20,7 +20,7 @@ export const ThreeDsRequestorInfo: core.serialization.ObjectSchema<
 });
 
 export declare namespace ThreeDsRequestorInfo {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         name?: string | null;
         url?: string | null;

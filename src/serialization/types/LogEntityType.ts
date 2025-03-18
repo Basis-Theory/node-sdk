@@ -13,7 +13,7 @@ export const LogEntityType: core.serialization.ObjectSchema<serializers.LogEntit
     });
 
 export declare namespace LogEntityType {
-    interface Raw {
+    export interface Raw {
         display_name?: string | null;
         value?: string | null;
     }

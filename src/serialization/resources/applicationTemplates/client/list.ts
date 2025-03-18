@@ -13,5 +13,5 @@ export const Response: core.serialization.Schema<
 > = core.serialization.list(ApplicationTemplate);
 
 export declare namespace Response {
-    type Raw = ApplicationTemplate.Raw[];
+    export type Raw = ApplicationTemplate.Raw[];
 }

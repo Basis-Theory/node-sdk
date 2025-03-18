@@ -19,7 +19,7 @@ export const Log: core.serialization.ObjectSchema<serializers.Log.Raw, BasisTheo
 });
 
 export declare namespace Log {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         tenant_id?: string | null;
         actor_id?: string | null;

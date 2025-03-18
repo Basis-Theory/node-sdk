@@ -21,7 +21,7 @@ export const CreateThreeDsSessionRequest: core.serialization.Schema<
 });
 
 export declare namespace CreateThreeDsSessionRequest {
-    interface Raw {
+    export interface Raw {
         pan?: string | null;
         token_id?: string | null;
         token_intent_id?: string | null;
