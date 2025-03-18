@@ -12,6 +12,7 @@ export * as roles from "./roles";
 export * as sessions from "./sessions";
 export * as tokenIntents from "./tokenIntents";
 export * as webhooks from "./webhooks";
+export * as connections from "./connections";
 export * as tenants from "./tenants";
 export * as threeds from "./threeds";
 export * from "./applications/client/requests";
