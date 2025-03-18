@@ -20,7 +20,7 @@ export const ThreeDsMerchantInfo: core.serialization.ObjectSchema<
 });
 
 export declare namespace ThreeDsMerchantInfo {
-    interface Raw {
+    export interface Raw {
         mid?: string | null;
         acquirer_bin?: string | null;
         name?: string | null;

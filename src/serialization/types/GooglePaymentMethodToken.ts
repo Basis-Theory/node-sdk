@@ -18,7 +18,7 @@ export const GooglePaymentMethodToken: core.serialization.ObjectSchema<
 });
 
 export declare namespace GooglePaymentMethodToken {
-    interface Raw {
+    export interface Raw {
         protocolVersion?: string | null;
         signature?: string | null;
         intermediateSigningKey?: IntermediateSigningKey.Raw | null;

@@ -3,6 +3,8 @@ export * as applicationTemplates from "./applicationTemplates";
 export * as logs from "./logs";
 export * as permissions from "./permissions";
 export * as roles from "./roles";
+export * as applePay from "./applePay";
+export * from "./applePay/client/requests";
 export * as applications from "./applications";
 export * from "./applications/client/requests";
 export * as tokens from "./tokens";

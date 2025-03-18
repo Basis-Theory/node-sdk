@@ -15,7 +15,7 @@ export const WebhookListPagination: core.serialization.ObjectSchema<
 });
 
 export declare namespace WebhookListPagination {
-    interface Raw {
+    export interface Raw {
         page_size?: number | null;
         next?: string | null;
     }

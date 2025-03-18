@@ -14,7 +14,7 @@ export const TenantUsageReport: core.serialization.ObjectSchema<
 });
 
 export declare namespace TenantUsageReport {
-    interface Raw {
+    export interface Raw {
         total_tokens?: number | null;
     }
 }

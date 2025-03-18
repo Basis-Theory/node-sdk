@@ -23,21 +23,21 @@ export const TokenServiceProviderDetails: core.serialization.ObjectSchema<
     cardholderName: core.serialization.property("cardholder_name", core.serialization.string().optional()),
     deviceManufacturerIdentifier: core.serialization.property(
         "device_manufacturer_identifier",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     paymentDataType: core.serialization.property("payment_data_type", core.serialization.string().optional()),
     merchantTokenIdentifier: core.serialization.property(
         "merchant_token_identifier",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     authenticationResponses: core.serialization.property(
         "authentication_responses",
-        core.serialization.list(AuthenticationResponse).optional()
+        core.serialization.list(AuthenticationResponse).optional(),
     ),
 });
 
 export declare namespace TokenServiceProviderDetails {
-    interface Raw {
+    export interface Raw {
         tsp?: string | null;
         auth_method?: string | null;
         message_id?: string | null;

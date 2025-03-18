@@ -17,7 +17,7 @@ export const LogPaginatedList: core.serialization.ObjectSchema<
 });
 
 export declare namespace LogPaginatedList {
-    interface Raw {
+    export interface Raw {
         pagination?: Pagination.Raw | null;
         data?: Log.Raw[] | null;
     }

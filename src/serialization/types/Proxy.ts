@@ -32,7 +32,7 @@ export const Proxy: core.serialization.ObjectSchema<serializers.Proxy.Raw, Basis
     });
 
 export declare namespace Proxy {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         key?: string | null;
         tenant_id?: string | null;

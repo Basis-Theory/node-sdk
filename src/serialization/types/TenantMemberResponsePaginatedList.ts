@@ -17,7 +17,7 @@ export const TenantMemberResponsePaginatedList: core.serialization.ObjectSchema<
 });
 
 export declare namespace TenantMemberResponsePaginatedList {
-    interface Raw {
+    export interface Raw {
         pagination?: Pagination.Raw | null;
         data?: TenantMemberResponse.Raw[] | null;
     }

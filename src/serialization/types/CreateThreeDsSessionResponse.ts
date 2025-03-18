@@ -16,14 +16,14 @@ export const CreateThreeDsSessionResponse: core.serialization.ObjectSchema<
     methodUrl: core.serialization.property("method_url", core.serialization.string().optional()),
     methodNotificationUrl: core.serialization.property(
         "method_notification_url",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     directoryServerId: core.serialization.property("directory_server_id", core.serialization.string().optional()),
     recommendedVersion: core.serialization.property("recommended_version", core.serialization.string().optional()),
 });
 
 export declare namespace CreateThreeDsSessionResponse {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         type?: string | null;
         cardBrand?: string | null;

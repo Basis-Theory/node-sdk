@@ -11,12 +11,12 @@ export const ThreeDsMethod: core.serialization.ObjectSchema<serializers.ThreeDsM
         methodUrl: core.serialization.property("method_url", core.serialization.string().optional()),
         methodCompletionIndicator: core.serialization.property(
             "method_completion_indicator",
-            core.serialization.string().optional()
+            core.serialization.string().optional(),
         ),
     });
 
 export declare namespace ThreeDsMethod {
-    interface Raw {
+    export interface Raw {
         method_url?: string | null;
         method_completion_indicator?: string | null;
     }

@@ -17,7 +17,7 @@ export const ReactorFormulaRequestParameter: core.serialization.ObjectSchema<
 });
 
 export declare namespace ReactorFormulaRequestParameter {
-    interface Raw {
+    export interface Raw {
         name: string;
         description?: string | null;
         type: string;

@@ -20,7 +20,7 @@ export const ThreeDsAddress: core.serialization.ObjectSchema<
 });
 
 export declare namespace ThreeDsAddress {
-    interface Raw {
+    export interface Raw {
         line1?: string | null;
         line2?: string | null;
         line3?: string | null;

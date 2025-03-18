@@ -24,7 +24,7 @@ export const PatchProxyRequest: core.serialization.Schema<
 });
 
 export declare namespace PatchProxyRequest {
-    interface Raw {
+    export interface Raw {
         name?: string | null;
         destination_url?: string | null;
         request_transform?: ProxyTransform.Raw | null;

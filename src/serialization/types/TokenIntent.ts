@@ -25,7 +25,7 @@ export const TokenIntent: core.serialization.ObjectSchema<serializers.TokenInten
     });
 
 export declare namespace TokenIntent {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         type?: string | null;
         tenant_id?: string | null;

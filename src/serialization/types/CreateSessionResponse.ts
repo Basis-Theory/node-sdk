@@ -16,7 +16,7 @@ export const CreateSessionResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreateSessionResponse {
-    interface Raw {
+    export interface Raw {
         session_key?: string | null;
         nonce?: string | null;
         expires_at?: string | null;

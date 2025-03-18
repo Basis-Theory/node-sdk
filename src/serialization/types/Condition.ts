@@ -14,7 +14,7 @@ export const Condition: core.serialization.ObjectSchema<serializers.Condition.Ra
     });
 
 export declare namespace Condition {
-    interface Raw {
+    export interface Raw {
         attribute?: string | null;
         operator?: string | null;
         value?: string | null;

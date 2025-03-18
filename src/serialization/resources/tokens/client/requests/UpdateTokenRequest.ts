@@ -16,11 +16,11 @@ export const UpdateTokenRequest: core.serialization.Schema<
     metadata: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
     searchIndexes: core.serialization.property(
         "search_indexes",
-        core.serialization.list(core.serialization.string()).optional()
+        core.serialization.list(core.serialization.string()).optional(),
     ),
     fingerprintExpression: core.serialization.property(
         "fingerprint_expression",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     mask: core.serialization.unknown().optional(),
     expiresAt: core.serialization.property("expires_at", core.serialization.string().optional()),
@@ -29,7 +29,7 @@ export const UpdateTokenRequest: core.serialization.Schema<
 });
 
 export declare namespace UpdateTokenRequest {
-    interface Raw {
+    export interface Raw {
         data?: unknown | null;
         privacy?: UpdatePrivacy.Raw | null;
         metadata?: Record<string, string | null | undefined> | null;

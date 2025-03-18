@@ -14,7 +14,7 @@ export const GetPermissions: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetPermissions {
-    interface Raw {
+    export interface Raw {
         application_type?: string | null;
     }
 }

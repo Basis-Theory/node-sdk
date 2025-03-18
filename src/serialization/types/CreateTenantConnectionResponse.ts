@@ -14,7 +14,7 @@ export const CreateTenantConnectionResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreateTenantConnectionResponse {
-    interface Raw {
+    export interface Raw {
         connection_id?: string | null;
     }
 }

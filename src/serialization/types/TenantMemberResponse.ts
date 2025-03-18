@@ -22,7 +22,7 @@ export const TenantMemberResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace TenantMemberResponse {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         tenant_id?: string | null;
         user?: User.Raw | null;

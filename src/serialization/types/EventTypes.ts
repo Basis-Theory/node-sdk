@@ -10,5 +10,5 @@ export const EventTypes: core.serialization.Schema<serializers.EventTypes.Raw, B
     core.serialization.list(core.serialization.string());
 
 export declare namespace EventTypes {
-    type Raw = string[];
+    export type Raw = string[];
 }

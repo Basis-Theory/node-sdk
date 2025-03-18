@@ -9,20 +9,23 @@ import * as core from "../../core";
 export const ProblemDetails: core.serialization.ObjectSchema<
     serializers.ProblemDetails.Raw,
     BasisTheory.ProblemDetails
-> = core.serialization.object({
-    type: core.serialization.string().optional(),
-    title: core.serialization.string().optional(),
-    status: core.serialization.number().optional(),
-    detail: core.serialization.string().optional(),
-    instance: core.serialization.string().optional(),
-});
+> = core.serialization
+    .object({
+        type: core.serialization.string().optional(),
+        title: core.serialization.string().optional(),
+        status: core.serialization.number().optional(),
+        detail: core.serialization.string().optional(),
+        instance: core.serialization.string().optional(),
+    })
+    .passthrough();
 
 export declare namespace ProblemDetails {
-    interface Raw {
+    export interface Raw {
         type?: string | null;
         title?: string | null;
         status?: number | null;
         detail?: string | null;
         instance?: string | null;
+        [key: string]: any;
     }
 }

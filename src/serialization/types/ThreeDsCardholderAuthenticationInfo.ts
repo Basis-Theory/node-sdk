@@ -16,7 +16,7 @@ export const ThreeDsCardholderAuthenticationInfo: core.serialization.ObjectSchem
 });
 
 export declare namespace ThreeDsCardholderAuthenticationInfo {
-    interface Raw {
+    export interface Raw {
         method?: string | null;
         timestamp?: string | null;
         data?: string | null;

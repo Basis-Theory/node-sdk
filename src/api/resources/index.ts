@@ -1,3 +1,4 @@
+export * as applePay from "./applePay";
 export * as applications from "./applications";
 export * as applicationKeys from "./applicationKeys";
 export * as applicationTemplates from "./applicationTemplates";
@@ -14,6 +15,7 @@ export * as tokenIntents from "./tokenIntents";
 export * as webhooks from "./webhooks";
 export * as tenants from "./tenants";
 export * as threeds from "./threeds";
+export * from "./applePay/client/requests";
 export * from "./applications/client/requests";
 export * from "./applicationKeys/client/requests";
 export * from "./tokens/client/requests";
