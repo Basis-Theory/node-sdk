@@ -4,6 +4,7 @@
 
 import * as environments from "./environments";
 import * as core from "./core";
+import { ApplePay } from "./api/resources/applePay/client/Client";
 import { Applications } from "./api/resources/applications/client/Client";
 import { ApplicationKeys } from "./api/resources/applicationKeys/client/Client";
 import { ApplicationTemplates } from "./api/resources/applicationTemplates/client/Client";
@@ -44,6 +45,12 @@ export declare namespace BasisTheoryClient {
 
 export class BasisTheoryClient {
     constructor(protected readonly _options: BasisTheoryClient.Options = {}) {}
+
+    protected _applePay: ApplePay | undefined;
+
+    public get applePay(): ApplePay {
+        return (this._applePay ??= new ApplePay(this._options));
+    }
 
     protected _applications: Applications | undefined;
 
