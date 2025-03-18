@@ -20,11 +20,11 @@ export const ThreeDsCardholderInfo: core.serialization.ObjectSchema<
     accountInfo: core.serialization.property("account_info", ThreeDsCardholderAccountInfo.optional()),
     authenticationInfo: core.serialization.property(
         "authentication_info",
-        ThreeDsCardholderAuthenticationInfo.optional()
+        ThreeDsCardholderAuthenticationInfo.optional(),
     ),
     priorAuthenticationInfo: core.serialization.property(
         "prior_authentication_info",
-        ThreeDsPriorAuthenticationInfo.optional()
+        ThreeDsPriorAuthenticationInfo.optional(),
     ),
     name: core.serialization.string().optional(),
     email: core.serialization.string().optional(),
@@ -33,14 +33,14 @@ export const ThreeDsCardholderInfo: core.serialization.ObjectSchema<
     workPhoneNumber: core.serialization.property("work_phone_number", ThreeDsCardholderPhoneNumber.optional()),
     billingShippingAddressMatch: core.serialization.property(
         "billing_shipping_address_match",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     billingAddress: core.serialization.property("billing_address", ThreeDsAddress.optional()),
     shippingAddress: core.serialization.property("shipping_address", ThreeDsAddress.optional()),
 });
 
 export declare namespace ThreeDsCardholderInfo {
-    interface Raw {
+    export interface Raw {
         account_id?: string | null;
         account_type?: string | null;
         account_info?: ThreeDsCardholderAccountInfo.Raw | null;

@@ -17,7 +17,7 @@ export const UpdateApplicationRequest: core.serialization.Schema<
 });
 
 export declare namespace UpdateApplicationRequest {
-    interface Raw {
+    export interface Raw {
         name: string;
         permissions?: string[] | null;
         rules?: AccessRule.Raw[] | null;

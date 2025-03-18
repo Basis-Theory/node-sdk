@@ -16,7 +16,7 @@ export const ReactorFormulaConfiguration: core.serialization.ObjectSchema<
 });
 
 export declare namespace ReactorFormulaConfiguration {
-    interface Raw {
+    export interface Raw {
         name: string;
         description?: string | null;
         type: string;

@@ -10,15 +10,17 @@ import * as serializers from "../../../../serialization/index";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Logs {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<string | undefined>;
         /** Override the BT-TRACE-ID header */
         correlationId?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -27,6 +29,8 @@ export declare namespace Logs {
         abortSignal?: AbortSignal;
         /** Override the BT-TRACE-ID header */
         correlationId?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -46,11 +50,11 @@ export class Logs {
      */
     public async list(
         request: BasisTheory.LogsListRequest = {},
-        requestOptions?: Logs.RequestOptions
+        requestOptions?: Logs.RequestOptions,
     ): Promise<core.Page<BasisTheory.Log>> {
         const list = async (request: BasisTheory.LogsListRequest): Promise<BasisTheory.LogPaginatedList> => {
             const { entityType, entityId, startDate, endDate, page, start, size } = request;
-            const _queryParams: Record<string, string | string[] | object | object[]> = {};
+            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
             if (entityType != null) {
                 _queryParams["entity_type"] = entityType;
             }
@@ -74,8 +78,10 @@ export class Logs {
             }
             const _response = await (this._options.fetcher ?? core.fetcher)({
                 url: urlJoin(
-                    (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                    "logs"
+                    (await core.Supplier.get(this._options.baseUrl)) ??
+                        (await core.Supplier.get(this._options.environment)) ??
+                        environments.BasisTheoryEnvironment.Default,
+                    "logs",
                 ),
                 method: "GET",
                 headers: {
@@ -90,6 +96,7 @@ export class Logs {
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...(await this._getCustomAuthorizationHeaders()),
+                    ...requestOptions?.headers,
                 },
                 contentType: "application/json",
                 queryParameters: _queryParams,
@@ -117,7 +124,7 @@ export class Logs {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     case 401:
                         throw new BasisTheory.UnauthorizedError(
@@ -127,7 +134,7 @@ export class Logs {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     case 403:
                         throw new BasisTheory.ForbiddenError(
@@ -137,7 +144,7 @@ export class Logs {
                                 allowUnrecognizedEnumValues: true,
                                 skipValidation: true,
                                 breadcrumbsPrefix: ["response"],
-                            })
+                            }),
                         );
                     default:
                         throw new errors.BasisTheoryError({
@@ -153,7 +160,7 @@ export class Logs {
                         body: _response.error.rawBody,
                     });
                 case "timeout":
-                    throw new errors.BasisTheoryTimeoutError();
+                    throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /logs.");
                 case "unknown":
                     throw new errors.BasisTheoryError({
                         message: _response.error.errorMessage,
@@ -184,8 +191,10 @@ export class Logs {
     public async getEntityTypes(requestOptions?: Logs.RequestOptions): Promise<BasisTheory.LogEntityType[]> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.BasisTheoryEnvironment.Default,
-                "logs/entity-types"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                "logs/entity-types",
             ),
             method: "GET",
             headers: {
@@ -200,6 +209,7 @@ export class Logs {
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -227,7 +237,7 @@ export class Logs {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
@@ -237,7 +247,7 @@ export class Logs {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.BasisTheoryError({
@@ -254,7 +264,7 @@ export class Logs {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError();
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /logs/entity-types.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,

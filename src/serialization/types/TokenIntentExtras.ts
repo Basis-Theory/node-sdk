@@ -15,7 +15,7 @@ export const TokenIntentExtras: core.serialization.ObjectSchema<
 });
 
 export declare namespace TokenIntentExtras {
-    interface Raw {
+    export interface Raw {
         tsp_details?: TokenServiceProviderDetails.Raw | null;
     }
 }

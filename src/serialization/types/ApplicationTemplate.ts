@@ -22,7 +22,7 @@ export const ApplicationTemplate: core.serialization.ObjectSchema<
 });
 
 export declare namespace ApplicationTemplate {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         name?: string | null;
         description?: string | null;

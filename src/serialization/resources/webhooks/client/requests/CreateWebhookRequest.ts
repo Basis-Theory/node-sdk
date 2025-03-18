@@ -17,7 +17,7 @@ export const CreateWebhookRequest: core.serialization.Schema<
 });
 
 export declare namespace CreateWebhookRequest {
-    interface Raw {
+    export interface Raw {
         name: string;
         url: string;
         notify_email?: string | null;

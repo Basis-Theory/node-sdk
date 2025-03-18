@@ -15,7 +15,7 @@ export const ThreeDsAcsRenderingType: core.serialization.ObjectSchema<
 });
 
 export declare namespace ThreeDsAcsRenderingType {
-    interface Raw {
+    export interface Raw {
         acsInterface?: string | null;
         acsUiTemplate?: string | null;
     }

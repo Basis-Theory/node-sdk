@@ -18,7 +18,7 @@ export const GetLogs: core.serialization.ObjectSchema<serializers.GetLogs.Raw, B
     });
 
 export declare namespace GetLogs {
-    interface Raw {
+    export interface Raw {
         entity_type?: string | null;
         entity_id?: string | null;
         start_date?: string | null;

@@ -15,7 +15,7 @@ export const CreateTokenIntentRequest: core.serialization.Schema<
 });
 
 export declare namespace CreateTokenIntentRequest {
-    interface Raw {
+    export interface Raw {
         type: string;
         data?: unknown;
     }

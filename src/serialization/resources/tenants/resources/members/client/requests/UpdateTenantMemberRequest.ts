@@ -14,7 +14,7 @@ export const UpdateTenantMemberRequest: core.serialization.Schema<
 });
 
 export declare namespace UpdateTenantMemberRequest {
-    interface Raw {
+    export interface Raw {
         role: string;
     }
 }

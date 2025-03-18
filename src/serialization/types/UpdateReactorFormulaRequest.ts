@@ -20,12 +20,12 @@ export const UpdateReactorFormulaRequest: core.serialization.ObjectSchema<
     configuration: core.serialization.list(ReactorFormulaConfiguration).optional(),
     requestParameters: core.serialization.property(
         "request_parameters",
-        core.serialization.list(ReactorFormulaRequestParameter).optional()
+        core.serialization.list(ReactorFormulaRequestParameter).optional(),
     ),
 });
 
 export declare namespace UpdateReactorFormulaRequest {
-    interface Raw {
+    export interface Raw {
         type: string;
         name: string;
         description?: string | null;

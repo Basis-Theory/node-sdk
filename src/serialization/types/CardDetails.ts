@@ -22,7 +22,7 @@ export const CardDetails: core.serialization.ObjectSchema<serializers.CardDetail
     });
 
 export declare namespace CardDetails {
-    interface Raw {
+    export interface Raw {
         bin?: string | null;
         last4?: string | null;
         expiration_month?: number | null;

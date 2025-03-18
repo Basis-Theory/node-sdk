@@ -9,4 +9,6 @@ export interface ValidationProblemDetails {
     status?: number;
     detail?: string;
     instance?: string;
+    /** Accepts any additional properties */
+    [key: string]: any;
 }

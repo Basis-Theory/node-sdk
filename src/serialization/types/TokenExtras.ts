@@ -13,12 +13,12 @@ export const TokenExtras: core.serialization.ObjectSchema<serializers.TokenExtra
         tspDetails: core.serialization.property("tsp_details", TokenServiceProviderDetails.optional()),
         deduplicationBehavior: core.serialization.property(
             "deduplication_behavior",
-            core.serialization.string().optional()
+            core.serialization.string().optional(),
         ),
     });
 
 export declare namespace TokenExtras {
-    interface Raw {
+    export interface Raw {
         deduplicated?: boolean | null;
         tsp_details?: TokenServiceProviderDetails.Raw | null;
         deduplication_behavior?: string | null;

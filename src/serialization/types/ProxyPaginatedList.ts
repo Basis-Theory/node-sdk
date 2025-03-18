@@ -17,7 +17,7 @@ export const ProxyPaginatedList: core.serialization.ObjectSchema<
 });
 
 export declare namespace ProxyPaginatedList {
-    interface Raw {
+    export interface Raw {
         pagination?: Pagination.Raw | null;
         data?: Proxy.Raw[] | null;
     }

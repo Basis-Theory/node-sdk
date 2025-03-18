@@ -15,7 +15,7 @@ export const UpdateTenantRequest: core.serialization.Schema<
 });
 
 export declare namespace UpdateTenantRequest {
-    interface Raw {
+    export interface Raw {
         name: string;
         settings?: Record<string, string | null | undefined> | null;
     }

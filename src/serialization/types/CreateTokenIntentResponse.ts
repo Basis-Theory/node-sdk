@@ -27,7 +27,7 @@ export const CreateTokenIntentResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreateTokenIntentResponse {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         type?: string | null;
         tenant_id?: string | null;

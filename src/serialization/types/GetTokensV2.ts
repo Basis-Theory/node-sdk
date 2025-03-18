@@ -19,7 +19,7 @@ export const GetTokensV2: core.serialization.ObjectSchema<serializers.GetTokensV
     });
 
 export declare namespace GetTokensV2 {
-    interface Raw {
+    export interface Raw {
         type?: string | null;
         container?: string | null;
         fingerprint?: string | null;

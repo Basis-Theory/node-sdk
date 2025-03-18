@@ -18,7 +18,7 @@ export const ApplicationKey: core.serialization.ObjectSchema<
 });
 
 export declare namespace ApplicationKey {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         key?: string | null;
         version?: string | null;

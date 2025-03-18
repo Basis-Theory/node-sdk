@@ -17,7 +17,7 @@ export const BinDetailsBank: core.serialization.ObjectSchema<
 });
 
 export declare namespace BinDetailsBank {
-    interface Raw {
+    export interface Raw {
         name?: string | null;
         phone?: string | null;
         url?: string | null;

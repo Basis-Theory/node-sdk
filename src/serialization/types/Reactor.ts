@@ -26,7 +26,7 @@ export const Reactor: core.serialization.ObjectSchema<serializers.Reactor.Raw, B
     });
 
 export declare namespace Reactor {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         tenant_id?: string | null;
         name?: string | null;

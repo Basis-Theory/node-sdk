@@ -14,7 +14,7 @@ export const BankVerificationResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace BankVerificationResponse {
-    interface Raw {
+    export interface Raw {
         status?: string | null;
     }
 }

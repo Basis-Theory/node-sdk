@@ -15,7 +15,7 @@ export const GooglePayTokenizeResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace GooglePayTokenizeResponse {
-    interface Raw {
+    export interface Raw {
         token_intent?: CreateTokenIntentResponse.Raw | null;
     }
 }

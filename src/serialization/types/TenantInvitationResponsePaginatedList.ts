@@ -17,7 +17,7 @@ export const TenantInvitationResponsePaginatedList: core.serialization.ObjectSch
 });
 
 export declare namespace TenantInvitationResponsePaginatedList {
-    interface Raw {
+    export interface Raw {
         pagination?: Pagination.Raw | null;
         data?: TenantInvitationResponse.Raw[] | null;
     }

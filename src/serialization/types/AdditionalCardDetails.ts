@@ -16,7 +16,7 @@ export const AdditionalCardDetails: core.serialization.ObjectSchema<
 });
 
 export declare namespace AdditionalCardDetails {
-    interface Raw {
+    export interface Raw {
         brand?: string | null;
         funding?: string | null;
         authentication?: string | null;

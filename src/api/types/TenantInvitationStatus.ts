@@ -3,7 +3,6 @@
  */
 
 export type TenantInvitationStatus = "PENDING" | "EXPIRED";
-
 export const TenantInvitationStatus = {
     Pending: "PENDING",
     Expired: "EXPIRED",

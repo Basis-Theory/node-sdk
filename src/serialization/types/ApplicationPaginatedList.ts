@@ -17,7 +17,7 @@ export const ApplicationPaginatedList: core.serialization.ObjectSchema<
 });
 
 export declare namespace ApplicationPaginatedList {
-    interface Raw {
+    export interface Raw {
         pagination?: Pagination.Raw | null;
         data?: Application.Raw[] | null;
     }

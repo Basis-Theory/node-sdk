@@ -30,13 +30,13 @@ export const Token: core.serialization.ObjectSchema<serializers.Token.Raw, Basis
         fingerprint: core.serialization.string().optional(),
         fingerprintExpression: core.serialization.property(
             "fingerprint_expression",
-            core.serialization.string().optional()
+            core.serialization.string().optional(),
         ),
         mask: core.serialization.unknown().optional(),
         privacy: Privacy.optional(),
         searchIndexes: core.serialization.property(
             "search_indexes",
-            core.serialization.list(core.serialization.string()).optional()
+            core.serialization.list(core.serialization.string()).optional(),
         ),
         expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
         containers: core.serialization.list(core.serialization.string()).optional(),
@@ -46,7 +46,7 @@ export const Token: core.serialization.ObjectSchema<serializers.Token.Raw, Basis
     });
 
 export declare namespace Token {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         type?: string | null;
         tenant_id?: string | null;

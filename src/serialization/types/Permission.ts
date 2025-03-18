@@ -12,12 +12,12 @@ export const Permission: core.serialization.ObjectSchema<serializers.Permission.
         description: core.serialization.string().optional(),
         applicationTypes: core.serialization.property(
             "application_types",
-            core.serialization.list(core.serialization.string()).optional()
+            core.serialization.list(core.serialization.string()).optional(),
         ),
     });
 
 export declare namespace Permission {
-    interface Raw {
+    export interface Raw {
         type?: string | null;
         description?: string | null;
         application_types?: string[] | null;

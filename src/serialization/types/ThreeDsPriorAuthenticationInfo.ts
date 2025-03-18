@@ -17,7 +17,7 @@ export const ThreeDsPriorAuthenticationInfo: core.serialization.ObjectSchema<
 });
 
 export declare namespace ThreeDsPriorAuthenticationInfo {
-    interface Raw {
+    export interface Raw {
         method?: string | null;
         timestamp?: string | null;
         reference_id?: string | null;

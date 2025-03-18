@@ -18,7 +18,7 @@ export const ProxyTransform: core.serialization.ObjectSchema<
 });
 
 export declare namespace ProxyTransform {
-    interface Raw {
+    export interface Raw {
         type?: string | null;
         code?: string | null;
         matcher?: string | null;

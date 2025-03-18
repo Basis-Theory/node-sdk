@@ -11,7 +11,7 @@ export const Role: core.serialization.ObjectSchema<serializers.Role.Raw, BasisTh
 });
 
 export declare namespace Role {
-    interface Raw {
+    export interface Raw {
         name?: string | null;
     }
 }

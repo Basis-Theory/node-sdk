@@ -18,7 +18,7 @@ export const GetTenantInvitations: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetTenantInvitations {
-    interface Raw {
+    export interface Raw {
         status?: TenantInvitationStatus.Raw | null;
         page?: number | null;
         start?: string | null;
