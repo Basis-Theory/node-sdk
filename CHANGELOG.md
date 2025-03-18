@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/Basis-Theory/node-sdk/compare/v2.0.0...v2.1.0) (2025-03-18)
+
+
+### Features
+
+* Apple Pay support ([6a0da8e](https://github.com/Basis-Theory/node-sdk/commit/6a0da8ebb8df0d2c1ef38b6265ce9ff54ffa23fe))
+
 # [2.0.0](https://github.com/Basis-Theory/node-sdk/compare/v1.5.3...v2.0.0) (2025-03-05)
 
 
