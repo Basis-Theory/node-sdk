@@ -18,6 +18,7 @@ import { Roles } from "./api/resources/roles/client/Client";
 import { Sessions } from "./api/resources/sessions/client/Client";
 import { TokenIntents } from "./api/resources/tokenIntents/client/Client";
 import { Webhooks } from "./api/resources/webhooks/client/Client";
+import { Connections } from "./api/resources/connections/client/Client";
 import { Tenants } from "./api/resources/tenants/client/Client";
 import { Threeds } from "./api/resources/threeds/client/Client";
 
@@ -127,6 +128,12 @@ export class BasisTheoryClient {
 
     public get webhooks(): Webhooks {
         return (this._webhooks ??= new Webhooks(this._options));
+    }
+
+    protected _connections: Connections | undefined;
+
+    public get connections(): Connections {
+        return (this._connections ??= new Connections(this._options));
     }
 
     protected _tenants: Tenants | undefined;
