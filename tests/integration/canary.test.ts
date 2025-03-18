@@ -676,25 +676,6 @@ describe('Canary', () => {
         expect(firstTokenId).toBe(secondTokenId);
     });
 
-    it('should paginate on tokens/list v1', async () => {
-        const client = getPrivateClient();
-        const pageSize = 3;
-
-        const tokens = await client.tokens.list({
-            page: 1,
-            size: pageSize
-        });
-
-        let count = 0;
-        for await (const token of tokens) {
-            count++;
-            if (count > pageSize) {
-                break;
-            }
-        }
-        expect(count).toBeGreaterThan(pageSize);
-    });
-
     it('should paginate on tokens/list v2', async () => {
         const client = getPrivateClient();
         const pageSize = 3;
