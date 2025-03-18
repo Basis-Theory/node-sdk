@@ -34,3 +34,5 @@ jobs:
           BT_API_URL: https://api.flock-dev.com
           BT_MGT_API_KEY: ${{ secrets.BT_SDK_INT_TEST_MGT_API_KEY }}
           BT_PVT_API_KEY: ${{ secrets.BT_SDK_INT_TEST_PVT_API_KEY }}
+          BT_MGT_TEST_API_KEY: ${{ secrets.BT_SDK_INT_TEST_MGT_TEST_API_KEY }}
+          BT_PVT_TEST_API_KEY: ${{ secrets.BT_SDK_INT_TEST_PVT_TEST_API_KEY }}
