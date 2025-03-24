@@ -8,6 +8,7 @@ export interface ThreeDsAuthentication {
     panTokenId?: string;
     tokenId?: string;
     tokenIntentId?: string;
+    sessionId?: string;
     threedsVersion?: string;
     acsTransactionId?: string;
     dsTransactionId?: string;
@@ -18,6 +19,7 @@ export interface ThreeDsAuthentication {
     authenticationValue?: string;
     authenticationStatus?: string;
     authenticationStatusCode?: string;
+    directoryStatusCode?: string;
     authenticationStatusReason?: string;
     eci?: string;
     acsChallengeMandated?: string;

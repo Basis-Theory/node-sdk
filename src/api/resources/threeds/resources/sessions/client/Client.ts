@@ -164,8 +164,7 @@ export class Sessions {
      * @example
      *     await client.threeds.sessions.authenticate("sessionId", {
      *         authenticationCategory: "authentication_category",
-     *         authenticationType: "authentication_type",
-     *         requestorInfo: {}
+     *         authenticationType: "authentication_type"
      *     })
      */
     public async authenticate(
