@@ -16,6 +16,7 @@ export const ThreeDsMerchantInfo: core.serialization.ObjectSchema<
     name: core.serialization.string().optional(),
     countryCode: core.serialization.property("country_code", core.serialization.string().optional()),
     categoryCode: core.serialization.property("category_code", core.serialization.string().optional()),
+    url: core.serialization.string().optional(),
     riskInfo: core.serialization.property("risk_info", ThreeDsMerchantRiskInfo.optional()),
 });
 
@@ -26,6 +27,7 @@ export declare namespace ThreeDsMerchantInfo {
         name?: string | null;
         country_code?: string | null;
         category_code?: string | null;
+        url?: string | null;
         risk_info?: ThreeDsMerchantRiskInfo.Raw | null;
     }
 }

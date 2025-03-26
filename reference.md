@@ -3894,7 +3894,6 @@ await client.threeds.sessions.create();
 await client.threeds.sessions.authenticate("sessionId", {
     authenticationCategory: "authentication_category",
     authenticationType: "authentication_type",
-    requestorInfo: {},
 });
 ```
 
