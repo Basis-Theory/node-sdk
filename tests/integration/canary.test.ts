@@ -697,13 +697,13 @@ describe('Canary', () => {
     it('should manage webhook lifecycle', async () => {
         const client = getManagementClient();
 
-        const url = "https://echo.basistheory.com/" + randomUUID();
+        const url = "https://echo.flock-dev.com/" + randomUUID();
         const webhookId = await createWebhook(client, url);
         await getAndValidateWebhookUrl(client, webhookId, url);
 
         await sleep(2000); // Required to avoid error `The webhook subscription is undergoing another concurrent operation. Please wait a few seconds, then try again.`
 
-        const updateUrl = "https://echo.basistheory.com/" + randomUUID();
+        const updateUrl = "https://echo.flock-dev.com/" + randomUUID();
         await updateWebhook(client, webhookId, updateUrl);
         await getAndValidateWebhookUrl(client, webhookId, updateUrl);
 

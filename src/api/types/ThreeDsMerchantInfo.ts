@@ -10,5 +10,6 @@ export interface ThreeDsMerchantInfo {
     name?: string;
     countryCode?: string;
     categoryCode?: string;
+    url?: string;
     riskInfo?: BasisTheory.ThreeDsMerchantRiskInfo;
 }

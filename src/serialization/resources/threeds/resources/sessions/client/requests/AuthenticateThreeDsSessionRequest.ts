@@ -28,7 +28,7 @@ export const AuthenticateThreeDsSessionRequest: core.serialization.Schema<
     ),
     purchaseInfo: core.serialization.property("purchase_info", ThreeDsPurchaseInfo.optional()),
     merchantInfo: core.serialization.property("merchant_info", ThreeDsMerchantInfo.optional()),
-    requestorInfo: core.serialization.property("requestor_info", ThreeDsRequestorInfo),
+    requestorInfo: core.serialization.property("requestor_info", ThreeDsRequestorInfo.optional()),
     cardholderInfo: core.serialization.property("cardholder_info", ThreeDsCardholderInfo.optional()),
     broadcastInfo: core.serialization.property("broadcast_info", core.serialization.unknown().optional()),
     messageExtensions: core.serialization.property(
@@ -46,7 +46,7 @@ export declare namespace AuthenticateThreeDsSessionRequest {
         decoupled_challenge_max_time?: number | null;
         purchase_info?: ThreeDsPurchaseInfo.Raw | null;
         merchant_info?: ThreeDsMerchantInfo.Raw | null;
-        requestor_info: ThreeDsRequestorInfo.Raw;
+        requestor_info?: ThreeDsRequestorInfo.Raw | null;
         cardholder_info?: ThreeDsCardholderInfo.Raw | null;
         broadcast_info?: unknown | null;
         message_extensions?: ThreeDsMessageExtension.Raw[] | null;

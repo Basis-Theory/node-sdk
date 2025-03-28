@@ -8,8 +8,7 @@ import * as BasisTheory from "../../../../../../index";
  * @example
  *     {
  *         authenticationCategory: "authentication_category",
- *         authenticationType: "authentication_type",
- *         requestorInfo: {}
+ *         authenticationType: "authentication_type"
  *     }
  */
 export interface AuthenticateThreeDsSessionRequest {
@@ -20,7 +19,7 @@ export interface AuthenticateThreeDsSessionRequest {
     decoupledChallengeMaxTime?: number;
     purchaseInfo?: BasisTheory.ThreeDsPurchaseInfo;
     merchantInfo?: BasisTheory.ThreeDsMerchantInfo;
-    requestorInfo: BasisTheory.ThreeDsRequestorInfo;
+    requestorInfo?: BasisTheory.ThreeDsRequestorInfo;
     cardholderInfo?: BasisTheory.ThreeDsCardholderInfo;
     broadcastInfo?: unknown;
     messageExtensions?: BasisTheory.ThreeDsMessageExtension[];

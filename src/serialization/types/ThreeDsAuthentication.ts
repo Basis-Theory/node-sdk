@@ -15,6 +15,7 @@ export const ThreeDsAuthentication: core.serialization.ObjectSchema<
     panTokenId: core.serialization.property("pan_token_id", core.serialization.string().optional()),
     tokenId: core.serialization.property("token_id", core.serialization.string().optional()),
     tokenIntentId: core.serialization.property("token_intent_id", core.serialization.string().optional()),
+    sessionId: core.serialization.property("session_id", core.serialization.string().optional()),
     threedsVersion: core.serialization.property("threeds_version", core.serialization.string().optional()),
     acsTransactionId: core.serialization.property("acs_transaction_id", core.serialization.string().optional()),
     dsTransactionId: core.serialization.property("ds_transaction_id", core.serialization.string().optional()),
@@ -28,6 +29,7 @@ export const ThreeDsAuthentication: core.serialization.ObjectSchema<
         "authentication_status_code",
         core.serialization.string().optional(),
     ),
+    directoryStatusCode: core.serialization.property("directory_status_code", core.serialization.string().optional()),
     authenticationStatusReason: core.serialization.property(
         "authentication_status_reason",
         core.serialization.string().optional(),
@@ -76,6 +78,7 @@ export declare namespace ThreeDsAuthentication {
         pan_token_id?: string | null;
         token_id?: string | null;
         token_intent_id?: string | null;
+        session_id?: string | null;
         threeds_version?: string | null;
         acs_transaction_id?: string | null;
         ds_transaction_id?: string | null;
@@ -86,6 +89,7 @@ export declare namespace ThreeDsAuthentication {
         authentication_value?: string | null;
         authentication_status?: string | null;
         authentication_status_code?: string | null;
+        directory_status_code?: string | null;
         authentication_status_reason?: string | null;
         eci?: string | null;
         acs_challenge_mandated?: string | null;
