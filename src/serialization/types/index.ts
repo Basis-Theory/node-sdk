@@ -10,6 +10,7 @@ export * from "./ApplicationTemplate";
 export * from "./AssuranceDetails";
 export * from "./AsyncReactResponse";
 export * from "./AuthenticationResponse";
+export * from "./BankDetails";
 export * from "./BankVerificationResponse";
 export * from "./BinDetails";
 export * from "./BinDetailsBank";
