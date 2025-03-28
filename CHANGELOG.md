@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/Basis-Theory/node-sdk/compare/v2.1.0...v2.2.0) (2025-03-28)
+
+
+### Features
+
+* update threeds authentication props ([5daddba](https://github.com/Basis-Theory/node-sdk/commit/5daddba11e41d6db2c450754d3ca2d33ac796427))
+
 # [2.1.0](https://github.com/Basis-Theory/node-sdk/compare/v2.0.0...v2.1.0) (2025-03-18)
 
 
