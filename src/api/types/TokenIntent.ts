@@ -13,6 +13,7 @@ export interface TokenIntent {
     createdAt?: Date;
     expiresAt?: Date;
     card?: BasisTheory.CardDetails;
+    bank?: BasisTheory.BankDetails;
     networkToken?: BasisTheory.CardDetails;
     authentication?: BasisTheory.TokenAuthentication;
     extras?: BasisTheory.TokenIntentExtras;

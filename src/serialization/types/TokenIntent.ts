@@ -6,6 +6,7 @@ import * as serializers from "../index";
 import * as BasisTheory from "../../api/index";
 import * as core from "../../core";
 import { CardDetails } from "./CardDetails";
+import { BankDetails } from "./BankDetails";
 import { TokenAuthentication } from "./TokenAuthentication";
 import { TokenIntentExtras } from "./TokenIntentExtras";
 
@@ -19,6 +20,7 @@ export const TokenIntent: core.serialization.ObjectSchema<serializers.TokenInten
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
         card: CardDetails.optional(),
+        bank: BankDetails.optional(),
         networkToken: core.serialization.property("network_token", CardDetails.optional()),
         authentication: TokenAuthentication.optional(),
         extras: core.serialization.property("_extras", TokenIntentExtras.optional()),
@@ -34,6 +36,7 @@ export declare namespace TokenIntent {
         created_at?: string | null;
         expires_at?: string | null;
         card?: CardDetails.Raw | null;
+        bank?: BankDetails.Raw | null;
         network_token?: CardDetails.Raw | null;
         authentication?: TokenAuthentication.Raw | null;
         _extras?: TokenIntentExtras.Raw | null;
