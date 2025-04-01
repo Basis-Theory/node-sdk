@@ -15,6 +15,6 @@ export interface CreateTokenIntentResponse {
     card?: BasisTheory.CardDetails;
     bank?: BasisTheory.BankDetails;
     networkToken?: BasisTheory.CardDetails;
-    authentication?: BasisTheory.TokenAuthentication;
+    authentication?: unknown;
     extras?: BasisTheory.TokenIntentExtras;
 }

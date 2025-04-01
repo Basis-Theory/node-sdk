@@ -14,6 +14,7 @@ export interface Token {
     createdBy?: string;
     createdAt?: Date;
     card?: BasisTheory.CardDetails;
+    bank?: BasisTheory.BankDetails;
     networkToken?: BasisTheory.CardDetails;
     modifiedBy?: string;
     modifiedAt?: Date;
@@ -25,6 +26,6 @@ export interface Token {
     expiresAt?: Date;
     containers?: string[];
     aliases?: string[];
-    authentication?: BasisTheory.TokenAuthentication;
+    authentication?: unknown;
     extras?: BasisTheory.TokenExtras;
 }
