@@ -220,7 +220,7 @@ export class Domain {
     }
 
     /**
-     * @param {BasisTheory.applePay.ApplePayDomainRegistrationRequest} request
+     * @param {BasisTheory.applePay.ApplePayDomainRegistrationListRequest} request
      * @param {Domain.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
@@ -230,12 +230,10 @@ export class Domain {
      * @throws {@link BasisTheory.ServiceUnavailableError}
      *
      * @example
-     *     await client.applePay.domain.register({
-     *         domain: "domain"
-     *     })
+     *     await client.applePay.domain.register()
      */
     public async register(
-        request: BasisTheory.applePay.ApplePayDomainRegistrationRequest,
+        request: BasisTheory.applePay.ApplePayDomainRegistrationListRequest = {},
         requestOptions?: Domain.RequestOptions,
     ): Promise<BasisTheory.ApplePayDomainRegistrationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -245,7 +243,7 @@ export class Domain {
                     environments.BasisTheoryEnvironment.Default,
                 "connections/apple-pay/domain-registration",
             ),
-            method: "POST",
+            method: "PUT",
             headers: {
                 "BT-TRACE-ID":
                     (await core.Supplier.get(this._options.correlationId)) != null
@@ -262,7 +260,7 @@ export class Domain {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.applePay.ApplePayDomainRegistrationRequest.jsonOrThrow(request, {
+            body: serializers.applePay.ApplePayDomainRegistrationListRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -347,7 +345,7 @@ export class Domain {
                 });
             case "timeout":
                 throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling POST /connections/apple-pay/domain-registration.",
+                    "Timeout exceeded when calling PUT /connections/apple-pay/domain-registration.",
                 );
             case "unknown":
                 throw new errors.BasisTheoryError({

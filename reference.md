@@ -662,6 +662,56 @@ await client.applicationTemplates.get("id");
 </dl>
 </details>
 
+## NetworkTokens
+
+<details><summary><code>client.networkTokens.<a href="/src/api/resources/networkTokens/client/Client.ts">tokenize</a>({ ...params }) -> BasisTheory.Token</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.networkTokens.tokenize();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.CreateNetworkTokenRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `NetworkTokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Tokens
 
 <details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">detokenize</a>({ ...params }) -> unknown</code></summary>
@@ -2967,9 +3017,7 @@ await client.applePay.domain.get();
 <dd>
 
 ```typescript
-await client.applePay.domain.register({
-    domain: "domain",
-});
+await client.applePay.domain.register();
 ```
 
 </dd>
@@ -2985,7 +3033,7 @@ await client.applePay.domain.register({
 <dl>
 <dd>
 
-**request:** `BasisTheory.applePay.ApplePayDomainRegistrationRequest`
+**request:** `BasisTheory.applePay.ApplePayDomainRegistrationListRequest`
 
 </dd>
 </dl>

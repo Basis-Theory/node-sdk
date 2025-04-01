@@ -7,8 +7,8 @@ import * as BasisTheory from "../../api/index";
 import * as core from "../../core";
 import { TokenEnrichments } from "./TokenEnrichments";
 import { CardDetails } from "./CardDetails";
+import { BankDetails } from "./BankDetails";
 import { Privacy } from "./Privacy";
-import { TokenAuthentication } from "./TokenAuthentication";
 import { TokenExtras } from "./TokenExtras";
 
 export const Token: core.serialization.ObjectSchema<serializers.Token.Raw, BasisTheory.Token> =
@@ -24,6 +24,7 @@ export const Token: core.serialization.ObjectSchema<serializers.Token.Raw, Basis
         createdBy: core.serialization.property("created_by", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         card: CardDetails.optional(),
+        bank: BankDetails.optional(),
         networkToken: core.serialization.property("network_token", CardDetails.optional()),
         modifiedBy: core.serialization.property("modified_by", core.serialization.string().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
@@ -41,7 +42,7 @@ export const Token: core.serialization.ObjectSchema<serializers.Token.Raw, Basis
         expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
         containers: core.serialization.list(core.serialization.string()).optional(),
         aliases: core.serialization.list(core.serialization.string()).optional(),
-        authentication: TokenAuthentication.optional(),
+        authentication: core.serialization.unknown().optional(),
         extras: core.serialization.property("_extras", TokenExtras.optional()),
     });
 
@@ -56,6 +57,7 @@ export declare namespace Token {
         created_by?: string | null;
         created_at?: string | null;
         card?: CardDetails.Raw | null;
+        bank?: BankDetails.Raw | null;
         network_token?: CardDetails.Raw | null;
         modified_by?: string | null;
         modified_at?: string | null;
@@ -67,7 +69,7 @@ export declare namespace Token {
         expires_at?: string | null;
         containers?: string[] | null;
         aliases?: string[] | null;
-        authentication?: TokenAuthentication.Raw | null;
+        authentication?: unknown | null;
         _extras?: TokenExtras.Raw | null;
     }
 }

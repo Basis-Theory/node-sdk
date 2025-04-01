@@ -18,4 +18,5 @@ export interface TokenServiceProviderDetails {
     paymentDataType?: string;
     merchantTokenIdentifier?: string;
     authenticationResponses?: BasisTheory.AuthenticationResponse[];
+    status?: string;
 }

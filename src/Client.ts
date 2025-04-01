@@ -8,6 +8,7 @@ import { ApplePay } from "./api/resources/applePay/client/Client";
 import { Applications } from "./api/resources/applications/client/Client";
 import { ApplicationKeys } from "./api/resources/applicationKeys/client/Client";
 import { ApplicationTemplates } from "./api/resources/applicationTemplates/client/Client";
+import { NetworkTokens } from "./api/resources/networkTokens/client/Client";
 import { Tokens } from "./api/resources/tokens/client/Client";
 import { Enrichments } from "./api/resources/enrichments/client/Client";
 import { Googlepay } from "./api/resources/googlepay/client/Client";
@@ -52,6 +53,7 @@ export class BasisTheoryClient {
     protected _applications: Applications | undefined;
     protected _applicationKeys: ApplicationKeys | undefined;
     protected _applicationTemplates: ApplicationTemplates | undefined;
+    protected _networkTokens: NetworkTokens | undefined;
     protected _tokens: Tokens | undefined;
     protected _enrichments: Enrichments | undefined;
     protected _googlepay: Googlepay | undefined;
@@ -82,6 +84,10 @@ export class BasisTheoryClient {
 
     public get applicationTemplates(): ApplicationTemplates {
         return (this._applicationTemplates ??= new ApplicationTemplates(this._options));
+    }
+
+    public get networkTokens(): NetworkTokens {
+        return (this._networkTokens ??= new NetworkTokens(this._options));
     }
 
     public get tokens(): Tokens {
