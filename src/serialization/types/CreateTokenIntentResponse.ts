@@ -7,7 +7,6 @@ import * as BasisTheory from "../../api/index";
 import * as core from "../../core";
 import { CardDetails } from "./CardDetails";
 import { BankDetails } from "./BankDetails";
-import { TokenAuthentication } from "./TokenAuthentication";
 import { TokenIntentExtras } from "./TokenIntentExtras";
 
 export const CreateTokenIntentResponse: core.serialization.ObjectSchema<
@@ -24,7 +23,7 @@ export const CreateTokenIntentResponse: core.serialization.ObjectSchema<
     card: CardDetails.optional(),
     bank: BankDetails.optional(),
     networkToken: core.serialization.property("network_token", CardDetails.optional()),
-    authentication: TokenAuthentication.optional(),
+    authentication: core.serialization.unknown().optional(),
     extras: core.serialization.property("_extras", TokenIntentExtras.optional()),
 });
 
@@ -40,7 +39,7 @@ export declare namespace CreateTokenIntentResponse {
         card?: CardDetails.Raw | null;
         bank?: BankDetails.Raw | null;
         network_token?: CardDetails.Raw | null;
-        authentication?: TokenAuthentication.Raw | null;
+        authentication?: unknown | null;
         _extras?: TokenIntentExtras.Raw | null;
     }
 }

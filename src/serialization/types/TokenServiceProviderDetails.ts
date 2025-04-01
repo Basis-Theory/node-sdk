@@ -34,6 +34,7 @@ export const TokenServiceProviderDetails: core.serialization.ObjectSchema<
         "authentication_responses",
         core.serialization.list(AuthenticationResponse).optional(),
     ),
+    status: core.serialization.string().optional(),
 });
 
 export declare namespace TokenServiceProviderDetails {
@@ -51,5 +52,6 @@ export declare namespace TokenServiceProviderDetails {
         payment_data_type?: string | null;
         merchant_token_identifier?: string | null;
         authentication_responses?: AuthenticationResponse.Raw[] | null;
+        status?: string | null;
     }
 }
