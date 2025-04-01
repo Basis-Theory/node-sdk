@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/Basis-Theory/node-sdk/compare/v2.2.0...v2.3.0) (2025-04-01)
+
+
+### Features
+
+* Add registerAll to Apple Pay Domains and network token create ([d1b814d](https://github.com/Basis-Theory/node-sdk/commit/d1b814d09c560eefbf9dd75338c862197252eacd))
+
 # [2.2.0](https://github.com/Basis-Theory/node-sdk/compare/v2.1.0...v2.2.0) (2025-03-28)
 
 
