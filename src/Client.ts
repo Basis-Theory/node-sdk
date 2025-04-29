@@ -8,11 +8,11 @@ import { ApplePay } from "./api/resources/applePay/client/Client";
 import { Applications } from "./api/resources/applications/client/Client";
 import { ApplicationKeys } from "./api/resources/applicationKeys/client/Client";
 import { ApplicationTemplates } from "./api/resources/applicationTemplates/client/Client";
-import { NetworkTokens } from "./api/resources/networkTokens/client/Client";
 import { Tokens } from "./api/resources/tokens/client/Client";
 import { Enrichments } from "./api/resources/enrichments/client/Client";
 import { Googlepay } from "./api/resources/googlepay/client/Client";
 import { Logs } from "./api/resources/logs/client/Client";
+import { NetworkTokens } from "./api/resources/networkTokens/client/Client";
 import { Permissions } from "./api/resources/permissions/client/Client";
 import { Proxies } from "./api/resources/proxies/client/Client";
 import { Reactors } from "./api/resources/reactors/client/Client";
@@ -53,11 +53,11 @@ export class BasisTheoryClient {
     protected _applications: Applications | undefined;
     protected _applicationKeys: ApplicationKeys | undefined;
     protected _applicationTemplates: ApplicationTemplates | undefined;
-    protected _networkTokens: NetworkTokens | undefined;
     protected _tokens: Tokens | undefined;
     protected _enrichments: Enrichments | undefined;
     protected _googlepay: Googlepay | undefined;
     protected _logs: Logs | undefined;
+    protected _networkTokens: NetworkTokens | undefined;
     protected _permissions: Permissions | undefined;
     protected _proxies: Proxies | undefined;
     protected _reactors: Reactors | undefined;
@@ -86,10 +86,6 @@ export class BasisTheoryClient {
         return (this._applicationTemplates ??= new ApplicationTemplates(this._options));
     }
 
-    public get networkTokens(): NetworkTokens {
-        return (this._networkTokens ??= new NetworkTokens(this._options));
-    }
-
     public get tokens(): Tokens {
         return (this._tokens ??= new Tokens(this._options));
     }
@@ -104,6 +100,10 @@ export class BasisTheoryClient {
 
     public get logs(): Logs {
         return (this._logs ??= new Logs(this._options));
+    }
+
+    public get networkTokens(): NetworkTokens {
+        return (this._networkTokens ??= new NetworkTokens(this._options));
     }
 
     public get permissions(): Permissions {
