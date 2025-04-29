@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as BasisTheory from "../../api/index";
 import * as core from "../../core";
+import { CardIssuer } from "./CardIssuer";
 import { CardIssuerCountry } from "./CardIssuerCountry";
 import { AdditionalCardDetails } from "./AdditionalCardDetails";
 
@@ -17,7 +18,9 @@ export const CardDetails: core.serialization.ObjectSchema<serializers.CardDetail
         brand: core.serialization.string().optional(),
         funding: core.serialization.string().optional(),
         authentication: core.serialization.string().optional(),
+        issuer: CardIssuer.optional(),
         issuerCountry: core.serialization.property("issuer_country", CardIssuerCountry.optional()),
+        segment: core.serialization.string().optional(),
         additional: core.serialization.list(AdditionalCardDetails).optional(),
     });
 
@@ -30,7 +33,9 @@ export declare namespace CardDetails {
         brand?: string | null;
         funding?: string | null;
         authentication?: string | null;
+        issuer?: CardIssuer.Raw | null;
         issuer_country?: CardIssuerCountry.Raw | null;
+        segment?: string | null;
         additional?: AdditionalCardDetails.Raw[] | null;
     }
 }

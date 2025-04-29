@@ -25,6 +25,7 @@ export const Proxy: core.serialization.ObjectSchema<serializers.Proxy.Raw, Basis
             .optional(),
         proxyHost: core.serialization.property("proxy_host", core.serialization.string().optional()),
         timeout: core.serialization.number().optional(),
+        clientCertificate: core.serialization.property("client_certificate", core.serialization.string().optional()),
         createdBy: core.serialization.property("created_by", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedBy: core.serialization.property("modified_by", core.serialization.string().optional()),
@@ -47,6 +48,7 @@ export declare namespace Proxy {
         configuration?: Record<string, string | null | undefined> | null;
         proxy_host?: string | null;
         timeout?: number | null;
+        client_certificate?: string | null;
         created_by?: string | null;
         created_at?: string | null;
         modified_by?: string | null;
