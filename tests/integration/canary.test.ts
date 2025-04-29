@@ -599,7 +599,7 @@ describe('google pay', () => {
             });
         } catch (err) {
             expect(err).toBeInstanceOf(UnprocessableEntityError);
-            expect((err as any).body.detail).toContain('expired intermediateSigningKey');
+            expect((err as any).body.detail).toContain('Failed to decrypt token');
         }
     });
 });
