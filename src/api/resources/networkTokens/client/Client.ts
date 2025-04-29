@@ -4,8 +4,6 @@
 
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
-import * as BasisTheory from "../../../index";
-import * as serializers from "../../../../serialization/index";
 import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 
@@ -38,22 +36,12 @@ export class NetworkTokens {
     constructor(protected readonly _options: NetworkTokens.Options = {}) {}
 
     /**
-     * @param {BasisTheory.CreateNetworkTokenRequest} request
      * @param {NetworkTokens.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link BasisTheory.BadRequestError}
-     * @throws {@link BasisTheory.UnauthorizedError}
-     * @throws {@link BasisTheory.ForbiddenError}
-     * @throws {@link BasisTheory.UnprocessableEntityError}
-     * @throws {@link BasisTheory.ServiceUnavailableError}
      *
      * @example
      *     await client.networkTokens.create()
      */
-    public async create(
-        request: BasisTheory.CreateNetworkTokenRequest = {},
-        requestOptions?: NetworkTokens.RequestOptions,
-    ): Promise<BasisTheory.Token> {
+    public async create(requestOptions?: NetworkTokens.RequestOptions): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -78,79 +66,19 @@ export class NetworkTokens {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.CreateNetworkTokenRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.Token.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return;
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new BasisTheory.BadRequestError(
-                        serializers.ValidationProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                    );
-                case 401:
-                    throw new BasisTheory.UnauthorizedError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                    );
-                case 403:
-                    throw new BasisTheory.ForbiddenError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                    );
-                case 422:
-                    throw new BasisTheory.UnprocessableEntityError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                    );
-                case 503:
-                    throw new BasisTheory.ServiceUnavailableError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                    );
-                default:
-                    throw new errors.BasisTheoryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
+            throw new errors.BasisTheoryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
         }
 
         switch (_response.error.reason) {

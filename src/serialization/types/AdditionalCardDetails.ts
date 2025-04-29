@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as BasisTheory from "../../api/index";
 import * as core from "../../core";
+import { CardIssuer } from "./CardIssuer";
 
 export const AdditionalCardDetails: core.serialization.ObjectSchema<
     serializers.AdditionalCardDetails.Raw,
@@ -13,6 +14,7 @@ export const AdditionalCardDetails: core.serialization.ObjectSchema<
     brand: core.serialization.string().optional(),
     funding: core.serialization.string().optional(),
     authentication: core.serialization.string().optional(),
+    issuer: CardIssuer.optional(),
 });
 
 export declare namespace AdditionalCardDetails {
@@ -20,5 +22,6 @@ export declare namespace AdditionalCardDetails {
         brand?: string | null;
         funding?: string | null;
         authentication?: string | null;
+        issuer?: CardIssuer.Raw | null;
     }
 }

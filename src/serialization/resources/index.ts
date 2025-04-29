@@ -7,8 +7,6 @@ export * as applePay from "./applePay";
 export * from "./applePay/client/requests";
 export * as applications from "./applications";
 export * from "./applications/client/requests";
-export * as networkTokens from "./networkTokens";
-export * from "./networkTokens/client/requests";
 export * as tokens from "./tokens";
 export * from "./tokens/client/requests";
 export * as enrichments from "./enrichments";
