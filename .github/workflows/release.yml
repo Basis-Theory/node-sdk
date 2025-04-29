@@ -16,7 +16,7 @@ jobs:
       HUSKY: 0 # disables husky hooks
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.SEMANTIC_RELEASE_PAT }}
 
@@ -27,7 +27,7 @@ jobs:
           channel: ${{ vars.SLACK_DUCKBOT_RELEASE_CHANNEL_ID }}
 
       - name: Use Node ${{ matrix.node }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
 
