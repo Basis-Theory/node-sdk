@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/Basis-Theory/node-sdk/compare/v2.3.0...v2.4.0) (2025-04-30)
+
+
+### Features
+
+* Add card fields to tokens and token-intents ([#74](https://github.com/Basis-Theory/node-sdk/issues/74)) ([69de0cb](https://github.com/Basis-Theory/node-sdk/commit/69de0cb57e585005a1e2ffafe3bf98c4e00fa27f))
+
 # [2.3.0](https://github.com/Basis-Theory/node-sdk/compare/v2.2.0...v2.3.0) (2025-04-01)
 
 
