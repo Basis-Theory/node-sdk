@@ -23,5 +23,6 @@ export * as tokenIntents from "./tokenIntents";
 export * from "./tokenIntents/client/requests";
 export * as webhooks from "./webhooks";
 export * from "./webhooks/client/requests";
+export * as accountUpdater from "./accountUpdater";
 export * as tenants from "./tenants";
 export * as threeds from "./threeds";
