@@ -20,6 +20,7 @@ import { Roles } from "./api/resources/roles/client/Client";
 import { Sessions } from "./api/resources/sessions/client/Client";
 import { TokenIntents } from "./api/resources/tokenIntents/client/Client";
 import { Webhooks } from "./api/resources/webhooks/client/Client";
+import { AccountUpdater } from "./api/resources/accountUpdater/client/Client";
 import { Tenants } from "./api/resources/tenants/client/Client";
 import { Threeds } from "./api/resources/threeds/client/Client";
 
@@ -65,6 +66,7 @@ export class BasisTheoryClient {
     protected _sessions: Sessions | undefined;
     protected _tokenIntents: TokenIntents | undefined;
     protected _webhooks: Webhooks | undefined;
+    protected _accountUpdater: AccountUpdater | undefined;
     protected _tenants: Tenants | undefined;
     protected _threeds: Threeds | undefined;
 
@@ -132,6 +134,10 @@ export class BasisTheoryClient {
 
     public get webhooks(): Webhooks {
         return (this._webhooks ??= new Webhooks(this._options));
+    }
+
+    public get accountUpdater(): AccountUpdater {
+        return (this._accountUpdater ??= new AccountUpdater(this._options));
     }
 
     public get tenants(): Tenants {
