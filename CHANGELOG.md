@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/Basis-Theory/node-sdk/compare/v2.4.0...v2.5.0) (2025-05-05)
+
+
+### Features
+
+* adds account updater endpoints ([#76](https://github.com/Basis-Theory/node-sdk/issues/76)) ([bb938f0](https://github.com/Basis-Theory/node-sdk/commit/bb938f0e95f5741bed0601067a0520dbbf7a0147))
+
 # [2.4.0](https://github.com/Basis-Theory/node-sdk/compare/v2.3.0...v2.4.0) (2025-04-30)
 
 
