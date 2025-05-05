@@ -110,3 +110,8 @@ export * from "./WebhookListPagination";
 export * from "./WebhookList";
 export * from "./WebhookStatus";
 export * from "./Webhook";
+export * from "./AccountUpdaterRealTimeResponse";
+export * from "./AccountUpdaterJobListPagination";
+export * from "./AccountUpdaterJobList";
+export * from "./AccountUpdaterJobStatus";
+export * from "./AccountUpdaterJob";
