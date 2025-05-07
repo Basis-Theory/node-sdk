@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/Basis-Theory/node-sdk/compare/v2.5.0...v2.6.0) (2025-05-07)
+
+
+### Features
+
+* add network tokens and 3ds co-badged cards props ([42b85ca](https://github.com/Basis-Theory/node-sdk/commit/42b85cad4da022daa44253cbdd563e3fc9f0ca7e))
+
 # [2.5.0](https://github.com/Basis-Theory/node-sdk/compare/v2.4.0...v2.5.0) (2025-05-05)
 
 
