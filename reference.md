@@ -1435,6 +1435,54 @@ await client.networkTokens.create();
 </dl>
 </details>
 
+<details><summary><code>client.networkTokens.<a href="/src/api/resources/networkTokens/client/Client.ts">cryptogram</a>(id) -> BasisTheory.NetworkTokenCryptogram</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.networkTokens.cryptogram("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `NetworkTokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Permissions
 
 <details><summary><code>client.permissions.<a href="/src/api/resources/permissions/client/Client.ts">list</a>({ ...params }) -> BasisTheory.Permission[]</code></summary>

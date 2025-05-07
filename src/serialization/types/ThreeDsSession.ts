@@ -21,6 +21,10 @@ export const ThreeDsSession: core.serialization.ObjectSchema<
     tokenId: core.serialization.property("token_id", core.serialization.string().optional()),
     tokenIntentId: core.serialization.property("token_intent_id", core.serialization.string().optional()),
     cardBrand: core.serialization.property("card_brand", core.serialization.string().optional()),
+    additionalCardBrands: core.serialization.property(
+        "additional_card_brands",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     expirationDate: core.serialization.property("expiration_date", core.serialization.date().optional()),
     createdDate: core.serialization.property("created_date", core.serialization.date().optional()),
     createdBy: core.serialization.property("created_by", core.serialization.string().optional()),
@@ -43,6 +47,7 @@ export declare namespace ThreeDsSession {
         token_id?: string | null;
         token_intent_id?: string | null;
         card_brand?: string | null;
+        additional_card_brands?: string[] | null;
         expiration_date?: string | null;
         created_date?: string | null;
         created_by?: string | null;
