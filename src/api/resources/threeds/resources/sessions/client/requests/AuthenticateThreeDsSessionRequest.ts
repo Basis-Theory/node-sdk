@@ -14,6 +14,7 @@ import * as BasisTheory from "../../../../../../index";
 export interface AuthenticateThreeDsSessionRequest {
     authenticationCategory: string;
     authenticationType: string;
+    cardBrand?: string;
     challengePreference?: string;
     requestDecoupledChallenge?: boolean;
     decoupledChallengeMaxTime?: number;

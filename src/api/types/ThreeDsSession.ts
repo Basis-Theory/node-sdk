@@ -12,6 +12,7 @@ export interface ThreeDsSession {
     tokenId?: string;
     tokenIntentId?: string;
     cardBrand?: string;
+    additionalCardBrands?: string[];
     expirationDate?: Date;
     createdDate?: Date;
     createdBy?: string;

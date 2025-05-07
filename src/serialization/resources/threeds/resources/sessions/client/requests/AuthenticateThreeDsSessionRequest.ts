@@ -17,6 +17,7 @@ export const AuthenticateThreeDsSessionRequest: core.serialization.Schema<
 > = core.serialization.object({
     authenticationCategory: core.serialization.property("authentication_category", core.serialization.string()),
     authenticationType: core.serialization.property("authentication_type", core.serialization.string()),
+    cardBrand: core.serialization.property("card_brand", core.serialization.string().optional()),
     challengePreference: core.serialization.property("challenge_preference", core.serialization.string().optional()),
     requestDecoupledChallenge: core.serialization.property(
         "request_decoupled_challenge",
@@ -41,6 +42,7 @@ export declare namespace AuthenticateThreeDsSessionRequest {
     export interface Raw {
         authentication_category: string;
         authentication_type: string;
+        card_brand?: string | null;
         challenge_preference?: string | null;
         request_decoupled_challenge?: boolean | null;
         decoupled_challenge_max_time?: number | null;
