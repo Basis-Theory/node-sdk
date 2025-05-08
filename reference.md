@@ -1395,7 +1395,7 @@ await client.logs.getEntityTypes();
 
 ## NetworkTokens
 
-<details><summary><code>client.networkTokens.<a href="/src/api/resources/networkTokens/client/Client.ts">create</a>() -> void</code></summary>
+<details><summary><code>client.networkTokens.<a href="/src/api/resources/networkTokens/client/Client.ts">create</a>({ ...params }) -> BasisTheory.NetworkToken</code></summary>
 <dl>
 <dd>
 
@@ -1420,6 +1420,14 @@ await client.networkTokens.create();
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.CreateNetworkTokenRequest`
+
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -1449,6 +1457,102 @@ await client.networkTokens.create();
 
 ```typescript
 await client.networkTokens.cryptogram("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `NetworkTokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.networkTokens.<a href="/src/api/resources/networkTokens/client/Client.ts">get</a>(id) -> BasisTheory.NetworkToken</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.networkTokens.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `NetworkTokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.networkTokens.<a href="/src/api/resources/networkTokens/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.networkTokens.delete("id");
 ```
 
 </dd>

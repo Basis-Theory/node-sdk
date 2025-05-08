@@ -4,10 +4,10 @@
 
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
-import urlJoin from "url-join";
-import * as errors from "../../../../errors/index";
 import * as BasisTheory from "../../../index";
 import * as serializers from "../../../../serialization/index";
+import urlJoin from "url-join";
+import * as errors from "../../../../errors/index";
 
 export declare namespace NetworkTokens {
     export interface Options {
@@ -38,18 +38,28 @@ export class NetworkTokens {
     constructor(protected readonly _options: NetworkTokens.Options = {}) {}
 
     /**
+     * @param {BasisTheory.CreateNetworkTokenRequest} request
      * @param {NetworkTokens.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link BasisTheory.BadRequestError}
+     * @throws {@link BasisTheory.UnauthorizedError}
+     * @throws {@link BasisTheory.ForbiddenError}
+     * @throws {@link BasisTheory.UnprocessableEntityError}
+     * @throws {@link BasisTheory.InternalServerError}
      *
      * @example
      *     await client.networkTokens.create()
      */
-    public async create(requestOptions?: NetworkTokens.RequestOptions): Promise<void> {
+    public async create(
+        request: BasisTheory.CreateNetworkTokenRequest = {},
+        requestOptions?: NetworkTokens.RequestOptions,
+    ): Promise<BasisTheory.NetworkToken> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.BasisTheoryEnvironment.Default,
-                "connections/network-tokens",
+                "network-tokens",
             ),
             method: "POST",
             headers: {
@@ -68,19 +78,79 @@ export class NetworkTokens {
             },
             contentType: "application/json",
             requestType: "json",
+            body: serializers.CreateNetworkTokenRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return;
+            return serializers.NetworkToken.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.BasisTheoryError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new BasisTheory.BadRequestError(
+                        serializers.ValidationProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 401:
+                    throw new BasisTheory.UnauthorizedError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 403:
+                    throw new BasisTheory.ForbiddenError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 422:
+                    throw new BasisTheory.UnprocessableEntityError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 500:
+                    throw new BasisTheory.InternalServerError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                default:
+                    throw new errors.BasisTheoryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
         }
 
         switch (_response.error.reason) {
@@ -90,9 +160,7 @@ export class NetworkTokens {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling POST /connections/network-tokens.",
-                );
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /network-tokens.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -217,6 +285,216 @@ export class NetworkTokens {
                 throw new errors.BasisTheoryTimeoutError(
                     "Timeout exceeded when calling POST /network-tokens/{id}/cryptogram.",
                 );
+            case "unknown":
+                throw new errors.BasisTheoryError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {string} id
+     * @param {NetworkTokens.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link BasisTheory.UnauthorizedError}
+     * @throws {@link BasisTheory.ForbiddenError}
+     * @throws {@link BasisTheory.NotFoundError}
+     * @throws {@link BasisTheory.InternalServerError}
+     *
+     * @example
+     *     await client.networkTokens.get("id")
+     */
+    public async get(id: string, requestOptions?: NetworkTokens.RequestOptions): Promise<BasisTheory.NetworkToken> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `network-tokens/${encodeURIComponent(id)}`,
+            ),
+            method: "GET",
+            headers: {
+                "BT-TRACE-ID":
+                    (await core.Supplier.get(this._options.correlationId)) != null
+                        ? await core.Supplier.get(this._options.correlationId)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@basis-theory/node-sdk",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.NetworkToken.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new BasisTheory.UnauthorizedError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 403:
+                    throw new BasisTheory.ForbiddenError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 404:
+                    throw new BasisTheory.NotFoundError(_response.error.body);
+                case 500:
+                    throw new BasisTheory.InternalServerError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                default:
+                    throw new errors.BasisTheoryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.BasisTheoryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /network-tokens/{id}.");
+            case "unknown":
+                throw new errors.BasisTheoryError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {string} id
+     * @param {NetworkTokens.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link BasisTheory.UnauthorizedError}
+     * @throws {@link BasisTheory.ForbiddenError}
+     * @throws {@link BasisTheory.NotFoundError}
+     * @throws {@link BasisTheory.InternalServerError}
+     *
+     * @example
+     *     await client.networkTokens.delete("id")
+     */
+    public async delete(id: string, requestOptions?: NetworkTokens.RequestOptions): Promise<void> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `network-tokens/${encodeURIComponent(id)}`,
+            ),
+            method: "DELETE",
+            headers: {
+                "BT-TRACE-ID":
+                    (await core.Supplier.get(this._options.correlationId)) != null
+                        ? await core.Supplier.get(this._options.correlationId)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@basis-theory/node-sdk",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return;
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new BasisTheory.UnauthorizedError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 403:
+                    throw new BasisTheory.ForbiddenError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 404:
+                    throw new BasisTheory.NotFoundError(_response.error.body);
+                case 500:
+                    throw new BasisTheory.InternalServerError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                default:
+                    throw new errors.BasisTheoryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.BasisTheoryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling DELETE /network-tokens/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
