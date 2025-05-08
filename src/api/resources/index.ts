@@ -24,6 +24,7 @@ export * from "./tokens/client/requests";
 export * from "./enrichments/client/requests";
 export * from "./googlepay/client/requests";
 export * from "./logs/client/requests";
+export * from "./networkTokens/client/requests";
 export * from "./permissions/client/requests";
 export * from "./proxies/client/requests";
 export * from "./reactors/client/requests";
