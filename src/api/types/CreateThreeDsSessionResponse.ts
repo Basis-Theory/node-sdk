@@ -6,6 +6,7 @@ export interface CreateThreeDsSessionResponse {
     id?: string;
     type?: string;
     cardBrand?: string;
+    additionalCardBrands?: string[];
     methodUrl?: string;
     methodNotificationUrl?: string;
     directoryServerId?: string;

@@ -13,6 +13,10 @@ export const CreateThreeDsSessionResponse: core.serialization.ObjectSchema<
     id: core.serialization.string().optional(),
     type: core.serialization.string().optional(),
     cardBrand: core.serialization.string().optional(),
+    additionalCardBrands: core.serialization.property(
+        "additional_card_brands",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     methodUrl: core.serialization.property("method_url", core.serialization.string().optional()),
     methodNotificationUrl: core.serialization.property(
         "method_notification_url",
@@ -27,6 +31,7 @@ export declare namespace CreateThreeDsSessionResponse {
         id?: string | null;
         type?: string | null;
         cardBrand?: string | null;
+        additional_card_brands?: string[] | null;
         method_url?: string | null;
         method_notification_url?: string | null;
         directory_server_id?: string | null;

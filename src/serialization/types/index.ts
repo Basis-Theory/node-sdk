@@ -48,6 +48,7 @@ export * from "./Log";
 export * from "./LogEntityType";
 export * from "./LogPaginatedList";
 export * from "./NetworkToken";
+export * from "./NetworkTokenCryptogram";
 export * from "./Pagination";
 export * from "./PaymentData";
 export * from "./Permission";
