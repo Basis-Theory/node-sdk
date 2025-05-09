@@ -1,6 +1,6 @@
 {
     "name": "@basis-theory/node-sdk",
-    "version": "0.0.1",
+    "version": "2.5.0",
     "private": false,
     "repository": "https://github.com/Basis-Theory/node-sdk",
     "main": "./index.js",
@@ -14,12 +14,12 @@
     "dependencies": {
         "url-join": "4.0.1",
         "form-data": "^4.0.0",
-        "formdata-node": "^6.0.3",
         "node-fetch": "^2.7.0",
         "qs": "^6.13.1",
         "readable-stream": "^4.5.2"
     },
     "devDependencies": {
+        "formdata-node": "^6.0.3",
         "@types/url-join": "4.0.1",
         "@types/qs": "^6.9.17",
         "@types/node-fetch": "^2.6.12",
