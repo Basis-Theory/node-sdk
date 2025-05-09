@@ -1,3 +1,10 @@
+## [2.6.1](https://github.com/Basis-Theory/node-sdk/compare/v2.6.0...v2.6.1) (2025-05-09)
+
+
+### Bug Fixes
+
+* removes formdata-node from dependency ([#80](https://github.com/Basis-Theory/node-sdk/issues/80)) ([69ad68e](https://github.com/Basis-Theory/node-sdk/commit/69ad68e90c6fe58d591aa88e0c24ede301a3c184))
+
 # [2.6.0](https://github.com/Basis-Theory/node-sdk/compare/v2.5.0...v2.6.0) (2025-05-07)
 
 
