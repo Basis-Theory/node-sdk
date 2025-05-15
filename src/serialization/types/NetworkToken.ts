@@ -17,6 +17,8 @@ export const NetworkToken: core.serialization.ObjectSchema<serializers.NetworkTo
         status: core.serialization.string().optional(),
         createdBy: core.serialization.property("created_by", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        tokenId: core.serialization.property("token_id", core.serialization.string().optional()),
+        tokenIntentId: core.serialization.property("token_intent_id", core.serialization.string().optional()),
     });
 
 export declare namespace NetworkToken {
@@ -28,5 +30,7 @@ export declare namespace NetworkToken {
         status?: string | null;
         created_by?: string | null;
         created_at?: string | null;
+        token_id?: string | null;
+        token_intent_id?: string | null;
     }
 }

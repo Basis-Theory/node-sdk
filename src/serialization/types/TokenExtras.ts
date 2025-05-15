@@ -15,6 +15,10 @@ export const TokenExtras: core.serialization.ObjectSchema<serializers.TokenExtra
             "deduplication_behavior",
             core.serialization.string().optional(),
         ),
+        networkTokenIds: core.serialization.property(
+            "network_token_ids",
+            core.serialization.list(core.serialization.string()).optional(),
+        ),
     });
 
 export declare namespace TokenExtras {
@@ -22,5 +26,6 @@ export declare namespace TokenExtras {
         deduplicated?: boolean | null;
         tsp_details?: TokenServiceProviderDetails.Raw | null;
         deduplication_behavior?: string | null;
+        network_token_ids?: string[] | null;
     }
 }

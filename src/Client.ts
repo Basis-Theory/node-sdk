@@ -11,6 +11,7 @@ import { ApplicationTemplates } from "./api/resources/applicationTemplates/clien
 import { Tokens } from "./api/resources/tokens/client/Client";
 import { Enrichments } from "./api/resources/enrichments/client/Client";
 import { Googlepay } from "./api/resources/googlepay/client/Client";
+import { Keys } from "./api/resources/keys/client/Client";
 import { Logs } from "./api/resources/logs/client/Client";
 import { NetworkTokens } from "./api/resources/networkTokens/client/Client";
 import { Permissions } from "./api/resources/permissions/client/Client";
@@ -57,6 +58,7 @@ export class BasisTheoryClient {
     protected _tokens: Tokens | undefined;
     protected _enrichments: Enrichments | undefined;
     protected _googlepay: Googlepay | undefined;
+    protected _keys: Keys | undefined;
     protected _logs: Logs | undefined;
     protected _networkTokens: NetworkTokens | undefined;
     protected _permissions: Permissions | undefined;
@@ -98,6 +100,10 @@ export class BasisTheoryClient {
 
     public get googlepay(): Googlepay {
         return (this._googlepay ??= new Googlepay(this._options));
+    }
+
+    public get keys(): Keys {
+        return (this._keys ??= new Keys(this._options));
     }
 
     public get logs(): Logs {

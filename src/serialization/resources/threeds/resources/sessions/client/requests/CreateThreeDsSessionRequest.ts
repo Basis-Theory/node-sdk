@@ -6,6 +6,7 @@ import * as serializers from "../../../../../../index";
 import * as BasisTheory from "../../../../../../../api/index";
 import * as core from "../../../../../../../core";
 import { ThreeDsDeviceInfo } from "../../../../../../types/ThreeDsDeviceInfo";
+import { AuthenticateThreeDsSessionRequest } from "../../../../../../types/AuthenticateThreeDsSessionRequest";
 
 export const CreateThreeDsSessionRequest: core.serialization.Schema<
     serializers.threeds.CreateThreeDsSessionRequest.Raw,
@@ -18,6 +19,10 @@ export const CreateThreeDsSessionRequest: core.serialization.Schema<
     device: core.serialization.string().optional(),
     webChallengeMode: core.serialization.property("web_challenge_mode", core.serialization.string().optional()),
     deviceInfo: core.serialization.property("device_info", ThreeDsDeviceInfo.optional()),
+    authenticationRequest: core.serialization.property(
+        "authentication_request",
+        AuthenticateThreeDsSessionRequest.optional(),
+    ),
 });
 
 export declare namespace CreateThreeDsSessionRequest {
@@ -29,5 +34,6 @@ export declare namespace CreateThreeDsSessionRequest {
         device?: string | null;
         web_challenge_mode?: string | null;
         device_info?: ThreeDsDeviceInfo.Raw | null;
+        authentication_request?: AuthenticateThreeDsSessionRequest.Raw | null;
     }
 }

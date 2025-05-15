@@ -21,6 +21,7 @@ export interface ThreeDsAuthentication {
     authenticationStatusCode?: string;
     directoryStatusCode?: string;
     authenticationStatusReason?: string;
+    authenticationStatusReasonCode?: string;
     eci?: string;
     acsChallengeMandated?: string;
     acsDecoupledAuthentication?: string;

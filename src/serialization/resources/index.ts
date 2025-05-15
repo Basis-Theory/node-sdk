@@ -1,5 +1,6 @@
 export * as applicationKeys from "./applicationKeys";
 export * as applicationTemplates from "./applicationTemplates";
+export * as keys from "./keys";
 export * as logs from "./logs";
 export * as permissions from "./permissions";
 export * as roles from "./roles";
@@ -13,6 +14,7 @@ export * as enrichments from "./enrichments";
 export * from "./enrichments/client/requests";
 export * as googlepay from "./googlepay";
 export * from "./googlepay/client/requests";
+export * from "./keys/client/requests";
 export * as networkTokens from "./networkTokens";
 export * from "./networkTokens/client/requests";
 export * as proxies from "./proxies";

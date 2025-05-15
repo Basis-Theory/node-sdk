@@ -34,6 +34,10 @@ export const ThreeDsAuthentication: core.serialization.ObjectSchema<
         "authentication_status_reason",
         core.serialization.string().optional(),
     ),
+    authenticationStatusReasonCode: core.serialization.property(
+        "authentication_status_reason_code",
+        core.serialization.string().optional(),
+    ),
     eci: core.serialization.string().optional(),
     acsChallengeMandated: core.serialization.property("acs_challenge_mandated", core.serialization.string().optional()),
     acsDecoupledAuthentication: core.serialization.property(
@@ -91,6 +95,7 @@ export declare namespace ThreeDsAuthentication {
         authentication_status_code?: string | null;
         directory_status_code?: string | null;
         authentication_status_reason?: string | null;
+        authentication_status_reason_code?: string | null;
         eci?: string | null;
         acs_challenge_mandated?: string | null;
         acs_decoupled_authentication?: string | null;

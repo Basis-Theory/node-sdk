@@ -8,4 +8,5 @@ export interface TokenExtras {
     deduplicated?: boolean;
     tspDetails?: BasisTheory.TokenServiceProviderDetails;
     deduplicationBehavior?: string;
+    networkTokenIds?: string[];
 }
