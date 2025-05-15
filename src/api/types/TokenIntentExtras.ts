@@ -6,4 +6,5 @@ import * as BasisTheory from "../index";
 
 export interface TokenIntentExtras {
     tspDetails?: BasisTheory.TokenServiceProviderDetails;
+    networkTokenIds?: string[];
 }

@@ -12,4 +12,6 @@ export interface NetworkToken {
     status?: string;
     createdBy?: string;
     createdAt?: Date;
+    tokenId?: string;
+    tokenIntentId?: string;
 }

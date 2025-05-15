@@ -12,10 +12,15 @@ export const TokenIntentExtras: core.serialization.ObjectSchema<
     BasisTheory.TokenIntentExtras
 > = core.serialization.object({
     tspDetails: core.serialization.property("tsp_details", TokenServiceProviderDetails.optional()),
+    networkTokenIds: core.serialization.property(
+        "network_token_ids",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
 });
 
 export declare namespace TokenIntentExtras {
     export interface Raw {
         tsp_details?: TokenServiceProviderDetails.Raw | null;
+        network_token_ids?: string[] | null;
     }
 }

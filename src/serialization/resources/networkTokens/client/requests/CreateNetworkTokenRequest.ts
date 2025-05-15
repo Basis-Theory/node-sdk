@@ -13,12 +13,16 @@ export const CreateNetworkTokenRequest: core.serialization.Schema<
     BasisTheory.CreateNetworkTokenRequest
 > = core.serialization.object({
     data: Card.optional(),
+    tokenId: core.serialization.property("token_id", core.serialization.string().optional()),
+    tokenIntentId: core.serialization.property("token_intent_id", core.serialization.string().optional()),
     cardholderInfo: core.serialization.property("cardholder_info", CardholderInfo.optional()),
 });
 
 export declare namespace CreateNetworkTokenRequest {
     export interface Raw {
         data?: Card.Raw | null;
+        token_id?: string | null;
+        token_intent_id?: string | null;
         cardholder_info?: CardholderInfo.Raw | null;
     }
 }

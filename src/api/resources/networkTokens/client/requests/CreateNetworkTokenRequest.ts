@@ -10,5 +10,7 @@ import * as BasisTheory from "../../../../index";
  */
 export interface CreateNetworkTokenRequest {
     data?: BasisTheory.Card;
+    tokenId?: string;
+    tokenIntentId?: string;
     cardholderInfo?: BasisTheory.CardholderInfo;
 }
