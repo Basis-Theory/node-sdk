@@ -1,55 +1,5 @@
 # Reference
 
-## ApplePay
-
-<details><summary><code>client.applePay.<a href="/src/api/resources/applePay/client/Client.ts">tokenize</a>({ ...params }) -> BasisTheory.ApplePayTokenizeResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.applePay.tokenize();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `BasisTheory.ApplePayTokenizeRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ApplePay.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 ## Applications
 
 <details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Application></code></summary>
@@ -652,6 +602,104 @@ await client.applicationTemplates.get("id");
 <dd>
 
 **requestOptions:** `ApplicationTemplates.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## ApplePay
+
+<details><summary><code>client.applePay.<a href="/src/api/resources/applePay/client/Client.ts">create</a>({ ...params }) -> BasisTheory.ApplePayCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applePay.create();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.ApplePayCreateRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplePay.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applePay.<a href="/src/api/resources/applePay/client/Client.ts">get</a>(id) -> BasisTheory.ApplePayToken</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applePay.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplePay.RequestOptions`
 
 </dd>
 </dl>
@@ -3525,7 +3573,7 @@ await client.applePay.domain.deregister({
 <dl>
 <dd>
 
-**request:** `BasisTheory.applePay.ApplePayDomainDeregistrationRequest`
+**request:** `BasisTheory.ApplePayDomainDeregistrationRequest`
 
 </dd>
 </dl>
@@ -3615,7 +3663,7 @@ await client.applePay.domain.register({
 <dl>
 <dd>
 
-**request:** `BasisTheory.applePay.ApplePayDomainRegistrationRequest`
+**request:** `BasisTheory.ApplePayDomainRegistrationRequest`
 
 </dd>
 </dl>
@@ -3647,7 +3695,7 @@ await client.applePay.domain.register({
 <dd>
 
 ```typescript
-await client.applePay.domain.registerAll();
+await client.applePay.domain.registerAll({});
 ```
 
 </dd>
@@ -3663,7 +3711,7 @@ await client.applePay.domain.registerAll();
 <dl>
 <dd>
 
-**request:** `BasisTheory.applePay.ApplePayDomainRegistrationListRequest`
+**request:** `BasisTheory.ApplePayDomainRegistrationListRequest`
 
 </dd>
 </dl>
@@ -3697,7 +3745,7 @@ await client.applePay.domain.registerAll();
 <dd>
 
 ```typescript
-await client.applePay.session.create();
+await client.applePay.session.create({});
 ```
 
 </dd>
@@ -3713,7 +3761,297 @@ await client.applePay.session.create();
 <dl>
 <dd>
 
-**request:** `BasisTheory.applePay.ApplePaySessionRequest`
+**request:** `BasisTheory.ApplePaySessionRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Session.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Connections ApplePay
+
+<details><summary><code>client.connections.applePay.<a href="/src/api/resources/connections/resources/applePay/client/Client.ts">tokenize</a>({ ...params }) -> BasisTheory.ApplePayTokenizeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.applePay.tokenize();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.connections.ApplePayTokenizeRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplePay.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Connections ApplePay Domain
+
+<details><summary><code>client.connections.applePay.domain.<a href="/src/api/resources/connections/resources/applePay/resources/domain/client/Client.ts">deregister</a>({ ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.applePay.domain.deregister({
+    domain: "domain",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.ApplePayDomainDeregistrationRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Domain.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.applePay.domain.<a href="/src/api/resources/connections/resources/applePay/resources/domain/client/Client.ts">get</a>() -> BasisTheory.ApplePayDomainRegistrationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.applePay.domain.get();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Domain.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.applePay.domain.<a href="/src/api/resources/connections/resources/applePay/resources/domain/client/Client.ts">register</a>({ ...params }) -> BasisTheory.ApplePayDomainRegistrationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.applePay.domain.register({
+    domain: "domain",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.ApplePayDomainRegistrationRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Domain.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.applePay.domain.<a href="/src/api/resources/connections/resources/applePay/resources/domain/client/Client.ts">registerAll</a>({ ...params }) -> BasisTheory.ApplePayDomainRegistrationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.applePay.domain.registerAll({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.ApplePayDomainRegistrationListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Domain.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Connections ApplePay Session
+
+<details><summary><code>client.connections.applePay.session.<a href="/src/api/resources/connections/resources/applePay/resources/session/client/Client.ts">create</a>({ ...params }) -> string</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.applePay.session.create({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.ApplePaySessionRequest`
 
 </dd>
 </dl>

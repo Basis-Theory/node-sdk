@@ -4,10 +4,10 @@
 
 import * as environments from "./environments";
 import * as core from "./core";
-import { ApplePay } from "./api/resources/applePay/client/Client";
 import { Applications } from "./api/resources/applications/client/Client";
 import { ApplicationKeys } from "./api/resources/applicationKeys/client/Client";
 import { ApplicationTemplates } from "./api/resources/applicationTemplates/client/Client";
+import { ApplePay } from "./api/resources/applePay/client/Client";
 import { Tokens } from "./api/resources/tokens/client/Client";
 import { Enrichments } from "./api/resources/enrichments/client/Client";
 import { Googlepay } from "./api/resources/googlepay/client/Client";
@@ -22,6 +22,7 @@ import { Sessions } from "./api/resources/sessions/client/Client";
 import { TokenIntents } from "./api/resources/tokenIntents/client/Client";
 import { Webhooks } from "./api/resources/webhooks/client/Client";
 import { AccountUpdater } from "./api/resources/accountUpdater/client/Client";
+import { Connections } from "./api/resources/connections/client/Client";
 import { Tenants } from "./api/resources/tenants/client/Client";
 import { Threeds } from "./api/resources/threeds/client/Client";
 
@@ -51,10 +52,10 @@ export declare namespace BasisTheoryClient {
 }
 
 export class BasisTheoryClient {
-    protected _applePay: ApplePay | undefined;
     protected _applications: Applications | undefined;
     protected _applicationKeys: ApplicationKeys | undefined;
     protected _applicationTemplates: ApplicationTemplates | undefined;
+    protected _applePay: ApplePay | undefined;
     protected _tokens: Tokens | undefined;
     protected _enrichments: Enrichments | undefined;
     protected _googlepay: Googlepay | undefined;
@@ -69,14 +70,11 @@ export class BasisTheoryClient {
     protected _tokenIntents: TokenIntents | undefined;
     protected _webhooks: Webhooks | undefined;
     protected _accountUpdater: AccountUpdater | undefined;
+    protected _connections: Connections | undefined;
     protected _tenants: Tenants | undefined;
     protected _threeds: Threeds | undefined;
 
     constructor(protected readonly _options: BasisTheoryClient.Options = {}) {}
-
-    public get applePay(): ApplePay {
-        return (this._applePay ??= new ApplePay(this._options));
-    }
 
     public get applications(): Applications {
         return (this._applications ??= new Applications(this._options));
@@ -88,6 +86,10 @@ export class BasisTheoryClient {
 
     public get applicationTemplates(): ApplicationTemplates {
         return (this._applicationTemplates ??= new ApplicationTemplates(this._options));
+    }
+
+    public get applePay(): ApplePay {
+        return (this._applePay ??= new ApplePay(this._options));
     }
 
     public get tokens(): Tokens {
@@ -144,6 +146,10 @@ export class BasisTheoryClient {
 
     public get accountUpdater(): AccountUpdater {
         return (this._accountUpdater ??= new AccountUpdater(this._options));
+    }
+
+    public get connections(): Connections {
+        return (this._connections ??= new Connections(this._options));
     }
 
     public get tenants(): Tenants {
