@@ -1,1 +1,1 @@
-export { type ApplePayTokenizeRequest } from "./ApplePayTokenizeRequest";
+export { type ApplePayCreateRequest } from "./ApplePayCreateRequest";

@@ -38,7 +38,7 @@ following namespace:
 ```typescript
 import { BasisTheory } from "@basis-theory/node-sdk";
 
-const request: BasisTheory.ApplePayTokenizeRequest = {
+const request: BasisTheory.ApplicationsListRequest = {
     ...
 };
 ```

@@ -38,7 +38,7 @@ export class Session {
     constructor(protected readonly _options: Session.Options = {}) {}
 
     /**
-     * @param {BasisTheory.applePay.ApplePaySessionRequest} request
+     * @param {BasisTheory.ApplePaySessionRequest} request
      * @param {Session.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
@@ -47,10 +47,10 @@ export class Session {
      * @throws {@link BasisTheory.UnprocessableEntityError}
      *
      * @example
-     *     await client.applePay.session.create()
+     *     await client.applePay.session.create({})
      */
     public async create(
-        request: BasisTheory.applePay.ApplePaySessionRequest = {},
+        request: BasisTheory.ApplePaySessionRequest,
         requestOptions?: Session.RequestOptions,
     ): Promise<string> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -58,7 +58,7 @@ export class Session {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.BasisTheoryEnvironment.Default,
-                "connections/apple-pay/session",
+                "apple-pay/session",
             ),
             method: "POST",
             headers: {
@@ -77,7 +77,7 @@ export class Session {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.applePay.ApplePaySessionRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.ApplePaySessionRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -149,9 +149,7 @@ export class Session {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling POST /connections/apple-pay/session.",
-                );
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /apple-pay/session.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,

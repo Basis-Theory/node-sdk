@@ -38,7 +38,7 @@ export class Domain {
     constructor(protected readonly _options: Domain.Options = {}) {}
 
     /**
-     * @param {BasisTheory.applePay.ApplePayDomainDeregistrationRequest} request
+     * @param {BasisTheory.ApplePayDomainDeregistrationRequest} request
      * @param {Domain.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
@@ -50,7 +50,7 @@ export class Domain {
      *     })
      */
     public async deregister(
-        request: BasisTheory.applePay.ApplePayDomainDeregistrationRequest,
+        request: BasisTheory.ApplePayDomainDeregistrationRequest,
         requestOptions?: Domain.RequestOptions,
     ): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -58,7 +58,7 @@ export class Domain {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.BasisTheoryEnvironment.Default,
-                "connections/apple-pay/domain-deregistration",
+                "apple-pay/domain-deregistration",
             ),
             method: "POST",
             headers: {
@@ -77,7 +77,7 @@ export class Domain {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.applePay.ApplePayDomainDeregistrationRequest.jsonOrThrow(request, {
+            body: serializers.ApplePayDomainDeregistrationRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -126,7 +126,7 @@ export class Domain {
                 });
             case "timeout":
                 throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling POST /connections/apple-pay/domain-deregistration.",
+                    "Timeout exceeded when calling POST /apple-pay/domain-deregistration.",
                 );
             case "unknown":
                 throw new errors.BasisTheoryError({
@@ -149,7 +149,7 @@ export class Domain {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.BasisTheoryEnvironment.Default,
-                "connections/apple-pay/domain-registration",
+                "apple-pay/domain-registration",
             ),
             method: "GET",
             headers: {
@@ -210,7 +210,7 @@ export class Domain {
                 });
             case "timeout":
                 throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling GET /connections/apple-pay/domain-registration.",
+                    "Timeout exceeded when calling GET /apple-pay/domain-registration.",
                 );
             case "unknown":
                 throw new errors.BasisTheoryError({
@@ -220,7 +220,7 @@ export class Domain {
     }
 
     /**
-     * @param {BasisTheory.applePay.ApplePayDomainRegistrationRequest} request
+     * @param {BasisTheory.ApplePayDomainRegistrationRequest} request
      * @param {Domain.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
@@ -235,7 +235,7 @@ export class Domain {
      *     })
      */
     public async register(
-        request: BasisTheory.applePay.ApplePayDomainRegistrationRequest,
+        request: BasisTheory.ApplePayDomainRegistrationRequest,
         requestOptions?: Domain.RequestOptions,
     ): Promise<BasisTheory.ApplePayDomainRegistrationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -243,7 +243,7 @@ export class Domain {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.BasisTheoryEnvironment.Default,
-                "connections/apple-pay/domain-registration",
+                "apple-pay/domain-registration",
             ),
             method: "POST",
             headers: {
@@ -262,7 +262,7 @@ export class Domain {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.applePay.ApplePayDomainRegistrationRequest.jsonOrThrow(request, {
+            body: serializers.ApplePayDomainRegistrationRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -347,7 +347,7 @@ export class Domain {
                 });
             case "timeout":
                 throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling POST /connections/apple-pay/domain-registration.",
+                    "Timeout exceeded when calling POST /apple-pay/domain-registration.",
                 );
             case "unknown":
                 throw new errors.BasisTheoryError({
@@ -357,7 +357,7 @@ export class Domain {
     }
 
     /**
-     * @param {BasisTheory.applePay.ApplePayDomainRegistrationListRequest} request
+     * @param {BasisTheory.ApplePayDomainRegistrationListRequest} request
      * @param {Domain.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
@@ -367,10 +367,10 @@ export class Domain {
      * @throws {@link BasisTheory.ServiceUnavailableError}
      *
      * @example
-     *     await client.applePay.domain.registerAll()
+     *     await client.applePay.domain.registerAll({})
      */
     public async registerAll(
-        request: BasisTheory.applePay.ApplePayDomainRegistrationListRequest = {},
+        request: BasisTheory.ApplePayDomainRegistrationListRequest,
         requestOptions?: Domain.RequestOptions,
     ): Promise<BasisTheory.ApplePayDomainRegistrationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -378,7 +378,7 @@ export class Domain {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.BasisTheoryEnvironment.Default,
-                "connections/apple-pay/domain-registration",
+                "apple-pay/domain-registration",
             ),
             method: "PUT",
             headers: {
@@ -397,7 +397,7 @@ export class Domain {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.applePay.ApplePayDomainRegistrationListRequest.jsonOrThrow(request, {
+            body: serializers.ApplePayDomainRegistrationListRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -482,7 +482,7 @@ export class Domain {
                 });
             case "timeout":
                 throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling PUT /connections/apple-pay/domain-registration.",
+                    "Timeout exceeded when calling PUT /apple-pay/domain-registration.",
                 );
             case "unknown":
                 throw new errors.BasisTheoryError({

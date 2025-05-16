@@ -51,7 +51,7 @@ export class ApplePay {
     }
 
     /**
-     * @param {BasisTheory.ApplePayTokenizeRequest} request
+     * @param {BasisTheory.ApplePayCreateRequest} request
      * @param {ApplePay.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
@@ -60,18 +60,18 @@ export class ApplePay {
      * @throws {@link BasisTheory.UnprocessableEntityError}
      *
      * @example
-     *     await client.applePay.tokenize()
+     *     await client.applePay.create()
      */
-    public async tokenize(
-        request: BasisTheory.ApplePayTokenizeRequest = {},
+    public async create(
+        request: BasisTheory.ApplePayCreateRequest = {},
         requestOptions?: ApplePay.RequestOptions,
-    ): Promise<BasisTheory.ApplePayTokenizeResponse> {
+    ): Promise<BasisTheory.ApplePayCreateResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.BasisTheoryEnvironment.Default,
-                "connections/apple-pay/tokenize",
+                "apple-pay",
             ),
             method: "POST",
             headers: {
@@ -90,13 +90,13 @@ export class ApplePay {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.ApplePayTokenizeRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.ApplePayCreateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ApplePayTokenizeResponse.parseOrThrow(_response.body, {
+            return serializers.ApplePayCreateResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -162,9 +162,101 @@ export class ApplePay {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling POST /connections/apple-pay/tokenize.",
-                );
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /apple-pay.");
+            case "unknown":
+                throw new errors.BasisTheoryError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {string} id
+     * @param {ApplePay.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link BasisTheory.UnauthorizedError}
+     * @throws {@link BasisTheory.ForbiddenError}
+     *
+     * @example
+     *     await client.applePay.get("id")
+     */
+    public async get(id: string, requestOptions?: ApplePay.RequestOptions): Promise<BasisTheory.ApplePayToken> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `apple-pay/${encodeURIComponent(id)}`,
+            ),
+            method: "GET",
+            headers: {
+                "BT-TRACE-ID":
+                    (await core.Supplier.get(this._options.correlationId)) != null
+                        ? await core.Supplier.get(this._options.correlationId)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@basis-theory/node-sdk",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.ApplePayToken.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new BasisTheory.UnauthorizedError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 403:
+                    throw new BasisTheory.ForbiddenError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                default:
+                    throw new errors.BasisTheoryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.BasisTheoryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /apple-pay/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
