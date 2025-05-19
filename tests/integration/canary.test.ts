@@ -621,6 +621,29 @@ describe('token intents', () => {
     });
 });
 
+describe('client encryption keys', () => {
+    it('should support lifecycle', async () => {
+        const client = getManagementClient();
+
+        const key = await client.keys.create();
+        expect(key.id).toBeDefined();
+        expect(key.publicKeyPem).toBeDefined();
+
+        const retrievedKey = await client.keys.get(key.id!);
+        expect(retrievedKey.id).toBe(key.id);
+        expect(retrievedKey.expiresAt).toBeDefined();
+
+        await client.keys.delete(key.id!);
+
+        try {
+            await client.keys.get(key.id!);
+            fail('Should have raised a 404 for key not found');
+        } catch (err) {
+            expect(err).toBeInstanceOf(NotFoundError);
+        }
+    });
+});
+
 describe('Canary', () => {
     it('should call tenant/self', async () => {
         const client = getManagementClient();
