@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/Basis-Theory/node-sdk/compare/v2.6.1...v3.0.0) (2025-05-20)
+
+
+### Features
+
+* Add Apple Pay Token support ([0ffce8d](https://github.com/Basis-Theory/node-sdk/commit/0ffce8dbfebce3434e596139a2ade536e1d4d9ba))
+
+
+### BREAKING CHANGES
+
+* The old methods for using Apple Pay and Token Intents have moved to the "connection" namespace.
+
 ## [2.6.1](https://github.com/Basis-Theory/node-sdk/compare/v2.6.0...v2.6.1) (2025-05-09)
 
 

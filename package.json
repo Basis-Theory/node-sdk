@@ -1,6 +1,6 @@
 {
   "name": "@basis-theory/node-sdk",
-  "version": "2.6.1",
+  "version": "3.0.0",
   "private": false,
   "repository": "https://github.com/Basis-Theory/node-sdk",
   "main": "./index.js",
