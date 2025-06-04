@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/Basis-Theory/node-sdk/compare/v3.0.0...v3.1.0) (2025-06-04)
+
+
+### Features
+
+* Add Apple Pay unlink support ([5a16146](https://github.com/Basis-Theory/node-sdk/commit/5a161461eff5672a428769ffe6cacbe71511e10c))
+
 # [3.0.0](https://github.com/Basis-Theory/node-sdk/compare/v2.6.1...v3.0.0) (2025-05-20)
 
 
