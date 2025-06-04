@@ -9,4 +9,5 @@ export interface TokenExtras {
     tspDetails?: BasisTheory.TokenServiceProviderDetails;
     deduplicationBehavior?: string;
     networkTokenIds?: string[];
+    decryptedPayload?: boolean;
 }

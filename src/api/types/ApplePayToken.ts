@@ -12,6 +12,8 @@ export interface ApplePayToken {
     expiresAt?: Date;
     createdBy?: string;
     createdAt?: Date;
+    modifiedBy?: string;
+    modifiedAt?: Date;
     card?: BasisTheory.CardDetails;
     data?: unknown;
     authentication?: BasisTheory.Authentication;
