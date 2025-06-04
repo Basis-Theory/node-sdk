@@ -17,6 +17,8 @@ export const ApplePayToken: core.serialization.ObjectSchema<serializers.ApplePay
         expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
         createdBy: core.serialization.property("created_by", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedBy: core.serialization.property("modified_by", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         card: CardDetails.optional(),
         data: core.serialization.unknown().optional(),
         authentication: Authentication.optional(),
@@ -31,6 +33,8 @@ export declare namespace ApplePayToken {
         expires_at?: string | null;
         created_by?: string | null;
         created_at?: string | null;
+        modified_by?: string | null;
+        modified_at?: string | null;
         card?: CardDetails.Raw | null;
         data?: unknown | null;
         authentication?: Authentication.Raw | null;

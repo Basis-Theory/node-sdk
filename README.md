@@ -17,7 +17,7 @@ npm i -s @basis-theory/node-sdk
 
 ## Reference
 
-A full reference for this library is available [here](./reference.md).
+A full reference for this library is available [here](https://github.com/Basis-Theory/node-sdk/blob/HEAD/./reference.md).
 
 ## Usage
 
