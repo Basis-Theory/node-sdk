@@ -19,6 +19,7 @@ export const TokenExtras: core.serialization.ObjectSchema<serializers.TokenExtra
             "network_token_ids",
             core.serialization.list(core.serialization.string()).optional(),
         ),
+        decryptedPayload: core.serialization.property("decrypted_payload", core.serialization.boolean().optional()),
     });
 
 export declare namespace TokenExtras {
@@ -27,5 +28,6 @@ export declare namespace TokenExtras {
         tsp_details?: TokenServiceProviderDetails.Raw | null;
         deduplication_behavior?: string | null;
         network_token_ids?: string[] | null;
+        decrypted_payload?: boolean | null;
     }
 }

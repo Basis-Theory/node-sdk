@@ -12,6 +12,7 @@ export interface CreateTokenRequest {
     id?: string;
     type?: string;
     data?: unknown;
+    encrypted?: string;
     privacy?: BasisTheory.Privacy;
     metadata?: Record<string, string | undefined>;
     searchIndexes?: string[];
