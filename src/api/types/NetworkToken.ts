@@ -8,10 +8,13 @@ export interface NetworkToken {
     id?: string;
     tenantId?: string;
     data?: BasisTheory.Card;
+    card?: BasisTheory.CardDetails;
     networkToken?: BasisTheory.CardDetails;
     status?: string;
     createdBy?: string;
     createdAt?: Date;
+    modifiedBy?: string;
+    modifiedAt?: Date;
     tokenId?: string;
     tokenIntentId?: string;
 }

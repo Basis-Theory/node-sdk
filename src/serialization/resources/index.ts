@@ -1,10 +1,10 @@
 export * as applicationKeys from "./applicationKeys";
 export * as applicationTemplates from "./applicationTemplates";
+export * as applePay from "./applePay";
 export * as keys from "./keys";
 export * as logs from "./logs";
 export * as permissions from "./permissions";
 export * as roles from "./roles";
-export * as applePay from "./applePay";
 export * as connection from "./connection";
 export * as applications from "./applications";
 export * from "./applications/client/requests";
