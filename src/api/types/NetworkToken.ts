@@ -17,4 +17,5 @@ export interface NetworkToken {
     modifiedAt?: Date;
     tokenId?: string;
     tokenIntentId?: string;
+    extras?: BasisTheory.NetworkTokenExtras;
 }

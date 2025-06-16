@@ -7,6 +7,7 @@ import * as BasisTheory from "../../api/index";
 import * as core from "../../core";
 import { Card } from "./Card";
 import { CardDetails } from "./CardDetails";
+import { NetworkTokenExtras } from "./NetworkTokenExtras";
 
 export const NetworkToken: core.serialization.ObjectSchema<serializers.NetworkToken.Raw, BasisTheory.NetworkToken> =
     core.serialization.object({
@@ -22,6 +23,7 @@ export const NetworkToken: core.serialization.ObjectSchema<serializers.NetworkTo
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         tokenId: core.serialization.property("token_id", core.serialization.string().optional()),
         tokenIntentId: core.serialization.property("token_intent_id", core.serialization.string().optional()),
+        extras: core.serialization.property("_extras", NetworkTokenExtras.optional()),
     });
 
 export declare namespace NetworkToken {
@@ -38,5 +40,6 @@ export declare namespace NetworkToken {
         modified_at?: string | null;
         token_id?: string | null;
         token_intent_id?: string | null;
+        _extras?: NetworkTokenExtras.Raw | null;
     }
 }
