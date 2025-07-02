@@ -7,6 +7,7 @@ import * as BasisTheory from "../../../../../../../api/index";
 import * as core from "../../../../../../../core";
 import { ThreeDsDeviceInfo } from "../../../../../../types/ThreeDsDeviceInfo";
 import { AuthenticateThreeDsSessionRequest } from "../../../../../../types/AuthenticateThreeDsSessionRequest";
+import { ThreeDsCallbackUrls } from "../../../../../../types/ThreeDsCallbackUrls";
 
 export const CreateThreeDsSessionRequest: core.serialization.Schema<
     serializers.threeds.CreateThreeDsSessionRequest.Raw,
@@ -23,6 +24,7 @@ export const CreateThreeDsSessionRequest: core.serialization.Schema<
         "authentication_request",
         AuthenticateThreeDsSessionRequest.optional(),
     ),
+    callbackUrls: core.serialization.property("callback_urls", ThreeDsCallbackUrls.optional()),
 });
 
 export declare namespace CreateThreeDsSessionRequest {
@@ -35,5 +37,6 @@ export declare namespace CreateThreeDsSessionRequest {
         web_challenge_mode?: string | null;
         device_info?: ThreeDsDeviceInfo.Raw | null;
         authentication_request?: AuthenticateThreeDsSessionRequest.Raw | null;
+        callback_urls?: ThreeDsCallbackUrls.Raw | null;
     }
 }

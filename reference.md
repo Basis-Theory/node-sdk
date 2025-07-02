@@ -965,63 +965,6 @@ await client.tokens.create();
 </dl>
 </details>
 
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">search</a>({ ...params }) -> core.Page<BasisTheory.Token></code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-const response = await client.tokens.search();
-for await (const item of response) {
-    console.log(item);
-}
-
-// Or you can manually iterate page-by-page
-const page = await client.tokens.search();
-while (page.hasNextPage()) {
-    page = page.getNextPage();
-}
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `BasisTheory.SearchTokensRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tokens.IdempotentRequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">get</a>(id) -> BasisTheory.Token</code></summary>
 <dl>
 <dd>
@@ -1835,6 +1778,102 @@ await client.networkTokens.get("id");
 
 ```typescript
 await client.networkTokens.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `NetworkTokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.networkTokens.<a href="/src/api/resources/networkTokens/client/Client.ts">suspend</a>(id) -> BasisTheory.NetworkToken</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.networkTokens.suspend("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `NetworkTokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.networkTokens.<a href="/src/api/resources/networkTokens/client/Client.ts">resume</a>(id) -> BasisTheory.NetworkToken</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.networkTokens.resume("id");
 ```
 
 </dd>

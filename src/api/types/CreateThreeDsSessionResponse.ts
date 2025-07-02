@@ -11,4 +11,5 @@ export interface CreateThreeDsSessionResponse {
     methodNotificationUrl?: string;
     directoryServerId?: string;
     recommendedVersion?: string;
+    redirectUrl?: string;
 }
