@@ -17,4 +17,5 @@ export interface CreateThreeDsSessionRequest {
     webChallengeMode?: string;
     deviceInfo?: BasisTheory.ThreeDsDeviceInfo;
     authenticationRequest?: BasisTheory.AuthenticateThreeDsSessionRequest;
+    callbackUrls?: BasisTheory.ThreeDsCallbackUrls;
 }

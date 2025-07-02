@@ -502,6 +502,248 @@ export class NetworkTokens {
         }
     }
 
+    /**
+     * @param {string} id
+     * @param {NetworkTokens.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link BasisTheory.UnauthorizedError}
+     * @throws {@link BasisTheory.ForbiddenError}
+     * @throws {@link BasisTheory.NotFoundError}
+     * @throws {@link BasisTheory.ConflictError}
+     * @throws {@link BasisTheory.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.networkTokens.suspend("id")
+     */
+    public async suspend(id: string, requestOptions?: NetworkTokens.RequestOptions): Promise<BasisTheory.NetworkToken> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `network-tokens/${encodeURIComponent(id)}/suspend`,
+            ),
+            method: "PUT",
+            headers: {
+                "BT-TRACE-ID":
+                    (await core.Supplier.get(this._options.correlationId)) != null
+                        ? await core.Supplier.get(this._options.correlationId)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@basis-theory/node-sdk",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.NetworkToken.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new BasisTheory.UnauthorizedError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 403:
+                    throw new BasisTheory.ForbiddenError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 404:
+                    throw new BasisTheory.NotFoundError(_response.error.body);
+                case 409:
+                    throw new BasisTheory.ConflictError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 503:
+                    throw new BasisTheory.ServiceUnavailableError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                default:
+                    throw new errors.BasisTheoryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.BasisTheoryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.BasisTheoryTimeoutError(
+                    "Timeout exceeded when calling PUT /network-tokens/{id}/suspend.",
+                );
+            case "unknown":
+                throw new errors.BasisTheoryError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {string} id
+     * @param {NetworkTokens.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link BasisTheory.UnauthorizedError}
+     * @throws {@link BasisTheory.ForbiddenError}
+     * @throws {@link BasisTheory.NotFoundError}
+     * @throws {@link BasisTheory.ConflictError}
+     * @throws {@link BasisTheory.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.networkTokens.resume("id")
+     */
+    public async resume(id: string, requestOptions?: NetworkTokens.RequestOptions): Promise<BasisTheory.NetworkToken> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `network-tokens/${encodeURIComponent(id)}/resume`,
+            ),
+            method: "PUT",
+            headers: {
+                "BT-TRACE-ID":
+                    (await core.Supplier.get(this._options.correlationId)) != null
+                        ? await core.Supplier.get(this._options.correlationId)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@basis-theory/node-sdk",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "@basis-theory/node-sdk/0.0.1",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.NetworkToken.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new BasisTheory.UnauthorizedError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 403:
+                    throw new BasisTheory.ForbiddenError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 404:
+                    throw new BasisTheory.NotFoundError(_response.error.body);
+                case 409:
+                    throw new BasisTheory.ConflictError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 503:
+                    throw new BasisTheory.ServiceUnavailableError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                default:
+                    throw new errors.BasisTheoryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.BasisTheoryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.BasisTheoryTimeoutError(
+                    "Timeout exceeded when calling PUT /network-tokens/{id}/resume.",
+                );
+            case "unknown":
+                throw new errors.BasisTheoryError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
     protected async _getCustomAuthorizationHeaders() {
         const apiKeyValue = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["BT-API-KEY"];
         return { "BT-API-KEY": apiKeyValue };
