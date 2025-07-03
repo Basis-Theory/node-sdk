@@ -10,6 +10,7 @@ export interface NetworkToken {
     data?: BasisTheory.Card;
     card?: BasisTheory.CardDetails;
     networkToken?: BasisTheory.CardDetails;
+    par?: string;
     status?: string;
     createdBy?: string;
     createdAt?: Date;
