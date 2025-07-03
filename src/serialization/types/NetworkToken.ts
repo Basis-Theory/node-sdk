@@ -16,6 +16,7 @@ export const NetworkToken: core.serialization.ObjectSchema<serializers.NetworkTo
         data: Card.optional(),
         card: CardDetails.optional(),
         networkToken: core.serialization.property("network_token", CardDetails.optional()),
+        par: core.serialization.string().optional(),
         status: core.serialization.string().optional(),
         createdBy: core.serialization.property("created_by", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
@@ -33,6 +34,7 @@ export declare namespace NetworkToken {
         data?: Card.Raw | null;
         card?: CardDetails.Raw | null;
         network_token?: CardDetails.Raw | null;
+        par?: string | null;
         status?: string | null;
         created_by?: string | null;
         created_at?: string | null;
