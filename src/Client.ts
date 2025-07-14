@@ -8,6 +8,7 @@ import { Applications } from "./api/resources/applications/client/Client";
 import { ApplicationKeys } from "./api/resources/applicationKeys/client/Client";
 import { ApplicationTemplates } from "./api/resources/applicationTemplates/client/Client";
 import { ApplePay } from "./api/resources/applePay/client/Client";
+import { Document } from "./api/resources/document/client/Client";
 import { Tokens } from "./api/resources/tokens/client/Client";
 import { Enrichments } from "./api/resources/enrichments/client/Client";
 import { Googlepay } from "./api/resources/googlepay/client/Client";
@@ -56,6 +57,7 @@ export class BasisTheoryClient {
     protected _applicationKeys: ApplicationKeys | undefined;
     protected _applicationTemplates: ApplicationTemplates | undefined;
     protected _applePay: ApplePay | undefined;
+    protected _document: Document | undefined;
     protected _tokens: Tokens | undefined;
     protected _enrichments: Enrichments | undefined;
     protected _googlepay: Googlepay | undefined;
@@ -90,6 +92,10 @@ export class BasisTheoryClient {
 
     public get applePay(): ApplePay {
         return (this._applePay ??= new ApplePay(this._options));
+    }
+
+    public get document(): Document {
+        return (this._document ??= new Document(this._options));
     }
 
     public get tokens(): Tokens {

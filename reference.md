@@ -758,6 +758,160 @@ await client.applePay.unlink("id");
 </dl>
 </details>
 
+## Document
+
+<details><summary><code>client.document.<a href="/src/api/resources/document/client/Client.ts">upload</a>(document, { ...params }) -> BasisTheory.Document</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.document.upload(fs.createReadStream("/path/to/your/file"), {});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**document:** `File | fs.ReadStream | Blob | undefined`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.DocumentUploadRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Document.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.document.<a href="/src/api/resources/document/client/Client.ts">get</a>(id) -> BasisTheory.Document</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.document.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Document.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.document.<a href="/src/api/resources/document/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.document.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Document.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Tokens
 
 <details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">detokenize</a>({ ...params }) -> unknown</code></summary>
@@ -4156,6 +4310,8 @@ await client.connection.applePay.session.create({});
 </dd>
 </dl>
 </details>
+
+## Document Data
 
 ## Reactors Results
 
