@@ -13,7 +13,6 @@ export const AccountUpdaterRealTimeRequest: core.serialization.Schema<
     tokenId: core.serialization.property("token_id", core.serialization.string()),
     expirationYear: core.serialization.property("expiration_year", core.serialization.number().optional()),
     expirationMonth: core.serialization.property("expiration_month", core.serialization.number().optional()),
-    deduplicateToken: core.serialization.property("deduplicate_token", core.serialization.boolean().optional()),
 });
 
 export declare namespace AccountUpdaterRealTimeRequest {
@@ -21,6 +20,5 @@ export declare namespace AccountUpdaterRealTimeRequest {
         token_id: string;
         expiration_year?: number | null;
         expiration_month?: number | null;
-        deduplicate_token?: boolean | null;
     }
 }
