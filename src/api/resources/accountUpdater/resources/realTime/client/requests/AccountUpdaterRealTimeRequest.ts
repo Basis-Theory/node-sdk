@@ -15,6 +15,4 @@ export interface AccountUpdaterRealTimeRequest {
     expirationYear?: number;
     /** The 2-digit expiration month of the account number. Not required if the card token already stores this value. */
     expirationMonth?: number;
-    /** Whether deduplication should be enabled when creating the new token. Uses the value of the Deduplicate Tokens setting on the tenant if not set. */
-    deduplicateToken?: boolean;
 }
