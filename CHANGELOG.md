@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/Basis-Theory/node-sdk/compare/v3.1.0...v3.2.0) (2025-07-22)
+
+
+### Features
+
+* Add documents ([#102](https://github.com/Basis-Theory/node-sdk/issues/102)) ([19c24ce](https://github.com/Basis-Theory/node-sdk/commit/19c24ce7a186ed121331e44edee2a4e251d74dde))
+
 # [3.1.0](https://github.com/Basis-Theory/node-sdk/compare/v3.0.0...v3.1.0) (2025-06-04)
 
 
