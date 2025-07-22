@@ -2,6 +2,7 @@ import { BasisTheoryClient } from "../../src";
 import { NotFoundError, UnauthorizedError, UnprocessableEntityError } from "../../src/api";
 import { randomUUID } from "node:crypto";
 import { Tokens } from "../../src/api/resources/tokens/client/Client";
+import { Blob } from "buffer";
 
 expect.extend({
     toBeGuid(received) {
@@ -204,6 +205,49 @@ describe('Request Correlation', () => {
         await client.tenants.self.get({
             correlationId: randomUUID()
         });
+    });
+});
+
+describe('Documents', () => {
+    it('should support lifecyle', async () => {
+        const client = getPrivateClient();
+        const originalContent = 'Hello World';
+        const blob = new Blob([originalContent], { type: 'text/plain' });
+
+
+        // Upload
+        const uploaded = await client.documents.upload(blob, {
+            request: {
+                metadata: {
+                    "attribute 1": "value 1"
+                }
+            }
+        });
+
+        const retrievedInfo = await client.documents.get(uploaded.id!);
+        expect(retrievedInfo.contentType).toBe('text/plain');
+        expect(retrievedInfo.metadata).toEqual({
+            "attribute 1":"value 1"
+        });
+
+        // Download and verify content
+        const downloadStream = await client.documents.data.get(uploaded.id!);
+        const chunks: Buffer[] = [];
+        for await (const chunk of downloadStream) {
+            chunks.push(chunk);
+        }
+        const downloadedContent = Buffer.concat(chunks).toString('utf8');
+        expect(downloadedContent).toBe(originalContent);
+
+        await client.documents.delete(uploaded.id!);
+
+        try {
+            await client.documents.get(uploaded.id!);
+            fail('Should have raised a 404 for document not found');
+        } catch (err) {
+            expect(err).toBeInstanceOf(NotFoundError);
+        }
+
     });
 });
 
