@@ -1,1 +1,1 @@
-export { type JobsListRequest } from "./JobsListRequest";
+export { type JobsListRequest } from "./JobsListRequest.js";

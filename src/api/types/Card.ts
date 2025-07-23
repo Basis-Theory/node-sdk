@@ -4,7 +4,7 @@
 
 export interface Card {
     number?: string;
-    expirationMonth?: number;
-    expirationYear?: number;
+    expiration_month?: number;
+    expiration_year?: number;
     cvc?: string;
 }

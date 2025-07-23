@@ -3,5 +3,5 @@
  */
 
 export interface TenantUsageReport {
-    totalTokens?: number;
+    total_tokens?: number;
 }

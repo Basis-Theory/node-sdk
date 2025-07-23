@@ -3,13 +3,13 @@
  */
 
 export interface ThreeDsMerchantRiskInfo {
-    deliveryEmail?: string;
-    deliveryTimeFrame?: string;
-    giftCardAmount?: string;
-    giftCardCount?: string;
-    giftCardCurrency?: string;
-    preOrderPurchase?: boolean;
-    preOrderDate?: string;
-    reorderedPurchase?: boolean;
-    shippingMethod?: string;
+    delivery_email?: string;
+    delivery_time_frame?: string;
+    gift_card_amount?: string;
+    gift_card_count?: string;
+    gift_card_currency?: string;
+    pre_order_purchase?: boolean;
+    pre_order_date?: string;
+    reordered_purchase?: boolean;
+    shipping_method?: string;
 }

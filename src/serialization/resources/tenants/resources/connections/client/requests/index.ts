@@ -1,1 +1,0 @@
-export { CreateTenantConnectionRequest } from "./CreateTenantConnectionRequest";

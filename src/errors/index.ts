@@ -1,2 +1,2 @@
-export { BasisTheoryError } from "./BasisTheoryError";
-export { BasisTheoryTimeoutError } from "./BasisTheoryTimeoutError";
+export { BasisTheoryError } from "./BasisTheoryError.js";
+export { BasisTheoryTimeoutError } from "./BasisTheoryTimeoutError.js";

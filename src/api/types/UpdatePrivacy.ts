@@ -3,6 +3,6 @@
  */
 
 export interface UpdatePrivacy {
-    impactLevel?: string;
-    restrictionPolicy?: string;
+    impact_level?: string;
+    restriction_policy?: string;
 }

@@ -1,1 +1,1 @@
-export { type GooglePayTokenizeRequest } from "./GooglePayTokenizeRequest";
+export { type GooglePayTokenizeRequest } from "./GooglePayTokenizeRequest.js";

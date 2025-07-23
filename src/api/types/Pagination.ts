@@ -3,10 +3,10 @@
  */
 
 export interface Pagination {
-    totalItems?: number;
-    pageNumber?: number;
-    pageSize?: number;
-    totalPages?: number;
+    total_items?: number;
+    page_number?: number;
+    page_size?: number;
+    total_pages?: number;
     after?: string;
     next?: string;
 }

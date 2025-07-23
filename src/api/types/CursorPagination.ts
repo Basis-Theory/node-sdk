@@ -3,6 +3,6 @@
  */
 
 export interface CursorPagination {
-    pageSize?: number;
+    page_size?: number;
     next?: string;
 }

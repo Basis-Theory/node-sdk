@@ -7,5 +7,5 @@
  *     {}
  */
 export interface PermissionsListRequest {
-    applicationType?: string;
+    application_type?: string;
 }

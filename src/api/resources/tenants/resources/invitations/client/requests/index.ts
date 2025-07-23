@@ -1,2 +1,2 @@
-export { type InvitationsListRequest } from "./InvitationsListRequest";
-export { type CreateTenantInvitationRequest } from "./CreateTenantInvitationRequest";
+export { type InvitationsListRequest } from "./InvitationsListRequest.js";
+export { type CreateTenantInvitationRequest } from "./CreateTenantInvitationRequest.js";

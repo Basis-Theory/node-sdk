@@ -3,7 +3,7 @@
  */
 
 export interface GetTenantMembers {
-    userId?: string[];
+    user_id?: string[];
     page?: number;
     start?: string;
     size?: number;

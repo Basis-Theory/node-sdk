@@ -6,8 +6,8 @@ export interface ThreeDsRequestorInfo {
     id?: string;
     name?: string;
     url?: string;
-    discoverClientId?: string;
-    discoverRequestorId?: string;
-    amexRequestorType?: string;
-    cbSiretNumber?: string;
+    discover_client_id?: string;
+    discover_requestor_id?: string;
+    amex_requestor_type?: string;
+    cb_siret_number?: string;
 }

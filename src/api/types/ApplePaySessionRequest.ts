@@ -3,7 +3,7 @@
  */
 
 export interface ApplePaySessionRequest {
-    validationUrl?: string;
-    displayName?: string;
+    validation_url?: string;
+    display_name?: string;
     domain?: string;
 }

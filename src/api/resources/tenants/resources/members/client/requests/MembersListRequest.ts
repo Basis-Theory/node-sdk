@@ -7,7 +7,7 @@
  *     {}
  */
 export interface MembersListRequest {
-    userId?: string | string[];
+    user_id?: string | string[];
     page?: number;
     start?: string;
     size?: number;
