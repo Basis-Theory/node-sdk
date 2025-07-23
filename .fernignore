@@ -15,6 +15,3 @@ bump.js
 CHANGELOG.md
 LICENSE
 prepare.js
-
-# Adding fallback to node-fetch when `fetch` is not available - https://linear.app/basis-theory/issue/ENG-8050/[node-sdk]-fetch-not-loading-in-node-18x
-src/core/fetcher/getFetchFn.ts
