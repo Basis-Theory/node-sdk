@@ -16,7 +16,7 @@ export interface UpdateWebhookRequest {
     /** The URL to which the webhook will send events */
     url: string;
     /** The email address to use for management notification events. Ie: webhook disabled */
-    notifyEmail?: string;
+    notify_email?: string;
     /** An array of event types that the webhook will listen for */
     events: string[];
 }

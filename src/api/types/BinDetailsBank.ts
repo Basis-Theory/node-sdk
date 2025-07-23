@@ -6,5 +6,5 @@ export interface BinDetailsBank {
     name?: string;
     phone?: string;
     url?: string;
-    cleanName?: string;
+    clean_name?: string;
 }

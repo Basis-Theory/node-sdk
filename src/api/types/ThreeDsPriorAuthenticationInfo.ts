@@ -5,6 +5,6 @@
 export interface ThreeDsPriorAuthenticationInfo {
     method?: string;
     timestamp?: string;
-    referenceId?: string;
+    reference_id?: string;
     data?: string;
 }

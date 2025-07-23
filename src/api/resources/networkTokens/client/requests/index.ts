@@ -1,1 +1,1 @@
-export { type CreateNetworkTokenRequest } from "./CreateNetworkTokenRequest";
+export { type CreateNetworkTokenRequest } from "./CreateNetworkTokenRequest.js";

@@ -3,5 +3,5 @@
  */
 
 export interface CreateTenantConnectionResponse {
-    connectionId?: string;
+    connection_id?: string;
 }

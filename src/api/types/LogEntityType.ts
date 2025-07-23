@@ -3,6 +3,6 @@
  */
 
 export interface LogEntityType {
-    displayName?: string;
+    display_name?: string;
     value?: string;
 }

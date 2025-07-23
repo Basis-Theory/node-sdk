@@ -3,11 +3,11 @@
  */
 
 export interface ThreeDsVersion {
-    recommendedVersion?: string;
-    availableVersions?: string[];
-    earliestAcsSupportedVersion?: string;
-    earliestDsSupportedVersion?: string;
-    latestAcsSupportedVersion?: string;
-    latestDsSupportedVersion?: string;
-    acsInformation?: string[];
+    recommended_version?: string;
+    available_versions?: string[];
+    earliest_acs_supported_version?: string;
+    earliest_ds_supported_version?: string;
+    latest_acs_supported_version?: string;
+    latest_ds_supported_version?: string;
+    acs_information?: string[];
 }
