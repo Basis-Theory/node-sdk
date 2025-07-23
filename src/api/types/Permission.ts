@@ -5,5 +5,5 @@
 export interface Permission {
     type?: string;
     description?: string;
-    applicationTypes?: string[];
+    application_types?: string[];
 }

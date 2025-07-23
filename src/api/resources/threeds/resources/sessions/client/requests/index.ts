@@ -1,1 +1,1 @@
-export { type CreateThreeDsSessionRequest } from "./CreateThreeDsSessionRequest";
+export { type CreateThreeDsSessionRequest } from "./CreateThreeDsSessionRequest.js";

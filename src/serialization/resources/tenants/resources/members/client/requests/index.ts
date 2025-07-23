@@ -1,1 +1,0 @@
-export { UpdateTenantMemberRequest } from "./UpdateTenantMemberRequest";

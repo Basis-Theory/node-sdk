@@ -5,16 +5,16 @@
 /**
  * @example
  *     {
- *         tokenId: "9a420b15-ddfe-4793-9466-48f53520e47c"
+ *         token_id: "9a420b15-ddfe-4793-9466-48f53520e47c"
  *     }
  */
 export interface AccountUpdaterRealTimeRequest {
     /** Card Token identifier */
-    tokenId: string;
+    token_id: string;
     /** The 4-digit expiration year of the account number. Not required if the card token already stores this value. */
-    expirationYear?: number;
+    expiration_year?: number;
     /** The 2-digit expiration month of the account number. Not required if the card token already stores this value. */
-    expirationMonth?: number;
+    expiration_month?: number;
     /** Whether deduplication should be enabled when creating the new token. Uses the value of the Deduplicate Tokens setting on the tenant if not set. */
-    deduplicateToken?: boolean;
+    deduplicate_token?: boolean;
 }

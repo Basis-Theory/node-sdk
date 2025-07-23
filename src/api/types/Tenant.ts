@@ -4,12 +4,12 @@
 
 export interface Tenant {
     id?: string;
-    ownerId?: string;
+    owner_id?: string;
     name?: string;
     type?: string;
-    createdBy?: string;
-    createdAt?: Date;
-    modifiedBy?: string;
-    modifiedAt?: Date;
+    created_by?: string;
+    created_at?: string;
+    modified_by?: string;
+    modified_at?: string;
     settings?: Record<string, string | undefined>;
 }

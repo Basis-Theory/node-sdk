@@ -3,7 +3,7 @@
  */
 
 export interface AuthenticationResponse {
-    merchantIdentifier?: string;
-    authenticationData?: string;
-    transactionAmount?: string;
+    merchant_identifier?: string;
+    authentication_data?: string;
+    transaction_amount?: string;
 }

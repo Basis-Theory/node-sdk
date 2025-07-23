@@ -1,1 +1,1 @@
-export { type CreateTenantConnectionRequest } from "./CreateTenantConnectionRequest";
+export { type CreateTenantConnectionRequest } from "./CreateTenantConnectionRequest.js";

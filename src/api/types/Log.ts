@@ -4,12 +4,12 @@
 
 export interface Log {
     id?: string;
-    tenantId?: string;
-    actorId?: string;
-    actorType?: string;
-    entityType?: string;
-    entityId?: string;
+    tenant_id?: string;
+    actor_id?: string;
+    actor_type?: string;
+    entity_type?: string;
+    entity_id?: string;
     operation?: string;
     message?: string;
-    createdAt?: Date;
+    created_at?: string;
 }
