@@ -7,8 +7,8 @@ export interface ThreeDsPurchaseInfo {
     currency?: string;
     exponent?: string;
     date?: string;
-    transactionType?: string;
-    installmentCount?: string;
-    recurringExpiration?: string;
-    recurringFrequency?: string;
+    transaction_type?: string;
+    installment_count?: string;
+    recurring_expiration?: string;
+    recurring_frequency?: string;
 }

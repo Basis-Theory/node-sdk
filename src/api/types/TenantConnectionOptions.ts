@@ -3,5 +3,5 @@
  */
 
 export interface TenantConnectionOptions {
-    domainAliases?: string[];
+    domain_aliases?: string[];
 }

@@ -5,11 +5,11 @@
 /**
  * @example
  *     {
- *         tokenId: "token_id"
+ *         token_id: "token_id"
  *     }
  */
 export interface BankVerificationRequest {
-    tokenId: string;
-    countryCode?: string;
-    routingNumber?: string;
+    token_id: string;
+    country_code?: string;
+    routing_number?: string;
 }

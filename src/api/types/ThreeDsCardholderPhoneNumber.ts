@@ -3,6 +3,6 @@
  */
 
 export interface ThreeDsCardholderPhoneNumber {
-    countryCode?: string;
+    country_code?: string;
     number?: string;
 }

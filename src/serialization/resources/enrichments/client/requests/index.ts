@@ -1,1 +1,0 @@
-export { BankVerificationRequest } from "./BankVerificationRequest";

@@ -3,7 +3,7 @@
  */
 
 export interface CreateSessionResponse {
-    sessionKey?: string;
+    session_key?: string;
     nonce?: string;
-    expiresAt?: Date;
+    expires_at?: string;
 }

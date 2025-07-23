@@ -1,5 +1,4 @@
-export * as BasisTheory from "./api";
-export { BasisTheoryClient } from "./Client";
-export { BasisTheoryEnvironment } from "./environments";
-export { BasisTheoryError, BasisTheoryTimeoutError } from "./errors";
-export * as serialization from "./serialization";
+export * as BasisTheory from "./api/index.js";
+export { BasisTheoryError, BasisTheoryTimeoutError } from "./errors/index.js";
+export { BasisTheoryClient } from "./Client.js";
+export { BasisTheoryEnvironment } from "./environments.js";

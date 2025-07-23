@@ -3,10 +3,10 @@
  */
 
 export interface GetLogs {
-    entityType?: string;
-    entityId?: string;
-    startDate?: Date;
-    endDate?: Date;
+    entity_type?: string;
+    entity_id?: string;
+    start_date?: string;
+    end_date?: string;
     page?: number;
     start?: string;
     size?: number;

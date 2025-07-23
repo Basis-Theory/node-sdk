@@ -6,8 +6,8 @@ export interface Address {
     line1?: string;
     line2?: string;
     line3?: string;
-    postalCode?: string;
+    postal_code?: string;
     city?: string;
-    stateCode?: string;
-    countryCode?: string;
+    state_code?: string;
+    country_code?: string;
 }

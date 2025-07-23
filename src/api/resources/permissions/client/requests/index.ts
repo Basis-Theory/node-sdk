@@ -1,1 +1,1 @@
-export { type PermissionsListRequest } from "./PermissionsListRequest";
+export { type PermissionsListRequest } from "./PermissionsListRequest.js";

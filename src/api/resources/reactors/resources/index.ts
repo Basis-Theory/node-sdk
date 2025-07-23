@@ -1,1 +1,1 @@
-export * as results from "./results";
+export * as results from "./results/index.js";

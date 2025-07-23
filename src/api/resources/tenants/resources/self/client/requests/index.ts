@@ -1,1 +1,1 @@
-export { type UpdateTenantRequest } from "./UpdateTenantRequest";
+export { type UpdateTenantRequest } from "./UpdateTenantRequest.js";

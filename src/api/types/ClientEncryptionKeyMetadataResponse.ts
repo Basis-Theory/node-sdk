@@ -4,5 +4,5 @@
 
 export interface ClientEncryptionKeyMetadataResponse {
     id?: string;
-    expiresAt?: Date;
+    expiresAt?: string;
 }
