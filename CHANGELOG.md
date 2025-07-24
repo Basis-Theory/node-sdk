@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/Basis-Theory/node-sdk/compare/v3.2.0...v3.3.0) (2025-07-24)
+
+
+### Features
+
+* fixing typo and releasing new version ([#110](https://github.com/Basis-Theory/node-sdk/issues/110)) ([7af739e](https://github.com/Basis-Theory/node-sdk/commit/7af739eaeb10654cc943abbf8a0cec9a718ddea3))
+
 # [3.2.0](https://github.com/Basis-Theory/node-sdk/compare/v3.1.0...v3.2.0) (2025-07-22)
 
 
