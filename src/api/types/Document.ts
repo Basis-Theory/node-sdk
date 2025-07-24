@@ -4,9 +4,9 @@
 
 export interface Document {
     id?: string;
-    tenantId?: string;
+    tenant_id?: string;
     metadata?: Record<string, string | undefined>;
-    contentType?: string;
-    createdBy?: string;
-    createdAt?: Date;
+    content_type?: string;
+    created_by?: string;
+    created_at?: string;
 }

@@ -3,6 +3,6 @@
  */
 
 export interface AssuranceDetails {
-    accountVerified?: boolean;
-    cardHolderAuthenticated?: boolean;
+    account_verified?: boolean;
+    card_holder_authenticated?: boolean;
 }

@@ -4,6 +4,6 @@
 
 export interface ClientEncryptionKeyResponse {
     id?: string;
-    publicKeyPem?: string;
-    expiresAt?: Date;
+    publicKeyPEM?: string;
+    expiresAt?: string;
 }

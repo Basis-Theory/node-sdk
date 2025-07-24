@@ -1,2 +1,2 @@
-export { type MembersListRequest } from "./MembersListRequest";
-export { type UpdateTenantMemberRequest } from "./UpdateTenantMemberRequest";
+export { type MembersListRequest } from "./MembersListRequest.js";
+export { type UpdateTenantMemberRequest } from "./UpdateTenantMemberRequest.js";

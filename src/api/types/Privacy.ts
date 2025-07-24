@@ -4,6 +4,6 @@
 
 export interface Privacy {
     classification?: string;
-    impactLevel?: string;
-    restrictionPolicy?: string;
+    impact_level?: string;
+    restriction_policy?: string;
 }

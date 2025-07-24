@@ -6,8 +6,8 @@ export interface User {
     id?: string;
     email?: string;
     provider?: string;
-    mfaEnrolled?: boolean;
-    firstName?: string;
-    lastName?: string;
+    mfa_enrolled?: boolean;
+    first_name?: string;
+    last_name?: string;
     picture?: string;
 }

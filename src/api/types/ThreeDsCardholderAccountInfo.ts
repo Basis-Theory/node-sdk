@@ -3,19 +3,19 @@
  */
 
 export interface ThreeDsCardholderAccountInfo {
-    accountAge?: string;
-    accountLastChanged?: string;
-    accountChangeDate?: string;
-    accountCreatedDate?: string;
-    accountPwdLastChanged?: string;
-    accountPwdChangeDate?: string;
-    purchaseCountHalfYear?: string;
-    transactionCountDay?: string;
-    paymentAccountAge?: string;
-    transactionCountYear?: string;
-    paymentAccountCreated?: string;
-    shippingAddressFirstUsed?: string;
-    shippingAddressUsageDate?: string;
-    shippingAccountNameMatch?: boolean;
-    suspiciousActivityObserved?: boolean;
+    account_age?: string;
+    account_last_changed?: string;
+    account_change_date?: string;
+    account_created_date?: string;
+    account_pwd_last_changed?: string;
+    account_pwd_change_date?: string;
+    purchase_count_half_year?: string;
+    transaction_count_day?: string;
+    payment_account_age?: string;
+    transaction_count_year?: string;
+    payment_account_created?: string;
+    shipping_address_first_used?: string;
+    shipping_address_usage_date?: string;
+    shipping_account_name_match?: boolean;
+    suspicious_activity_observed?: boolean;
 }

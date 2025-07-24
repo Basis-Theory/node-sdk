@@ -3,6 +3,6 @@
  */
 
 export interface ThreeDsMobileSdkRenderOptions {
-    sdkInterface?: string;
-    sdkUiType?: string[];
+    sdk_interface?: string;
+    sdk_ui_type?: string[];
 }

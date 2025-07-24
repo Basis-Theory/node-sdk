@@ -1,1 +1,1 @@
-export * as data from "./data";
+export * as data from "./data/index.js";
