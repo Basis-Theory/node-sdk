@@ -3,7 +3,7 @@
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2FBasis-Theory%2Fnode-sdk)
 [![npm shield](https://img.shields.io/npm/v/@basis-theory/node-sdk)](https://www.npmjs.com/package/@basis-theory/node-sdk)
 
-The BasisTheory TypeScript library provides convenient access to the BasisTheory API from TypeScript.
+The Basis Theory TypeScript library provides convenient access to the BasisTheory API from TypeScript.
 
 ## Documentation
 
