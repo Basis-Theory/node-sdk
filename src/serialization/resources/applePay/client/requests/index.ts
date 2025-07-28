@@ -1,1 +1,1 @@
-export { ApplePayCreateRequest } from "./ApplePayCreateRequest";
+export { ApplePayCreateRequest } from "./ApplePayCreateRequest.js";

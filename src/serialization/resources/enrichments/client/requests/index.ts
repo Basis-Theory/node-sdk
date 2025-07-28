@@ -1,1 +1,1 @@
-export { BankVerificationRequest } from "./BankVerificationRequest";
+export { BankVerificationRequest } from "./BankVerificationRequest.js";

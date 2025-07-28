@@ -1,2 +1,2 @@
-export { CreateApplicationRequest } from "./CreateApplicationRequest";
-export { UpdateApplicationRequest } from "./UpdateApplicationRequest";
+export { CreateApplicationRequest } from "./CreateApplicationRequest.js";
+export { UpdateApplicationRequest } from "./UpdateApplicationRequest.js";

@@ -1,1 +1,1 @@
-export { type AccountUpdaterRealTimeRequest } from "./AccountUpdaterRealTimeRequest";
+export { type AccountUpdaterRealTimeRequest } from "./AccountUpdaterRealTimeRequest.js";

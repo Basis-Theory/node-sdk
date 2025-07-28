@@ -1,1 +1,1 @@
-export { type AuthorizeSessionRequest } from "./AuthorizeSessionRequest";
+export { type AuthorizeSessionRequest } from "./AuthorizeSessionRequest.js";

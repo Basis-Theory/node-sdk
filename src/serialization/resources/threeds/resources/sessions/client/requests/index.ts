@@ -1,1 +1,1 @@
-export { CreateThreeDsSessionRequest } from "./CreateThreeDsSessionRequest";
+export { CreateThreeDsSessionRequest } from "./CreateThreeDsSessionRequest.js";
