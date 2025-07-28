@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/Basis-Theory/node-sdk/compare/v3.3.0...v3.4.0) (2025-07-28)
+
+
+### Features
+
+* Enhance document upload/download; reduce node dependencies ([#114](https://github.com/Basis-Theory/node-sdk/issues/114)) ([3dff276](https://github.com/Basis-Theory/node-sdk/commit/3dff276da4be91b904cae0ae9163011af8f7cce2))
+
 # [3.3.0](https://github.com/Basis-Theory/node-sdk/compare/v3.2.0...v3.3.0) (2025-07-24)
 
 
