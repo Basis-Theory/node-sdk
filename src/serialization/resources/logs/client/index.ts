@@ -1,1 +1,1 @@
-export * as getEntityTypes from "./getEntityTypes";
+export * as getEntityTypes from "./getEntityTypes.js";
