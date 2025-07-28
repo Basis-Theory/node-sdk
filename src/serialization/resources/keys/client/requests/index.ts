@@ -1,1 +1,1 @@
-export { ClientEncryptionKeyRequest } from "./ClientEncryptionKeyRequest";
+export { ClientEncryptionKeyRequest } from "./ClientEncryptionKeyRequest.js";

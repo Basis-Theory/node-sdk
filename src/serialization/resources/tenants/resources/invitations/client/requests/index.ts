@@ -1,1 +1,1 @@
-export { CreateTenantInvitationRequest } from "./CreateTenantInvitationRequest";
+export { CreateTenantInvitationRequest } from "./CreateTenantInvitationRequest.js";

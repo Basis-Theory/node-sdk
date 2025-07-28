@@ -1,3 +1,3 @@
-export { CreateProxyRequest } from "./CreateProxyRequest";
-export { UpdateProxyRequest } from "./UpdateProxyRequest";
-export { PatchProxyRequest } from "./PatchProxyRequest";
+export { CreateProxyRequest } from "./CreateProxyRequest.js";
+export { UpdateProxyRequest } from "./UpdateProxyRequest.js";
+export { PatchProxyRequest } from "./PatchProxyRequest.js";
