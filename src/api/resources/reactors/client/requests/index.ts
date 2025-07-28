@@ -1,6 +1,6 @@
-export { type ReactorsListRequest } from "./ReactorsListRequest";
-export { type CreateReactorRequest } from "./CreateReactorRequest";
-export { type UpdateReactorRequest } from "./UpdateReactorRequest";
-export { type PatchReactorRequest } from "./PatchReactorRequest";
-export { type ReactRequest } from "./ReactRequest";
-export { type ReactRequestAsync } from "./ReactRequestAsync";
+export { type ReactorsListRequest } from "./ReactorsListRequest.js";
+export { type CreateReactorRequest } from "./CreateReactorRequest.js";
+export { type UpdateReactorRequest } from "./UpdateReactorRequest.js";
+export { type PatchReactorRequest } from "./PatchReactorRequest.js";
+export { type ReactRequest } from "./ReactRequest.js";
+export { type ReactRequestAsync } from "./ReactRequestAsync.js";

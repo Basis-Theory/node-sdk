@@ -21,7 +21,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.applications.list();
+let page = await client.applications.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -760,7 +760,7 @@ await client.applePay.unlink("id");
 
 ## Documents
 
-<details><summary><code>client.documents.<a href="/src/api/resources/documents/client/Client.ts">upload</a>(document, { ...params }) -> BasisTheory.Document</code></summary>
+<details><summary><code>client.documents.<a href="/src/api/resources/documents/client/Client.ts">upload</a>({ ...params }) -> BasisTheory.Document</code></summary>
 <dl>
 <dd>
 
@@ -773,7 +773,7 @@ await client.applePay.unlink("id");
 <dd>
 
 ```typescript
-await client.documents.upload(fs.createReadStream("/path/to/your/file"), {});
+await client.documents.upload({});
 ```
 
 </dd>
@@ -785,14 +785,6 @@ await client.documents.upload(fs.createReadStream("/path/to/your/file"), {});
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**document:** `File | fs.ReadStream | Blob | undefined`
-
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -1033,7 +1025,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.tokens.list();
+let page = await client.tokens.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -1290,7 +1282,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.tokens.listV2();
+let page = await client.tokens.listV2();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -1347,7 +1339,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.tokens.searchV2();
+let page = await client.tokens.searchV2();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -1694,7 +1686,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.logs.list();
+let page = await client.logs.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -2133,7 +2125,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.proxies.list();
+let page = await client.proxies.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -2454,7 +2446,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.reactors.list();
+let page = await client.reactors.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -4485,7 +4477,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.tenants.invitations.list();
+let page = await client.tenants.invitations.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
