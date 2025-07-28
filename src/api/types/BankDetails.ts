@@ -3,6 +3,6 @@
  */
 
 export interface BankDetails {
-    routingNumber?: string;
-    accountNumberLast4?: string;
+    routing_number?: string;
+    account_number_last4?: string;
 }

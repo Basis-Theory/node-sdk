@@ -3,6 +3,6 @@
  */
 
 export interface ThreeDsMethod {
-    methodUrl?: string;
-    methodCompletionIndicator?: string;
+    method_url?: string;
+    method_completion_indicator?: string;
 }

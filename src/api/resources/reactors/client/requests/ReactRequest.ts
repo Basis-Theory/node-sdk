@@ -8,5 +8,5 @@
  */
 export interface ReactRequest {
     args?: unknown;
-    callbackUrl?: string;
+    callback_url?: string;
 }

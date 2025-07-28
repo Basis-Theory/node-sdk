@@ -6,6 +6,6 @@ export interface ApplicationKey {
     id?: string;
     key?: string;
     version?: string;
-    createdBy?: string;
-    createdAt?: Date;
+    created_by?: string;
+    created_at?: string;
 }

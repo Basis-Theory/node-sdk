@@ -7,5 +7,5 @@
  *     {}
  */
 export interface ClientEncryptionKeyRequest {
-    expiresAt?: Date;
+    expires_at?: string;
 }

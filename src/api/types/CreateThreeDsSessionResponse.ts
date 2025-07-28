@@ -6,10 +6,10 @@ export interface CreateThreeDsSessionResponse {
     id?: string;
     type?: string;
     cardBrand?: string;
-    additionalCardBrands?: string[];
-    methodUrl?: string;
-    methodNotificationUrl?: string;
-    directoryServerId?: string;
-    recommendedVersion?: string;
-    redirectUrl?: string;
+    additional_card_brands?: string[];
+    method_url?: string;
+    method_notification_url?: string;
+    directory_server_id?: string;
+    recommended_version?: string;
+    redirect_url?: string;
 }

@@ -3,5 +3,5 @@
  */
 
 export interface GetPermissions {
-    applicationType?: string;
+    application_type?: string;
 }
