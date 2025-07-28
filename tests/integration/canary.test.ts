@@ -214,15 +214,16 @@ describe('Documents', () => {
         const originalContent = 'Hello World';
         const blob = new Blob([originalContent], { type: 'text/plain' });
 
-
         // Upload
-        const uploaded = await client.documents.upload(blob, {
-            request: {
-                metadata: {
-                    "attribute 1": "value 1"
+        const uploaded = await client.documents.upload({
+                document: blob,
+                request: {
+                    metadata: {
+                        "attribute 1": "value 1"
+                    }
                 }
             }
-        });
+        );
 
         const retrievedInfo = await client.documents.get(uploaded.id!);
         expect(retrievedInfo.contentType).toBe('text/plain');
@@ -231,12 +232,9 @@ describe('Documents', () => {
         });
 
         // Download and verify content
-        const downloadStream = await client.documents.data.get(uploaded.id!);
-        const chunks: Buffer[] = [];
-        for await (const chunk of downloadStream) {
-            chunks.push(chunk);
-        }
-        const downloadedContent = Buffer.concat(chunks).toString('utf8');
+        const download = await client.documents.data.get(uploaded.id!);
+        const stream: ReadableStream<Uint8Array> = download.stream();
+        const downloadedContent = await new Response(stream).text();
         expect(downloadedContent).toBe(originalContent);
 
         await client.documents.delete(uploaded.id!);
