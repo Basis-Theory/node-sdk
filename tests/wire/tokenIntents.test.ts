@@ -161,9 +161,9 @@ describe("TokenIntents", () => {
         const rawResponseBody = {
             id: "id",
             type: "type",
-            tenant_id: "blackcurrant........................",
+            tenant_id: "tenant_id",
             fingerprint: "fingerprint",
-            created_by: "blackcurrant........................",
+            created_by: "created_by",
             created_at: "2024-01-15T09:30:00Z",
             expires_at: "2024-01-15T09:30:00Z",
             card: {
@@ -269,9 +269,9 @@ describe("TokenIntents", () => {
         expect(response).toEqual({
             id: "id",
             type: "type",
-            tenantId: "blackcurrant........................",
+            tenantId: "tenant_id",
             fingerprint: "fingerprint",
-            createdBy: "blackcurrant........................",
+            createdBy: "created_by",
             createdAt: new Date("2024-01-15T09:30:00.000Z"),
             expiresAt: new Date("2024-01-15T09:30:00.000Z"),
             card: {
