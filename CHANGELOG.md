@@ -1,3 +1,10 @@
+## [3.5.1](https://github.com/Basis-Theory/node-sdk/compare/v3.5.0...v3.5.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* Better packaging ([#118](https://github.com/Basis-Theory/node-sdk/issues/118)) ([b5480b2](https://github.com/Basis-Theory/node-sdk/commit/b5480b246493ad0517daeca3a0e1bc76b9137e88))
+
 # [3.5.0](https://github.com/Basis-Theory/node-sdk/compare/v3.4.0...v3.5.0) (2025-08-05)
 
 
