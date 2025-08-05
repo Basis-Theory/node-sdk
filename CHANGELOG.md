@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/Basis-Theory/node-sdk/compare/v3.4.0...v3.5.0) (2025-08-05)
+
+
+### Features
+
+* correctly package npm module ([#116](https://github.com/Basis-Theory/node-sdk/issues/116)) ([5782b8c](https://github.com/Basis-Theory/node-sdk/commit/5782b8cab705a1f44e7c370ab29dcac2f6b04bc2))
+
 # [3.4.0](https://github.com/Basis-Theory/node-sdk/compare/v3.3.0...v3.4.0) (2025-07-28)
 
 
