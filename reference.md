@@ -758,6 +758,152 @@ await client.applePay.unlink("id");
 </dl>
 </details>
 
+## GooglePay
+
+<details><summary><code>client.googlePay.<a href="/src/api/resources/googlePay/client/Client.ts">create</a>({ ...params }) -> BasisTheory.GooglePayCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.create();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.GooglePayCreateRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GooglePay.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.googlePay.<a href="/src/api/resources/googlePay/client/Client.ts">get</a>(id) -> BasisTheory.GooglePayToken</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GooglePay.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.googlePay.<a href="/src/api/resources/googlePay/client/Client.ts">delete</a>(id) -> string</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GooglePay.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Documents
 
 <details><summary><code>client.documents.<a href="/src/api/resources/documents/client/Client.ts">upload</a>({ ...params }) -> BasisTheory.Document</code></summary>
@@ -1076,7 +1222,7 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.tokens.create();
+await client.tokens.create({});
 ```
 
 </dd>
@@ -1411,6 +1557,56 @@ await client.enrichments.bankAccountVerify({
 <dd>
 
 **request:** `BasisTheory.BankVerificationRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrichments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.enrichments.<a href="/src/api/resources/enrichments/client/Client.ts">getcarddetails</a>({ ...params }) -> BasisTheory.CardDetailsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.enrichments.getcarddetails({
+    bin: "bin",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.EnrichmentsGetCardDetailsRequest`
 
 </dd>
 </dl>

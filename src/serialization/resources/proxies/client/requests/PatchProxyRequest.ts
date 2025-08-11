@@ -16,6 +16,7 @@ export const PatchProxyRequest: core.serialization.Schema<
     destinationUrl: core.serialization.property("destination_url", core.serialization.string().optional()),
     requestTransform: core.serialization.property("request_transform", ProxyTransform.optional()),
     responseTransform: core.serialization.property("response_transform", ProxyTransform.optional()),
+    requestTransforms: core.serialization.property("request_transforms", core.serialization.unknown().optional()),
     application: Application.optional(),
     configuration: core.serialization
         .record(core.serialization.string(), core.serialization.string().optional())
@@ -29,6 +30,7 @@ export declare namespace PatchProxyRequest {
         destination_url?: string | null;
         request_transform?: ProxyTransform.Raw | null;
         response_transform?: ProxyTransform.Raw | null;
+        request_transforms?: unknown | null;
         application?: Application.Raw | null;
         configuration?: Record<string, string | null | undefined> | null;
         require_auth?: boolean | null;

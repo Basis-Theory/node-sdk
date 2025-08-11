@@ -8,6 +8,7 @@ import * as BasisTheory from "../../../../index.js";
  * @example
  *     {}
  */
-export interface GooglePayTokenizeRequest {
-    googlePaymentMethodToken?: BasisTheory.GooglePayMethodToken;
+export interface GooglePayCreateRequest {
+    expiresAt?: string;
+    googlePaymentData?: BasisTheory.GooglePayMethodToken;
 }

@@ -7,9 +7,9 @@ import * as BasisTheory from "../../api/index.js";
 import * as core from "../../core/index.js";
 import { IntermediateSigningKey } from "./IntermediateSigningKey.js";
 
-export const GooglePaymentMethodToken: core.serialization.ObjectSchema<
-    serializers.GooglePaymentMethodToken.Raw,
-    BasisTheory.GooglePaymentMethodToken
+export const GooglePayMethodToken: core.serialization.ObjectSchema<
+    serializers.GooglePayMethodToken.Raw,
+    BasisTheory.GooglePayMethodToken
 > = core.serialization.object({
     protocolVersion: core.serialization.string().optional(),
     signature: core.serialization.string().optional(),
@@ -17,7 +17,7 @@ export const GooglePaymentMethodToken: core.serialization.ObjectSchema<
     signedMessage: core.serialization.string().optional(),
 });
 
-export declare namespace GooglePaymentMethodToken {
+export declare namespace GooglePayMethodToken {
     export interface Raw {
         protocolVersion?: string | null;
         signature?: string | null;

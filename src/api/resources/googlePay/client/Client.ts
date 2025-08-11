@@ -9,7 +9,7 @@ import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.
 import * as serializers from "../../../../serialization/index.js";
 import * as errors from "../../../../errors/index.js";
 
-export declare namespace Enrichments {
+export declare namespace GooglePay {
     export interface Options {
         environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
         /** Specify a custom URL to connect the client to. */
@@ -36,43 +36,43 @@ export declare namespace Enrichments {
     }
 }
 
-export class Enrichments {
-    protected readonly _options: Enrichments.Options;
+export class GooglePay {
+    protected readonly _options: GooglePay.Options;
 
-    constructor(_options: Enrichments.Options = {}) {
+    constructor(_options: GooglePay.Options = {}) {
         this._options = _options;
     }
 
     /**
-     * @param {BasisTheory.BankVerificationRequest} request
-     * @param {Enrichments.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {BasisTheory.GooglePayCreateRequest} request
+     * @param {GooglePay.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
+     * @throws {@link BasisTheory.ConflictError}
+     * @throws {@link BasisTheory.UnprocessableEntityError}
      *
      * @example
-     *     await client.enrichments.bankAccountVerify({
-     *         tokenId: "token_id"
-     *     })
+     *     await client.googlePay.create()
      */
-    public bankAccountVerify(
-        request: BasisTheory.BankVerificationRequest,
-        requestOptions?: Enrichments.RequestOptions,
-    ): core.HttpResponsePromise<BasisTheory.BankVerificationResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__bankAccountVerify(request, requestOptions));
+    public create(
+        request: BasisTheory.GooglePayCreateRequest = {},
+        requestOptions?: GooglePay.RequestOptions,
+    ): core.HttpResponsePromise<BasisTheory.GooglePayCreateResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
-    private async __bankAccountVerify(
-        request: BasisTheory.BankVerificationRequest,
-        requestOptions?: Enrichments.RequestOptions,
-    ): Promise<core.WithRawResponse<BasisTheory.BankVerificationResponse>> {
+    private async __create(
+        request: BasisTheory.GooglePayCreateRequest = {},
+        requestOptions?: GooglePay.RequestOptions,
+    ): Promise<core.WithRawResponse<BasisTheory.GooglePayCreateResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.BasisTheoryEnvironment.Default,
-                "enrichments/bank-account-verify",
+                "google-pay",
             ),
             method: "POST",
             headers: mergeHeaders(
@@ -85,7 +85,7 @@ export class Enrichments {
             ),
             contentType: "application/json",
             requestType: "json",
-            body: serializers.BankVerificationRequest.jsonOrThrow(request, {
+            body: serializers.GooglePayCreateRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
                 omitUndefined: true,
             }),
@@ -95,7 +95,7 @@ export class Enrichments {
         });
         if (_response.ok) {
             return {
-                data: serializers.BankVerificationResponse.parseOrThrow(_response.body, {
+                data: serializers.GooglePayCreateResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -141,6 +141,28 @@ export class Enrichments {
                         }),
                         _response.rawResponse,
                     );
+                case 409:
+                    throw new BasisTheory.ConflictError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 422:
+                    throw new BasisTheory.UnprocessableEntityError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.BasisTheoryError({
                         statusCode: _response.error.statusCode,
@@ -158,9 +180,7 @@ export class Enrichments {
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling POST /enrichments/bank-account-verify.",
-                );
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /google-pay.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
@@ -170,37 +190,33 @@ export class Enrichments {
     }
 
     /**
-     * @param {BasisTheory.EnrichmentsGetCardDetailsRequest} request
-     * @param {Enrichments.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {string} id
+     * @param {GooglePay.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
+     * @throws {@link BasisTheory.NotFoundError}
      *
      * @example
-     *     await client.enrichments.getcarddetails({
-     *         bin: "bin"
-     *     })
+     *     await client.googlePay.get("id")
      */
-    public getcarddetails(
-        request: BasisTheory.EnrichmentsGetCardDetailsRequest,
-        requestOptions?: Enrichments.RequestOptions,
-    ): core.HttpResponsePromise<BasisTheory.CardDetailsResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__getcarddetails(request, requestOptions));
+    public get(
+        id: string,
+        requestOptions?: GooglePay.RequestOptions,
+    ): core.HttpResponsePromise<BasisTheory.GooglePayToken> {
+        return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
     }
 
-    private async __getcarddetails(
-        request: BasisTheory.EnrichmentsGetCardDetailsRequest,
-        requestOptions?: Enrichments.RequestOptions,
-    ): Promise<core.WithRawResponse<BasisTheory.CardDetailsResponse>> {
-        const { bin } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams["bin"] = bin;
+    private async __get(
+        id: string,
+        requestOptions?: GooglePay.RequestOptions,
+    ): Promise<core.WithRawResponse<BasisTheory.GooglePayToken>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.BasisTheoryEnvironment.Default,
-                "enrichments/card-details",
+                `google-pay/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: mergeHeaders(
@@ -211,14 +227,13 @@ export class Enrichments {
                 }),
                 requestOptions?.headers,
             ),
-            queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
             return {
-                data: serializers.CardDetailsResponse.parseOrThrow(_response.body, {
+                data: serializers.GooglePayToken.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -253,6 +268,8 @@ export class Enrichments {
                         }),
                         _response.rawResponse,
                     );
+                case 404:
+                    throw new BasisTheory.NotFoundError(_response.error.body, _response.rawResponse);
                 default:
                     throw new errors.BasisTheoryError({
                         statusCode: _response.error.statusCode,
@@ -270,9 +287,111 @@ export class Enrichments {
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling GET /enrichments/card-details.",
-                );
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /google-pay/{id}.");
+            case "unknown":
+                throw new errors.BasisTheoryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * @param {string} id
+     * @param {GooglePay.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link BasisTheory.UnauthorizedError}
+     * @throws {@link BasisTheory.ForbiddenError}
+     * @throws {@link BasisTheory.NotFoundError}
+     *
+     * @example
+     *     await client.googlePay.delete("id")
+     */
+    public delete(id: string, requestOptions?: GooglePay.RequestOptions): core.HttpResponsePromise<string> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
+    }
+
+    private async __delete(
+        id: string,
+        requestOptions?: GooglePay.RequestOptions,
+    ): Promise<core.WithRawResponse<string>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                `google-pay/${encodeURIComponent(id)}`,
+            ),
+            method: "DELETE",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    "BT-TRACE-ID": requestOptions?.correlationId,
+                    ...(await this._getCustomAuthorizationHeaders()),
+                }),
+                requestOptions?.headers,
+            ),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.googlePay.delete.Response.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new BasisTheory.UnauthorizedError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new BasisTheory.ForbiddenError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new BasisTheory.NotFoundError(_response.error.body, _response.rawResponse);
+                default:
+                    throw new errors.BasisTheoryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.BasisTheoryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling DELETE /google-pay/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,
