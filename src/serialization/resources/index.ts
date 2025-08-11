@@ -1,6 +1,7 @@
 export * as applicationKeys from "./applicationKeys/index.js";
 export * as applicationTemplates from "./applicationTemplates/index.js";
 export * as applePay from "./applePay/index.js";
+export * as googlePay from "./googlePay/index.js";
 export * as keys from "./keys/index.js";
 export * as logs from "./logs/index.js";
 export * as permissions from "./permissions/index.js";
@@ -9,6 +10,7 @@ export * as connection from "./connection/index.js";
 export * as applications from "./applications/index.js";
 export * from "./applications/client/requests/index.js";
 export * from "./applePay/client/requests/index.js";
+export * from "./googlePay/client/requests/index.js";
 export * as tokens from "./tokens/index.js";
 export * from "./tokens/client/requests/index.js";
 export * as enrichments from "./enrichments/index.js";

@@ -4,7 +4,7 @@
 
 import * as BasisTheory from "../index.js";
 
-export interface GooglePaymentMethodToken {
+export interface GooglePayMethodToken {
     protocolVersion?: string;
     signature?: string;
     intermediateSigningKey?: BasisTheory.IntermediateSigningKey;

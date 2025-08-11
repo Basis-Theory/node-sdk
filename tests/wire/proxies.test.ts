@@ -25,6 +25,7 @@ describe("Proxies", () => {
                 matcher: "matcher",
                 expression: "expression",
                 replacement: "replacement",
+                options: { identifier: "identifier" },
             },
             response_transform: {
                 type: "type",
@@ -32,7 +33,26 @@ describe("Proxies", () => {
                 matcher: "matcher",
                 expression: "expression",
                 replacement: "replacement",
+                options: { identifier: "identifier" },
             },
+            request_transforms: [
+                {
+                    type: "type",
+                    code: "code",
+                    matcher: "matcher",
+                    expression: "expression",
+                    replacement: "replacement",
+                },
+            ],
+            response_transforms: [
+                {
+                    type: "type",
+                    code: "code",
+                    matcher: "matcher",
+                    expression: "expression",
+                    replacement: "replacement",
+                },
+            ],
             application_id: "application_id",
             configuration: { key: "value" },
             proxy_host: "proxy_host",
@@ -61,6 +81,9 @@ describe("Proxies", () => {
                 matcher: "matcher",
                 expression: "expression",
                 replacement: "replacement",
+                options: {
+                    identifier: "identifier",
+                },
             },
             responseTransform: {
                 type: "type",
@@ -68,7 +91,28 @@ describe("Proxies", () => {
                 matcher: "matcher",
                 expression: "expression",
                 replacement: "replacement",
+                options: {
+                    identifier: "identifier",
+                },
             },
+            requestTransforms: [
+                {
+                    type: "type",
+                    code: "code",
+                    matcher: "matcher",
+                    expression: "expression",
+                    replacement: "replacement",
+                },
+            ],
+            responseTransforms: [
+                {
+                    type: "type",
+                    code: "code",
+                    matcher: "matcher",
+                    expression: "expression",
+                    replacement: "replacement",
+                },
+            ],
             applicationId: "application_id",
             configuration: {
                 key: "value",

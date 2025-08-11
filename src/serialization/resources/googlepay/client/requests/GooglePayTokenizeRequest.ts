@@ -5,7 +5,7 @@
 import * as serializers from "../../../../index.js";
 import * as BasisTheory from "../../../../../api/index.js";
 import * as core from "../../../../../core/index.js";
-import { GooglePaymentMethodToken } from "../../../../types/GooglePaymentMethodToken.js";
+import { GooglePayMethodToken } from "../../../../types/GooglePayMethodToken.js";
 
 export const GooglePayTokenizeRequest: core.serialization.Schema<
     serializers.GooglePayTokenizeRequest.Raw,
@@ -13,12 +13,12 @@ export const GooglePayTokenizeRequest: core.serialization.Schema<
 > = core.serialization.object({
     googlePaymentMethodToken: core.serialization.property(
         "google_payment_method_token",
-        GooglePaymentMethodToken.optional(),
+        GooglePayMethodToken.optional(),
     ),
 });
 
 export declare namespace GooglePayTokenizeRequest {
     export interface Raw {
-        google_payment_method_token?: GooglePaymentMethodToken.Raw | null;
+        google_payment_method_token?: GooglePayMethodToken.Raw | null;
     }
 }
