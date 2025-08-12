@@ -44,7 +44,7 @@ export class Domain {
     }
 
     /**
-     * @param {BasisTheory.ApplePayDomainDeregistrationRequest} request
+     * @param {BasisTheory.applePay.ApplePayDomainDeregistrationRequest} request
      * @param {Domain.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
@@ -56,14 +56,14 @@ export class Domain {
      *     })
      */
     public deregister(
-        request: BasisTheory.ApplePayDomainDeregistrationRequest,
+        request: BasisTheory.applePay.ApplePayDomainDeregistrationRequest,
         requestOptions?: Domain.RequestOptions,
     ): core.HttpResponsePromise<void> {
         return core.HttpResponsePromise.fromPromise(this.__deregister(request, requestOptions));
     }
 
     private async __deregister(
-        request: BasisTheory.ApplePayDomainDeregistrationRequest,
+        request: BasisTheory.applePay.ApplePayDomainDeregistrationRequest,
         requestOptions?: Domain.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -84,7 +84,7 @@ export class Domain {
             ),
             contentType: "application/json",
             requestType: "json",
-            body: serializers.ApplePayDomainDeregistrationRequest.jsonOrThrow(request, {
+            body: serializers.applePay.ApplePayDomainDeregistrationRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
                 omitUndefined: true,
             }),
@@ -240,7 +240,7 @@ export class Domain {
     }
 
     /**
-     * @param {BasisTheory.ApplePayDomainRegistrationRequest} request
+     * @param {BasisTheory.applePay.ApplePayDomainRegistrationRequest} request
      * @param {Domain.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
@@ -255,14 +255,14 @@ export class Domain {
      *     })
      */
     public register(
-        request: BasisTheory.ApplePayDomainRegistrationRequest,
+        request: BasisTheory.applePay.ApplePayDomainRegistrationRequest,
         requestOptions?: Domain.RequestOptions,
     ): core.HttpResponsePromise<BasisTheory.ApplePayDomainRegistrationResponse> {
         return core.HttpResponsePromise.fromPromise(this.__register(request, requestOptions));
     }
 
     private async __register(
-        request: BasisTheory.ApplePayDomainRegistrationRequest,
+        request: BasisTheory.applePay.ApplePayDomainRegistrationRequest,
         requestOptions?: Domain.RequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.ApplePayDomainRegistrationResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -283,7 +283,7 @@ export class Domain {
             ),
             contentType: "application/json",
             requestType: "json",
-            body: serializers.ApplePayDomainRegistrationRequest.jsonOrThrow(request, {
+            body: serializers.applePay.ApplePayDomainRegistrationRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
                 omitUndefined: true,
             }),

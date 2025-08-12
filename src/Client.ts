@@ -9,10 +9,10 @@ import { Applications } from "./api/resources/applications/client/Client.js";
 import { ApplicationKeys } from "./api/resources/applicationKeys/client/Client.js";
 import { ApplicationTemplates } from "./api/resources/applicationTemplates/client/Client.js";
 import { ApplePay } from "./api/resources/applePay/client/Client.js";
+import { GooglePay } from "./api/resources/googlePay/client/Client.js";
 import { Documents } from "./api/resources/documents/client/Client.js";
 import { Tokens } from "./api/resources/tokens/client/Client.js";
 import { Enrichments } from "./api/resources/enrichments/client/Client.js";
-import { Googlepay } from "./api/resources/googlepay/client/Client.js";
 import { Keys } from "./api/resources/keys/client/Client.js";
 import { Logs } from "./api/resources/logs/client/Client.js";
 import { NetworkTokens } from "./api/resources/networkTokens/client/Client.js";
@@ -61,10 +61,10 @@ export class BasisTheoryClient {
     protected _applicationKeys: ApplicationKeys | undefined;
     protected _applicationTemplates: ApplicationTemplates | undefined;
     protected _applePay: ApplePay | undefined;
+    protected _googlePay: GooglePay | undefined;
     protected _documents: Documents | undefined;
     protected _tokens: Tokens | undefined;
     protected _enrichments: Enrichments | undefined;
-    protected _googlepay: Googlepay | undefined;
     protected _keys: Keys | undefined;
     protected _logs: Logs | undefined;
     protected _networkTokens: NetworkTokens | undefined;
@@ -114,6 +114,10 @@ export class BasisTheoryClient {
         return (this._applePay ??= new ApplePay(this._options));
     }
 
+    public get googlePay(): GooglePay {
+        return (this._googlePay ??= new GooglePay(this._options));
+    }
+
     public get documents(): Documents {
         return (this._documents ??= new Documents(this._options));
     }
@@ -124,10 +128,6 @@ export class BasisTheoryClient {
 
     public get enrichments(): Enrichments {
         return (this._enrichments ??= new Enrichments(this._options));
-    }
-
-    public get googlepay(): Googlepay {
-        return (this._googlepay ??= new Googlepay(this._options));
     }
 
     public get keys(): Keys {

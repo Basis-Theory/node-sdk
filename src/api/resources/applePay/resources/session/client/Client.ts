@@ -44,7 +44,7 @@ export class Session {
     }
 
     /**
-     * @param {BasisTheory.ApplePaySessionRequest} request
+     * @param {BasisTheory.applePay.ApplePaySessionRequest} request
      * @param {Session.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
@@ -53,17 +53,17 @@ export class Session {
      * @throws {@link BasisTheory.UnprocessableEntityError}
      *
      * @example
-     *     await client.applePay.session.create({})
+     *     await client.applePay.session.create()
      */
     public create(
-        request: BasisTheory.ApplePaySessionRequest,
+        request: BasisTheory.applePay.ApplePaySessionRequest = {},
         requestOptions?: Session.RequestOptions,
     ): core.HttpResponsePromise<string> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: BasisTheory.ApplePaySessionRequest,
+        request: BasisTheory.applePay.ApplePaySessionRequest = {},
         requestOptions?: Session.RequestOptions,
     ): Promise<core.WithRawResponse<string>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -84,7 +84,7 @@ export class Session {
             ),
             contentType: "application/json",
             requestType: "json",
-            body: serializers.ApplePaySessionRequest.jsonOrThrow(request, {
+            body: serializers.applePay.ApplePaySessionRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
                 omitUndefined: true,
             }),

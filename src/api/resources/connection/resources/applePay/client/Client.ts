@@ -4,12 +4,7 @@
 
 import * as environments from "../../../../../../environments.js";
 import * as core from "../../../../../../core/index.js";
-import * as BasisTheory from "../../../../../index.js";
-import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
-import * as serializers from "../../../../../../serialization/index.js";
-import * as errors from "../../../../../../errors/index.js";
 import { Domain } from "../resources/domain/client/Client.js";
-import { Session } from "../resources/session/client/Client.js";
 
 export declare namespace ApplePay {
     export interface Options {
@@ -23,25 +18,11 @@ export declare namespace ApplePay {
         headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
         fetcher?: core.FetchFunction;
     }
-
-    export interface RequestOptions {
-        /** The maximum time to wait for a response in seconds. */
-        timeoutInSeconds?: number;
-        /** The number of times to retry the request. Defaults to 2. */
-        maxRetries?: number;
-        /** A hook to abort the request. */
-        abortSignal?: AbortSignal;
-        /** Override the BT-TRACE-ID header */
-        correlationId?: string | undefined;
-        /** Additional headers to include in the request. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
-    }
 }
 
 export class ApplePay {
     protected readonly _options: ApplePay.Options;
     protected _domain: Domain | undefined;
-    protected _session: Session | undefined;
 
     constructor(_options: ApplePay.Options = {}) {
         this._options = _options;
@@ -49,150 +30,5 @@ export class ApplePay {
 
     public get domain(): Domain {
         return (this._domain ??= new Domain(this._options));
-    }
-
-    public get session(): Session {
-        return (this._session ??= new Session(this._options));
-    }
-
-    /**
-     * @param {BasisTheory.connection.ApplePayTokenizeRequest} request
-     * @param {ApplePay.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link BasisTheory.BadRequestError}
-     * @throws {@link BasisTheory.UnauthorizedError}
-     * @throws {@link BasisTheory.ForbiddenError}
-     * @throws {@link BasisTheory.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.connection.applePay.tokenize()
-     */
-    public tokenize(
-        request: BasisTheory.connection.ApplePayTokenizeRequest = {},
-        requestOptions?: ApplePay.RequestOptions,
-    ): core.HttpResponsePromise<BasisTheory.ApplePayTokenizeResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__tokenize(request, requestOptions));
-    }
-
-    private async __tokenize(
-        request: BasisTheory.connection.ApplePayTokenizeRequest = {},
-        requestOptions?: ApplePay.RequestOptions,
-    ): Promise<core.WithRawResponse<BasisTheory.ApplePayTokenizeResponse>> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
-                "connections/apple-pay/tokenize",
-            ),
-            method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({
-                    "BT-TRACE-ID": requestOptions?.correlationId,
-                    ...(await this._getCustomAuthorizationHeaders()),
-                }),
-                requestOptions?.headers,
-            ),
-            contentType: "application/json",
-            requestType: "json",
-            body: serializers.connection.ApplePayTokenizeRequest.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "strip",
-                omitUndefined: true,
-            }),
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return {
-                data: serializers.ApplePayTokenizeResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new BasisTheory.BadRequestError(
-                        serializers.ValidationProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 401:
-                    throw new BasisTheory.UnauthorizedError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 403:
-                    throw new BasisTheory.ForbiddenError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 422:
-                    throw new BasisTheory.UnprocessableEntityError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.BasisTheoryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling POST /connections/apple-pay/tokenize.",
-                );
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    protected async _getCustomAuthorizationHeaders() {
-        const apiKeyValue = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["BT-API-KEY"];
-        return { "BT-API-KEY": apiKeyValue };
     }
 }

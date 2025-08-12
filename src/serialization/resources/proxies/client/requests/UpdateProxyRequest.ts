@@ -18,6 +18,14 @@ export const UpdateProxyRequest: core.serialization.Schema<
     responseReactorId: core.serialization.property("response_reactor_id", core.serialization.string().optional()),
     requestTransform: core.serialization.property("request_transform", ProxyTransform.optional()),
     responseTransform: core.serialization.property("response_transform", ProxyTransform.optional()),
+    requestTransforms: core.serialization.property(
+        "request_transforms",
+        core.serialization.list(ProxyTransform).optional(),
+    ),
+    responseTransforms: core.serialization.property(
+        "response_transforms",
+        core.serialization.list(ProxyTransform).optional(),
+    ),
     application: Application.optional(),
     configuration: core.serialization
         .record(core.serialization.string(), core.serialization.string().optional())
@@ -33,6 +41,8 @@ export declare namespace UpdateProxyRequest {
         response_reactor_id?: string | null;
         request_transform?: ProxyTransform.Raw | null;
         response_transform?: ProxyTransform.Raw | null;
+        request_transforms?: ProxyTransform.Raw[] | null;
+        response_transforms?: ProxyTransform.Raw[] | null;
         application?: Application.Raw | null;
         configuration?: Record<string, string | null | undefined> | null;
         require_auth?: boolean | null;
