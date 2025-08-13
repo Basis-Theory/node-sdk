@@ -15,6 +15,8 @@ export interface Proxy {
     requireAuth?: boolean;
     requestTransform?: BasisTheory.ProxyTransform;
     responseTransform?: BasisTheory.ProxyTransform;
+    requestTransforms?: BasisTheory.ProxyTransform[];
+    responseTransforms?: BasisTheory.ProxyTransform[];
     applicationId?: string;
     configuration?: Record<string, string | undefined>;
     proxyHost?: string;
