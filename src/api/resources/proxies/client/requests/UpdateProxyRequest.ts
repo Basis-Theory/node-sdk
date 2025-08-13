@@ -18,6 +18,8 @@ export interface UpdateProxyRequest {
     responseReactorId?: string;
     requestTransform?: BasisTheory.ProxyTransform;
     responseTransform?: BasisTheory.ProxyTransform;
+    requestTransforms?: BasisTheory.ProxyTransform[];
+    responseTransforms?: BasisTheory.ProxyTransform[];
     application?: BasisTheory.Application;
     configuration?: Record<string, string | undefined>;
     requireAuth?: boolean;
