@@ -636,12 +636,12 @@ describe('google pay', () => {
         const jsonObject = JSON.parse(jsonString);
 
         try {
-            await client.googlepay.tokenize({
-                googlePaymentMethodToken: jsonObject
+            await client.googlePay.create({
+                googlePaymentData: jsonObject
             });
         } catch (err) {
             expect(err).toBeInstanceOf(UnprocessableEntityError);
-            expect((err as any).body.detail).toContain('Failed to decrypt token');
+            expect((err as any).body.detail).toContain('Failed to create token');
         }
     });
 });
