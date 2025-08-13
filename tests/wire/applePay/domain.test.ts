@@ -4,7 +4,6 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool";
 import { BasisTheoryClient } from "../../../src/Client";
-import * as BasisTheory from "../../../src/api/index";
 
 describe("Domain", () => {
     test("deregister", async () => {
@@ -91,7 +90,7 @@ describe("Domain", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.applePay.domain.registerAll({});
+        const response = await client.applePay.domain.registerAll();
         expect(response).toEqual({
             domains: [
                 {

@@ -27,4 +27,44 @@ describe("Enrichments", () => {
             status: "status",
         });
     });
+
+    test("getcarddetails", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            brand: "brand",
+            funding: "funding",
+            segment: "segment",
+            issuer: { country: "country", name: "name" },
+            additional: [{ brand: "brand", funding: "funding", segment: "segment" }],
+        };
+        server
+            .mockEndpoint()
+            .get("/enrichments/card-details")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.enrichments.getcarddetails({
+            bin: "bin",
+        });
+        expect(response).toEqual({
+            brand: "brand",
+            funding: "funding",
+            segment: "segment",
+            issuer: {
+                country: "country",
+                name: "name",
+            },
+            additional: [
+                {
+                    brand: "brand",
+                    funding: "funding",
+                    segment: "segment",
+                },
+            ],
+        });
+    });
 });

@@ -3,7 +3,7 @@
  */
 
 export const BasisTheoryEnvironment = {
-    Default: "https://api.basistheory.com",
+    Default: "https://api.flock-dev.com",
 } as const;
 
 export type BasisTheoryEnvironment = typeof BasisTheoryEnvironment.Default;

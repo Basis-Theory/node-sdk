@@ -9,10 +9,10 @@ import { Applications } from "./api/resources/applications/client/Client.js";
 import { ApplicationKeys } from "./api/resources/applicationKeys/client/Client.js";
 import { ApplicationTemplates } from "./api/resources/applicationTemplates/client/Client.js";
 import { ApplePay } from "./api/resources/applePay/client/Client.js";
+import { GooglePay } from "./api/resources/googlePay/client/Client.js";
 import { Documents } from "./api/resources/documents/client/Client.js";
 import { Tokens } from "./api/resources/tokens/client/Client.js";
 import { Enrichments } from "./api/resources/enrichments/client/Client.js";
-import { Googlepay } from "./api/resources/googlepay/client/Client.js";
 import { Keys } from "./api/resources/keys/client/Client.js";
 import { Logs } from "./api/resources/logs/client/Client.js";
 import { NetworkTokens } from "./api/resources/networkTokens/client/Client.js";
@@ -24,7 +24,6 @@ import { Sessions } from "./api/resources/sessions/client/Client.js";
 import { TokenIntents } from "./api/resources/tokenIntents/client/Client.js";
 import { Webhooks } from "./api/resources/webhooks/client/Client.js";
 import { AccountUpdater } from "./api/resources/accountUpdater/client/Client.js";
-import { Connection } from "./api/resources/connection/client/Client.js";
 import { Tenants } from "./api/resources/tenants/client/Client.js";
 import { Threeds } from "./api/resources/threeds/client/Client.js";
 
@@ -61,10 +60,10 @@ export class BasisTheoryClient {
     protected _applicationKeys: ApplicationKeys | undefined;
     protected _applicationTemplates: ApplicationTemplates | undefined;
     protected _applePay: ApplePay | undefined;
+    protected _googlePay: GooglePay | undefined;
     protected _documents: Documents | undefined;
     protected _tokens: Tokens | undefined;
     protected _enrichments: Enrichments | undefined;
-    protected _googlepay: Googlepay | undefined;
     protected _keys: Keys | undefined;
     protected _logs: Logs | undefined;
     protected _networkTokens: NetworkTokens | undefined;
@@ -76,7 +75,6 @@ export class BasisTheoryClient {
     protected _tokenIntents: TokenIntents | undefined;
     protected _webhooks: Webhooks | undefined;
     protected _accountUpdater: AccountUpdater | undefined;
-    protected _connection: Connection | undefined;
     protected _tenants: Tenants | undefined;
     protected _threeds: Threeds | undefined;
 
@@ -114,6 +112,10 @@ export class BasisTheoryClient {
         return (this._applePay ??= new ApplePay(this._options));
     }
 
+    public get googlePay(): GooglePay {
+        return (this._googlePay ??= new GooglePay(this._options));
+    }
+
     public get documents(): Documents {
         return (this._documents ??= new Documents(this._options));
     }
@@ -124,10 +126,6 @@ export class BasisTheoryClient {
 
     public get enrichments(): Enrichments {
         return (this._enrichments ??= new Enrichments(this._options));
-    }
-
-    public get googlepay(): Googlepay {
-        return (this._googlepay ??= new Googlepay(this._options));
     }
 
     public get keys(): Keys {
@@ -172,10 +170,6 @@ export class BasisTheoryClient {
 
     public get accountUpdater(): AccountUpdater {
         return (this._accountUpdater ??= new AccountUpdater(this._options));
-    }
-
-    public get connection(): Connection {
-        return (this._connection ??= new Connection(this._options));
     }
 
     public get tenants(): Tenants {

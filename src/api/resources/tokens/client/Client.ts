@@ -441,17 +441,17 @@ export class Tokens {
      * @throws {@link BasisTheory.ConflictError}
      *
      * @example
-     *     await client.tokens.create()
+     *     await client.tokens.create({})
      */
     public create(
-        request: BasisTheory.CreateTokenRequest = {},
+        request: BasisTheory.CreateTokenRequest,
         requestOptions?: Tokens.IdempotentRequestOptions,
     ): core.HttpResponsePromise<BasisTheory.Token> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: BasisTheory.CreateTokenRequest = {},
+        request: BasisTheory.CreateTokenRequest,
         requestOptions?: Tokens.IdempotentRequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.Token>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({

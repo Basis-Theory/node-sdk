@@ -19,6 +19,14 @@ export const Proxy: core.serialization.ObjectSchema<serializers.Proxy.Raw, Basis
         requireAuth: core.serialization.property("require_auth", core.serialization.boolean().optional()),
         requestTransform: core.serialization.property("request_transform", ProxyTransform.optional()),
         responseTransform: core.serialization.property("response_transform", ProxyTransform.optional()),
+        requestTransforms: core.serialization.property(
+            "request_transforms",
+            core.serialization.list(ProxyTransform).optional(),
+        ),
+        responseTransforms: core.serialization.property(
+            "response_transforms",
+            core.serialization.list(ProxyTransform).optional(),
+        ),
         applicationId: core.serialization.property("application_id", core.serialization.string().optional()),
         configuration: core.serialization
             .record(core.serialization.string(), core.serialization.string().optional())
@@ -44,6 +52,8 @@ export declare namespace Proxy {
         require_auth?: boolean | null;
         request_transform?: ProxyTransform.Raw | null;
         response_transform?: ProxyTransform.Raw | null;
+        request_transforms?: ProxyTransform.Raw[] | null;
+        response_transforms?: ProxyTransform.Raw[] | null;
         application_id?: string | null;
         configuration?: Record<string, string | null | undefined> | null;
         proxy_host?: string | null;
