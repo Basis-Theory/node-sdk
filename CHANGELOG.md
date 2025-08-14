@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/Basis-Theory/node-sdk/compare/v3.5.1...v4.0.0) (2025-08-14)
+
+
+### Features
+
+* Add Google Pay endpoints ([f3bafa1](https://github.com/Basis-Theory/node-sdk/commit/f3bafa1189116843053622c306a4b29e68dc453a))
+
+
+### BREAKING CHANGES
+
+* Deprecating old Google Pay and Apple Pay endpoints
+
 ## [3.5.1](https://github.com/Basis-Theory/node-sdk/compare/v3.5.0...v3.5.1) (2025-08-05)
 
 
