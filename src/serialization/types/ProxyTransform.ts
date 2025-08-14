@@ -5,6 +5,7 @@
 import * as serializers from "../index.js";
 import * as BasisTheory from "../../api/index.js";
 import * as core from "../../core/index.js";
+import { ProxyTransformOptions } from "./ProxyTransformOptions.js";
 
 export const ProxyTransform: core.serialization.ObjectSchema<
     serializers.ProxyTransform.Raw,
@@ -15,6 +16,7 @@ export const ProxyTransform: core.serialization.ObjectSchema<
     matcher: core.serialization.string().optional(),
     expression: core.serialization.string().optional(),
     replacement: core.serialization.string().optional(),
+    options: ProxyTransformOptions.optional(),
 });
 
 export declare namespace ProxyTransform {
@@ -24,5 +26,6 @@ export declare namespace ProxyTransform {
         matcher?: string | null;
         expression?: string | null;
         replacement?: string | null;
+        options?: ProxyTransformOptions.Raw | null;
     }
 }

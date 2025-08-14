@@ -3,7 +3,6 @@
  */
 
 import { mockServerPool } from "../../mock-server/MockServerPool";
-import * as BasisTheory from "../../../src/api/index";
 import { BasisTheoryClient } from "../../../src/Client";
 
 describe("Session", () => {
@@ -21,7 +20,7 @@ describe("Session", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.applePay.session.create({});
+        const response = await client.applePay.session.create();
         expect(response).toEqual("string");
     });
 });
