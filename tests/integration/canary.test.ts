@@ -336,6 +336,9 @@ describe('Proxies', () => {
                 SERVICE_API_KEY: "key_abcd1234",
             }
         });
+
+        await client.proxies.delete(proxyId);
+        await client.applications.delete(applicationId!);
     });
 });
 
@@ -422,6 +425,9 @@ describe('Reactors', () => {
         );
         // @ts-ignore
         expect(reactAsyncResponse.asyncReactorRequestId).toBeDefined();
+
+        await managementClient.reactors.delete(reactorId);
+        await managementClient.applications.delete(applicationId!);
     });
 });
 
