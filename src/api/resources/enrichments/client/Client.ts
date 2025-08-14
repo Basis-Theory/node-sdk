@@ -169,6 +169,118 @@ export class Enrichments {
         }
     }
 
+    /**
+     * @param {BasisTheory.EnrichmentsGetCardDetailsRequest} request
+     * @param {Enrichments.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link BasisTheory.UnauthorizedError}
+     * @throws {@link BasisTheory.ForbiddenError}
+     *
+     * @example
+     *     await client.enrichments.getcarddetails({
+     *         bin: "bin"
+     *     })
+     */
+    public getcarddetails(
+        request: BasisTheory.EnrichmentsGetCardDetailsRequest,
+        requestOptions?: Enrichments.RequestOptions,
+    ): core.HttpResponsePromise<BasisTheory.CardDetailsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getcarddetails(request, requestOptions));
+    }
+
+    private async __getcarddetails(
+        request: BasisTheory.EnrichmentsGetCardDetailsRequest,
+        requestOptions?: Enrichments.RequestOptions,
+    ): Promise<core.WithRawResponse<BasisTheory.CardDetailsResponse>> {
+        const { bin } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        _queryParams["bin"] = bin;
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.BasisTheoryEnvironment.Default,
+                "enrichments/card-details",
+            ),
+            method: "GET",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    "BT-TRACE-ID": requestOptions?.correlationId,
+                    ...(await this._getCustomAuthorizationHeaders()),
+                }),
+                requestOptions?.headers,
+            ),
+            queryParameters: _queryParams,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.CardDetailsResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new BasisTheory.UnauthorizedError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new BasisTheory.ForbiddenError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.BasisTheoryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.BasisTheoryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.BasisTheoryTimeoutError(
+                    "Timeout exceeded when calling GET /enrichments/card-details.",
+                );
+            case "unknown":
+                throw new errors.BasisTheoryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
     protected async _getCustomAuthorizationHeaders() {
         const apiKeyValue = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["BT-API-KEY"];
         return { "BT-API-KEY": apiKeyValue };
