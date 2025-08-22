@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/Basis-Theory/node-sdk/compare/v4.0.0...v4.1.0) (2025-08-22)
+
+
+### Features
+
+* Add DELETE endpoint for ApplePay ([013fe39](https://github.com/Basis-Theory/node-sdk/commit/013fe3980648a320c8912f409f6f53fd7b43a0a6))
+
 # [4.0.0](https://github.com/Basis-Theory/node-sdk/compare/v3.5.1...v4.0.0) (2025-08-14)
 
 
