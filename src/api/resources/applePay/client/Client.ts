@@ -302,16 +302,16 @@ export class ApplePay {
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
-     * @throws {@link BasisTheory.UnprocessableEntityError}
+     * @throws {@link BasisTheory.NotFoundError}
      *
      * @example
-     *     await client.applePay.unlink("id")
+     *     await client.applePay.delete("id")
      */
-    public unlink(id: string, requestOptions?: ApplePay.RequestOptions): core.HttpResponsePromise<string> {
-        return core.HttpResponsePromise.fromPromise(this.__unlink(id, requestOptions));
+    public delete(id: string, requestOptions?: ApplePay.RequestOptions): core.HttpResponsePromise<string> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
     }
 
-    private async __unlink(
+    private async __delete(
         id: string,
         requestOptions?: ApplePay.RequestOptions,
     ): Promise<core.WithRawResponse<string>> {
@@ -320,9 +320,9 @@ export class ApplePay {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.BasisTheoryEnvironment.Default,
-                `apple-pay/${encodeURIComponent(id)}/unlink`,
+                `apple-pay/${encodeURIComponent(id)}`,
             ),
-            method: "POST",
+            method: "DELETE",
             headers: mergeHeaders(
                 this._options?.headers,
                 mergeOnlyDefinedHeaders({
@@ -337,7 +337,7 @@ export class ApplePay {
         });
         if (_response.ok) {
             return {
-                data: serializers.applePay.unlink.Response.parseOrThrow(_response.body, {
+                data: serializers.applePay.delete.Response.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -372,17 +372,8 @@ export class ApplePay {
                         }),
                         _response.rawResponse,
                     );
-                case 422:
-                    throw new BasisTheory.UnprocessableEntityError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new BasisTheory.NotFoundError(_response.error.body, _response.rawResponse);
                 default:
                     throw new errors.BasisTheoryError({
                         statusCode: _response.error.statusCode,
@@ -400,7 +391,7 @@ export class ApplePay {
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /apple-pay/{id}/unlink.");
+                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling DELETE /apple-pay/{id}.");
             case "unknown":
                 throw new errors.BasisTheoryError({
                     message: _response.error.errorMessage,

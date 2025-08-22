@@ -144,20 +144,14 @@ describe("ApplePay", () => {
         });
     });
 
-    test("unlink", async () => {
+    test("delete", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
 
         const rawResponseBody = "string";
-        server
-            .mockEndpoint()
-            .post("/apple-pay/id/unlink")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+        server.mockEndpoint().delete("/apple-pay/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.applePay.unlink("id");
+        const response = await client.applePay.delete("id");
         expect(response).toEqual("string");
     });
 });

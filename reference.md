@@ -710,7 +710,7 @@ await client.applePay.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.applePay.<a href="/src/api/resources/applePay/client/Client.ts">unlink</a>(id) -> string</code></summary>
+<details><summary><code>client.applePay.<a href="/src/api/resources/applePay/client/Client.ts">delete</a>(id) -> string</code></summary>
 <dl>
 <dd>
 
@@ -723,7 +723,7 @@ await client.applePay.get("id");
 <dd>
 
 ```typescript
-await client.applePay.unlink("id");
+await client.applePay.delete("id");
 ```
 
 </dd>

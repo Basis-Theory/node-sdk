@@ -17,6 +17,10 @@ export const CreateReactorRequest: core.serialization.Schema<
     configuration: core.serialization
         .record(core.serialization.string(), core.serialization.string().optional())
         .optional(),
+    dependencies: core.serialization
+        .record(core.serialization.string(), core.serialization.string().optional())
+        .optional(),
+    runtime: core.serialization.string().optional(),
 });
 
 export declare namespace CreateReactorRequest {
@@ -25,5 +29,7 @@ export declare namespace CreateReactorRequest {
         code: string;
         application?: Application.Raw | null;
         configuration?: Record<string, string | null | undefined> | null;
+        dependencies?: Record<string, string | null | undefined> | null;
+        runtime?: string | null;
     }
 }

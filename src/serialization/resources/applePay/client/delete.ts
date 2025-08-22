@@ -5,7 +5,7 @@
 import * as serializers from "../../../index.js";
 import * as core from "../../../../core/index.js";
 
-export const Response: core.serialization.Schema<serializers.applePay.unlink.Response.Raw, string> =
+export const Response: core.serialization.Schema<serializers.applePay.delete.Response.Raw, string> =
     core.serialization.string();
 
 export declare namespace Response {

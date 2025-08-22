@@ -48,6 +48,8 @@ describe("Reactors", () => {
             modified_by: "modified_by",
             modified_at: "2024-01-15T09:30:00Z",
             configuration: { key: "value" },
+            dependencies: { key: "value" },
+            runtime: "runtime",
         };
         server.mockEndpoint().get("/reactors/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
@@ -102,6 +104,10 @@ describe("Reactors", () => {
             configuration: {
                 key: "value",
             },
+            dependencies: {
+                key: "value",
+            },
+            runtime: "runtime",
         });
     });
 

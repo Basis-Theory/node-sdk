@@ -16,4 +16,6 @@ export interface Reactor {
     modifiedBy?: string;
     modifiedAt?: Date;
     configuration?: Record<string, string | undefined>;
+    dependencies?: Record<string, string | undefined>;
+    runtime?: string;
 }

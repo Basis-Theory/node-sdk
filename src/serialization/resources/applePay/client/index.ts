@@ -1,2 +1,2 @@
-export * as unlink from "./unlink.js";
+export * as delete from "./delete.js";
 export * from "./requests/index.js";
