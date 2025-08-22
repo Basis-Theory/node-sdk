@@ -16,4 +16,6 @@ export interface UpdateReactorRequest {
     application?: BasisTheory.Application;
     code: string;
     configuration?: Record<string, string | undefined>;
+    dependencies?: Record<string, string | undefined>;
+    runtime?: string;
 }

@@ -16,4 +16,6 @@ export interface CreateReactorRequest {
     code: string;
     application?: BasisTheory.Application;
     configuration?: Record<string, string | undefined>;
+    dependencies?: Record<string, string | undefined>;
+    runtime?: string;
 }
