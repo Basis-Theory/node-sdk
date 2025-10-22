@@ -86,6 +86,7 @@ export declare namespace ThreeDsAuthentication {
         threeds_version?: string | null;
         acs_transaction_id?: string | null;
         ds_transaction_id?: string | null;
+        acs_operator_id?: string | null;
         sdk_transaction_id?: string | null;
         acs_reference_number?: string | null;
         ds_reference_number?: string | null;
