@@ -1,21 +1,26 @@
 name: Release
 
 on:
-  push:
-    branches: [ master ]
+  release:
+    types: [released]
 
 jobs:
   build-release:
     runs-on: ${{ matrix.os }}
+    permissions:
+      id-token: write # Required for OIDC trusted publishing to npm
+      contents: read
+      actions: read
+    environment: PROD # Must match npm trusted publisher config exactly (case-sensitive)
     strategy:
       matrix:
-        node: [ '18.x' ]
-        os: [ ubuntu-latest ]
+        node: ["18.x"]
+        os: [ubuntu-latest]
     env:
       CI: 1 # prevents extra Cypress installation progress messages
       HUSKY: 0 # disables husky hooks
     steps:
-      - name: Checkout repo
+      - name: Checkout Repo
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.SEMANTIC_RELEASE_PAT }}
@@ -30,20 +35,28 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+          # registry-url is intentionally NOT set - it creates .npmrc that blocks OIDC
+
+      - name: Update npm for Trusted Publishing
+        run: npm install -g npm@latest # Requires npm 11.5.1+ for OIDC support
 
       - name: Install deps (with cache)
         uses: bahmutov/npm-install@v1
+
+      - name: Bump Version
+        run: |
+          # Strip 'v' prefix if present and update package.json
+          CLEAN_VERSION=$(echo "${{ github.event.release.tag_name }}" | sed 's/^v//')
+          echo "Bumping to version ${CLEAN_VERSION}"
+          jq --arg v "$CLEAN_VERSION" '.version = $v' package.json > package.json.tmp && mv package.json.tmp package.json
 
       - name: Build
         run: ./scripts/build.sh
         env:
           SKIP_INSTALL: 1 # install with cache was done already
 
-      - name: Release
-        run: ./scripts/release.sh
-        env:
-          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
-          NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN }}
+      - name: Publish Package to NPM
+        run: npm publish --access public
 
       - name: Stop Deploy Message
         if: always()
@@ -51,4 +64,4 @@ jobs:
         with:
           slack-api-token: ${{ secrets.SLACK_DUCKBOT_API_KEY }}
           channel: ${{ vars.SLACK_DUCKBOT_RELEASE_CHANNEL_ID }}
-          status: 'done'
+          status: "done"
