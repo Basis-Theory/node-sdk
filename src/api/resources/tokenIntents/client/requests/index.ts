@@ -1,1 +1,1 @@
-export { type CreateTokenIntentRequest } from "./CreateTokenIntentRequest.js";
+export type { CreateTokenIntentRequest } from "./CreateTokenIntentRequest.js";
