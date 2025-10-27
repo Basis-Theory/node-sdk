@@ -3,6 +3,8 @@
 .github/workflows/release.yml
 .github/workflows/ci.yml
 .github/workflows/security-scan.yml
+.github/workflows/deploy-dev.yml
+
 
 scripts/build.sh
 scripts/release.sh
