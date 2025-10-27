@@ -1,1 +1,1 @@
-export { type GooglePayCreateRequest } from "./GooglePayCreateRequest.js";
+export type { GooglePayCreateRequest } from "./GooglePayCreateRequest.js";
