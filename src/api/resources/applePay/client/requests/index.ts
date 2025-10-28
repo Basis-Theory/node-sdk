@@ -1,1 +1,1 @@
-export { type ApplePayCreateRequest } from "./ApplePayCreateRequest.js";
+export type { ApplePayCreateRequest } from "./ApplePayCreateRequest.js";

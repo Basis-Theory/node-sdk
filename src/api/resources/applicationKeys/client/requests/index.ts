@@ -1,1 +1,1 @@
-export { type ApplicationKeysListRequest } from "./ApplicationKeysListRequest.js";
+export type { ApplicationKeysListRequest } from "./ApplicationKeysListRequest.js";
