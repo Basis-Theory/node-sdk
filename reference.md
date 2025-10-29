@@ -1,7 +1,5 @@
 # Reference
-
 ## Applications
-
 <details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Application></code></summary>
 <dl>
 <dd>
@@ -25,8 +23,8 @@ let page = await client.applications.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -40,20 +38,21 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `BasisTheory.ApplicationsListRequest`
-
+**request:** `BasisTheory.ApplicationsListRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Applications.RequestOptions`
+**requestOptions:** `Applications.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -74,10 +73,10 @@ while (page.hasNextPage()) {
 ```typescript
 await client.applications.create({
     name: "name",
-    type: "type",
+    type: "type"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -91,20 +90,21 @@ await client.applications.create({
 <dl>
 <dd>
 
-**request:** `BasisTheory.CreateApplicationRequest`
-
+**request:** `BasisTheory.CreateApplicationRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Applications.IdempotentRequestOptions`
+**requestOptions:** `Applications.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -124,8 +124,8 @@ await client.applications.create({
 
 ```typescript
 await client.applications.get("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -139,20 +139,21 @@ await client.applications.get("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Applications.RequestOptions`
+**requestOptions:** `Applications.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -172,10 +173,10 @@ await client.applications.get("id");
 
 ```typescript
 await client.applications.update("id", {
-    name: "name",
+    name: "name"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -189,28 +190,29 @@ await client.applications.update("id", {
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `BasisTheory.UpdateApplicationRequest`
-
+**request:** `BasisTheory.UpdateApplicationRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Applications.IdempotentRequestOptions`
+**requestOptions:** `Applications.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -230,8 +232,8 @@ await client.applications.update("id", {
 
 ```typescript
 await client.applications.delete("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -245,20 +247,21 @@ await client.applications.delete("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Applications.RequestOptions`
+**requestOptions:** `Applications.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -278,8 +281,8 @@ await client.applications.delete("id");
 
 ```typescript
 await client.applications.getByKey();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -293,19 +296,19 @@ await client.applications.getByKey();
 <dl>
 <dd>
 
-**requestOptions:** `Applications.RequestOptions`
+**requestOptions:** `Applications.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## ApplicationKeys
-
 <details><summary><code>client.applicationKeys.<a href="/src/api/resources/applicationKeys/client/Client.ts">list</a>(id, { ...params }) -> BasisTheory.ApplicationKey[]</code></summary>
 <dl>
 <dd>
@@ -320,8 +323,8 @@ await client.applications.getByKey();
 
 ```typescript
 await client.applicationKeys.list("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -335,28 +338,29 @@ await client.applicationKeys.list("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `BasisTheory.ApplicationKeysListRequest`
-
+**request:** `BasisTheory.ApplicationKeysListRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationKeys.RequestOptions`
+**requestOptions:** `ApplicationKeys.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -376,8 +380,8 @@ await client.applicationKeys.list("id");
 
 ```typescript
 await client.applicationKeys.create("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -391,20 +395,21 @@ await client.applicationKeys.create("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationKeys.IdempotentRequestOptions`
+**requestOptions:** `ApplicationKeys.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -424,8 +429,8 @@ await client.applicationKeys.create("id");
 
 ```typescript
 await client.applicationKeys.get("id", "keyId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -439,28 +444,29 @@ await client.applicationKeys.get("id", "keyId");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**keyId:** `string`
-
+**keyId:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationKeys.RequestOptions`
+**requestOptions:** `ApplicationKeys.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -480,8 +486,8 @@ await client.applicationKeys.get("id", "keyId");
 
 ```typescript
 await client.applicationKeys.delete("id", "keyId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -495,35 +501,35 @@ await client.applicationKeys.delete("id", "keyId");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**keyId:** `string`
-
+**keyId:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationKeys.RequestOptions`
+**requestOptions:** `ApplicationKeys.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## ApplicationTemplates
-
 <details><summary><code>client.applicationTemplates.<a href="/src/api/resources/applicationTemplates/client/Client.ts">list</a>() -> BasisTheory.ApplicationTemplate[]</code></summary>
 <dl>
 <dd>
@@ -538,8 +544,8 @@ await client.applicationKeys.delete("id", "keyId");
 
 ```typescript
 await client.applicationTemplates.list();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -553,12 +559,13 @@ await client.applicationTemplates.list();
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationTemplates.RequestOptions`
+**requestOptions:** `ApplicationTemplates.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -578,8 +585,8 @@ await client.applicationTemplates.list();
 
 ```typescript
 await client.applicationTemplates.get("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -593,27 +600,27 @@ await client.applicationTemplates.get("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationTemplates.RequestOptions`
+**requestOptions:** `ApplicationTemplates.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## ApplePay
-
 <details><summary><code>client.applePay.<a href="/src/api/resources/applePay/client/Client.ts">create</a>({ ...params }) -> BasisTheory.ApplePayCreateResponse</code></summary>
 <dl>
 <dd>
@@ -628,8 +635,8 @@ await client.applicationTemplates.get("id");
 
 ```typescript
 await client.applePay.create();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -643,20 +650,21 @@ await client.applePay.create();
 <dl>
 <dd>
 
-**request:** `BasisTheory.ApplePayCreateRequest`
-
+**request:** `BasisTheory.ApplePayCreateRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `ApplePay.RequestOptions`
+**requestOptions:** `ApplePay.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -676,8 +684,8 @@ await client.applePay.create();
 
 ```typescript
 await client.applePay.get("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -691,20 +699,21 @@ await client.applePay.get("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `ApplePay.RequestOptions`
+**requestOptions:** `ApplePay.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -724,8 +733,8 @@ await client.applePay.get("id");
 
 ```typescript
 await client.applePay.delete("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -739,27 +748,27 @@ await client.applePay.delete("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `ApplePay.RequestOptions`
+**requestOptions:** `ApplePay.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## GooglePay
-
 <details><summary><code>client.googlePay.<a href="/src/api/resources/googlePay/client/Client.ts">create</a>({ ...params }) -> BasisTheory.GooglePayCreateResponse</code></summary>
 <dl>
 <dd>
@@ -774,8 +783,8 @@ await client.applePay.delete("id");
 
 ```typescript
 await client.googlePay.create();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -789,20 +798,21 @@ await client.googlePay.create();
 <dl>
 <dd>
 
-**request:** `BasisTheory.GooglePayCreateRequest`
-
+**request:** `BasisTheory.GooglePayCreateRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `GooglePay.RequestOptions`
+**requestOptions:** `GooglePay.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -822,8 +832,8 @@ await client.googlePay.create();
 
 ```typescript
 await client.googlePay.get("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -837,20 +847,21 @@ await client.googlePay.get("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `GooglePay.RequestOptions`
+**requestOptions:** `GooglePay.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -870,8 +881,8 @@ await client.googlePay.get("id");
 
 ```typescript
 await client.googlePay.delete("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -885,27 +896,27 @@ await client.googlePay.delete("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `GooglePay.RequestOptions`
+**requestOptions:** `GooglePay.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Documents
-
 <details><summary><code>client.documents.<a href="/src/api/resources/documents/client/Client.ts">upload</a>({ ...params }) -> BasisTheory.Document</code></summary>
 <dl>
 <dd>
@@ -920,8 +931,8 @@ await client.googlePay.delete("id");
 
 ```typescript
 await client.documents.upload({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -935,20 +946,21 @@ await client.documents.upload({});
 <dl>
 <dd>
 
-**request:** `BasisTheory.DocumentsUploadRequest`
-
+**request:** `BasisTheory.DocumentsUploadRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Documents.RequestOptions`
+**requestOptions:** `Documents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -968,8 +980,8 @@ await client.documents.upload({});
 
 ```typescript
 await client.documents.get("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -983,20 +995,21 @@ await client.documents.get("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Documents.RequestOptions`
+**requestOptions:** `Documents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1016,8 +1029,8 @@ await client.documents.get("id");
 
 ```typescript
 await client.documents.delete("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1031,27 +1044,27 @@ await client.documents.delete("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Documents.RequestOptions`
+**requestOptions:** `Documents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Tokens
-
 <details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">detokenize</a>({ ...params }) -> unknown</code></summary>
 <dl>
 <dd>
@@ -1066,10 +1079,10 @@ await client.documents.delete("id");
 
 ```typescript
 await client.tokens.detokenize({
-    key: "value",
+    "key": "value"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1083,20 +1096,21 @@ await client.tokens.detokenize({
 <dl>
 <dd>
 
-**request:** `unknown`
-
+**request:** `unknown` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions`
+**requestOptions:** `Tokens.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1116,10 +1130,10 @@ await client.tokens.detokenize({
 
 ```typescript
 await client.tokens.tokenize({
-    key: "value",
+    "key": "value"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1133,125 +1147,21 @@ await client.tokens.tokenize({
 <dl>
 <dd>
 
-**request:** `unknown`
-
+**request:** `unknown` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.IdempotentRequestOptions`
-
+**requestOptions:** `Tokens.IdempotentRequestOptions` 
+    
 </dd>
 </dl>
 </dd>
 </dl>
 
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Token></code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-const response = await client.tokens.list();
-for await (const item of response) {
-    console.log(item);
-}
-
-// Or you can manually iterate page-by-page
-let page = await client.tokens.list();
-while (page.hasNextPage()) {
-    page = page.getNextPage();
-}
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `BasisTheory.TokensListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tokens.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">create</a>({ ...params }) -> BasisTheory.Token</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.tokens.create({});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `BasisTheory.CreateTokenRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tokens.IdempotentRequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1271,8 +1181,8 @@ await client.tokens.create({});
 
 ```typescript
 await client.tokens.get("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1286,20 +1196,21 @@ await client.tokens.get("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions`
+**requestOptions:** `Tokens.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1319,8 +1230,8 @@ await client.tokens.get("id");
 
 ```typescript
 await client.tokens.delete("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1334,20 +1245,21 @@ await client.tokens.delete("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions`
+**requestOptions:** `Tokens.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1367,8 +1279,8 @@ await client.tokens.delete("id");
 
 ```typescript
 await client.tokens.update("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1382,28 +1294,78 @@ await client.tokens.update("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `BasisTheory.UpdateTokenRequest`
-
+**request:** `BasisTheory.UpdateTokenRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.IdempotentRequestOptions`
+**requestOptions:** `Tokens.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
 
 </dd>
 </dl>
+</details>
+
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">create</a>({ ...params }) -> BasisTheory.Token</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tokens.create({});
+
+```
 </dd>
 </dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.CreateTokenRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tokens.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
 
 </dd>
 </dl>
@@ -1432,8 +1394,8 @@ let page = await client.tokens.listV2();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1447,20 +1409,21 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `BasisTheory.TokensListV2Request`
-
+**request:** `BasisTheory.TokensListV2Request` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions`
+**requestOptions:** `Tokens.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1489,8 +1452,8 @@ let page = await client.tokens.searchV2();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1504,27 +1467,27 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `BasisTheory.SearchTokensRequestV2`
-
+**request:** `BasisTheory.SearchTokensRequestV2` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.IdempotentRequestOptions`
+**requestOptions:** `Tokens.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Enrichments
-
 <details><summary><code>client.enrichments.<a href="/src/api/resources/enrichments/client/Client.ts">bankAccountVerify</a>({ ...params }) -> BasisTheory.BankVerificationResponse</code></summary>
 <dl>
 <dd>
@@ -1539,10 +1502,10 @@ while (page.hasNextPage()) {
 
 ```typescript
 await client.enrichments.bankAccountVerify({
-    tokenId: "token_id",
+    tokenId: "token_id"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1556,20 +1519,21 @@ await client.enrichments.bankAccountVerify({
 <dl>
 <dd>
 
-**request:** `BasisTheory.BankVerificationRequest`
-
+**request:** `BasisTheory.BankVerificationRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Enrichments.RequestOptions`
+**requestOptions:** `Enrichments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1589,10 +1553,10 @@ await client.enrichments.bankAccountVerify({
 
 ```typescript
 await client.enrichments.getcarddetails({
-    bin: "bin",
+    bin: "bin"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1606,27 +1570,27 @@ await client.enrichments.getcarddetails({
 <dl>
 <dd>
 
-**request:** `BasisTheory.EnrichmentsGetCardDetailsRequest`
-
+**request:** `BasisTheory.EnrichmentsGetCardDetailsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Enrichments.RequestOptions`
+**requestOptions:** `Enrichments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Keys
-
 <details><summary><code>client.keys.<a href="/src/api/resources/keys/client/Client.ts">list</a>() -> BasisTheory.ClientEncryptionKeyMetadataResponse[]</code></summary>
 <dl>
 <dd>
@@ -1641,8 +1605,8 @@ await client.enrichments.getcarddetails({
 
 ```typescript
 await client.keys.list();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1656,12 +1620,13 @@ await client.keys.list();
 <dl>
 <dd>
 
-**requestOptions:** `Keys.RequestOptions`
+**requestOptions:** `Keys.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1681,8 +1646,8 @@ await client.keys.list();
 
 ```typescript
 await client.keys.create();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1696,20 +1661,21 @@ await client.keys.create();
 <dl>
 <dd>
 
-**request:** `BasisTheory.ClientEncryptionKeyRequest`
-
+**request:** `BasisTheory.ClientEncryptionKeyRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Keys.RequestOptions`
+**requestOptions:** `Keys.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1729,8 +1695,8 @@ await client.keys.create();
 
 ```typescript
 await client.keys.get("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1744,20 +1710,21 @@ await client.keys.get("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Keys.RequestOptions`
+**requestOptions:** `Keys.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1777,8 +1744,8 @@ await client.keys.get("id");
 
 ```typescript
 await client.keys.delete("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1792,27 +1759,27 @@ await client.keys.delete("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Keys.RequestOptions`
+**requestOptions:** `Keys.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Logs
-
 <details><summary><code>client.logs.<a href="/src/api/resources/logs/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Log></code></summary>
 <dl>
 <dd>
@@ -1836,8 +1803,8 @@ let page = await client.logs.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1851,20 +1818,21 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `BasisTheory.LogsListRequest`
-
+**request:** `BasisTheory.LogsListRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Logs.RequestOptions`
+**requestOptions:** `Logs.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1884,8 +1852,8 @@ while (page.hasNextPage()) {
 
 ```typescript
 await client.logs.getEntityTypes();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1899,19 +1867,19 @@ await client.logs.getEntityTypes();
 <dl>
 <dd>
 
-**requestOptions:** `Logs.RequestOptions`
+**requestOptions:** `Logs.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## NetworkTokens
-
 <details><summary><code>client.networkTokens.<a href="/src/api/resources/networkTokens/client/Client.ts">create</a>({ ...params }) -> BasisTheory.NetworkToken</code></summary>
 <dl>
 <dd>
@@ -1926,8 +1894,8 @@ await client.logs.getEntityTypes();
 
 ```typescript
 await client.networkTokens.create();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1941,20 +1909,21 @@ await client.networkTokens.create();
 <dl>
 <dd>
 
-**request:** `BasisTheory.CreateNetworkTokenRequest`
-
+**request:** `BasisTheory.CreateNetworkTokenRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions`
+**requestOptions:** `NetworkTokens.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1974,8 +1943,8 @@ await client.networkTokens.create();
 
 ```typescript
 await client.networkTokens.cryptogram("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1989,20 +1958,21 @@ await client.networkTokens.cryptogram("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions`
+**requestOptions:** `NetworkTokens.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2022,8 +1992,8 @@ await client.networkTokens.cryptogram("id");
 
 ```typescript
 await client.networkTokens.get("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2037,20 +2007,21 @@ await client.networkTokens.get("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions`
+**requestOptions:** `NetworkTokens.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2070,8 +2041,8 @@ await client.networkTokens.get("id");
 
 ```typescript
 await client.networkTokens.delete("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2085,20 +2056,21 @@ await client.networkTokens.delete("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions`
+**requestOptions:** `NetworkTokens.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2118,8 +2090,8 @@ await client.networkTokens.delete("id");
 
 ```typescript
 await client.networkTokens.suspend("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2133,20 +2105,21 @@ await client.networkTokens.suspend("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions`
+**requestOptions:** `NetworkTokens.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2166,8 +2139,8 @@ await client.networkTokens.suspend("id");
 
 ```typescript
 await client.networkTokens.resume("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2181,27 +2154,27 @@ await client.networkTokens.resume("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions`
+**requestOptions:** `NetworkTokens.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Permissions
-
 <details><summary><code>client.permissions.<a href="/src/api/resources/permissions/client/Client.ts">list</a>({ ...params }) -> BasisTheory.Permission[]</code></summary>
 <dl>
 <dd>
@@ -2216,8 +2189,8 @@ await client.networkTokens.resume("id");
 
 ```typescript
 await client.permissions.list();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2231,27 +2204,27 @@ await client.permissions.list();
 <dl>
 <dd>
 
-**request:** `BasisTheory.PermissionsListRequest`
-
+**request:** `BasisTheory.PermissionsListRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Permissions.RequestOptions`
+**requestOptions:** `Permissions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Proxies
-
 <details><summary><code>client.proxies.<a href="/src/api/resources/proxies/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Proxy></code></summary>
 <dl>
 <dd>
@@ -2275,8 +2248,8 @@ let page = await client.proxies.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2290,20 +2263,21 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `BasisTheory.ProxiesListRequest`
-
+**request:** `BasisTheory.ProxiesListRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.RequestOptions`
+**requestOptions:** `Proxies.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2324,10 +2298,10 @@ while (page.hasNextPage()) {
 ```typescript
 await client.proxies.create({
     name: "name",
-    destinationUrl: "destination_url",
+    destinationUrl: "destination_url"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2341,20 +2315,21 @@ await client.proxies.create({
 <dl>
 <dd>
 
-**request:** `BasisTheory.CreateProxyRequest`
-
+**request:** `BasisTheory.CreateProxyRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.IdempotentRequestOptions`
+**requestOptions:** `Proxies.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2374,8 +2349,8 @@ await client.proxies.create({
 
 ```typescript
 await client.proxies.get("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2389,20 +2364,21 @@ await client.proxies.get("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.RequestOptions`
+**requestOptions:** `Proxies.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2423,10 +2399,10 @@ await client.proxies.get("id");
 ```typescript
 await client.proxies.update("id", {
     name: "name",
-    destinationUrl: "destination_url",
+    destinationUrl: "destination_url"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2440,28 +2416,29 @@ await client.proxies.update("id", {
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `BasisTheory.UpdateProxyRequest`
-
+**request:** `BasisTheory.UpdateProxyRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.IdempotentRequestOptions`
+**requestOptions:** `Proxies.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2481,8 +2458,8 @@ await client.proxies.update("id", {
 
 ```typescript
 await client.proxies.delete("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2496,20 +2473,21 @@ await client.proxies.delete("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.RequestOptions`
+**requestOptions:** `Proxies.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2529,8 +2507,8 @@ await client.proxies.delete("id");
 
 ```typescript
 await client.proxies.patch("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2544,35 +2522,35 @@ await client.proxies.patch("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `BasisTheory.PatchProxyRequest`
-
+**request:** `BasisTheory.PatchProxyRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.IdempotentRequestOptions`
+**requestOptions:** `Proxies.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Reactors
-
 <details><summary><code>client.reactors.<a href="/src/api/resources/reactors/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Reactor></code></summary>
 <dl>
 <dd>
@@ -2596,8 +2574,8 @@ let page = await client.reactors.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2611,20 +2589,21 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `BasisTheory.ReactorsListRequest`
-
+**request:** `BasisTheory.ReactorsListRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions`
+**requestOptions:** `Reactors.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2645,10 +2624,10 @@ while (page.hasNextPage()) {
 ```typescript
 await client.reactors.create({
     name: "name",
-    code: "code",
+    code: "code"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2662,20 +2641,21 @@ await client.reactors.create({
 <dl>
 <dd>
 
-**request:** `BasisTheory.CreateReactorRequest`
-
+**request:** `BasisTheory.CreateReactorRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.IdempotentRequestOptions`
+**requestOptions:** `Reactors.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2695,8 +2675,8 @@ await client.reactors.create({
 
 ```typescript
 await client.reactors.get("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2710,20 +2690,21 @@ await client.reactors.get("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions`
+**requestOptions:** `Reactors.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2744,10 +2725,10 @@ await client.reactors.get("id");
 ```typescript
 await client.reactors.update("id", {
     name: "name",
-    code: "code",
+    code: "code"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2761,28 +2742,29 @@ await client.reactors.update("id", {
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `BasisTheory.UpdateReactorRequest`
-
+**request:** `BasisTheory.UpdateReactorRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.IdempotentRequestOptions`
+**requestOptions:** `Reactors.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2802,8 +2784,8 @@ await client.reactors.update("id", {
 
 ```typescript
 await client.reactors.delete("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2817,20 +2799,21 @@ await client.reactors.delete("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions`
+**requestOptions:** `Reactors.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2850,8 +2833,8 @@ await client.reactors.delete("id");
 
 ```typescript
 await client.reactors.patch("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2865,28 +2848,29 @@ await client.reactors.patch("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `BasisTheory.PatchReactorRequest`
-
+**request:** `BasisTheory.PatchReactorRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.IdempotentRequestOptions`
+**requestOptions:** `Reactors.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2906,8 +2890,8 @@ await client.reactors.patch("id");
 
 ```typescript
 await client.reactors.react("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2921,28 +2905,29 @@ await client.reactors.react("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `BasisTheory.ReactRequest`
-
+**request:** `BasisTheory.ReactRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions`
+**requestOptions:** `Reactors.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2962,8 +2947,8 @@ await client.reactors.react("id");
 
 ```typescript
 await client.reactors.reactAsync("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2977,35 +2962,35 @@ await client.reactors.reactAsync("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `BasisTheory.ReactRequestAsync`
-
+**request:** `BasisTheory.ReactRequestAsync` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions`
+**requestOptions:** `Reactors.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Roles
-
 <details><summary><code>client.roles.<a href="/src/api/resources/roles/client/Client.ts">list</a>() -> BasisTheory.Role[]</code></summary>
 <dl>
 <dd>
@@ -3020,8 +3005,8 @@ await client.reactors.reactAsync("id");
 
 ```typescript
 await client.roles.list();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3035,19 +3020,19 @@ await client.roles.list();
 <dl>
 <dd>
 
-**requestOptions:** `Roles.RequestOptions`
+**requestOptions:** `Roles.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Sessions
-
 <details><summary><code>client.sessions.<a href="/src/api/resources/sessions/client/Client.ts">create</a>() -> BasisTheory.CreateSessionResponse</code></summary>
 <dl>
 <dd>
@@ -3062,8 +3047,8 @@ await client.roles.list();
 
 ```typescript
 await client.sessions.create();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3077,12 +3062,13 @@ await client.sessions.create();
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.IdempotentRequestOptions`
+**requestOptions:** `Sessions.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3102,10 +3088,10 @@ await client.sessions.create();
 
 ```typescript
 await client.sessions.authorize({
-    nonce: "nonce",
+    nonce: "nonce"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3119,27 +3105,27 @@ await client.sessions.authorize({
 <dl>
 <dd>
 
-**request:** `BasisTheory.AuthorizeSessionRequest`
-
+**request:** `BasisTheory.AuthorizeSessionRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.IdempotentRequestOptions`
+**requestOptions:** `Sessions.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## TokenIntents
-
 <details><summary><code>client.tokenIntents.<a href="/src/api/resources/tokenIntents/client/Client.ts">get</a>(id) -> BasisTheory.TokenIntent</code></summary>
 <dl>
 <dd>
@@ -3154,8 +3140,8 @@ await client.sessions.authorize({
 
 ```typescript
 await client.tokenIntents.get("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3169,20 +3155,21 @@ await client.tokenIntents.get("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `TokenIntents.RequestOptions`
+**requestOptions:** `TokenIntents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3202,8 +3189,8 @@ await client.tokenIntents.get("id");
 
 ```typescript
 await client.tokenIntents.delete("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3217,20 +3204,21 @@ await client.tokenIntents.delete("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `TokenIntents.RequestOptions`
+**requestOptions:** `TokenIntents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3252,11 +3240,11 @@ await client.tokenIntents.delete("id");
 await client.tokenIntents.create({
     type: "x",
     data: {
-        key: "value",
-    },
+        "key": "value"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3270,27 +3258,27 @@ await client.tokenIntents.create({
 <dl>
 <dd>
 
-**request:** `BasisTheory.CreateTokenIntentRequest`
-
+**request:** `BasisTheory.CreateTokenIntentRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `TokenIntents.RequestOptions`
+**requestOptions:** `TokenIntents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Webhooks
-
 <details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">ping</a>() -> void</code></summary>
 <dl>
 <dd>
@@ -3304,7 +3292,6 @@ await client.tokenIntents.create({
 <dd>
 
 Simple endpoint that can be utilized to verify the application is running
-
 </dd>
 </dl>
 </dd>
@@ -3320,8 +3307,8 @@ Simple endpoint that can be utilized to verify the application is running
 
 ```typescript
 await client.webhooks.ping();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3335,12 +3322,13 @@ await client.webhooks.ping();
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `Webhooks.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3359,7 +3347,6 @@ await client.webhooks.ping();
 <dd>
 
 Returns the webhook
-
 </dd>
 </dl>
 </dd>
@@ -3375,8 +3362,8 @@ Returns the webhook
 
 ```typescript
 await client.webhooks.get("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3390,20 +3377,21 @@ await client.webhooks.get("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `Webhooks.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3422,7 +3410,6 @@ await client.webhooks.get("id");
 <dd>
 
 Update a new webhook
-
 </dd>
 </dl>
 </dd>
@@ -3440,10 +3427,10 @@ Update a new webhook
 await client.webhooks.update("id", {
     name: "webhook-update",
     url: "http://www.example.com",
-    events: ["token:created"],
+    events: ["token:created"]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3457,28 +3444,29 @@ await client.webhooks.update("id", {
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `BasisTheory.UpdateWebhookRequest`
-
+**request:** `BasisTheory.UpdateWebhookRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `Webhooks.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3497,7 +3485,6 @@ await client.webhooks.update("id", {
 <dd>
 
 Delete a new webhook
-
 </dd>
 </dl>
 </dd>
@@ -3513,8 +3500,8 @@ Delete a new webhook
 
 ```typescript
 await client.webhooks.delete("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3528,20 +3515,21 @@ await client.webhooks.delete("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `Webhooks.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3560,7 +3548,6 @@ await client.webhooks.delete("id");
 <dd>
 
 Returns the configured webhooks
-
 </dd>
 </dl>
 </dd>
@@ -3576,8 +3563,8 @@ Returns the configured webhooks
 
 ```typescript
 await client.webhooks.list();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3591,12 +3578,13 @@ await client.webhooks.list();
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `Webhooks.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3615,7 +3603,6 @@ await client.webhooks.list();
 <dd>
 
 Create a new webhook
-
 </dd>
 </dl>
 </dd>
@@ -3633,10 +3620,10 @@ Create a new webhook
 await client.webhooks.create({
     name: "webhook-create",
     url: "http://www.example.com",
-    events: ["token:created"],
+    events: ["token:created"]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3650,27 +3637,27 @@ await client.webhooks.create({
 <dl>
 <dd>
 
-**request:** `BasisTheory.CreateWebhookRequest`
-
+**request:** `BasisTheory.CreateWebhookRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `Webhooks.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## AccountUpdater Jobs
-
 <details><summary><code>client.accountUpdater.jobs.<a href="/src/api/resources/accountUpdater/resources/jobs/client/Client.ts">get</a>(id) -> BasisTheory.AccountUpdaterJob</code></summary>
 <dl>
 <dd>
@@ -3684,7 +3671,6 @@ await client.webhooks.create({
 <dd>
 
 Returns the account updater batch job
-
 </dd>
 </dl>
 </dd>
@@ -3700,8 +3686,8 @@ Returns the account updater batch job
 
 ```typescript
 await client.accountUpdater.jobs.get("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3715,20 +3701,21 @@ await client.accountUpdater.jobs.get("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Jobs.RequestOptions`
+**requestOptions:** `Jobs.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3747,7 +3734,6 @@ await client.accountUpdater.jobs.get("id");
 <dd>
 
 Returns a list of account updater batch jobs
-
 </dd>
 </dl>
 </dd>
@@ -3763,8 +3749,8 @@ Returns a list of account updater batch jobs
 
 ```typescript
 await client.accountUpdater.jobs.list();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3778,20 +3764,21 @@ await client.accountUpdater.jobs.list();
 <dl>
 <dd>
 
-**request:** `BasisTheory.accountUpdater.JobsListRequest`
-
+**request:** `BasisTheory.accountUpdater.JobsListRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Jobs.RequestOptions`
+**requestOptions:** `Jobs.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3810,7 +3797,6 @@ await client.accountUpdater.jobs.list();
 <dd>
 
 Returns the created account updater batch job
-
 </dd>
 </dl>
 </dd>
@@ -3826,8 +3812,8 @@ Returns the created account updater batch job
 
 ```typescript
 await client.accountUpdater.jobs.create();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3841,19 +3827,19 @@ await client.accountUpdater.jobs.create();
 <dl>
 <dd>
 
-**requestOptions:** `Jobs.RequestOptions`
+**requestOptions:** `Jobs.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## AccountUpdater RealTime
-
 <details><summary><code>client.accountUpdater.realTime.<a href="/src/api/resources/accountUpdater/resources/realTime/client/Client.ts">invoke</a>({ ...params }) -> BasisTheory.AccountUpdaterRealTimeResponse</code></summary>
 <dl>
 <dd>
@@ -3867,7 +3853,6 @@ await client.accountUpdater.jobs.create();
 <dd>
 
 Returns the update result
-
 </dd>
 </dl>
 </dd>
@@ -3883,10 +3868,10 @@ Returns the update result
 
 ```typescript
 await client.accountUpdater.realTime.invoke({
-    tokenId: "9a420b15-ddfe-4793-9466-48f53520e47c",
+    tokenId: "9a420b15-ddfe-4793-9466-48f53520e47c"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3900,27 +3885,175 @@ await client.accountUpdater.realTime.invoke({
 <dl>
 <dd>
 
-**request:** `BasisTheory.accountUpdater.AccountUpdaterRealTimeRequest`
-
+**request:** `BasisTheory.accountUpdater.AccountUpdaterRealTimeRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `RealTime.RequestOptions`
+**requestOptions:** `RealTime.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
 
 </dd>
 </dl>
+</details>
+
+## ApplePay Merchant
+<details><summary><code>client.applePay.merchant.<a href="/src/api/resources/applePay/resources/merchant/client/Client.ts">get</a>(id) -> BasisTheory.ApplePayToken</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applePay.merchant.get("id");
+
+```
 </dd>
 </dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchant.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applePay.merchant.<a href="/src/api/resources/applePay/resources/merchant/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applePay.merchant.delete("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchant.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applePay.merchant.<a href="/src/api/resources/applePay/resources/merchant/client/Client.ts">create</a>({ ...params }) -> BasisTheory.ApplePayMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applePay.merchant.create();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.applePay.ApplePayMerchantRegisterRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchant.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
 
 </dd>
 </dl>
 </details>
 
 ## ApplePay Domain
-
 <details><summary><code>client.applePay.domain.<a href="/src/api/resources/applePay/resources/domain/client/Client.ts">deregister</a>({ ...params }) -> void</code></summary>
 <dl>
 <dd>
@@ -3935,10 +4068,10 @@ await client.accountUpdater.realTime.invoke({
 
 ```typescript
 await client.applePay.domain.deregister({
-    domain: "domain",
+    domain: "domain"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3952,20 +4085,21 @@ await client.applePay.domain.deregister({
 <dl>
 <dd>
 
-**request:** `BasisTheory.applePay.ApplePayDomainDeregistrationRequest`
-
+**request:** `BasisTheory.applePay.ApplePayDomainDeregistrationRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Domain.RequestOptions`
+**requestOptions:** `Domain.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3985,8 +4119,8 @@ await client.applePay.domain.deregister({
 
 ```typescript
 await client.applePay.domain.get();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4000,12 +4134,13 @@ await client.applePay.domain.get();
 <dl>
 <dd>
 
-**requestOptions:** `Domain.RequestOptions`
+**requestOptions:** `Domain.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4025,10 +4160,10 @@ await client.applePay.domain.get();
 
 ```typescript
 await client.applePay.domain.register({
-    domain: "domain",
+    domain: "domain"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4042,20 +4177,21 @@ await client.applePay.domain.register({
 <dl>
 <dd>
 
-**request:** `BasisTheory.applePay.ApplePayDomainRegistrationRequest`
-
+**request:** `BasisTheory.applePay.ApplePayDomainRegistrationRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Domain.RequestOptions`
+**requestOptions:** `Domain.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4075,8 +4211,8 @@ await client.applePay.domain.register({
 
 ```typescript
 await client.applePay.domain.registerAll();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4090,27 +4226,27 @@ await client.applePay.domain.registerAll();
 <dl>
 <dd>
 
-**request:** `BasisTheory.applePay.ApplePayDomainRegistrationListRequest`
-
+**request:** `BasisTheory.applePay.ApplePayDomainRegistrationListRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Domain.RequestOptions`
+**requestOptions:** `Domain.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## ApplePay Session
-
 <details><summary><code>client.applePay.session.<a href="/src/api/resources/applePay/resources/session/client/Client.ts">create</a>({ ...params }) -> string</code></summary>
 <dl>
 <dd>
@@ -4125,8 +4261,8 @@ await client.applePay.domain.registerAll();
 
 ```typescript
 await client.applePay.session.create();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4140,29 +4276,77 @@ await client.applePay.session.create();
 <dl>
 <dd>
 
-**request:** `BasisTheory.applePay.ApplePaySessionRequest`
-
+**request:** `BasisTheory.applePay.ApplePaySessionRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Session.RequestOptions`
+**requestOptions:** `Session.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Documents Data
+<details><summary><code>client.documents.data.<a href="/src/api/resources/documents/resources/data/client/Client.ts">get</a>(documentId) -> core.BinaryResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.documents.data.get("documentId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**documentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Data.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
 
 ## Reactors Results
-
 <details><summary><code>client.reactors.results.<a href="/src/api/resources/reactors/resources/results/client/Client.ts">get</a>(id, requestId) -> unknown</code></summary>
 <dl>
 <dd>
@@ -4177,8 +4361,8 @@ await client.applePay.session.create();
 
 ```typescript
 await client.reactors.results.get("id", "requestId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4192,35 +4376,35 @@ await client.reactors.results.get("id", "requestId");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestId:** `string`
-
+**requestId:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Results.RequestOptions`
+**requestOptions:** `Results.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Tenants Connections
-
 <details><summary><code>client.tenants.connections.<a href="/src/api/resources/tenants/resources/connections/client/Client.ts">create</a>({ ...params }) -> BasisTheory.CreateTenantConnectionResponse</code></summary>
 <dl>
 <dd>
@@ -4236,10 +4420,10 @@ await client.reactors.results.get("id", "requestId");
 ```typescript
 await client.tenants.connections.create({
     strategy: "strategy",
-    options: {},
+    options: {}
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4253,20 +4437,21 @@ await client.tenants.connections.create({
 <dl>
 <dd>
 
-**request:** `BasisTheory.tenants.CreateTenantConnectionRequest`
-
+**request:** `BasisTheory.tenants.CreateTenantConnectionRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Connections.IdempotentRequestOptions`
+**requestOptions:** `Connections.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4286,8 +4471,8 @@ await client.tenants.connections.create({
 
 ```typescript
 await client.tenants.connections.delete();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4301,19 +4486,19 @@ await client.tenants.connections.delete();
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions`
+**requestOptions:** `Connections.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Tenants Invitations
-
 <details><summary><code>client.tenants.invitations.<a href="/src/api/resources/tenants/resources/invitations/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.TenantInvitationResponse></code></summary>
 <dl>
 <dd>
@@ -4337,8 +4522,8 @@ let page = await client.tenants.invitations.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4352,20 +4537,21 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `BasisTheory.tenants.InvitationsListRequest`
-
+**request:** `BasisTheory.tenants.InvitationsListRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.RequestOptions`
+**requestOptions:** `Invitations.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4385,10 +4571,10 @@ while (page.hasNextPage()) {
 
 ```typescript
 await client.tenants.invitations.create({
-    email: "email",
+    email: "email"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4402,20 +4588,21 @@ await client.tenants.invitations.create({
 <dl>
 <dd>
 
-**request:** `BasisTheory.tenants.CreateTenantInvitationRequest`
-
+**request:** `BasisTheory.tenants.CreateTenantInvitationRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.IdempotentRequestOptions`
+**requestOptions:** `Invitations.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4435,8 +4622,8 @@ await client.tenants.invitations.create({
 
 ```typescript
 await client.tenants.invitations.resend("invitationId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4450,20 +4637,21 @@ await client.tenants.invitations.resend("invitationId");
 <dl>
 <dd>
 
-**invitationId:** `string`
-
+**invitationId:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.IdempotentRequestOptions`
+**requestOptions:** `Invitations.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4483,8 +4671,8 @@ await client.tenants.invitations.resend("invitationId");
 
 ```typescript
 await client.tenants.invitations.get("invitationId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4498,20 +4686,21 @@ await client.tenants.invitations.get("invitationId");
 <dl>
 <dd>
 
-**invitationId:** `string`
-
+**invitationId:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.RequestOptions`
+**requestOptions:** `Invitations.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4531,8 +4720,8 @@ await client.tenants.invitations.get("invitationId");
 
 ```typescript
 await client.tenants.invitations.delete("invitationId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4546,27 +4735,27 @@ await client.tenants.invitations.delete("invitationId");
 <dl>
 <dd>
 
-**invitationId:** `string`
-
+**invitationId:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.RequestOptions`
+**requestOptions:** `Invitations.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Tenants Members
-
 <details><summary><code>client.tenants.members.<a href="/src/api/resources/tenants/resources/members/client/Client.ts">list</a>({ ...params }) -> BasisTheory.TenantMemberResponsePaginatedList</code></summary>
 <dl>
 <dd>
@@ -4581,8 +4770,8 @@ await client.tenants.invitations.delete("invitationId");
 
 ```typescript
 await client.tenants.members.list();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4596,20 +4785,21 @@ await client.tenants.members.list();
 <dl>
 <dd>
 
-**request:** `BasisTheory.tenants.MembersListRequest`
-
+**request:** `BasisTheory.tenants.MembersListRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Members.RequestOptions`
+**requestOptions:** `Members.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4629,10 +4819,10 @@ await client.tenants.members.list();
 
 ```typescript
 await client.tenants.members.update("memberId", {
-    role: "role",
+    role: "role"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4646,28 +4836,29 @@ await client.tenants.members.update("memberId", {
 <dl>
 <dd>
 
-**memberId:** `string`
-
+**memberId:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `BasisTheory.tenants.UpdateTenantMemberRequest`
-
+**request:** `BasisTheory.tenants.UpdateTenantMemberRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Members.IdempotentRequestOptions`
+**requestOptions:** `Members.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4687,8 +4878,8 @@ await client.tenants.members.update("memberId", {
 
 ```typescript
 await client.tenants.members.delete("memberId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4702,27 +4893,27 @@ await client.tenants.members.delete("memberId");
 <dl>
 <dd>
 
-**memberId:** `string`
-
+**memberId:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Members.RequestOptions`
+**requestOptions:** `Members.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Tenants Owner
-
 <details><summary><code>client.tenants.owner.<a href="/src/api/resources/tenants/resources/owner/client/Client.ts">get</a>() -> BasisTheory.TenantMemberResponse</code></summary>
 <dl>
 <dd>
@@ -4737,8 +4928,8 @@ await client.tenants.members.delete("memberId");
 
 ```typescript
 await client.tenants.owner.get();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4752,19 +4943,19 @@ await client.tenants.owner.get();
 <dl>
 <dd>
 
-**requestOptions:** `Owner.RequestOptions`
+**requestOptions:** `Owner.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Tenants Self
-
 <details><summary><code>client.tenants.self.<a href="/src/api/resources/tenants/resources/self/client/Client.ts">getUsageReports</a>() -> BasisTheory.TenantUsageReport</code></summary>
 <dl>
 <dd>
@@ -4779,8 +4970,8 @@ await client.tenants.owner.get();
 
 ```typescript
 await client.tenants.self.getUsageReports();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4794,12 +4985,13 @@ await client.tenants.self.getUsageReports();
 <dl>
 <dd>
 
-**requestOptions:** `Self.RequestOptions`
+**requestOptions:** `Self.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4819,8 +5011,8 @@ await client.tenants.self.getUsageReports();
 
 ```typescript
 await client.tenants.self.get();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4834,12 +5026,13 @@ await client.tenants.self.get();
 <dl>
 <dd>
 
-**requestOptions:** `Self.RequestOptions`
+**requestOptions:** `Self.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4859,10 +5052,10 @@ await client.tenants.self.get();
 
 ```typescript
 await client.tenants.self.update({
-    name: "name",
+    name: "name"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4876,20 +5069,21 @@ await client.tenants.self.update({
 <dl>
 <dd>
 
-**request:** `BasisTheory.tenants.UpdateTenantRequest`
-
+**request:** `BasisTheory.tenants.UpdateTenantRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Self.IdempotentRequestOptions`
+**requestOptions:** `Self.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4909,8 +5103,8 @@ await client.tenants.self.update({
 
 ```typescript
 await client.tenants.self.delete();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4924,19 +5118,19 @@ await client.tenants.self.delete();
 <dl>
 <dd>
 
-**requestOptions:** `Self.RequestOptions`
+**requestOptions:** `Self.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Threeds Sessions
-
 <details><summary><code>client.threeds.sessions.<a href="/src/api/resources/threeds/resources/sessions/client/Client.ts">create</a>({ ...params }) -> BasisTheory.CreateThreeDsSessionResponse</code></summary>
 <dl>
 <dd>
@@ -4951,8 +5145,8 @@ await client.tenants.self.delete();
 
 ```typescript
 await client.threeds.sessions.create();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4966,20 +5160,21 @@ await client.threeds.sessions.create();
 <dl>
 <dd>
 
-**request:** `BasisTheory.threeds.CreateThreeDsSessionRequest`
-
+**request:** `BasisTheory.threeds.CreateThreeDsSessionRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions`
+**requestOptions:** `Sessions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5000,10 +5195,10 @@ await client.threeds.sessions.create();
 ```typescript
 await client.threeds.sessions.authenticate("sessionId", {
     authenticationCategory: "authentication_category",
-    authenticationType: "authentication_type",
+    authenticationType: "authentication_type"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5017,28 +5212,29 @@ await client.threeds.sessions.authenticate("sessionId", {
 <dl>
 <dd>
 
-**sessionId:** `string`
-
+**sessionId:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `BasisTheory.AuthenticateThreeDsSessionRequest`
-
+**request:** `BasisTheory.AuthenticateThreeDsSessionRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.IdempotentRequestOptions`
+**requestOptions:** `Sessions.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5058,8 +5254,8 @@ await client.threeds.sessions.authenticate("sessionId", {
 
 ```typescript
 await client.threeds.sessions.getChallengeResult("sessionId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5073,20 +5269,21 @@ await client.threeds.sessions.getChallengeResult("sessionId");
 <dl>
 <dd>
 
-**sessionId:** `string`
-
+**sessionId:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions`
+**requestOptions:** `Sessions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5106,8 +5303,8 @@ await client.threeds.sessions.getChallengeResult("sessionId");
 
 ```typescript
 await client.threeds.sessions.get("id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5121,27 +5318,27 @@ await client.threeds.sessions.get("id");
 <dl>
 <dd>
 
-**id:** `string`
-
+**id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions`
+**requestOptions:** `Sessions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Webhooks Events
-
 <details><summary><code>client.webhooks.events.<a href="/src/api/resources/webhooks/resources/events/client/Client.ts">list</a>() -> BasisTheory.EventTypes</code></summary>
 <dl>
 <dd>
@@ -5155,7 +5352,6 @@ await client.threeds.sessions.get("id");
 <dd>
 
 Return a list of available event types
-
 </dd>
 </dl>
 </dd>
@@ -5171,8 +5367,8 @@ Return a list of available event types
 
 ```typescript
 await client.webhooks.events.list();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5186,12 +5382,13 @@ await client.webhooks.events.list();
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions`
+**requestOptions:** `Events.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
