@@ -674,17 +674,17 @@ describe('client encryption keys', () => {
         const client = getManagementClient();
 
         const key = await client.keys.create();
-        expect(key.id).toBeDefined();
+        expect(key.keyId).toBeDefined();
         expect(key.publicKeyPem).toBeDefined();
 
-        const retrievedKey = await client.keys.get(key.id!);
-        expect(retrievedKey.id).toBe(key.id);
+        const retrievedKey = await client.keys.get(key.keyId!);
+        expect(retrievedKey.keyId).toBe(key.keyId);
         expect(retrievedKey.expiresAt).toBeDefined();
 
-        await client.keys.delete(key.id!);
+        await client.keys.delete(key.keyId!);
 
         try {
-            await client.keys.get(key.id!);
+            await client.keys.get(key.keyId!);
             fail('Should have raised a 404 for key not found');
         } catch (err) {
             expect(err).toBeInstanceOf(NotFoundError);
