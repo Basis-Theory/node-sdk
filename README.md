@@ -3,7 +3,7 @@
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2FBasis-Theory%2Fnode-sdk)
 [![npm shield](https://img.shields.io/npm/v/@basis-theory/node-sdk)](https://www.npmjs.com/package/@basis-theory/node-sdk)
 
-The BasisTheory TypeScript library provides convenient access to the BasisTheory API from TypeScript.
+The BasisTheory TypeScript library provides convenient access to the BasisTheory APIs from TypeScript.
 
 ## Documentation
 
@@ -97,6 +97,18 @@ const response = await client.tenants.self.get(..., {
 });
 ```
 
+### Additional Query String Parameters
+
+If you would like to send additional query string parameters as part of the request, use the `queryParams` request option.
+
+```typescript
+const response = await client.tenants.self.get(..., {
+    queryParams: {
+        'customQueryParamKey': 'custom query param value'
+    }
+});
+```
+
 ### Retries
 
 The SDK is instrumented with automatic retries with exponential backoff. A request will be retried as long
@@ -153,7 +165,10 @@ console.log(rawResponse.headers['X-My-Header']);
 
 ### Runtime Compatibility
 
+
 The SDK works in the following runtimes:
+
+
 
 - Node.js 18+
 - Vercel
@@ -185,6 +200,46 @@ a proof of concept, but know that we will not be able to merge it as-is. We sugg
 an issue first to discuss with us!
 
 On the other hand, contributions to the README are always very welcome!
+## File Uploads
+
+You can upload files using the client:
+
+```typescript
+import { createReadStream } from "fs";
+import { BasisTheoryClient } from "@basis-theory/node-sdk";
+
+const client = new BasisTheoryClient({ apiKey: "YOUR_API_KEY", correlationId: "YOUR_CORRELATION_ID" });
+await client.documents.upload({});
+```
+The client accepts a variety of types for file upload parameters:
+* Stream types: `fs.ReadStream`, `stream.Readable`, and `ReadableStream`
+* Buffered types: `Buffer`, `Blob`, `File`, `ArrayBuffer`, `ArrayBufferView`, and `Uint8Array`
+
+### Metadata
+
+You can configure metadata when uploading a file:
+```typescript
+const file: Uploadable.WithMetadata = {
+    data: createReadStream("path/to/file"),
+    filename: "my-file",       // optional
+    contentType: "audio/mpeg", // optional
+    contentLength: 1949,       // optional
+};
+```
+
+Alternatively, you can upload a file directly from a file path:
+```typescript
+const file : Uploadable.FromPath = {
+    path: "path/to/file",
+    filename: "my-file",        // optional
+    contentType: "audio/mpeg",  // optional
+    contentLength: 1949,        // optional
+};
+```
+
+The metadata is used to set the `Content-Length`, `Content-Type`, and `Content-Disposition` headers. If not provided, the client will attempt to determine them automatically.
+For example, `fs.ReadStream` has a `path` property which the SDK uses to retrieve the file size from the filesystem without loading it into memory.
+
 
 ## Binary Response
 
@@ -200,7 +255,6 @@ const stream: ReadableStream<Uint8Array> = response.stream();
 // If you want to check if the response body has been used, you can use the following property.
 const bodyUsed = response.bodyUsed;
 ```
-
 <details>
 <summary>Save binary response to a file</summary>
 
