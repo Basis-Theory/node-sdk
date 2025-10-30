@@ -1,1 +1,1 @@
-export { type ApplePaySessionRequest } from "./ApplePaySessionRequest.js";
+export type { ApplePaySessionRequest } from "./ApplePaySessionRequest.js";

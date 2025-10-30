@@ -1,2 +1,2 @@
-export { type BankVerificationRequest } from "./BankVerificationRequest.js";
-export { type EnrichmentsGetCardDetailsRequest } from "./EnrichmentsGetCardDetailsRequest.js";
+export type { BankVerificationRequest } from "./BankVerificationRequest.js";
+export type { EnrichmentsGetCardDetailsRequest } from "./EnrichmentsGetCardDetailsRequest.js";
