@@ -14,7 +14,7 @@ jobs:
         environment: DEV
         strategy:
             matrix:
-                node: ["18.x"]
+                node: ["20.x"]
                 os: [ubuntu-latest]
         env:
             CI: 1 # prevents extra Cypress installation progress messages
@@ -58,7 +58,7 @@ jobs:
             - build-release
         strategy:
             matrix:
-                node: ["18.x"]
+                node: ["20.x"]
         steps:
             - name: Version and Tag
               id: version-and-tag

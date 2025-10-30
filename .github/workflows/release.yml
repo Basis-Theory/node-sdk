@@ -14,7 +14,7 @@ jobs:
     environment: PROD # Must match npm trusted publisher config exactly (case-sensitive)
     strategy:
       matrix:
-        node: ["18.x"]
+        node: ["20.x"]
         os: [ubuntu-latest]
     env:
       CI: 1 # prevents extra Cypress installation progress messages
@@ -38,7 +38,7 @@ jobs:
           # registry-url is intentionally NOT set - it creates .npmrc that blocks OIDC
 
       - name: Update npm for Trusted Publishing
-        run: npm install -g npm@latest # Requires npm 11.5.1+ for OIDC support
+        run: npm install -g npm@latest # Requires npm 10.5.1+ for OIDC support
 
       - name: Install deps (with cache)
         uses: bahmutov/npm-install@v1
