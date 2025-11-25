@@ -3,6 +3,7 @@
 import type * as BasisTheory from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { ThreeDsBrandingOptions } from "./ThreeDsBrandingOptions.js";
 
 export const ThreeDsCallbackUrls: core.serialization.ObjectSchema<
     serializers.ThreeDsCallbackUrls.Raw,
@@ -10,11 +11,13 @@ export const ThreeDsCallbackUrls: core.serialization.ObjectSchema<
 > = core.serialization.object({
     success: core.serialization.string().optional(),
     failure: core.serialization.string().optional(),
+    branding: ThreeDsBrandingOptions.optional(),
 });
 
 export declare namespace ThreeDsCallbackUrls {
     export interface Raw {
         success?: string | null;
         failure?: string | null;
+        branding?: ThreeDsBrandingOptions.Raw | null;
     }
 }

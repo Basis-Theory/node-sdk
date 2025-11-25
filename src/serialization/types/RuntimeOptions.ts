@@ -11,10 +11,14 @@ export const RuntimeOptions: core.serialization.ObjectSchema<
     dependencies: core.serialization
         .record(core.serialization.string(), core.serialization.string().optional())
         .optional(),
+    warmConcurrency: core.serialization.property("warm_concurrency", core.serialization.number().optional()),
+    permissions: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace RuntimeOptions {
     export interface Raw {
         dependencies?: Record<string, string | null | undefined> | null;
+        warm_concurrency?: number | null;
+        permissions?: string[] | null;
     }
 }

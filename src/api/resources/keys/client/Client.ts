@@ -52,7 +52,7 @@ export class Keys {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "keys",
             ),
             method: "GET",
@@ -172,7 +172,7 @@ export class Keys {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "keys",
             ),
             method: "POST",
@@ -319,7 +319,7 @@ export class Keys {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `keys/${core.url.encodePathParam(id)}`,
             ),
             method: "GET",
@@ -434,7 +434,7 @@ export class Keys {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `keys/${core.url.encodePathParam(id)}`,
             ),
             method: "DELETE",

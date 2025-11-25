@@ -66,7 +66,7 @@ export class Connections {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "tenants/self/connections",
             ),
             method: "POST",
@@ -189,7 +189,7 @@ export class Connections {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "tenants/self/connections",
             ),
             method: "DELETE",

@@ -17,6 +17,7 @@ export const ProxyTransformOptions: core.serialization.ObjectSchema<
     dependencies: core.serialization
         .record(core.serialization.string(), core.serialization.string().optional())
         .optional(),
+    warmConcurrency: core.serialization.property("warm_concurrency", core.serialization.number().optional()),
 });
 
 export declare namespace ProxyTransformOptions {
@@ -27,5 +28,6 @@ export declare namespace ProxyTransformOptions {
         location?: string | null;
         runtime?: string | null;
         dependencies?: Record<string, string | null | undefined> | null;
+        warm_concurrency?: number | null;
     }
 }

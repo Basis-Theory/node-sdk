@@ -9,4 +9,5 @@ import type * as BasisTheory from "../../../../index.js";
 export interface GooglePayCreateRequest {
     expiresAt?: string;
     googlePaymentData?: BasisTheory.GooglePayMethodToken;
+    merchantRegistrationId?: string;
 }

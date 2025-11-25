@@ -78,7 +78,7 @@ export class ApplicationKeys {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `applications/${core.url.encodePathParam(id)}/keys`,
             ),
             method: "GET",
@@ -189,7 +189,7 @@ export class ApplicationKeys {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `applications/${core.url.encodePathParam(id)}/keys`,
             ),
             method: "POST",
@@ -310,7 +310,7 @@ export class ApplicationKeys {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `applications/${core.url.encodePathParam(id)}/keys/${core.url.encodePathParam(keyId)}`,
             ),
             method: "GET",
@@ -424,7 +424,7 @@ export class ApplicationKeys {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `applications/${core.url.encodePathParam(id)}/keys/${core.url.encodePathParam(keyId)}`,
             ),
             method: "DELETE",

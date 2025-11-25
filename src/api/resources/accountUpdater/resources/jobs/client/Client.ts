@@ -57,7 +57,7 @@ export class Jobs {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `account-updater/jobs/${core.url.encodePathParam(id)}`,
             ),
             method: "GET",
@@ -179,7 +179,7 @@ export class Jobs {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "account-updater/jobs",
             ),
             method: "GET",
@@ -283,7 +283,7 @@ export class Jobs {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "account-updater/jobs",
             ),
             method: "POST",

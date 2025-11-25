@@ -58,7 +58,7 @@ export class Tokens {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "detokenize",
             ),
             method: "POST",
@@ -186,7 +186,7 @@ export class Tokens {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "tokenize",
             ),
             method: "POST",
@@ -306,7 +306,7 @@ export class Tokens {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `tokens/${core.url.encodePathParam(id)}`,
             ),
             method: "GET",
@@ -410,7 +410,7 @@ export class Tokens {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `tokens/${core.url.encodePathParam(id)}`,
             ),
             method: "DELETE",
@@ -528,7 +528,7 @@ export class Tokens {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `tokens/${core.url.encodePathParam(id)}`,
             ),
             method: "PATCH",
@@ -668,7 +668,7 @@ export class Tokens {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "tokens",
             ),
             method: "POST",
@@ -819,7 +819,7 @@ export class Tokens {
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
                             (await core.Supplier.get(this._options.environment)) ??
-                            environments.BasisTheoryEnvironment.Default,
+                            environments.BasisTheoryEnvironment.Production,
                         "v2/tokens",
                     ),
                     method: "GET",
@@ -937,7 +937,7 @@ export class Tokens {
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
                             (await core.Supplier.get(this._options.environment)) ??
-                            environments.BasisTheoryEnvironment.Default,
+                            environments.BasisTheoryEnvironment.Production,
                         "v2/tokens/search",
                     ),
                     method: "POST",

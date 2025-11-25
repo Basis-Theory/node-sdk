@@ -7,6 +7,7 @@ import * as environments from "../../../../environments.js";
 import * as errors from "../../../../errors/index.js";
 import * as serializers from "../../../../serialization/index.js";
 import * as BasisTheory from "../../../index.js";
+import { Merchant } from "../resources/merchant/client/Client.js";
 
 export declare namespace GooglePay {
     export interface Options extends BaseClientOptions {}
@@ -16,9 +17,14 @@ export declare namespace GooglePay {
 
 export class GooglePay {
     protected readonly _options: GooglePay.Options;
+    protected _merchant: Merchant | undefined;
 
     constructor(_options: GooglePay.Options = {}) {
         this._options = _options;
+    }
+
+    public get merchant(): Merchant {
+        return (this._merchant ??= new Merchant(this._options));
     }
 
     /**
@@ -57,7 +63,7 @@ export class GooglePay {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "google-pay",
             ),
             method: "POST",
@@ -203,7 +209,7 @@ export class GooglePay {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `google-pay/${core.url.encodePathParam(id)}`,
             ),
             method: "GET",
@@ -309,7 +315,7 @@ export class GooglePay {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `google-pay/${core.url.encodePathParam(id)}`,
             ),
             method: "DELETE",

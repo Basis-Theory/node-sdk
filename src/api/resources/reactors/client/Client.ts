@@ -81,7 +81,7 @@ export class Reactors {
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
                             (await core.Supplier.get(this._options.environment)) ??
-                            environments.BasisTheoryEnvironment.Default,
+                            environments.BasisTheoryEnvironment.Production,
                         "reactors",
                     ),
                     method: "GET",
@@ -207,7 +207,7 @@ export class Reactors {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "reactors",
             ),
             method: "POST",
@@ -328,7 +328,7 @@ export class Reactors {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `reactors/${core.url.encodePathParam(id)}`,
             ),
             method: "GET",
@@ -446,7 +446,7 @@ export class Reactors {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `reactors/${core.url.encodePathParam(id)}`,
             ),
             method: "PUT",
@@ -566,7 +566,7 @@ export class Reactors {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `reactors/${core.url.encodePathParam(id)}`,
             ),
             method: "DELETE",
@@ -672,7 +672,7 @@ export class Reactors {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `reactors/${core.url.encodePathParam(id)}`,
             ),
             method: "PATCH",
@@ -794,7 +794,7 @@ export class Reactors {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `reactors/${core.url.encodePathParam(id)}/react`,
             ),
             method: "POST",
@@ -936,7 +936,7 @@ export class Reactors {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `reactors/${core.url.encodePathParam(id)}/react-async`,
             ),
             method: "POST",

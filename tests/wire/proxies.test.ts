@@ -133,7 +133,13 @@ describe("Proxies", () => {
                 matcher: "matcher",
                 expression: "expression",
                 replacement: "replacement",
-                options: { identifier: "identifier", value: "value", location: "location", runtime: "runtime" },
+                options: {
+                    identifier: "identifier",
+                    value: "value",
+                    location: "location",
+                    runtime: "runtime",
+                    warm_concurrency: 1,
+                },
             },
             response_transform: {
                 type: "type",
@@ -141,7 +147,13 @@ describe("Proxies", () => {
                 matcher: "matcher",
                 expression: "expression",
                 replacement: "replacement",
-                options: { identifier: "identifier", value: "value", location: "location", runtime: "runtime" },
+                options: {
+                    identifier: "identifier",
+                    value: "value",
+                    location: "location",
+                    runtime: "runtime",
+                    warm_concurrency: 1,
+                },
             },
             request_transforms: [
                 {
@@ -195,6 +207,7 @@ describe("Proxies", () => {
                     value: "value",
                     location: "location",
                     runtime: "runtime",
+                    warmConcurrency: 1,
                 },
             },
             responseTransform: {
@@ -208,6 +221,7 @@ describe("Proxies", () => {
                     value: "value",
                     location: "location",
                     runtime: "runtime",
+                    warmConcurrency: 1,
                 },
             },
             requestTransforms: [
