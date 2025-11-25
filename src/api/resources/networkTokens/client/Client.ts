@@ -57,7 +57,7 @@ export class NetworkTokens {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "network-tokens",
             ),
             method: "POST",
@@ -205,7 +205,7 @@ export class NetworkTokens {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `network-tokens/${core.url.encodePathParam(id)}/cryptogram`,
             ),
             method: "POST",
@@ -339,7 +339,7 @@ export class NetworkTokens {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `network-tokens/${core.url.encodePathParam(id)}`,
             ),
             method: "GET",
@@ -457,7 +457,7 @@ export class NetworkTokens {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `network-tokens/${core.url.encodePathParam(id)}`,
             ),
             method: "DELETE",
@@ -570,7 +570,7 @@ export class NetworkTokens {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `network-tokens/${core.url.encodePathParam(id)}/suspend`,
             ),
             method: "PUT",
@@ -705,7 +705,7 @@ export class NetworkTokens {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `network-tokens/${core.url.encodePathParam(id)}/resume`,
             ),
             method: "PUT",

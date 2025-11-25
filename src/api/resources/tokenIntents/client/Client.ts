@@ -55,7 +55,7 @@ export class TokenIntents {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `token-intents/${core.url.encodePathParam(id)}`,
             ),
             method: "GET",
@@ -161,7 +161,7 @@ export class TokenIntents {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `token-intents/${core.url.encodePathParam(id)}`,
             ),
             method: "DELETE",
@@ -266,7 +266,7 @@ export class TokenIntents {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "token-intents",
             ),
             method: "POST",

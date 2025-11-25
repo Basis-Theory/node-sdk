@@ -74,7 +74,7 @@ export class Invitations {
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
                             (await core.Supplier.get(this._options.environment)) ??
-                            environments.BasisTheoryEnvironment.Default,
+                            environments.BasisTheoryEnvironment.Production,
                         "tenants/self/invitations",
                     ),
                     method: "GET",
@@ -202,7 +202,7 @@ export class Invitations {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "tenants/self/invitations",
             ),
             method: "POST",
@@ -330,7 +330,7 @@ export class Invitations {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `tenants/self/invitations/${core.url.encodePathParam(invitationId)}/resend`,
             ),
             method: "POST",
@@ -450,7 +450,7 @@ export class Invitations {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `tenants/self/invitations/${core.url.encodePathParam(invitationId)}`,
             ),
             method: "GET",
@@ -558,7 +558,7 @@ export class Invitations {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `tenants/self/invitations/${core.url.encodePathParam(invitationId)}`,
             ),
             method: "DELETE",

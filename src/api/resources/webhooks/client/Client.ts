@@ -52,7 +52,7 @@ export class Webhooks {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "ping",
             ),
             method: "GET",
@@ -124,7 +124,7 @@ export class Webhooks {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `webhooks/${core.url.encodePathParam(id)}`,
             ),
             method: "GET",
@@ -243,7 +243,7 @@ export class Webhooks {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `webhooks/${core.url.encodePathParam(id)}`,
             ),
             method: "PUT",
@@ -366,7 +366,7 @@ export class Webhooks {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `webhooks/${core.url.encodePathParam(id)}`,
             ),
             method: "DELETE",
@@ -474,7 +474,7 @@ export class Webhooks {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "webhooks",
             ),
             method: "GET",
@@ -599,7 +599,7 @@ export class Webhooks {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "webhooks",
             ),
             method: "POST",

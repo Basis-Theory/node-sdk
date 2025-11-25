@@ -7,6 +7,7 @@ import * as environments from "../../../../../../environments.js";
 import * as errors from "../../../../../../errors/index.js";
 import * as serializers from "../../../../../../serialization/index.js";
 import * as BasisTheory from "../../../../../index.js";
+import { Certificates } from "../resources/certificates/client/Client.js";
 
 export declare namespace Merchant {
     export interface Options extends BaseClientOptions {}
@@ -16,9 +17,14 @@ export declare namespace Merchant {
 
 export class Merchant {
     protected readonly _options: Merchant.Options;
+    protected _certificates: Certificates | undefined;
 
     constructor(_options: Merchant.Options = {}) {
         this._options = _options;
+    }
+
+    public get certificates(): Certificates {
+        return (this._certificates ??= new Certificates(this._options));
     }
 
     /**
@@ -35,14 +41,14 @@ export class Merchant {
     public get(
         id: string,
         requestOptions?: Merchant.RequestOptions,
-    ): core.HttpResponsePromise<BasisTheory.ApplePayToken> {
+    ): core.HttpResponsePromise<BasisTheory.ApplePayMerchant> {
         return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
     }
 
     private async __get(
         id: string,
         requestOptions?: Merchant.RequestOptions,
-    ): Promise<core.WithRawResponse<BasisTheory.ApplePayToken>> {
+    ): Promise<core.WithRawResponse<BasisTheory.ApplePayMerchant>> {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             this._options?.headers,
             mergeOnlyDefinedHeaders({
@@ -55,7 +61,7 @@ export class Merchant {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `apple-pay/merchant-registration/${core.url.encodePathParam(id)}`,
             ),
             method: "GET",
@@ -67,7 +73,7 @@ export class Merchant {
         });
         if (_response.ok) {
             return {
-                data: serializers.ApplePayToken.parseOrThrow(_response.body, {
+                data: serializers.ApplePayMerchant.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -160,7 +166,7 @@ export class Merchant {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `apple-pay/merchant-registration/${core.url.encodePathParam(id)}`,
             ),
             method: "DELETE",
@@ -261,7 +267,7 @@ export class Merchant {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "apple-pay/merchant-registration",
             ),
             method: "POST",

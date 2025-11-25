@@ -59,7 +59,7 @@ export class Results {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `reactors/${core.url.encodePathParam(id)}/results/${core.url.encodePathParam(requestId)}`,
             ),
             method: "GET",

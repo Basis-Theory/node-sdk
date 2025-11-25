@@ -61,7 +61,7 @@ export class Sessions {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 "3ds/sessions",
             ),
             method: "POST",
@@ -193,7 +193,7 @@ export class Sessions {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `3ds/sessions/${core.url.encodePathParam(sessionId)}/authenticate`,
             ),
             method: "POST",
@@ -310,7 +310,7 @@ export class Sessions {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `3ds/sessions/${core.url.encodePathParam(sessionId)}/challenge-result`,
             ),
             method: "GET",
@@ -420,7 +420,7 @@ export class Sessions {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.BasisTheoryEnvironment.Default,
+                    environments.BasisTheoryEnvironment.Production,
                 `3ds/sessions/${core.url.encodePathParam(id)}`,
             ),
             method: "GET",

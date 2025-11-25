@@ -9,4 +9,5 @@ export interface ProxyTransformOptions {
     location?: string;
     runtime?: string;
     dependencies?: Record<string, string | undefined>;
+    warmConcurrency?: number;
 }

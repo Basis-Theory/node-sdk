@@ -2,4 +2,6 @@
 
 export interface RuntimeOptions {
     dependencies?: Record<string, string | undefined>;
+    warmConcurrency?: number;
+    permissions?: string[];
 }
