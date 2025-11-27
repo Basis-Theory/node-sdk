@@ -133,7 +133,16 @@ describe("Proxies", () => {
                 matcher: "matcher",
                 expression: "expression",
                 replacement: "replacement",
-                options: { identifier: "identifier", value: "value", location: "location", runtime: "runtime" },
+                options: {
+                    identifier: "identifier",
+                    value: "value",
+                    location: "location",
+                    runtime: "runtime",
+                    permissions: ["permissions"],
+                    warm_concurrency: 1,
+                    timeout: 1,
+                    resources: "resources",
+                },
             },
             response_transform: {
                 type: "type",
@@ -141,7 +150,16 @@ describe("Proxies", () => {
                 matcher: "matcher",
                 expression: "expression",
                 replacement: "replacement",
-                options: { identifier: "identifier", value: "value", location: "location", runtime: "runtime" },
+                options: {
+                    identifier: "identifier",
+                    value: "value",
+                    location: "location",
+                    runtime: "runtime",
+                    permissions: ["permissions"],
+                    warm_concurrency: 1,
+                    timeout: 1,
+                    resources: "resources",
+                },
             },
             request_transforms: [
                 {
@@ -195,6 +213,10 @@ describe("Proxies", () => {
                     value: "value",
                     location: "location",
                     runtime: "runtime",
+                    permissions: ["permissions"],
+                    warmConcurrency: 1,
+                    timeout: 1,
+                    resources: "resources",
                 },
             },
             responseTransform: {
@@ -208,6 +230,10 @@ describe("Proxies", () => {
                     value: "value",
                     location: "location",
                     runtime: "runtime",
+                    permissions: ["permissions"],
+                    warmConcurrency: 1,
+                    timeout: 1,
+                    resources: "resources",
                 },
             },
             requestTransforms: [

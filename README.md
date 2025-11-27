@@ -5,6 +5,27 @@
 
 The BasisTheory TypeScript library provides convenient access to the BasisTheory APIs from TypeScript.
 
+## Table of Contents
+
+- [Documentation](#documentation)
+- [Installation](#installation)
+- [Reference](#reference)
+- [Usage](#usage)
+- [Request and Response Types](#request-and-response-types)
+- [Exception Handling](#exception-handling)
+- [Pagination](#pagination)
+- [Advanced](#advanced)
+  - [Additional Headers](#additional-headers)
+  - [Additional Query String Parameters](#additional-query-string-parameters)
+  - [Retries](#retries)
+  - [Timeouts](#timeouts)
+  - [Aborting Requests](#aborting-requests)
+  - [Access Raw Response Data](#access-raw-response-data)
+  - [Runtime Compatibility](#runtime-compatibility)
+- [Contributing](#contributing)
+- [File Uploads](#file-uploads)
+- [Binary Response](#binary-response)
+
 ## Documentation
 
 API reference documentation is available [here](https://api.basistheory.com).
@@ -30,7 +51,7 @@ const client = new BasisTheoryClient({ apiKey: "YOUR_API_KEY", correlationId: "Y
 await client.tenants.self.get();
 ```
 
-## Request And Response Types
+## Request and Response Types
 
 The SDK exports all request and response types as TypeScript interfaces. Simply import them with the
 following namespace:

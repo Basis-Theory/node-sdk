@@ -17,6 +17,10 @@ export const ProxyTransformOptions: core.serialization.ObjectSchema<
     dependencies: core.serialization
         .record(core.serialization.string(), core.serialization.string().optional())
         .optional(),
+    permissions: core.serialization.list(core.serialization.string()).optional(),
+    warmConcurrency: core.serialization.property("warm_concurrency", core.serialization.number().optional()),
+    timeout: core.serialization.number().optional(),
+    resources: core.serialization.string().optional(),
 });
 
 export declare namespace ProxyTransformOptions {
@@ -27,5 +31,9 @@ export declare namespace ProxyTransformOptions {
         location?: string | null;
         runtime?: string | null;
         dependencies?: Record<string, string | null | undefined> | null;
+        permissions?: string[] | null;
+        warm_concurrency?: number | null;
+        timeout?: number | null;
+        resources?: string | null;
     }
 }
