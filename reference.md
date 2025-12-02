@@ -3906,7 +3906,7 @@ await client.accountUpdater.realTime.invoke({
 </details>
 
 ## ApplePay Merchant
-<details><summary><code>client.applePay.merchant.<a href="/src/api/resources/applePay/resources/merchant/client/Client.ts">get</a>(id) -> BasisTheory.ApplePayToken</code></summary>
+<details><summary><code>client.applePay.merchant.<a href="/src/api/resources/applePay/resources/merchant/client/Client.ts">get</a>(id) -> BasisTheory.ApplePayMerchant</code></summary>
 <dl>
 <dd>
 
@@ -4296,6 +4296,178 @@ await client.applePay.session.create();
 </dl>
 </details>
 
+## ApplePay Merchant Certificates
+<details><summary><code>client.applePay.merchant.certificates.<a href="/src/api/resources/applePay/resources/merchant/resources/certificates/client/Client.ts">get</a>(merchantId, id) -> BasisTheory.ApplePayMerchantCertificates</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applePay.merchant.certificates.get("merchantId", "id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Certificates.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applePay.merchant.certificates.<a href="/src/api/resources/applePay/resources/merchant/resources/certificates/client/Client.ts">delete</a>(merchantId, id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applePay.merchant.certificates.delete("merchantId", "id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Certificates.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applePay.merchant.certificates.<a href="/src/api/resources/applePay/resources/merchant/resources/certificates/client/Client.ts">create</a>(merchantId, { ...params }) -> BasisTheory.ApplePayMerchantCertificates</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applePay.merchant.certificates.create("merchantId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.applePay.merchant.ApplePayMerchantCertificatesRegisterRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Certificates.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Documents Data
 <details><summary><code>client.documents.data.<a href="/src/api/resources/documents/resources/data/client/Client.ts">get</a>(documentId) -> core.BinaryResponse</code></summary>
 <dl>
@@ -4335,6 +4507,326 @@ await client.documents.data.get("documentId");
 <dd>
 
 **requestOptions:** `Data.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## GooglePay Merchant
+<details><summary><code>client.googlePay.merchant.<a href="/src/api/resources/googlePay/resources/merchant/client/Client.ts">get</a>(id) -> BasisTheory.GooglePayMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.merchant.get("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchant.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.googlePay.merchant.<a href="/src/api/resources/googlePay/resources/merchant/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.merchant.delete("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchant.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.googlePay.merchant.<a href="/src/api/resources/googlePay/resources/merchant/client/Client.ts">create</a>({ ...params }) -> BasisTheory.GooglePayMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.merchant.create();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.googlePay.GooglePayMerchantRegisterRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchant.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## GooglePay Merchant Certificates
+<details><summary><code>client.googlePay.merchant.certificates.<a href="/src/api/resources/googlePay/resources/merchant/resources/certificates/client/Client.ts">get</a>(merchantId, id) -> BasisTheory.GooglePayMerchantCertificates</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.merchant.certificates.get("merchantId", "id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Certificates.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.googlePay.merchant.certificates.<a href="/src/api/resources/googlePay/resources/merchant/resources/certificates/client/Client.ts">delete</a>(merchantId, id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.merchant.certificates.delete("merchantId", "id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Certificates.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.googlePay.merchant.certificates.<a href="/src/api/resources/googlePay/resources/merchant/resources/certificates/client/Client.ts">create</a>(merchantId, { ...params }) -> BasisTheory.GooglePayMerchantCertificates</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.merchant.certificates.create("merchantId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.googlePay.merchant.GooglePayMerchantCertificatesRegisterRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Certificates.RequestOptions` 
     
 </dd>
 </dl>

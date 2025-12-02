@@ -139,7 +139,13 @@ describe("Reactors", () => {
             modified_at: "2024-01-15T09:30:00Z",
             configuration: { key: "value" },
             runtime: "runtime",
-            options: { dependencies: { key: "value" } },
+            options: {
+                dependencies: { key: "value" },
+                warm_concurrency: 1,
+                timeout: 1,
+                resources: "resources",
+                permissions: ["permissions"],
+            },
         };
         server.mockEndpoint().get("/reactors/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
@@ -200,6 +206,10 @@ describe("Reactors", () => {
                 dependencies: {
                     key: "value",
                 },
+                warmConcurrency: 1,
+                timeout: 1,
+                resources: "resources",
+                permissions: ["permissions"],
             },
         });
     });
