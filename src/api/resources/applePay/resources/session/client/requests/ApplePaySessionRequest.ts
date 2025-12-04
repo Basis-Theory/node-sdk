@@ -8,4 +8,5 @@ export interface ApplePaySessionRequest {
     validationUrl?: string;
     displayName?: string;
     domain?: string;
+    merchantRegistrationId?: string;
 }

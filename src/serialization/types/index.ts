@@ -31,6 +31,7 @@ export * from "./BinDetailsBank.js";
 export * from "./BinDetailsCountry.js";
 export * from "./BinDetailsProduct.js";
 export * from "./Card.js";
+export * from "./CardBinRange.js";
 export * from "./CardDetails.js";
 export * from "./CardDetailsResponse.js";
 export * from "./CardholderInfo.js";
