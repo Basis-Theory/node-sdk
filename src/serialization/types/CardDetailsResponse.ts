@@ -4,6 +4,7 @@ import type * as BasisTheory from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 import { AdditionalCardDetail } from "./AdditionalCardDetail.js";
+import { CardBinRange } from "./CardBinRange.js";
 import { CardIssuerDetails } from "./CardIssuerDetails.js";
 
 export const CardDetailsResponse: core.serialization.ObjectSchema<
@@ -14,6 +15,7 @@ export const CardDetailsResponse: core.serialization.ObjectSchema<
     funding: core.serialization.string().optional(),
     segment: core.serialization.string().optional(),
     issuer: CardIssuerDetails.optional(),
+    binRange: core.serialization.list(CardBinRange).optional(),
     additional: core.serialization.list(AdditionalCardDetail).optional(),
 });
 
@@ -23,6 +25,7 @@ export declare namespace CardDetailsResponse {
         funding?: string | null;
         segment?: string | null;
         issuer?: CardIssuerDetails.Raw | null;
+        binRange?: CardBinRange.Raw[] | null;
         additional?: AdditionalCardDetail.Raw[] | null;
     }
 }

@@ -9,4 +9,5 @@ import type * as BasisTheory from "../../../../index.js";
 export interface ApplePayCreateRequest {
     expiresAt?: string;
     applePaymentData?: BasisTheory.ApplePayMethodToken;
+    merchantRegistrationId?: string;
 }

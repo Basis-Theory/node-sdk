@@ -3,6 +3,7 @@
 import type * as BasisTheory from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { CardBinRange } from "./CardBinRange.js";
 import { CardIssuerDetails } from "./CardIssuerDetails.js";
 
 export const AdditionalCardDetail: core.serialization.ObjectSchema<
@@ -13,6 +14,7 @@ export const AdditionalCardDetail: core.serialization.ObjectSchema<
     funding: core.serialization.string().optional(),
     segment: core.serialization.string().optional(),
     issuer: CardIssuerDetails.optional(),
+    binRange: core.serialization.list(CardBinRange).optional(),
 });
 
 export declare namespace AdditionalCardDetail {
@@ -21,5 +23,6 @@ export declare namespace AdditionalCardDetail {
         funding?: string | null;
         segment?: string | null;
         issuer?: CardIssuerDetails.Raw | null;
+        binRange?: CardBinRange.Raw[] | null;
     }
 }
