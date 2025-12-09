@@ -95,7 +95,7 @@ export * from "./ReactorFormulaRequestParameter.js";
 export * from "./ReactorPaginatedList.js";
 export * from "./ReactResponse.js";
 export * from "./Role.js";
-export * from "./RuntimeOptions.js";
+export * from "./Runtime.js";
 export * from "./StringStringKeyValuePair.js";
 export * from "./SubmerchantAuthenticationResponse.js";
 export * from "./Tenant.js";

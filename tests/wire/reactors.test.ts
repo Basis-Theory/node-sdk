@@ -22,7 +22,6 @@ describe("Reactors", () => {
                     created_at: "2024-01-15T09:30:00Z",
                     modified_by: "modified_by",
                     modified_at: "2024-01-15T09:30:00Z",
-                    runtime: "runtime",
                 },
             ],
         };
@@ -47,7 +46,6 @@ describe("Reactors", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     modifiedBy: "modified_by",
                     modifiedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    runtime: "runtime",
                 },
             ],
         };
@@ -138,8 +136,8 @@ describe("Reactors", () => {
             modified_by: "modified_by",
             modified_at: "2024-01-15T09:30:00Z",
             configuration: { key: "value" },
-            runtime: "runtime",
-            options: {
+            runtime: {
+                image: "image",
                 dependencies: { key: "value" },
                 warm_concurrency: 1,
                 timeout: 1,
@@ -201,8 +199,8 @@ describe("Reactors", () => {
             configuration: {
                 key: "value",
             },
-            runtime: "runtime",
-            options: {
+            runtime: {
+                image: "image",
                 dependencies: {
                     key: "value",
                 },
