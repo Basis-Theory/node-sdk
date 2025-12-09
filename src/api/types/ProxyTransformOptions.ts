@@ -7,10 +7,5 @@ export interface ProxyTransformOptions {
     identifier?: string;
     value?: string;
     location?: string;
-    runtime?: string;
-    dependencies?: Record<string, string | undefined>;
-    permissions?: string[];
-    warmConcurrency?: number;
-    timeout?: number;
-    resources?: string;
+    runtime?: BasisTheory.Runtime;
 }
