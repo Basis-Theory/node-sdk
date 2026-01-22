@@ -20,6 +20,7 @@ export interface Proxy {
     configuration?: Record<string, string | undefined>;
     proxyHost?: string;
     timeout?: number;
+    disableDetokenization?: boolean;
     clientCertificate?: string;
     requested?: BasisTheory.RequestedProxy;
     createdBy?: string;

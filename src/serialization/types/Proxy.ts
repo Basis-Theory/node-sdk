@@ -33,6 +33,10 @@ export const Proxy: core.serialization.ObjectSchema<serializers.Proxy.Raw, Basis
             .optional(),
         proxyHost: core.serialization.property("proxy_host", core.serialization.string().optional()),
         timeout: core.serialization.number().optional(),
+        disableDetokenization: core.serialization.property(
+            "disable_detokenization",
+            core.serialization.boolean().optional(),
+        ),
         clientCertificate: core.serialization.property("client_certificate", core.serialization.string().optional()),
         requested: RequestedProxy.optional(),
         createdBy: core.serialization.property("created_by", core.serialization.string().optional()),
@@ -60,6 +64,7 @@ export declare namespace Proxy {
         configuration?: Record<string, string | null | undefined> | null;
         proxy_host?: string | null;
         timeout?: number | null;
+        disable_detokenization?: boolean | null;
         client_certificate?: string | null;
         requested?: RequestedProxy.Raw | null;
         created_by?: string | null;
