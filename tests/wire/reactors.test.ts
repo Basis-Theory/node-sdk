@@ -144,6 +144,12 @@ describe("Reactors", () => {
                 resources: "resources",
                 permissions: ["permissions"],
             },
+            requested: {
+                reactor: { code: "code" },
+                error_code: "error_code",
+                error_message: "error_message",
+                error_details: { key: "value" },
+            },
         };
         server.mockEndpoint().get("/reactors/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
@@ -208,6 +214,16 @@ describe("Reactors", () => {
                 timeout: 1,
                 resources: "resources",
                 permissions: ["permissions"],
+            },
+            requested: {
+                reactor: {
+                    code: "code",
+                },
+                errorCode: "error_code",
+                errorMessage: "error_message",
+                errorDetails: {
+                    key: "value",
+                },
             },
         });
     });
@@ -297,7 +313,7 @@ describe("Reactors", () => {
     test("react (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { key: "value" };
         const rawResponseBody = {
             tokens: { key: "value" },
             raw: { key: "value" },
@@ -313,7 +329,9 @@ describe("Reactors", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.reactors.react("id");
+        const response = await client.reactors.react("id", {
+            key: "value",
+        });
         expect(response).toEqual({
             tokens: {
                 key: "value",
@@ -333,7 +351,7 @@ describe("Reactors", () => {
     test("react (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { key: "value" };
         const rawResponseBody = {};
         server
             .mockEndpoint()
@@ -345,14 +363,16 @@ describe("Reactors", () => {
             .build();
 
         await expect(async () => {
-            return await client.reactors.react("id");
+            return await client.reactors.react("id", {
+                key: "value",
+            });
         }).rejects.toThrow(BasisTheory.BadRequestError);
     });
 
     test("react (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { key: "value" };
         const rawResponseBody = {};
         server
             .mockEndpoint()
@@ -364,14 +384,16 @@ describe("Reactors", () => {
             .build();
 
         await expect(async () => {
-            return await client.reactors.react("id");
+            return await client.reactors.react("id", {
+                key: "value",
+            });
         }).rejects.toThrow(BasisTheory.UnauthorizedError);
     });
 
     test("react (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { key: "value" };
         const rawResponseBody = {};
         server
             .mockEndpoint()
@@ -383,14 +405,16 @@ describe("Reactors", () => {
             .build();
 
         await expect(async () => {
-            return await client.reactors.react("id");
+            return await client.reactors.react("id", {
+                key: "value",
+            });
         }).rejects.toThrow(BasisTheory.ForbiddenError);
     });
 
     test("react (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { key: "value" };
         const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
@@ -402,14 +426,16 @@ describe("Reactors", () => {
             .build();
 
         await expect(async () => {
-            return await client.reactors.react("id");
+            return await client.reactors.react("id", {
+                key: "value",
+            });
         }).rejects.toThrow(BasisTheory.NotFoundError);
     });
 
     test("react (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { key: "value" };
         const rawResponseBody = {};
         server
             .mockEndpoint()
@@ -421,14 +447,16 @@ describe("Reactors", () => {
             .build();
 
         await expect(async () => {
-            return await client.reactors.react("id");
+            return await client.reactors.react("id", {
+                key: "value",
+            });
         }).rejects.toThrow(BasisTheory.UnprocessableEntityError);
     });
 
     test("reactAsync (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { key: "value" };
         const rawResponseBody = { asyncReactorRequestId: "asyncReactorRequestId" };
         server
             .mockEndpoint()
@@ -439,7 +467,9 @@ describe("Reactors", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.reactors.reactAsync("id");
+        const response = await client.reactors.reactAsync("id", {
+            key: "value",
+        });
         expect(response).toEqual({
             asyncReactorRequestId: "asyncReactorRequestId",
         });
@@ -448,7 +478,7 @@ describe("Reactors", () => {
     test("reactAsync (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { key: "value" };
         const rawResponseBody = {};
         server
             .mockEndpoint()
@@ -460,14 +490,16 @@ describe("Reactors", () => {
             .build();
 
         await expect(async () => {
-            return await client.reactors.reactAsync("id");
+            return await client.reactors.reactAsync("id", {
+                key: "value",
+            });
         }).rejects.toThrow(BasisTheory.BadRequestError);
     });
 
     test("reactAsync (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { key: "value" };
         const rawResponseBody = {};
         server
             .mockEndpoint()
@@ -479,14 +511,16 @@ describe("Reactors", () => {
             .build();
 
         await expect(async () => {
-            return await client.reactors.reactAsync("id");
+            return await client.reactors.reactAsync("id", {
+                key: "value",
+            });
         }).rejects.toThrow(BasisTheory.UnauthorizedError);
     });
 
     test("reactAsync (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { key: "value" };
         const rawResponseBody = {};
         server
             .mockEndpoint()
@@ -498,14 +532,16 @@ describe("Reactors", () => {
             .build();
 
         await expect(async () => {
-            return await client.reactors.reactAsync("id");
+            return await client.reactors.reactAsync("id", {
+                key: "value",
+            });
         }).rejects.toThrow(BasisTheory.ForbiddenError);
     });
 
     test("reactAsync (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { key: "value" };
         const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
@@ -517,14 +553,16 @@ describe("Reactors", () => {
             .build();
 
         await expect(async () => {
-            return await client.reactors.reactAsync("id");
+            return await client.reactors.reactAsync("id", {
+                key: "value",
+            });
         }).rejects.toThrow(BasisTheory.NotFoundError);
     });
 
     test("reactAsync (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { key: "value" };
         const rawResponseBody = {};
         server
             .mockEndpoint()
@@ -536,7 +574,9 @@ describe("Reactors", () => {
             .build();
 
         await expect(async () => {
-            return await client.reactors.reactAsync("id");
+            return await client.reactors.reactAsync("id", {
+                key: "value",
+            });
         }).rejects.toThrow(BasisTheory.UnprocessableEntityError);
     });
 });

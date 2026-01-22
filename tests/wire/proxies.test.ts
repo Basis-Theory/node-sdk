@@ -166,6 +166,17 @@ describe("Proxies", () => {
             proxy_host: "proxy_host",
             timeout: 1,
             client_certificate: "client_certificate",
+            requested: {
+                proxy: {
+                    destination_url: "destination_url",
+                    require_auth: true,
+                    request_transforms: [{}],
+                    response_transforms: [{}],
+                },
+                error_code: "error_code",
+                error_message: "error_message",
+                error_details: { key: "value" },
+            },
             created_by: "created_by",
             created_at: "2024-01-15T09:30:00Z",
             modified_by: "modified_by",
@@ -233,6 +244,19 @@ describe("Proxies", () => {
             proxyHost: "proxy_host",
             timeout: 1,
             clientCertificate: "client_certificate",
+            requested: {
+                proxy: {
+                    destinationUrl: "destination_url",
+                    requireAuth: true,
+                    requestTransforms: [{}],
+                    responseTransforms: [{}],
+                },
+                errorCode: "error_code",
+                errorMessage: "error_message",
+                errorDetails: {
+                    key: "value",
+                },
+            },
             createdBy: "created_by",
             createdAt: new Date("2024-01-15T09:30:00.000Z"),
             modifiedBy: "modified_by",

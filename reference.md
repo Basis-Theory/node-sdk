@@ -1,6 +1,6 @@
 # Reference
 ## Applications
-<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Application></code></summary>
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Application&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1371,7 +1371,7 @@ await client.tokens.create({});
 </dl>
 </details>
 
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">listV2</a>({ ...params }) -> core.Page<BasisTheory.Token></code></summary>
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">listV2</a>({ ...params }) -> core.Page&lt;BasisTheory.Token&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1429,7 +1429,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">searchV2</a>({ ...params }) -> core.Page<BasisTheory.Token></code></summary>
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">searchV2</a>({ ...params }) -> core.Page&lt;BasisTheory.Token&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1780,7 +1780,7 @@ await client.keys.delete("id");
 </details>
 
 ## Logs
-<details><summary><code>client.logs.<a href="/src/api/resources/logs/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Log></code></summary>
+<details><summary><code>client.logs.<a href="/src/api/resources/logs/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Log&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2225,7 +2225,7 @@ await client.permissions.list();
 </details>
 
 ## Proxies
-<details><summary><code>client.proxies.<a href="/src/api/resources/proxies/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Proxy></code></summary>
+<details><summary><code>client.proxies.<a href="/src/api/resources/proxies/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Proxy&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2551,7 +2551,7 @@ await client.proxies.patch("id");
 </details>
 
 ## Reactors
-<details><summary><code>client.reactors.<a href="/src/api/resources/reactors/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Reactor></code></summary>
+<details><summary><code>client.reactors.<a href="/src/api/resources/reactors/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Reactor&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2889,7 +2889,9 @@ await client.reactors.patch("id");
 <dd>
 
 ```typescript
-await client.reactors.react("id");
+await client.reactors.react("id", {
+    "key": "value"
+});
 
 ```
 </dd>
@@ -2913,7 +2915,7 @@ await client.reactors.react("id");
 <dl>
 <dd>
 
-**request:** `BasisTheory.ReactRequest` 
+**request:** `unknown` 
     
 </dd>
 </dl>
@@ -2946,7 +2948,9 @@ await client.reactors.react("id");
 <dd>
 
 ```typescript
-await client.reactors.reactAsync("id");
+await client.reactors.reactAsync("id", {
+    "key": "value"
+});
 
 ```
 </dd>
@@ -2970,7 +2974,7 @@ await client.reactors.reactAsync("id");
 <dl>
 <dd>
 
-**request:** `BasisTheory.ReactRequestAsync` 
+**request:** `unknown` 
     
 </dd>
 </dl>
@@ -4991,7 +4995,7 @@ await client.tenants.connections.delete();
 </details>
 
 ## Tenants Invitations
-<details><summary><code>client.tenants.invitations.<a href="/src/api/resources/tenants/resources/invitations/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.TenantInvitationResponse></code></summary>
+<details><summary><code>client.tenants.invitations.<a href="/src/api/resources/tenants/resources/invitations/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.TenantInvitationResponse&gt;</code></summary>
 <dl>
 <dd>
 
