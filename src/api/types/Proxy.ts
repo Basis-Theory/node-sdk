@@ -21,6 +21,7 @@ export interface Proxy {
     proxyHost?: string;
     timeout?: number;
     clientCertificate?: string;
+    requested?: BasisTheory.RequestedProxy;
     createdBy?: string;
     createdAt?: Date;
     modifiedBy?: string;

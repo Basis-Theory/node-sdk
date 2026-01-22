@@ -11,4 +11,5 @@ export interface CreateNetworkTokenRequest {
     tokenId?: string;
     tokenIntentId?: string;
     cardholderInfo?: BasisTheory.CardholderInfo;
+    merchantId?: string;
 }

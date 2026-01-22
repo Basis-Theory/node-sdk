@@ -5,6 +5,7 @@ import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 import { Application } from "./Application.js";
 import { ReactorFormula } from "./ReactorFormula.js";
+import { RequestedReactor } from "./RequestedReactor.js";
 import { Runtime } from "./Runtime.js";
 
 export const Reactor: core.serialization.ObjectSchema<serializers.Reactor.Raw, BasisTheory.Reactor> =
@@ -24,6 +25,7 @@ export const Reactor: core.serialization.ObjectSchema<serializers.Reactor.Raw, B
             .record(core.serialization.string(), core.serialization.string().optional())
             .optional(),
         runtime: Runtime.optional(),
+        requested: RequestedReactor.optional(),
     });
 
 export declare namespace Reactor {
@@ -41,5 +43,6 @@ export declare namespace Reactor {
         modified_at?: string | null;
         configuration?: Record<string, string | null | undefined> | null;
         runtime?: Runtime.Raw | null;
+        requested?: RequestedReactor.Raw | null;
     }
 }

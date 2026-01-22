@@ -4,6 +4,7 @@ import type * as BasisTheory from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 import { ProxyTransform } from "./ProxyTransform.js";
+import { RequestedProxy } from "./RequestedProxy.js";
 
 export const Proxy: core.serialization.ObjectSchema<serializers.Proxy.Raw, BasisTheory.Proxy> =
     core.serialization.object({
@@ -33,6 +34,7 @@ export const Proxy: core.serialization.ObjectSchema<serializers.Proxy.Raw, Basis
         proxyHost: core.serialization.property("proxy_host", core.serialization.string().optional()),
         timeout: core.serialization.number().optional(),
         clientCertificate: core.serialization.property("client_certificate", core.serialization.string().optional()),
+        requested: RequestedProxy.optional(),
         createdBy: core.serialization.property("created_by", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedBy: core.serialization.property("modified_by", core.serialization.string().optional()),
@@ -59,6 +61,7 @@ export declare namespace Proxy {
         proxy_host?: string | null;
         timeout?: number | null;
         client_certificate?: string | null;
+        requested?: RequestedProxy.Raw | null;
         created_by?: string | null;
         created_at?: string | null;
         modified_by?: string | null;
