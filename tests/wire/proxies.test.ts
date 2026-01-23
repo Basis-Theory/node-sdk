@@ -27,6 +27,7 @@ describe("Proxies", () => {
                     application_id: "application_id",
                     proxy_host: "proxy_host",
                     timeout: 1,
+                    disable_detokenization: true,
                     client_certificate: "client_certificate",
                     created_by: "created_by",
                     created_at: "2024-01-15T09:30:00Z",
@@ -61,6 +62,7 @@ describe("Proxies", () => {
                     applicationId: "application_id",
                     proxyHost: "proxy_host",
                     timeout: 1,
+                    disableDetokenization: true,
                     clientCertificate: "client_certificate",
                     createdBy: "created_by",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -165,6 +167,7 @@ describe("Proxies", () => {
             configuration: { key: "value" },
             proxy_host: "proxy_host",
             timeout: 1,
+            disable_detokenization: true,
             client_certificate: "client_certificate",
             requested: {
                 proxy: {
@@ -243,6 +246,7 @@ describe("Proxies", () => {
             },
             proxyHost: "proxy_host",
             timeout: 1,
+            disableDetokenization: true,
             clientCertificate: "client_certificate",
             requested: {
                 proxy: {
