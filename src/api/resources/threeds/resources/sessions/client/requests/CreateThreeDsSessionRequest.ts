@@ -16,4 +16,5 @@ export interface CreateThreeDsSessionRequest {
     deviceInfo?: BasisTheory.ThreeDsDeviceInfo;
     authenticationRequest?: BasisTheory.AuthenticateThreeDsSessionRequest;
     callbackUrls?: BasisTheory.ThreeDsCallbackUrls;
+    metadata?: Record<string, string | undefined>;
 }
