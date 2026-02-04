@@ -9,10 +9,12 @@ export const CreateAccountUpdaterJobRequest: core.serialization.ObjectSchema<
     BasisTheory.CreateAccountUpdaterJobRequest
 > = core.serialization.object({
     deduplicateTokens: core.serialization.property("deduplicate_tokens", core.serialization.boolean().optional()),
+    merchantId: core.serialization.property("merchant_id", core.serialization.string().optional()),
 });
 
 export declare namespace CreateAccountUpdaterJobRequest {
     export interface Raw {
         deduplicate_tokens?: boolean | null;
+        merchant_id?: string | null;
     }
 }

@@ -2335,9 +2335,9 @@ ci-info@^3.2.0:
   integrity sha512-NIxF55hv4nSqQswkAeiOi1r83xy8JldOFDTWiug55KBu9Jnblncd2U6ViHmYgHf01TPZS77NJBhBMKdWj9HQMQ==
 
 ci-info@^4.0.0:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-4.3.1.tgz#355ad571920810b5623e11d40232f443f16f1daa"
-  integrity sha512-Wdy2Igu8OcBpI2pZePZ5oWjPC38tmDVx5WKUXKwlLYkA0ozo85sLsLvkBbBn/sZaSCMFOGZJ14fvW9t5/d7kdA==
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-4.4.0.tgz#7d54eff9f54b45b62401c26032696eb59c8bd18c"
+  integrity sha512-77PSwercCZU2Fc4sX94eF8k8Pxte6JAwL4/ICZLFjJLqegs7kCuAsqqj/70NQF6TvDpgFjkubQB2FW2ZZddvQg==
 
 cidr-regex@^3.1.1:
   version "3.1.1"
@@ -6856,9 +6856,9 @@ tempy@^1.0.0:
     unique-string "^2.0.0"
 
 tempy@^3.0.0:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/tempy/-/tempy-3.1.1.tgz#5988e40a7094f4927eb20eae8b14bb9ba46161af"
-  integrity sha512-ozXJ+Z2YduKpJuuM07LNcIxpX+r8W4J84HrgqB/ay4skWfa5MhjsVn6e2fw+bRDa8cYO5jRJWnEMWL1HqCc2sQ==
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/tempy/-/tempy-3.2.0.tgz#0061de359bdd17c13bd885169456496c74911bce"
+  integrity sha512-d79HhZya5Djd7am0q+W4RTsSU+D/aJzM+4Y4AGJGuGlgM2L6sx5ZvOYTmZjqPhrDrV6xJTtRSm1JCLj6V6LHLQ==
   dependencies:
     is-stream "^3.0.0"
     temp-dir "^3.0.0"

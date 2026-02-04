@@ -12,6 +12,7 @@ export const AccountUpdaterRealTimeRequest: core.serialization.Schema<
     expirationYear: core.serialization.property("expiration_year", core.serialization.number().optional()),
     expirationMonth: core.serialization.property("expiration_month", core.serialization.number().optional()),
     deduplicateToken: core.serialization.property("deduplicate_token", core.serialization.boolean().optional()),
+    merchantId: core.serialization.property("merchant_id", core.serialization.string().optional()),
 });
 
 export declare namespace AccountUpdaterRealTimeRequest {
@@ -20,5 +21,6 @@ export declare namespace AccountUpdaterRealTimeRequest {
         expiration_year?: number | null;
         expiration_month?: number | null;
         deduplicate_token?: boolean | null;
+        merchant_id?: string | null;
     }
 }
