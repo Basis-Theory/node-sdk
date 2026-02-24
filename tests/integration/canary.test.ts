@@ -647,7 +647,7 @@ describe('google pay', () => {
             });
         } catch (err) {
             expect(err).toBeInstanceOf(UnprocessableEntityError);
-            expect((err as any).body.detail).toContain('Failed to decrypt token');
+            expect((err as any).body.detail).toContain('Failed to decrypt Google payment request');
         }
     });
 });
