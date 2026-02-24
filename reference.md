@@ -3036,6 +3036,99 @@ await client.roles.list();
 </dl>
 </details>
 
+## Tenants
+<details><summary><code>client.tenants.<a href="/src/api/resources/tenants/client/Client.ts">getsecuritycontact</a>() -> BasisTheory.SecurityContactEmailResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.getsecuritycontact();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tenants.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.<a href="/src/api/resources/tenants/client/Client.ts">updatesecuritycontact</a>({ ...params }) -> BasisTheory.SecurityContactEmailResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.updatesecuritycontact({
+    email: "email"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.SecurityContactEmailRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tenants.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Sessions
 <details><summary><code>client.sessions.<a href="/src/api/resources/sessions/client/Client.ts">create</a>() -> BasisTheory.CreateSessionResponse</code></summary>
 <dl>

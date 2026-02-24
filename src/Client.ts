@@ -48,11 +48,11 @@ export class BasisTheoryClient {
     protected _proxies: Proxies | undefined;
     protected _reactors: Reactors | undefined;
     protected _roles: Roles | undefined;
+    protected _tenants: Tenants | undefined;
     protected _sessions: Sessions | undefined;
     protected _tokenIntents: TokenIntents | undefined;
     protected _webhooks: Webhooks | undefined;
     protected _accountUpdater: AccountUpdater | undefined;
-    protected _tenants: Tenants | undefined;
     protected _threeds: Threeds | undefined;
 
     constructor(_options: BasisTheoryClient.Options = {}) {
@@ -133,6 +133,10 @@ export class BasisTheoryClient {
         return (this._roles ??= new Roles(this._options));
     }
 
+    public get tenants(): Tenants {
+        return (this._tenants ??= new Tenants(this._options));
+    }
+
     public get sessions(): Sessions {
         return (this._sessions ??= new Sessions(this._options));
     }
@@ -147,10 +151,6 @@ export class BasisTheoryClient {
 
     public get accountUpdater(): AccountUpdater {
         return (this._accountUpdater ??= new AccountUpdater(this._options));
-    }
-
-    public get tenants(): Tenants {
-        return (this._tenants ??= new Tenants(this._options));
     }
 
     public get threeds(): Threeds {
