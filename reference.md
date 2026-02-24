@@ -4900,6 +4900,99 @@ await client.reactors.results.get("id", "requestId");
 </dl>
 </details>
 
+## Tenants SecurityContact
+<details><summary><code>client.tenants.securityContact.<a href="/src/api/resources/tenants/resources/securityContact/client/Client.ts">get</a>() -> BasisTheory.SecurityContactEmailResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.securityContact.get();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `SecurityContact.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.securityContact.<a href="/src/api/resources/tenants/resources/securityContact/client/Client.ts">update</a>({ ...params }) -> BasisTheory.SecurityContactEmailResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.securityContact.update({
+    email: "email"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.tenants.SecurityContactEmailRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SecurityContact.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Tenants Connections
 <details><summary><code>client.tenants.connections.<a href="/src/api/resources/tenants/resources/connections/client/Client.ts">create</a>({ ...params }) -> BasisTheory.CreateTenantConnectionResponse</code></summary>
 <dl>
