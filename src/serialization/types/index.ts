@@ -100,6 +100,7 @@ export * from "./RequestedProxy.js";
 export * from "./RequestedReactor.js";
 export * from "./Role.js";
 export * from "./Runtime.js";
+export * from "./SecurityContactEmailResponse.js";
 export * from "./StringStringKeyValuePair.js";
 export * from "./SubmerchantAuthenticationResponse.js";
 export * from "./Tenant.js";

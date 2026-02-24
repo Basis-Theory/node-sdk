@@ -3,6 +3,7 @@
 export interface Runtime {
     image?: string;
     dependencies?: Record<string, string | undefined>;
+    resolutions?: Record<string, string | undefined>;
     warmConcurrency?: number;
     timeout?: number;
     resources?: string;

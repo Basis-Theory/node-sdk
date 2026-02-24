@@ -5,6 +5,7 @@ import { Connections } from "../resources/connections/client/Client.js";
 import { Invitations } from "../resources/invitations/client/Client.js";
 import { Members } from "../resources/members/client/Client.js";
 import { Owner } from "../resources/owner/client/Client.js";
+import { SecurityContact } from "../resources/securityContact/client/Client.js";
 import { Self } from "../resources/self/client/Client.js";
 
 export declare namespace Tenants {
@@ -13,6 +14,7 @@ export declare namespace Tenants {
 
 export class Tenants {
     protected readonly _options: Tenants.Options;
+    protected _securityContact: SecurityContact | undefined;
     protected _connections: Connections | undefined;
     protected _invitations: Invitations | undefined;
     protected _members: Members | undefined;
@@ -21,6 +23,10 @@ export class Tenants {
 
     constructor(_options: Tenants.Options = {}) {
         this._options = _options;
+    }
+
+    public get securityContact(): SecurityContact {
+        return (this._securityContact ??= new SecurityContact(this._options));
     }
 
     public get connections(): Connections {
