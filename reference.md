@@ -13,13 +13,21 @@
 <dd>
 
 ```typescript
-const response = await client.applications.list();
+const response = await client.applications.list({
+    page: 1,
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.applications.list();
+let page = await client.applications.list({
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -1384,13 +1392,25 @@ await client.tokens.create({});
 <dd>
 
 ```typescript
-const response = await client.tokens.listV2();
+const response = await client.tokens.listV2({
+    type: "type",
+    container: "container",
+    fingerprint: "fingerprint",
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.tokens.listV2();
+let page = await client.tokens.listV2({
+    type: "type",
+    container: "container",
+    fingerprint: "fingerprint",
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -1793,13 +1813,29 @@ await client.keys.delete("id");
 <dd>
 
 ```typescript
-const response = await client.logs.list();
+const response = await client.logs.list({
+    entityType: "entity_type",
+    entityId: "entity_id",
+    startDate: new Date("2024-01-15T09:30:00.000Z"),
+    endDate: new Date("2024-01-15T09:30:00.000Z"),
+    page: 1,
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.logs.list();
+let page = await client.logs.list({
+    entityType: "entity_type",
+    entityId: "entity_id",
+    startDate: new Date("2024-01-15T09:30:00.000Z"),
+    endDate: new Date("2024-01-15T09:30:00.000Z"),
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -2188,7 +2224,9 @@ await client.networkTokens.resume("id");
 <dd>
 
 ```typescript
-await client.permissions.list();
+await client.permissions.list({
+    applicationType: "application_type"
+});
 
 ```
 </dd>
@@ -2238,13 +2276,23 @@ await client.permissions.list();
 <dd>
 
 ```typescript
-const response = await client.proxies.list();
+const response = await client.proxies.list({
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.proxies.list();
+let page = await client.proxies.list({
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -2564,13 +2612,23 @@ await client.proxies.patch("id");
 <dd>
 
 ```typescript
-const response = await client.reactors.list();
+const response = await client.reactors.list({
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.reactors.list();
+let page = await client.reactors.list({
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -3661,6 +3719,367 @@ await client.webhooks.create({
 </dl>
 </details>
 
+## Health
+<details><summary><code>client.health.<a href="/src/api/resources/health/client/Client.ts">healthCheck</a>() -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Checks DynamoDB connectivity. Result is cached for 30 seconds.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.health.healthCheck();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Health.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.health.<a href="/src/api/resources/health/client/Client.ts">ping</a>() -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Simple liveness check that always returns 200.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.health.ping();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Health.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.health.<a href="/src/api/resources/health/client/Client.ts">getServiceVersion</a>() -> BasisTheory.VersionResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the current service version (git SHA) and service name.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.health.getServiceVersion();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Health.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Notifications
+<details><summary><code>client.notifications.<a href="/src/api/resources/notifications/client/Client.ts">mastercardDigitalCardUpdateNotification</a>({ ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Receives digital card status change events from Mastercard SRC. No API key authentication (relies on network-level security). Always returns 200 for Mastercard retry semantics.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.notifications.mastercardDigitalCardUpdateNotification();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.PostNotificationsMastercardCardRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Notifications.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.notifications.<a href="/src/api/resources/notifications/client/Client.ts">visaTokenStatusUpdateNotification</a>({ ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Receives token lifecycle events from Visa Token Service. Authenticated via x-pay-token HMAC signature (not BT-API-KEY). Always returns 200 for Visa retry semantics.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.notifications.visaTokenStatusUpdateNotification({
+    apiKey: "apiKey",
+    eventType: "TOKEN_STATUS_UPDATED"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.PostNotificationsVisaProvisionedTokenRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Notifications.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.notifications.<a href="/src/api/resources/notifications/client/Client.ts">visaPanMetadataUpdateNotification</a>({ ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Receives PAN lifecycle events from Visa Token Service when card metadata changes (e.g. reissued card). Authenticated via x-pay-token HMAC signature (not BT-API-KEY). Always returns 200 for Visa retry semantics.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.notifications.visaPanMetadataUpdateNotification({
+    apiKey: "apiKey"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.PostNotificationsVisaPanMetadataRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Notifications.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## AccountUpdater Jobs
 <details><summary><code>client.accountUpdater.jobs.<a href="/src/api/resources/accountUpdater/resources/jobs/client/Client.ts">get</a>(id) -> BasisTheory.AccountUpdaterJob</code></summary>
 <dl>
@@ -3752,7 +4171,10 @@ Returns a list of account updater batch jobs
 <dd>
 
 ```typescript
-await client.accountUpdater.jobs.list();
+await client.accountUpdater.jobs.list({
+    size: 1,
+    start: "start"
+});
 
 ```
 </dd>
@@ -3898,6 +4320,1418 @@ await client.accountUpdater.realTime.invoke({
 <dd>
 
 **requestOptions:** `RealTime.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Agentic Agents
+<details><summary><code>client.agentic.agents.<a href="/src/api/resources/agentic/resources/agents/client/Client.ts">create</a>({ ...params }) -> BasisTheory.Agent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.create({
+    name: "name"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.CreateAgentRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Agents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.<a href="/src/api/resources/agentic/resources/agents/client/Client.ts">get</a>(agentId) -> BasisTheory.Agent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.get("agent_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Agents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.<a href="/src/api/resources/agentic/resources/agents/client/Client.ts">delete</a>(agentId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.delete("agent_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Agents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.<a href="/src/api/resources/agentic/resources/agents/client/Client.ts">update</a>(agentId, { ...params }) -> BasisTheory.Agent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.update("agent_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.UpdateAgentRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Agents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Agentic Enrollments
+<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">list</a>({ ...params }) -> BasisTheory.EnrollmentList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all enrollments for the current tenant with cursor-based pagination.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.list({
+    limit: 1,
+    cursor: "cursor"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.EnrollmentsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrollments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">create</a>({ ...params }) -> BasisTheory.Enrollment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Enroll a card token with a card network (Visa or Mastercard).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.create({
+    tokenId: "token_id",
+    consumer: {
+        email: "email"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.CreateEnrollmentRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrollments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">get</a>(enrollmentId) -> BasisTheory.Enrollment</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.get("enrollment_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enrollmentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrollments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">delete</a>(enrollmentId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft-deletes the enrollment by marking its status as deleted.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.delete("enrollment_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enrollmentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrollments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">retry</a>(enrollmentId) -> BasisTheory.Enrollment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retry enrolling a card that previously failed. Only failed enrollments can be retried.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.retry("enrollment_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enrollmentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrollments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Agentic Agents Instructions
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">list</a>(agentId, { ...params }) -> BasisTheory.InstructionList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all purchase instructions for an agent with cursor-based pagination and optional enrollment filter.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.list("agent_id", {
+    enrollmentId: "enrollment_id",
+    limit: 1,
+    cursor: "cursor"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.agents.InstructionsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Instructions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">create</a>(agentId, { ...params }) -> BasisTheory.Instruction</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a new payment instruction for an agent, linked to an enrollment.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.create("agent_id", {
+    enrollmentId: "enrollment_id",
+    amount: {
+        value: "100.00"
+    },
+    description: "description",
+    expiresAt: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.agents.CreateInstructionRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Instructions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">get</a>(agentId, instructionId) -> BasisTheory.Instruction</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.get("agent_id", "instruction_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instructionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Instructions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">delete</a>(agentId, instructionId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.delete("agent_id", "instruction_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instructionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Instructions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">update</a>(agentId, instructionId, { ...params }) -> BasisTheory.Instruction</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.update("agent_id", "instruction_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instructionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.agents.UpdateInstructionRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Instructions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Agentic Agents Instructions Credentials
+<details><summary><code>client.agentic.agents.instructions.credentials.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/resources/credentials/client/Client.ts">create</a>(agentId, instructionId, { ...params }) -> BasisTheory.Credentials</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve payment credentials (card number, expiration, CVC) for a purchase instruction.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id", {
+    merchant: {
+        name: "name",
+        url: "url",
+        countryCode: "country_code"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instructionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.agents.instructions.GetCredentialsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Credentials.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Agentic Agents Instructions Verify
+<details><summary><code>client.agentic.agents.instructions.verify.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/resources/verify/client/Client.ts">start</a>(agentId, instructionId, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Initiate cardholder verification for a purchase instruction that requires it.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.verify.start("agent_id", "instruction_id", {
+    deviceContext: {
+        screenHeight: 1,
+        screenWidth: 1,
+        userAgentString: "user_agent_string",
+        languageCode: "language_code",
+        timeZone: "time_zone",
+        javaScriptEnabled: true,
+        clientDeviceId: "client_device_id",
+        clientReferenceId: "client_reference_id",
+        platformType: "WEB"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instructionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.StartVerificationRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Verify.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.instructions.verify.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/resources/verify/client/Client.ts">passkey</a>(agentId, instructionId, { ...params }) -> BasisTheory.Instruction</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Submit passkey/FIDO assertion data to complete instruction verification.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.verify.passkey("agent_id", "instruction_id", {
+    assuranceData: {
+        "key": "value"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instructionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.agents.instructions.SubmitPasskeyRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Verify.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Agentic Enrollments Verify
+<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">start</a>(enrollmentId, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Initiates the cardholder verification flow for a pending enrollment.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.verify.start("enrollment_id", {
+    deviceContext: {
+        screenHeight: 1,
+        screenWidth: 1,
+        userAgentString: "user_agent_string",
+        languageCode: "language_code",
+        timeZone: "time_zone",
+        javaScriptEnabled: true,
+        clientDeviceId: "client_device_id",
+        clientReferenceId: "client_reference_id",
+        platformType: "WEB"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enrollmentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.StartVerificationRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Verify.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">method</a>(enrollmentId, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Choose the OTP delivery method (SMS, email, etc.) for enrollment verification.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.verify.method("enrollment_id", {
+    methodId: "method_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enrollmentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.enrollments.SelectMethodRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Verify.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">otp</a>(enrollmentId, { ...params }) -> BasisTheory.Enrollment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Submit the one-time password received by the cardholder.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.verify.otp("enrollment_id", {
+    otpCode: "otp_code"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enrollmentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.enrollments.SubmitOtpRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Verify.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">complete</a>(enrollmentId, { ...params }) -> BasisTheory.Enrollment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Complete the verification flow (e.g. after passkey creation). Body is optional — Visa sends empty body, Mastercard sends assurance_data.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.verify.complete("enrollment_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enrollmentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.enrollments.CompleteVerificationRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Verify.RequestOptions` 
     
 </dd>
 </dl>
@@ -5101,13 +6935,23 @@ await client.tenants.connections.delete();
 <dd>
 
 ```typescript
-const response = await client.tenants.invitations.list();
+const response = await client.tenants.invitations.list({
+    status: "PENDING",
+    page: 1,
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.tenants.invitations.list();
+let page = await client.tenants.invitations.list({
+    status: "PENDING",
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -5358,7 +7202,11 @@ await client.tenants.invitations.delete("invitationId");
 <dd>
 
 ```typescript
-await client.tenants.members.list();
+await client.tenants.members.list({
+    page: 1,
+    start: "start",
+    size: 1
+});
 
 ```
 </dd>

@@ -2,7 +2,9 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         applicationType: "application_type"
+ *     }
  */
 export interface PermissionsListRequest {
     applicationType?: string;

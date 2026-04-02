@@ -7,7 +7,12 @@ import { mockServerPool } from "../../mock-server/MockServerPool";
 describe("Connections", () => {
     test("delete (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = { connection_id: "connection_id" };
         server
@@ -26,9 +31,14 @@ describe("Connections", () => {
 
     test("delete (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .delete("/tenants/self/connections")
@@ -44,9 +54,14 @@ describe("Connections", () => {
 
     test("delete (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .delete("/tenants/self/connections")
@@ -62,7 +77,12 @@ describe("Connections", () => {
 
     test("delete (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = { key: "value" };
         server

@@ -1,4 +1,5 @@
 export * as accountUpdater from "./accountUpdater/index.js";
+export * as agentic from "./agentic/index.js";
 export * from "./applePay/client/requests/index.js";
 export * as applePay from "./applePay/index.js";
 export * as applicationKeys from "./applicationKeys/index.js";
@@ -14,6 +15,9 @@ export * as keys from "./keys/index.js";
 export * as logs from "./logs/index.js";
 export * from "./networkTokens/client/requests/index.js";
 export * as networkTokens from "./networkTokens/index.js";
+export * from "./notifications/client/requests/index.js";
+export * as notifications from "./notifications/index.js";
+export * from "./notifications/types/index.js";
 export * as permissions from "./permissions/index.js";
 export * from "./proxies/client/requests/index.js";
 export * as proxies from "./proxies/index.js";

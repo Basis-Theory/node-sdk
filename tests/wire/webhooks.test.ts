@@ -7,7 +7,12 @@ import { mockServerPool } from "../mock-server/MockServerPool";
 describe("Webhooks", () => {
     test("ping", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
         server.mockEndpoint().get("/ping").respondWith().statusCode(200).build();
 
@@ -17,7 +22,12 @@ describe("Webhooks", () => {
 
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             id: "7a70e388-9c78-4c1b-85dd-f2b4e7a823f6",
@@ -52,9 +62,14 @@ describe("Webhooks", () => {
 
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/webhooks/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -64,9 +79,14 @@ describe("Webhooks", () => {
 
     test("get (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/webhooks/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -76,7 +96,12 @@ describe("Webhooks", () => {
 
     test("get (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/webhooks/id").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
@@ -88,7 +113,12 @@ describe("Webhooks", () => {
 
     test("update (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { name: "webhook-update", url: "http://www.example.com", events: ["token:created"] };
         const rawResponseBody = {
             id: "7a70e388-9c78-4c1b-85dd-f2b4e7a823f6",
@@ -134,9 +164,14 @@ describe("Webhooks", () => {
 
     test("update (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { name: "name", url: "url", events: ["events", "events"] };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .put("/webhooks/id")
@@ -157,9 +192,14 @@ describe("Webhooks", () => {
 
     test("update (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { name: "name", url: "url", events: ["events", "events"] };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .put("/webhooks/id")
@@ -180,9 +220,14 @@ describe("Webhooks", () => {
 
     test("update (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { name: "name", url: "url", events: ["events", "events"] };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .put("/webhooks/id")
@@ -203,7 +248,12 @@ describe("Webhooks", () => {
 
     test("update (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { name: "name", url: "url", events: ["events", "events"] };
         const rawResponseBody = { key: "value" };
         server
@@ -226,7 +276,12 @@ describe("Webhooks", () => {
 
     test("delete (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
         server.mockEndpoint().delete("/webhooks/id").respondWith().statusCode(200).build();
 
@@ -236,9 +291,14 @@ describe("Webhooks", () => {
 
     test("delete (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server.mockEndpoint().delete("/webhooks/id").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -248,9 +308,14 @@ describe("Webhooks", () => {
 
     test("delete (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server.mockEndpoint().delete("/webhooks/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -260,9 +325,14 @@ describe("Webhooks", () => {
 
     test("delete (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server.mockEndpoint().delete("/webhooks/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -272,7 +342,12 @@ describe("Webhooks", () => {
 
     test("delete (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().delete("/webhooks/id").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
@@ -284,7 +359,12 @@ describe("Webhooks", () => {
 
     test("list (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             pagination: { page_size: 1, next: "AgAAAA==" },
@@ -332,9 +412,14 @@ describe("Webhooks", () => {
 
     test("list (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/webhooks").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -344,9 +429,14 @@ describe("Webhooks", () => {
 
     test("list (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/webhooks").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -356,9 +446,14 @@ describe("Webhooks", () => {
 
     test("list (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/webhooks").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -368,7 +463,12 @@ describe("Webhooks", () => {
 
     test("create (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { name: "webhook-create", url: "http://www.example.com", events: ["token:created"] };
         const rawResponseBody = {
             id: "7a70e388-9c78-4c1b-85dd-f2b4e7a823f6",
@@ -414,9 +514,14 @@ describe("Webhooks", () => {
 
     test("create (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { name: "name", url: "url", events: ["events", "events"] };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/webhooks")
@@ -437,9 +542,14 @@ describe("Webhooks", () => {
 
     test("create (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { name: "name", url: "url", events: ["events", "events"] };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/webhooks")
@@ -460,9 +570,14 @@ describe("Webhooks", () => {
 
     test("create (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { name: "name", url: "url", events: ["events", "events"] };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/webhooks")
@@ -483,9 +598,14 @@ describe("Webhooks", () => {
 
     test("create (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            apiKey: "test",
+            correlationId: "test",
+            btApiKey: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { name: "name", url: "url", events: ["events", "events"] };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/webhooks")

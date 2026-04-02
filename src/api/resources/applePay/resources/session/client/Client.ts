@@ -17,7 +17,7 @@ export declare namespace Session {
 export class Session {
     protected readonly _options: Session.Options;
 
-    constructor(_options: Session.Options = {}) {
+    constructor(_options: Session.Options) {
         this._options = _options;
     }
 
@@ -48,6 +48,7 @@ export class Session {
             this._options?.headers,
             mergeOnlyDefinedHeaders({
                 "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
+                "BT-API-KEY": requestOptions?.btApiKey ?? this._options?.btApiKey,
                 ...(await this._getCustomAuthorizationHeaders()),
             }),
             requestOptions?.headers,
@@ -88,49 +89,13 @@ export class Session {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new BasisTheory.BadRequestError(
-                        serializers.ValidationProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.BadRequestError(_response.error.body, _response.rawResponse);
                 case 401:
-                    throw new BasisTheory.UnauthorizedError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.UnauthorizedError(_response.error.body, _response.rawResponse);
                 case 403:
-                    throw new BasisTheory.ForbiddenError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.ForbiddenError(_response.error.body, _response.rawResponse);
                 case 422:
-                    throw new BasisTheory.UnprocessableEntityError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.UnprocessableEntityError(_response.error.body, _response.rawResponse);
                 default:
                     throw new errors.BasisTheoryError({
                         statusCode: _response.error.statusCode,

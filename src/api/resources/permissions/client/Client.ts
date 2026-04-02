@@ -17,7 +17,7 @@ export declare namespace Permissions {
 export class Permissions {
     protected readonly _options: Permissions.Options;
 
-    constructor(_options: Permissions.Options = {}) {
+    constructor(_options: Permissions.Options) {
         this._options = _options;
     }
 
@@ -30,7 +30,9 @@ export class Permissions {
      * @throws {@link BasisTheory.ForbiddenError}
      *
      * @example
-     *     await client.permissions.list()
+     *     await client.permissions.list({
+     *         applicationType: "application_type"
+     *     })
      */
     public list(
         request: BasisTheory.PermissionsListRequest = {},
@@ -53,6 +55,7 @@ export class Permissions {
             this._options?.headers,
             mergeOnlyDefinedHeaders({
                 "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
+                "BT-API-KEY": requestOptions?.btApiKey ?? this._options?.btApiKey,
                 ...(await this._getCustomAuthorizationHeaders()),
             }),
             requestOptions?.headers,
@@ -87,38 +90,11 @@ export class Permissions {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new BasisTheory.BadRequestError(
-                        serializers.ValidationProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.BadRequestError(_response.error.body, _response.rawResponse);
                 case 401:
-                    throw new BasisTheory.UnauthorizedError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.UnauthorizedError(_response.error.body, _response.rawResponse);
                 case 403:
-                    throw new BasisTheory.ForbiddenError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.ForbiddenError(_response.error.body, _response.rawResponse);
                 default:
                     throw new errors.BasisTheoryError({
                         statusCode: _response.error.statusCode,

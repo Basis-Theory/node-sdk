@@ -47,7 +47,7 @@ Instantiate and use the client with the following:
 ```typescript
 import { BasisTheoryClient } from "@basis-theory/node-sdk";
 
-const client = new BasisTheoryClient({ apiKey: "YOUR_API_KEY", correlationId: "YOUR_CORRELATION_ID" });
+const client = new BasisTheoryClient({ apiKey: "YOUR_API_KEY", correlationId: "YOUR_CORRELATION_ID", btApiKey: "YOUR_BT_API_KEY" });
 await client.tenants.self.get();
 ```
 
@@ -91,14 +91,22 @@ List endpoints are paginated. The SDK provides an iterator so that you can simpl
 ```typescript
 import { BasisTheoryClient } from "@basis-theory/node-sdk";
 
-const client = new BasisTheoryClient({ apiKey: "YOUR_API_KEY", correlationId: "YOUR_CORRELATION_ID" });
-const response = await client.applications.list();
+const client = new BasisTheoryClient({ apiKey: "YOUR_API_KEY", correlationId: "YOUR_CORRELATION_ID", btApiKey: "YOUR_BT_API_KEY" });
+const response = await client.applications.list({
+    page: 1,
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.applications.list();
+let page = await client.applications.list({
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -229,7 +237,7 @@ You can upload files using the client:
 import { createReadStream } from "fs";
 import { BasisTheoryClient } from "@basis-theory/node-sdk";
 
-const client = new BasisTheoryClient({ apiKey: "YOUR_API_KEY", correlationId: "YOUR_CORRELATION_ID" });
+const client = new BasisTheoryClient({ apiKey: "YOUR_API_KEY", correlationId: "YOUR_CORRELATION_ID", btApiKey: "YOUR_BT_API_KEY" });
 await client.documents.upload({});
 ```
 The client accepts a variety of types for file upload parameters:

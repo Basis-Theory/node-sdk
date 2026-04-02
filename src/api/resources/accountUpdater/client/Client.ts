@@ -13,7 +13,7 @@ export class AccountUpdater {
     protected _jobs: Jobs | undefined;
     protected _realTime: RealTime | undefined;
 
-    constructor(_options: AccountUpdater.Options = {}) {
+    constructor(_options: AccountUpdater.Options) {
         this._options = _options;
     }
 

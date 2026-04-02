@@ -17,7 +17,7 @@ export declare namespace ApplicationTemplates {
 export class ApplicationTemplates {
     protected readonly _options: ApplicationTemplates.Options;
 
-    constructor(_options: ApplicationTemplates.Options = {}) {
+    constructor(_options: ApplicationTemplates.Options) {
         this._options = _options;
     }
 
@@ -43,6 +43,7 @@ export class ApplicationTemplates {
             this._options?.headers,
             mergeOnlyDefinedHeaders({
                 "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
+                "BT-API-KEY": requestOptions?.btApiKey ?? this._options?.btApiKey,
                 ...(await this._getCustomAuthorizationHeaders()),
             }),
             requestOptions?.headers,
@@ -77,16 +78,7 @@ export class ApplicationTemplates {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new BasisTheory.UnauthorizedError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.UnauthorizedError(_response.error.body, _response.rawResponse);
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body, _response.rawResponse);
                 default:
@@ -140,6 +132,7 @@ export class ApplicationTemplates {
             this._options?.headers,
             mergeOnlyDefinedHeaders({
                 "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
+                "BT-API-KEY": requestOptions?.btApiKey ?? this._options?.btApiKey,
                 ...(await this._getCustomAuthorizationHeaders()),
             }),
             requestOptions?.headers,
@@ -174,16 +167,7 @@ export class ApplicationTemplates {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new BasisTheory.UnauthorizedError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.UnauthorizedError(_response.error.body, _response.rawResponse);
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body, _response.rawResponse);
                 default:

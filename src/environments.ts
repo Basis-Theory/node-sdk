@@ -5,10 +5,12 @@ export const BasisTheoryEnvironment = {
     Us: "https://api.basistheory.com",
     Eu: "https://api.basistheory.com",
     Test: "https://api.test.basistheory.com",
+    Production: "https://api.basistheory.com/agentic",
 } as const;
 
 export type BasisTheoryEnvironment =
     | typeof BasisTheoryEnvironment.Default
     | typeof BasisTheoryEnvironment.Us
     | typeof BasisTheoryEnvironment.Eu
-    | typeof BasisTheoryEnvironment.Test;
+    | typeof BasisTheoryEnvironment.Test
+    | typeof BasisTheoryEnvironment.Production;

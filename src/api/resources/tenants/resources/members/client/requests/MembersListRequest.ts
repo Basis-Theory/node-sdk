@@ -2,7 +2,11 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         page: 1,
+ *         start: "start",
+ *         size: 1
+ *     }
  */
 export interface MembersListRequest {
     userId?: string | string[];

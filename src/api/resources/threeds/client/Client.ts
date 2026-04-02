@@ -11,7 +11,7 @@ export class Threeds {
     protected readonly _options: Threeds.Options;
     protected _sessions: Sessions | undefined;
 
-    constructor(_options: Threeds.Options = {}) {
+    constructor(_options: Threeds.Options) {
         this._options = _options;
     }
 

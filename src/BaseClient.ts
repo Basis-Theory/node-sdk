@@ -7,9 +7,11 @@ export interface BaseClientOptions {
     environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
     /** Specify a custom URL to connect the client to. */
     baseUrl?: core.Supplier<string>;
-    apiKey?: core.Supplier<string | undefined>;
+    apiKey?: core.Supplier<string>;
     /** Override the BT-TRACE-ID header */
     correlationId?: core.Supplier<string | undefined>;
+    /** Override the BT-API-KEY header */
+    btApiKey: core.Supplier<string>;
     /** Additional headers to include in requests. */
     headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     /** The default maximum time to wait for a response in seconds. */
@@ -28,6 +30,8 @@ export interface BaseRequestOptions {
     abortSignal?: AbortSignal;
     /** Override the BT-TRACE-ID header */
     correlationId?: string | undefined;
+    /** Override the BT-API-KEY header */
+    btApiKey?: string;
     /** Additional query string parameters to include in the request. */
     queryParams?: Record<string, unknown>;
     /** Additional headers to include in the request. */

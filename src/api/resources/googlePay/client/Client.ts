@@ -19,7 +19,7 @@ export class GooglePay {
     protected readonly _options: GooglePay.Options;
     protected _merchant: Merchant | undefined;
 
-    constructor(_options: GooglePay.Options = {}) {
+    constructor(_options: GooglePay.Options) {
         this._options = _options;
     }
 
@@ -55,6 +55,7 @@ export class GooglePay {
             this._options?.headers,
             mergeOnlyDefinedHeaders({
                 "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
+                "BT-API-KEY": requestOptions?.btApiKey ?? this._options?.btApiKey,
                 ...(await this._getCustomAuthorizationHeaders()),
             }),
             requestOptions?.headers,
@@ -95,60 +96,15 @@ export class GooglePay {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new BasisTheory.BadRequestError(
-                        serializers.ValidationProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.BadRequestError(_response.error.body, _response.rawResponse);
                 case 401:
-                    throw new BasisTheory.UnauthorizedError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.UnauthorizedError(_response.error.body, _response.rawResponse);
                 case 403:
-                    throw new BasisTheory.ForbiddenError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.ForbiddenError(_response.error.body, _response.rawResponse);
                 case 409:
-                    throw new BasisTheory.ConflictError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.ConflictError(_response.error.body, _response.rawResponse);
                 case 422:
-                    throw new BasisTheory.UnprocessableEntityError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.UnprocessableEntityError(_response.error.body, _response.rawResponse);
                 default:
                     throw new errors.BasisTheoryError({
                         statusCode: _response.error.statusCode,
@@ -201,6 +157,7 @@ export class GooglePay {
             this._options?.headers,
             mergeOnlyDefinedHeaders({
                 "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
+                "BT-API-KEY": requestOptions?.btApiKey ?? this._options?.btApiKey,
                 ...(await this._getCustomAuthorizationHeaders()),
             }),
             requestOptions?.headers,
@@ -235,27 +192,9 @@ export class GooglePay {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new BasisTheory.UnauthorizedError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.UnauthorizedError(_response.error.body, _response.rawResponse);
                 case 403:
-                    throw new BasisTheory.ForbiddenError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.ForbiddenError(_response.error.body, _response.rawResponse);
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body, _response.rawResponse);
                 default:
@@ -307,6 +246,7 @@ export class GooglePay {
             this._options?.headers,
             mergeOnlyDefinedHeaders({
                 "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
+                "BT-API-KEY": requestOptions?.btApiKey ?? this._options?.btApiKey,
                 ...(await this._getCustomAuthorizationHeaders()),
             }),
             requestOptions?.headers,
@@ -341,27 +281,9 @@ export class GooglePay {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new BasisTheory.UnauthorizedError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.UnauthorizedError(_response.error.body, _response.rawResponse);
                 case 403:
-                    throw new BasisTheory.ForbiddenError(
-                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
+                    throw new BasisTheory.ForbiddenError(_response.error.body, _response.rawResponse);
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body, _response.rawResponse);
                 default:

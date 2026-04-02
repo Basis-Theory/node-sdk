@@ -21,7 +21,7 @@ export class Tenants {
     protected _owner: Owner | undefined;
     protected _self: Self | undefined;
 
-    constructor(_options: Tenants.Options = {}) {
+    constructor(_options: Tenants.Options) {
         this._options = _options;
     }
 

@@ -4,7 +4,12 @@ import type * as BasisTheory from "../../../../../../index.js";
 
 /**
  * @example
- *     {}
+ *     {
+ *         status: "PENDING",
+ *         page: 1,
+ *         start: "start",
+ *         size: 1
+ *     }
  */
 export interface InvitationsListRequest {
     status?: BasisTheory.TenantInvitationStatus;
