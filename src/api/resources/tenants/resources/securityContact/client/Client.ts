@@ -26,6 +26,7 @@ export class SecurityContact {
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
+     * @throws {@link BasisTheory.ServiceUnavailableError}
      *
      * @example
      *     await client.tenants.securityContact.get()
@@ -89,6 +90,17 @@ export class SecurityContact {
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 503:
+                    throw new BasisTheory.ServiceUnavailableError(
                         serializers.ProblemDetails.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
