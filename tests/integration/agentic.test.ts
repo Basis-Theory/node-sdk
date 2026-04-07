@@ -70,13 +70,10 @@ async function createAndVerifyEnrollment(client: BasisTheoryClient, cardNumber: 
 }
 
 async function findEnrollment(client: BasisTheoryClient, enrollmentId: string): Promise<Enrollment | undefined> {
-    let cursor: string | undefined;
-    do {
-        const page = await client.agentic.enrollments.list({ cursor });
-        const found = page.data.find(e => e.id === enrollmentId);
-        if (found) return found;
-        cursor = page.pagination.hasMore ? page.pagination.nextCursor : undefined;
-    } while (cursor);
+    const page = await client.agentic.enrollments.list();
+    for await (const enrollment of page) {
+        if (enrollment.id === enrollmentId) return enrollment;
+    }
     return undefined;
 }
 
@@ -86,16 +83,12 @@ async function findInstruction(
     instructionId: string,
     enrollmentId?: string,
 ): Promise<Instruction | undefined> {
-    let cursor: string | undefined;
-    do {
-        const page = await client.agentic.agents.instructions.list(agentId, {
-            cursor,
-            ...(enrollmentId ? { enrollmentId } : {}),
-        });
-        const found = page.data.find(i => i.id === instructionId);
-        if (found) return found;
-        cursor = page.pagination.hasMore ? page.pagination.nextCursor : undefined;
-    } while (cursor);
+    const page = await client.agentic.agents.instructions.list(agentId, {
+        ...(enrollmentId ? { enrollmentId } : {}),
+    });
+    for await (const instruction of page) {
+        if (instruction.id === instructionId) return instruction;
+    }
     return undefined;
 }
 
