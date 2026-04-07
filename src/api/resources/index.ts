@@ -1,4 +1,5 @@
 export * as accountUpdater from "./accountUpdater/index.js";
+export * as agentic from "./agentic/index.js";
 export * from "./applePay/client/requests/index.js";
 export * as applePay from "./applePay/index.js";
 export * from "./applicationKeys/client/requests/index.js";

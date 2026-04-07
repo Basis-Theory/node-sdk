@@ -60,6 +60,24 @@ describe("SecurityContact", () => {
         }).rejects.toThrow(BasisTheory.ForbiddenError);
     });
 
+    test("get (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {};
+        server
+            .mockEndpoint()
+            .get("/tenants/self/security-contact")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.tenants.securityContact.get();
+        }).rejects.toThrow(BasisTheory.ServiceUnavailableError);
+    });
+
     test("update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
