@@ -4,7 +4,7 @@ import type * as BasisTheory from "../index.js";
 
 export interface PendingProxy {
     destinationUrl?: string;
-    configuration?: Record<string, string | undefined>;
+    configuration?: Record<string, string>;
     requireAuth?: boolean;
     requestTransforms?: BasisTheory.ProxyTransform[];
     responseTransforms?: BasisTheory.ProxyTransform[];

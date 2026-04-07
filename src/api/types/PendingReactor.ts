@@ -5,5 +5,5 @@ import type * as BasisTheory from "../index.js";
 export interface PendingReactor {
     code?: string;
     runtime?: BasisTheory.Runtime;
-    configuration?: Record<string, string | undefined>;
+    configuration?: Record<string, string>;
 }

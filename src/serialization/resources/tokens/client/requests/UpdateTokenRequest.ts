@@ -11,7 +11,7 @@ export const UpdateTokenRequest: core.serialization.Schema<
 > = core.serialization.object({
     data: core.serialization.unknown().optional(),
     privacy: UpdatePrivacy.optional(),
-    metadata: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
+    metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     searchIndexes: core.serialization.property(
         "search_indexes",
         core.serialization.list(core.serialization.string()).optional(),
@@ -30,7 +30,7 @@ export declare namespace UpdateTokenRequest {
     export interface Raw {
         data?: unknown | null;
         privacy?: UpdatePrivacy.Raw | null;
-        metadata?: Record<string, string | null | undefined> | null;
+        metadata?: Record<string, string | null> | null;
         search_indexes?: string[] | null;
         fingerprint_expression?: string | null;
         mask?: unknown | null;

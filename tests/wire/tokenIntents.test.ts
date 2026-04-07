@@ -4,10 +4,15 @@ import * as BasisTheory from "../../src/api/index";
 import { BasisTheoryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
-describe("TokenIntents", () => {
+describe("TokenIntentsClient", () => {
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             id: "id",
@@ -64,6 +69,7 @@ describe("TokenIntents", () => {
                 network_token_ids: ["network_token_ids"],
             },
         };
+
         server.mockEndpoint().get("/token-intents/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.tokenIntents.get("id");
@@ -145,9 +151,15 @@ describe("TokenIntents", () => {
 
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server.mockEndpoint().get("/token-intents/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -157,9 +169,15 @@ describe("TokenIntents", () => {
 
     test("get (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server.mockEndpoint().get("/token-intents/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -169,9 +187,15 @@ describe("TokenIntents", () => {
 
     test("get (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/token-intents/id").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -181,7 +205,12 @@ describe("TokenIntents", () => {
 
     test("delete (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         server.mockEndpoint().delete("/token-intents/id").respondWith().statusCode(200).build();
 
@@ -191,9 +220,15 @@ describe("TokenIntents", () => {
 
     test("delete (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/token-intents/id")
@@ -209,9 +244,15 @@ describe("TokenIntents", () => {
 
     test("delete (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/token-intents/id")
@@ -227,9 +268,15 @@ describe("TokenIntents", () => {
 
     test("delete (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/token-intents/id")
@@ -245,7 +292,12 @@ describe("TokenIntents", () => {
 
     test("create (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { type: "x", data: { key: "value" } };
         const rawResponseBody = {
             id: "id",
@@ -340,6 +392,7 @@ describe("TokenIntents", () => {
                 network_token_ids: ["network_token_ids", "network_token_ids"],
             },
         };
+
         server
             .mockEndpoint()
             .post("/token-intents")
@@ -486,9 +539,15 @@ describe("TokenIntents", () => {
 
     test("create (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { type: "x", data: { key: "value" } };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/token-intents")
@@ -510,9 +569,15 @@ describe("TokenIntents", () => {
 
     test("create (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { type: "x", data: { key: "value" } };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/token-intents")
@@ -534,9 +599,15 @@ describe("TokenIntents", () => {
 
     test("create (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { type: "x", data: { key: "value" } };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/token-intents")

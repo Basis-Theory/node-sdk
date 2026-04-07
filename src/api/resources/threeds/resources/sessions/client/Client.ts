@@ -5,31 +5,33 @@ import type {
     BaseIdempotentRequestOptions,
     BaseRequestOptions,
 } from "../../../../../../BaseClient.js";
+import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../../../BaseClient.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
 import * as core from "../../../../../../core/index.js";
 import * as environments from "../../../../../../environments.js";
+import { handleNonStatusCodeError } from "../../../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../../../errors/index.js";
 import * as serializers from "../../../../../../serialization/index.js";
 import * as BasisTheory from "../../../../../index.js";
 
-export declare namespace Sessions {
-    export interface Options extends BaseClientOptions {}
+export declare namespace SessionsClient {
+    export type Options = BaseClientOptions;
 
     export interface RequestOptions extends BaseRequestOptions {}
 
     export interface IdempotentRequestOptions extends RequestOptions, BaseIdempotentRequestOptions {}
 }
 
-export class Sessions {
-    protected readonly _options: Sessions.Options;
+export class SessionsClient {
+    protected readonly _options: NormalizedClientOptionsWithAuth<SessionsClient.Options>;
 
-    constructor(_options: Sessions.Options = {}) {
-        this._options = _options;
+    constructor(options: SessionsClient.Options = {}) {
+        this._options = normalizeClientOptionsWithAuth(options);
     }
 
     /**
      * @param {BasisTheory.threeds.CreateThreeDsSessionRequest} request
-     * @param {Sessions.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {SessionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
      * @throws {@link BasisTheory.UnauthorizedError}
@@ -40,21 +42,20 @@ export class Sessions {
      */
     public create(
         request: BasisTheory.threeds.CreateThreeDsSessionRequest = {},
-        requestOptions?: Sessions.RequestOptions,
+        requestOptions?: SessionsClient.RequestOptions,
     ): core.HttpResponsePromise<BasisTheory.CreateThreeDsSessionResponse> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
         request: BasisTheory.threeds.CreateThreeDsSessionRequest = {},
-        requestOptions?: Sessions.RequestOptions,
+        requestOptions?: SessionsClient.RequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.CreateThreeDsSessionResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
-            }),
+            mergeOnlyDefinedHeaders({ "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -76,6 +77,8 @@ export class Sessions {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return {
@@ -134,27 +137,13 @@ export class Sessions {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling POST /3ds/sessions.");
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/3ds/sessions");
     }
 
     /**
      * @param {string} sessionId
      * @param {BasisTheory.AuthenticateThreeDsSessionRequest} request
-     * @param {Sessions.IdempotentRequestOptions} requestOptions - Request-specific configuration.
+     * @param {SessionsClient.IdempotentRequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
@@ -169,7 +158,7 @@ export class Sessions {
     public authenticate(
         sessionId: string,
         request: BasisTheory.AuthenticateThreeDsSessionRequest,
-        requestOptions?: Sessions.IdempotentRequestOptions,
+        requestOptions?: SessionsClient.IdempotentRequestOptions,
     ): core.HttpResponsePromise<BasisTheory.ThreeDsAuthentication> {
         return core.HttpResponsePromise.fromPromise(this.__authenticate(sessionId, request, requestOptions));
     }
@@ -177,15 +166,15 @@ export class Sessions {
     private async __authenticate(
         sessionId: string,
         request: BasisTheory.AuthenticateThreeDsSessionRequest,
-        requestOptions?: Sessions.IdempotentRequestOptions,
+        requestOptions?: SessionsClient.IdempotentRequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.ThreeDsAuthentication>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
             mergeOnlyDefinedHeaders({
-                "BT-IDEMPOTENCY-KEY":
-                    requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
+                "BT-IDEMPOTENCY-KEY": requestOptions?.idempotencyKey,
                 "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
             }),
             requestOptions?.headers,
         );
@@ -208,6 +197,8 @@ export class Sessions {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return {
@@ -257,28 +248,17 @@ export class Sessions {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling POST /3ds/sessions/{sessionId}/authenticate.",
-                );
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/3ds/sessions/{sessionId}/authenticate",
+        );
     }
 
     /**
      * @param {string} sessionId
-     * @param {Sessions.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {SessionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
@@ -289,21 +269,20 @@ export class Sessions {
      */
     public getChallengeResult(
         sessionId: string,
-        requestOptions?: Sessions.RequestOptions,
+        requestOptions?: SessionsClient.RequestOptions,
     ): core.HttpResponsePromise<BasisTheory.ThreeDsAuthentication> {
         return core.HttpResponsePromise.fromPromise(this.__getChallengeResult(sessionId, requestOptions));
     }
 
     private async __getChallengeResult(
         sessionId: string,
-        requestOptions?: Sessions.RequestOptions,
+        requestOptions?: SessionsClient.RequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.ThreeDsAuthentication>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
-            }),
+            mergeOnlyDefinedHeaders({ "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -319,6 +298,8 @@ export class Sessions {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return {
@@ -368,28 +349,17 @@ export class Sessions {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling GET /3ds/sessions/{sessionId}/challenge-result.",
-                );
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/3ds/sessions/{sessionId}/challenge-result",
+        );
     }
 
     /**
      * @param {string} id
-     * @param {Sessions.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {SessionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.NotFoundError}
@@ -399,21 +369,20 @@ export class Sessions {
      */
     public get(
         id: string,
-        requestOptions?: Sessions.RequestOptions,
+        requestOptions?: SessionsClient.RequestOptions,
     ): core.HttpResponsePromise<BasisTheory.ThreeDsSession> {
         return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
     }
 
     private async __get(
         id: string,
-        requestOptions?: Sessions.RequestOptions,
+        requestOptions?: SessionsClient.RequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.ThreeDsSession>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
-            }),
+            mergeOnlyDefinedHeaders({ "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -429,6 +398,8 @@ export class Sessions {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return {
@@ -467,25 +438,6 @@ export class Sessions {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /3ds/sessions/{id}.");
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    protected async _getCustomAuthorizationHeaders(): Promise<Record<string, string | undefined>> {
-        const apiKeyValue = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["BT-API-KEY"];
-        return { "BT-API-KEY": apiKeyValue };
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/3ds/sessions/{id}");
     }
 }

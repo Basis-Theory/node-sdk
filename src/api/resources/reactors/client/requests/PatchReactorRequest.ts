@@ -10,6 +10,6 @@ export interface PatchReactorRequest {
     name?: string;
     application?: BasisTheory.Application;
     code?: string;
-    configuration?: Record<string, string | undefined>;
+    configuration?: Record<string, string>;
     runtime?: BasisTheory.Runtime;
 }

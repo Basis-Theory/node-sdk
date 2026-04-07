@@ -1,6 +1,6 @@
 # Reference
 ## Applications
-<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Application&gt;</code></summary>
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Application, BasisTheory.ApplicationPaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13,16 +13,27 @@
 <dd>
 
 ```typescript
-const response = await client.applications.list();
-for await (const item of response) {
+const pageableResponse = await client.applications.list({
+    page: 1,
+    start: "start",
+    size: 1
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.applications.list();
+let page = await client.applications.list({
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -46,7 +57,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Applications.RequestOptions` 
+**requestOptions:** `ApplicationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -98,7 +109,7 @@ await client.applications.create({
 <dl>
 <dd>
 
-**requestOptions:** `Applications.IdempotentRequestOptions` 
+**requestOptions:** `ApplicationsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -147,7 +158,7 @@ await client.applications.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Applications.RequestOptions` 
+**requestOptions:** `ApplicationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -206,7 +217,7 @@ await client.applications.update("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Applications.IdempotentRequestOptions` 
+**requestOptions:** `ApplicationsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -255,7 +266,7 @@ await client.applications.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Applications.RequestOptions` 
+**requestOptions:** `ApplicationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -296,7 +307,7 @@ await client.applications.getByKey();
 <dl>
 <dd>
 
-**requestOptions:** `Applications.RequestOptions` 
+**requestOptions:** `ApplicationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -354,7 +365,7 @@ await client.applicationKeys.list("id");
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationKeys.RequestOptions` 
+**requestOptions:** `ApplicationKeysClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -403,7 +414,7 @@ await client.applicationKeys.create("id");
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationKeys.IdempotentRequestOptions` 
+**requestOptions:** `ApplicationKeysClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -460,7 +471,7 @@ await client.applicationKeys.get("id", "keyId");
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationKeys.RequestOptions` 
+**requestOptions:** `ApplicationKeysClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -517,7 +528,7 @@ await client.applicationKeys.delete("id", "keyId");
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationKeys.RequestOptions` 
+**requestOptions:** `ApplicationKeysClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -559,7 +570,7 @@ await client.applicationTemplates.list();
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationTemplates.RequestOptions` 
+**requestOptions:** `ApplicationTemplatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -608,7 +619,7 @@ await client.applicationTemplates.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationTemplates.RequestOptions` 
+**requestOptions:** `ApplicationTemplatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -658,7 +669,7 @@ await client.applePay.create();
 <dl>
 <dd>
 
-**requestOptions:** `ApplePay.RequestOptions` 
+**requestOptions:** `ApplePayClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -707,7 +718,7 @@ await client.applePay.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `ApplePay.RequestOptions` 
+**requestOptions:** `ApplePayClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -756,7 +767,7 @@ await client.applePay.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `ApplePay.RequestOptions` 
+**requestOptions:** `ApplePayClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -806,7 +817,7 @@ await client.googlePay.create();
 <dl>
 <dd>
 
-**requestOptions:** `GooglePay.RequestOptions` 
+**requestOptions:** `GooglePayClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -855,7 +866,7 @@ await client.googlePay.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `GooglePay.RequestOptions` 
+**requestOptions:** `GooglePayClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -904,7 +915,7 @@ await client.googlePay.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `GooglePay.RequestOptions` 
+**requestOptions:** `GooglePayClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -954,7 +965,7 @@ await client.documents.upload({});
 <dl>
 <dd>
 
-**requestOptions:** `Documents.RequestOptions` 
+**requestOptions:** `DocumentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1003,7 +1014,7 @@ await client.documents.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Documents.RequestOptions` 
+**requestOptions:** `DocumentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1052,7 +1063,7 @@ await client.documents.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Documents.RequestOptions` 
+**requestOptions:** `DocumentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1104,7 +1115,7 @@ await client.tokens.detokenize({
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions` 
+**requestOptions:** `TokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1155,7 +1166,7 @@ await client.tokens.tokenize({
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.IdempotentRequestOptions` 
+**requestOptions:** `TokensClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -1204,7 +1215,7 @@ await client.tokens.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions` 
+**requestOptions:** `TokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1253,7 +1264,7 @@ await client.tokens.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions` 
+**requestOptions:** `TokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1310,7 +1321,7 @@ await client.tokens.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.IdempotentRequestOptions` 
+**requestOptions:** `TokensClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -1359,7 +1370,7 @@ await client.tokens.create({});
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.IdempotentRequestOptions` 
+**requestOptions:** `TokensClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -1371,7 +1382,7 @@ await client.tokens.create({});
 </dl>
 </details>
 
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">listV2</a>({ ...params }) -> core.Page&lt;BasisTheory.Token&gt;</code></summary>
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">listV2</a>({ ...params }) -> core.Page&lt;BasisTheory.Token, BasisTheory.TokenCursorPaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1384,16 +1395,31 @@ await client.tokens.create({});
 <dd>
 
 ```typescript
-const response = await client.tokens.listV2();
-for await (const item of response) {
+const pageableResponse = await client.tokens.listV2({
+    type: "type",
+    container: "container",
+    fingerprint: "fingerprint",
+    start: "start",
+    size: 1
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.tokens.listV2();
+let page = await client.tokens.listV2({
+    type: "type",
+    container: "container",
+    fingerprint: "fingerprint",
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -1417,7 +1443,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions` 
+**requestOptions:** `TokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1429,7 +1455,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">searchV2</a>({ ...params }) -> core.Page&lt;BasisTheory.Token&gt;</code></summary>
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">searchV2</a>({ ...params }) -> core.Page&lt;BasisTheory.Token, BasisTheory.TokenCursorPaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1442,8 +1468,8 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-const response = await client.tokens.searchV2();
-for await (const item of response) {
+const pageableResponse = await client.tokens.searchV2();
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
@@ -1452,6 +1478,9 @@ let page = await client.tokens.searchV2();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -1475,7 +1504,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.IdempotentRequestOptions` 
+**requestOptions:** `TokensClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -1527,7 +1556,7 @@ await client.enrichments.bankAccountVerify({
 <dl>
 <dd>
 
-**requestOptions:** `Enrichments.RequestOptions` 
+**requestOptions:** `EnrichmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1578,7 +1607,7 @@ await client.enrichments.getcarddetails({
 <dl>
 <dd>
 
-**requestOptions:** `Enrichments.RequestOptions` 
+**requestOptions:** `EnrichmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1620,7 +1649,7 @@ await client.keys.list();
 <dl>
 <dd>
 
-**requestOptions:** `Keys.RequestOptions` 
+**requestOptions:** `KeysClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1669,7 +1698,7 @@ await client.keys.create();
 <dl>
 <dd>
 
-**requestOptions:** `Keys.RequestOptions` 
+**requestOptions:** `KeysClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1718,7 +1747,7 @@ await client.keys.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Keys.RequestOptions` 
+**requestOptions:** `KeysClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1767,7 +1796,7 @@ await client.keys.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Keys.RequestOptions` 
+**requestOptions:** `KeysClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1780,7 +1809,7 @@ await client.keys.delete("id");
 </details>
 
 ## Logs
-<details><summary><code>client.logs.<a href="/src/api/resources/logs/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Log&gt;</code></summary>
+<details><summary><code>client.logs.<a href="/src/api/resources/logs/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Log, BasisTheory.LogPaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1793,16 +1822,35 @@ await client.keys.delete("id");
 <dd>
 
 ```typescript
-const response = await client.logs.list();
-for await (const item of response) {
+const pageableResponse = await client.logs.list({
+    entityType: "entity_type",
+    entityId: "entity_id",
+    startDate: new Date("2024-01-15T09:30:00.000Z"),
+    endDate: new Date("2024-01-15T09:30:00.000Z"),
+    page: 1,
+    start: "start",
+    size: 1
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.logs.list();
+let page = await client.logs.list({
+    entityType: "entity_type",
+    entityId: "entity_id",
+    startDate: new Date("2024-01-15T09:30:00.000Z"),
+    endDate: new Date("2024-01-15T09:30:00.000Z"),
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -1826,7 +1874,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Logs.RequestOptions` 
+**requestOptions:** `LogsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1867,7 +1915,7 @@ await client.logs.getEntityTypes();
 <dl>
 <dd>
 
-**requestOptions:** `Logs.RequestOptions` 
+**requestOptions:** `LogsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1917,7 +1965,7 @@ await client.networkTokens.create();
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions` 
+**requestOptions:** `NetworkTokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1966,7 +2014,7 @@ await client.networkTokens.cryptogram("id");
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions` 
+**requestOptions:** `NetworkTokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2015,7 +2063,7 @@ await client.networkTokens.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions` 
+**requestOptions:** `NetworkTokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2064,7 +2112,7 @@ await client.networkTokens.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions` 
+**requestOptions:** `NetworkTokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2113,7 +2161,7 @@ await client.networkTokens.suspend("id");
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions` 
+**requestOptions:** `NetworkTokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2162,7 +2210,7 @@ await client.networkTokens.resume("id");
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions` 
+**requestOptions:** `NetworkTokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2188,7 +2236,9 @@ await client.networkTokens.resume("id");
 <dd>
 
 ```typescript
-await client.permissions.list();
+await client.permissions.list({
+    applicationType: "application_type"
+});
 
 ```
 </dd>
@@ -2212,7 +2262,7 @@ await client.permissions.list();
 <dl>
 <dd>
 
-**requestOptions:** `Permissions.RequestOptions` 
+**requestOptions:** `PermissionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2225,7 +2275,7 @@ await client.permissions.list();
 </details>
 
 ## Proxies
-<details><summary><code>client.proxies.<a href="/src/api/resources/proxies/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Proxy&gt;</code></summary>
+<details><summary><code>client.proxies.<a href="/src/api/resources/proxies/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Proxy, BasisTheory.ProxyPaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2238,16 +2288,29 @@ await client.permissions.list();
 <dd>
 
 ```typescript
-const response = await client.proxies.list();
-for await (const item of response) {
+const pageableResponse = await client.proxies.list({
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.proxies.list();
+let page = await client.proxies.list({
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -2271,7 +2334,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.RequestOptions` 
+**requestOptions:** `ProxiesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2323,7 +2386,7 @@ await client.proxies.create({
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.IdempotentRequestOptions` 
+**requestOptions:** `ProxiesClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -2372,7 +2435,7 @@ await client.proxies.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.RequestOptions` 
+**requestOptions:** `ProxiesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2432,7 +2495,7 @@ await client.proxies.update("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.IdempotentRequestOptions` 
+**requestOptions:** `ProxiesClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -2481,7 +2544,7 @@ await client.proxies.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.RequestOptions` 
+**requestOptions:** `ProxiesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2538,7 +2601,7 @@ await client.proxies.patch("id");
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.IdempotentRequestOptions` 
+**requestOptions:** `ProxiesClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -2551,7 +2614,7 @@ await client.proxies.patch("id");
 </details>
 
 ## Reactors
-<details><summary><code>client.reactors.<a href="/src/api/resources/reactors/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Reactor&gt;</code></summary>
+<details><summary><code>client.reactors.<a href="/src/api/resources/reactors/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Reactor, BasisTheory.ReactorPaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2564,16 +2627,29 @@ await client.proxies.patch("id");
 <dd>
 
 ```typescript
-const response = await client.reactors.list();
-for await (const item of response) {
+const pageableResponse = await client.reactors.list({
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.reactors.list();
+let page = await client.reactors.list({
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -2597,7 +2673,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions` 
+**requestOptions:** `ReactorsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2649,7 +2725,7 @@ await client.reactors.create({
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.IdempotentRequestOptions` 
+**requestOptions:** `ReactorsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -2698,7 +2774,7 @@ await client.reactors.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions` 
+**requestOptions:** `ReactorsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2758,7 +2834,7 @@ await client.reactors.update("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.IdempotentRequestOptions` 
+**requestOptions:** `ReactorsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -2807,7 +2883,7 @@ await client.reactors.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions` 
+**requestOptions:** `ReactorsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2864,7 +2940,7 @@ await client.reactors.patch("id");
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.IdempotentRequestOptions` 
+**requestOptions:** `ReactorsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -2923,7 +2999,7 @@ await client.reactors.react("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions` 
+**requestOptions:** `ReactorsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2982,7 +3058,7 @@ await client.reactors.reactAsync("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions` 
+**requestOptions:** `ReactorsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3024,7 +3100,7 @@ await client.roles.list();
 <dl>
 <dd>
 
-**requestOptions:** `Roles.RequestOptions` 
+**requestOptions:** `RolesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3066,7 +3142,7 @@ await client.sessions.create();
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.IdempotentRequestOptions` 
+**requestOptions:** `SessionsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -3117,7 +3193,7 @@ await client.sessions.authorize({
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.IdempotentRequestOptions` 
+**requestOptions:** `SessionsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -3167,7 +3243,7 @@ await client.tokenIntents.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `TokenIntents.RequestOptions` 
+**requestOptions:** `TokenIntentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3216,7 +3292,7 @@ await client.tokenIntents.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `TokenIntents.RequestOptions` 
+**requestOptions:** `TokenIntentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3270,7 +3346,7 @@ await client.tokenIntents.create({
 <dl>
 <dd>
 
-**requestOptions:** `TokenIntents.RequestOptions` 
+**requestOptions:** `TokenIntentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3326,7 +3402,7 @@ await client.webhooks.ping();
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions` 
+**requestOptions:** `WebhooksClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3389,7 +3465,7 @@ await client.webhooks.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions` 
+**requestOptions:** `WebhooksClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3464,7 +3540,7 @@ await client.webhooks.update("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions` 
+**requestOptions:** `WebhooksClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3527,7 +3603,7 @@ await client.webhooks.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions` 
+**requestOptions:** `WebhooksClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3582,7 +3658,7 @@ await client.webhooks.list();
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions` 
+**requestOptions:** `WebhooksClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3649,7 +3725,7 @@ await client.webhooks.create({
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions` 
+**requestOptions:** `WebhooksClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3713,7 +3789,7 @@ await client.accountUpdater.jobs.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Jobs.RequestOptions` 
+**requestOptions:** `JobsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3752,7 +3828,10 @@ Returns a list of account updater batch jobs
 <dd>
 
 ```typescript
-await client.accountUpdater.jobs.list();
+await client.accountUpdater.jobs.list({
+    size: 1,
+    start: "start"
+});
 
 ```
 </dd>
@@ -3776,7 +3855,7 @@ await client.accountUpdater.jobs.list();
 <dl>
 <dd>
 
-**requestOptions:** `Jobs.RequestOptions` 
+**requestOptions:** `JobsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3831,7 +3910,7 @@ await client.accountUpdater.jobs.create();
 <dl>
 <dd>
 
-**requestOptions:** `Jobs.RequestOptions` 
+**requestOptions:** `JobsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3897,7 +3976,7 @@ await client.accountUpdater.realTime.invoke({
 <dl>
 <dd>
 
-**requestOptions:** `RealTime.RequestOptions` 
+**requestOptions:** `RealTimeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3947,7 +4026,7 @@ await client.applePay.merchant.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Merchant.RequestOptions` 
+**requestOptions:** `MerchantClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3996,7 +4075,7 @@ await client.applePay.merchant.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Merchant.RequestOptions` 
+**requestOptions:** `MerchantClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4045,7 +4124,7 @@ await client.applePay.merchant.create();
 <dl>
 <dd>
 
-**requestOptions:** `Merchant.RequestOptions` 
+**requestOptions:** `MerchantClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4097,7 +4176,7 @@ await client.applePay.domain.deregister({
 <dl>
 <dd>
 
-**requestOptions:** `Domain.RequestOptions` 
+**requestOptions:** `DomainClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4138,7 +4217,7 @@ await client.applePay.domain.get();
 <dl>
 <dd>
 
-**requestOptions:** `Domain.RequestOptions` 
+**requestOptions:** `DomainClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4189,7 +4268,7 @@ await client.applePay.domain.register({
 <dl>
 <dd>
 
-**requestOptions:** `Domain.RequestOptions` 
+**requestOptions:** `DomainClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4238,7 +4317,7 @@ await client.applePay.domain.registerAll();
 <dl>
 <dd>
 
-**requestOptions:** `Domain.RequestOptions` 
+**requestOptions:** `DomainClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4288,7 +4367,7 @@ await client.applePay.session.create();
 <dl>
 <dd>
 
-**requestOptions:** `Session.RequestOptions` 
+**requestOptions:** `SessionClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4346,7 +4425,7 @@ await client.applePay.merchant.certificates.get("merchantId", "id");
 <dl>
 <dd>
 
-**requestOptions:** `Certificates.RequestOptions` 
+**requestOptions:** `CertificatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4403,7 +4482,7 @@ await client.applePay.merchant.certificates.delete("merchantId", "id");
 <dl>
 <dd>
 
-**requestOptions:** `Certificates.RequestOptions` 
+**requestOptions:** `CertificatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4460,7 +4539,7 @@ await client.applePay.merchant.certificates.create("merchantId");
 <dl>
 <dd>
 
-**requestOptions:** `Certificates.RequestOptions` 
+**requestOptions:** `CertificatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4510,7 +4589,7 @@ await client.documents.data.get("documentId");
 <dl>
 <dd>
 
-**requestOptions:** `Data.RequestOptions` 
+**requestOptions:** `DataClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4560,7 +4639,7 @@ await client.googlePay.merchant.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Merchant.RequestOptions` 
+**requestOptions:** `MerchantClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4609,7 +4688,7 @@ await client.googlePay.merchant.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Merchant.RequestOptions` 
+**requestOptions:** `MerchantClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4658,7 +4737,7 @@ await client.googlePay.merchant.create();
 <dl>
 <dd>
 
-**requestOptions:** `Merchant.RequestOptions` 
+**requestOptions:** `MerchantClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4716,7 +4795,7 @@ await client.googlePay.merchant.certificates.get("merchantId", "id");
 <dl>
 <dd>
 
-**requestOptions:** `Certificates.RequestOptions` 
+**requestOptions:** `CertificatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4773,7 +4852,7 @@ await client.googlePay.merchant.certificates.delete("merchantId", "id");
 <dl>
 <dd>
 
-**requestOptions:** `Certificates.RequestOptions` 
+**requestOptions:** `CertificatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4830,7 +4909,7 @@ await client.googlePay.merchant.certificates.create("merchantId");
 <dl>
 <dd>
 
-**requestOptions:** `Certificates.RequestOptions` 
+**requestOptions:** `CertificatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4888,7 +4967,7 @@ await client.reactors.results.get("id", "requestId");
 <dl>
 <dd>
 
-**requestOptions:** `Results.RequestOptions` 
+**requestOptions:** `ResultsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4930,7 +5009,7 @@ await client.tenants.securityContact.get();
 <dl>
 <dd>
 
-**requestOptions:** `SecurityContact.RequestOptions` 
+**requestOptions:** `SecurityContactClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4981,7 +5060,7 @@ await client.tenants.securityContact.update({
 <dl>
 <dd>
 
-**requestOptions:** `SecurityContact.RequestOptions` 
+**requestOptions:** `SecurityContactClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5034,7 +5113,7 @@ await client.tenants.connections.create({
 <dl>
 <dd>
 
-**requestOptions:** `Connections.IdempotentRequestOptions` 
+**requestOptions:** `ConnectionsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -5075,7 +5154,7 @@ await client.tenants.connections.delete();
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions` 
+**requestOptions:** `ConnectionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5088,7 +5167,7 @@ await client.tenants.connections.delete();
 </details>
 
 ## Tenants Invitations
-<details><summary><code>client.tenants.invitations.<a href="/src/api/resources/tenants/resources/invitations/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.TenantInvitationResponse&gt;</code></summary>
+<details><summary><code>client.tenants.invitations.<a href="/src/api/resources/tenants/resources/invitations/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.TenantInvitationResponse, BasisTheory.TenantInvitationResponsePaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5101,16 +5180,29 @@ await client.tenants.connections.delete();
 <dd>
 
 ```typescript
-const response = await client.tenants.invitations.list();
-for await (const item of response) {
+const pageableResponse = await client.tenants.invitations.list({
+    status: "PENDING",
+    page: 1,
+    start: "start",
+    size: 1
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.tenants.invitations.list();
+let page = await client.tenants.invitations.list({
+    status: "PENDING",
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -5134,7 +5226,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.RequestOptions` 
+**requestOptions:** `InvitationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5185,7 +5277,7 @@ await client.tenants.invitations.create({
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.IdempotentRequestOptions` 
+**requestOptions:** `InvitationsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -5234,7 +5326,7 @@ await client.tenants.invitations.resend("invitationId");
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.IdempotentRequestOptions` 
+**requestOptions:** `InvitationsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -5283,7 +5375,7 @@ await client.tenants.invitations.get("invitationId");
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.RequestOptions` 
+**requestOptions:** `InvitationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5332,7 +5424,7 @@ await client.tenants.invitations.delete("invitationId");
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.RequestOptions` 
+**requestOptions:** `InvitationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5358,7 +5450,11 @@ await client.tenants.invitations.delete("invitationId");
 <dd>
 
 ```typescript
-await client.tenants.members.list();
+await client.tenants.members.list({
+    page: 1,
+    start: "start",
+    size: 1
+});
 
 ```
 </dd>
@@ -5382,7 +5478,7 @@ await client.tenants.members.list();
 <dl>
 <dd>
 
-**requestOptions:** `Members.RequestOptions` 
+**requestOptions:** `MembersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5441,7 +5537,7 @@ await client.tenants.members.update("memberId", {
 <dl>
 <dd>
 
-**requestOptions:** `Members.IdempotentRequestOptions` 
+**requestOptions:** `MembersClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -5490,7 +5586,7 @@ await client.tenants.members.delete("memberId");
 <dl>
 <dd>
 
-**requestOptions:** `Members.RequestOptions` 
+**requestOptions:** `MembersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5532,7 +5628,7 @@ await client.tenants.owner.get();
 <dl>
 <dd>
 
-**requestOptions:** `Owner.RequestOptions` 
+**requestOptions:** `OwnerClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5574,7 +5670,7 @@ await client.tenants.self.getUsageReports();
 <dl>
 <dd>
 
-**requestOptions:** `Self.RequestOptions` 
+**requestOptions:** `SelfClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5615,7 +5711,7 @@ await client.tenants.self.get();
 <dl>
 <dd>
 
-**requestOptions:** `Self.RequestOptions` 
+**requestOptions:** `SelfClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5666,7 +5762,7 @@ await client.tenants.self.update({
 <dl>
 <dd>
 
-**requestOptions:** `Self.IdempotentRequestOptions` 
+**requestOptions:** `SelfClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -5707,7 +5803,7 @@ await client.tenants.self.delete();
 <dl>
 <dd>
 
-**requestOptions:** `Self.RequestOptions` 
+**requestOptions:** `SelfClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5757,7 +5853,7 @@ await client.threeds.sessions.create();
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions` 
+**requestOptions:** `SessionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5817,7 +5913,7 @@ await client.threeds.sessions.authenticate("sessionId", {
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.IdempotentRequestOptions` 
+**requestOptions:** `SessionsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -5866,7 +5962,7 @@ await client.threeds.sessions.getChallengeResult("sessionId");
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions` 
+**requestOptions:** `SessionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5915,7 +6011,7 @@ await client.threeds.sessions.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions` 
+**requestOptions:** `SessionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5971,7 +6067,7 @@ await client.webhooks.events.list();
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions` 
+**requestOptions:** `EventsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5982,3 +6078,4 @@ await client.webhooks.events.list();
 </dd>
 </dl>
 </details>
+

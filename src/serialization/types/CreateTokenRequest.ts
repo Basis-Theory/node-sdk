@@ -14,7 +14,7 @@ export const CreateTokenRequest: core.serialization.ObjectSchema<
     data: core.serialization.unknown().optional(),
     encrypted: core.serialization.string().optional(),
     privacy: Privacy.optional(),
-    metadata: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
+    metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     searchIndexes: core.serialization.property(
         "search_indexes",
         core.serialization.list(core.serialization.string()).optional(),
@@ -37,7 +37,7 @@ export declare namespace CreateTokenRequest {
         data?: unknown | null;
         encrypted?: string | null;
         privacy?: Privacy.Raw | null;
-        metadata?: Record<string, string | null | undefined> | null;
+        metadata?: Record<string, string | null> | null;
         search_indexes?: string[] | null;
         fingerprint_expression?: string | null;
         mask?: unknown | null;

@@ -4,10 +4,15 @@ import * as BasisTheory from "../../../src/api/index";
 import { BasisTheoryClient } from "../../../src/Client";
 import { mockServerPool } from "../../mock-server/MockServerPool";
 
-describe("Members", () => {
+describe("MembersClient", () => {
     test("list (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             pagination: { total_items: 1, page_number: 1, page_size: 1, total_pages: 1, next: "next" },
@@ -23,6 +28,7 @@ describe("Members", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/tenants/self/members")
@@ -31,7 +37,11 @@ describe("Members", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.tenants.members.list();
+        const response = await client.tenants.members.list({
+            page: 1,
+            start: "start",
+            size: 1,
+        });
         expect(response).toEqual({
             pagination: {
                 totalItems: 1,
@@ -56,9 +66,15 @@ describe("Members", () => {
 
     test("list (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/tenants/self/members")
@@ -74,9 +90,15 @@ describe("Members", () => {
 
     test("list (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/tenants/self/members")
@@ -92,7 +114,12 @@ describe("Members", () => {
 
     test("delete (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         server.mockEndpoint().delete("/tenants/self/members/memberId").respondWith().statusCode(200).build();
 
@@ -102,9 +129,15 @@ describe("Members", () => {
 
     test("delete (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/tenants/self/members/memberId")
@@ -120,9 +153,15 @@ describe("Members", () => {
 
     test("delete (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/tenants/self/members/memberId")
@@ -138,9 +177,15 @@ describe("Members", () => {
 
     test("delete (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/tenants/self/members/memberId")
@@ -156,9 +201,15 @@ describe("Members", () => {
 
     test("delete (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/tenants/self/members/memberId")

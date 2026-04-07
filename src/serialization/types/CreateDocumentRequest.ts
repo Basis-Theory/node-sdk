@@ -8,11 +8,11 @@ export const CreateDocumentRequest: core.serialization.ObjectSchema<
     serializers.CreateDocumentRequest.Raw,
     BasisTheory.CreateDocumentRequest
 > = core.serialization.object({
-    metadata: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
+    metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace CreateDocumentRequest {
     export interface Raw {
-        metadata?: Record<string, string | null | undefined> | null;
+        metadata?: Record<string, string | null> | null;
     }
 }

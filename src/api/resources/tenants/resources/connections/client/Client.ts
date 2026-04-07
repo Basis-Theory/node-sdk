@@ -5,31 +5,33 @@ import type {
     BaseIdempotentRequestOptions,
     BaseRequestOptions,
 } from "../../../../../../BaseClient.js";
+import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../../../BaseClient.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
 import * as core from "../../../../../../core/index.js";
 import * as environments from "../../../../../../environments.js";
+import { handleNonStatusCodeError } from "../../../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../../../errors/index.js";
 import * as serializers from "../../../../../../serialization/index.js";
 import * as BasisTheory from "../../../../../index.js";
 
-export declare namespace Connections {
-    export interface Options extends BaseClientOptions {}
+export declare namespace ConnectionsClient {
+    export type Options = BaseClientOptions;
 
     export interface RequestOptions extends BaseRequestOptions {}
 
     export interface IdempotentRequestOptions extends RequestOptions, BaseIdempotentRequestOptions {}
 }
 
-export class Connections {
-    protected readonly _options: Connections.Options;
+export class ConnectionsClient {
+    protected readonly _options: NormalizedClientOptionsWithAuth<ConnectionsClient.Options>;
 
-    constructor(_options: Connections.Options = {}) {
-        this._options = _options;
+    constructor(options: ConnectionsClient.Options = {}) {
+        this._options = normalizeClientOptionsWithAuth(options);
     }
 
     /**
      * @param {BasisTheory.tenants.CreateTenantConnectionRequest} request
-     * @param {Connections.IdempotentRequestOptions} requestOptions - Request-specific configuration.
+     * @param {ConnectionsClient.IdempotentRequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
      * @throws {@link BasisTheory.UnauthorizedError}
@@ -43,22 +45,22 @@ export class Connections {
      */
     public create(
         request: BasisTheory.tenants.CreateTenantConnectionRequest,
-        requestOptions?: Connections.IdempotentRequestOptions,
+        requestOptions?: ConnectionsClient.IdempotentRequestOptions,
     ): core.HttpResponsePromise<BasisTheory.CreateTenantConnectionResponse> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
         request: BasisTheory.tenants.CreateTenantConnectionRequest,
-        requestOptions?: Connections.IdempotentRequestOptions,
+        requestOptions?: ConnectionsClient.IdempotentRequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.CreateTenantConnectionResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
             mergeOnlyDefinedHeaders({
-                "BT-IDEMPOTENCY-KEY":
-                    requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
+                "BT-IDEMPOTENCY-KEY": requestOptions?.idempotencyKey,
                 "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
             }),
             requestOptions?.headers,
         );
@@ -81,6 +83,8 @@ export class Connections {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return {
@@ -139,27 +143,11 @@ export class Connections {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling POST /tenants/self/connections.",
-                );
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/tenants/self/connections");
     }
 
     /**
-     * @param {Connections.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {ConnectionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
@@ -169,20 +157,19 @@ export class Connections {
      *     await client.tenants.connections.delete()
      */
     public delete(
-        requestOptions?: Connections.RequestOptions,
+        requestOptions?: ConnectionsClient.RequestOptions,
     ): core.HttpResponsePromise<BasisTheory.CreateTenantConnectionResponse> {
         return core.HttpResponsePromise.fromPromise(this.__delete(requestOptions));
     }
 
     private async __delete(
-        requestOptions?: Connections.RequestOptions,
+        requestOptions?: ConnectionsClient.RequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.CreateTenantConnectionResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
-            }),
+            mergeOnlyDefinedHeaders({ "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -198,6 +185,8 @@ export class Connections {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return {
@@ -247,27 +236,6 @@ export class Connections {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling DELETE /tenants/self/connections.",
-                );
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    protected async _getCustomAuthorizationHeaders(): Promise<Record<string, string | undefined>> {
-        const apiKeyValue = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["BT-API-KEY"];
-        return { "BT-API-KEY": apiKeyValue };
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/tenants/self/connections");
     }
 }

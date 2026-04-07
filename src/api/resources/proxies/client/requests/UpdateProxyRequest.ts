@@ -19,7 +19,7 @@ export interface UpdateProxyRequest {
     requestTransforms?: BasisTheory.ProxyTransform[];
     responseTransforms?: BasisTheory.ProxyTransform[];
     application?: BasisTheory.Application;
-    configuration?: Record<string, string | undefined>;
+    configuration?: Record<string, string>;
     requireAuth?: boolean;
     disableDetokenization?: boolean;
 }

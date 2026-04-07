@@ -5,30 +5,32 @@ import type {
     BaseIdempotentRequestOptions,
     BaseRequestOptions,
 } from "../../../../../../BaseClient.js";
+import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../../../BaseClient.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
 import * as core from "../../../../../../core/index.js";
 import * as environments from "../../../../../../environments.js";
+import { handleNonStatusCodeError } from "../../../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../../../errors/index.js";
 import * as serializers from "../../../../../../serialization/index.js";
 import * as BasisTheory from "../../../../../index.js";
 
-export declare namespace Self {
-    export interface Options extends BaseClientOptions {}
+export declare namespace SelfClient {
+    export type Options = BaseClientOptions;
 
     export interface RequestOptions extends BaseRequestOptions {}
 
     export interface IdempotentRequestOptions extends RequestOptions, BaseIdempotentRequestOptions {}
 }
 
-export class Self {
-    protected readonly _options: Self.Options;
+export class SelfClient {
+    protected readonly _options: NormalizedClientOptionsWithAuth<SelfClient.Options>;
 
-    constructor(_options: Self.Options = {}) {
-        this._options = _options;
+    constructor(options: SelfClient.Options = {}) {
+        this._options = normalizeClientOptionsWithAuth(options);
     }
 
     /**
-     * @param {Self.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {SelfClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
@@ -38,20 +40,19 @@ export class Self {
      *     await client.tenants.self.getUsageReports()
      */
     public getUsageReports(
-        requestOptions?: Self.RequestOptions,
+        requestOptions?: SelfClient.RequestOptions,
     ): core.HttpResponsePromise<BasisTheory.TenantUsageReport> {
         return core.HttpResponsePromise.fromPromise(this.__getUsageReports(requestOptions));
     }
 
     private async __getUsageReports(
-        requestOptions?: Self.RequestOptions,
+        requestOptions?: SelfClient.RequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.TenantUsageReport>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
-            }),
+            mergeOnlyDefinedHeaders({ "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -67,6 +68,8 @@ export class Self {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return {
@@ -116,27 +119,11 @@ export class Self {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling GET /tenants/self/reports/usage.",
-                );
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/tenants/self/reports/usage");
     }
 
     /**
-     * @param {Self.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {SelfClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
@@ -145,17 +132,16 @@ export class Self {
      * @example
      *     await client.tenants.self.get()
      */
-    public get(requestOptions?: Self.RequestOptions): core.HttpResponsePromise<BasisTheory.Tenant> {
+    public get(requestOptions?: SelfClient.RequestOptions): core.HttpResponsePromise<BasisTheory.Tenant> {
         return core.HttpResponsePromise.fromPromise(this.__get(requestOptions));
     }
 
-    private async __get(requestOptions?: Self.RequestOptions): Promise<core.WithRawResponse<BasisTheory.Tenant>> {
+    private async __get(requestOptions?: SelfClient.RequestOptions): Promise<core.WithRawResponse<BasisTheory.Tenant>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
-            }),
+            mergeOnlyDefinedHeaders({ "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -171,6 +157,8 @@ export class Self {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return {
@@ -220,26 +208,12 @@ export class Self {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /tenants/self.");
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/tenants/self");
     }
 
     /**
      * @param {BasisTheory.tenants.UpdateTenantRequest} request
-     * @param {Self.IdempotentRequestOptions} requestOptions - Request-specific configuration.
+     * @param {SelfClient.IdempotentRequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
      * @throws {@link BasisTheory.UnauthorizedError}
@@ -253,22 +227,22 @@ export class Self {
      */
     public update(
         request: BasisTheory.tenants.UpdateTenantRequest,
-        requestOptions?: Self.IdempotentRequestOptions,
+        requestOptions?: SelfClient.IdempotentRequestOptions,
     ): core.HttpResponsePromise<BasisTheory.Tenant> {
         return core.HttpResponsePromise.fromPromise(this.__update(request, requestOptions));
     }
 
     private async __update(
         request: BasisTheory.tenants.UpdateTenantRequest,
-        requestOptions?: Self.IdempotentRequestOptions,
+        requestOptions?: SelfClient.IdempotentRequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.Tenant>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
             mergeOnlyDefinedHeaders({
-                "BT-IDEMPOTENCY-KEY":
-                    requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
+                "BT-IDEMPOTENCY-KEY": requestOptions?.idempotencyKey,
                 "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
             }),
             requestOptions?.headers,
         );
@@ -291,6 +265,8 @@ export class Self {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return {
@@ -351,25 +327,11 @@ export class Self {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling PUT /tenants/self.");
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/tenants/self");
     }
 
     /**
-     * @param {Self.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {SelfClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
@@ -378,17 +340,16 @@ export class Self {
      * @example
      *     await client.tenants.self.delete()
      */
-    public delete(requestOptions?: Self.RequestOptions): core.HttpResponsePromise<void> {
+    public delete(requestOptions?: SelfClient.RequestOptions): core.HttpResponsePromise<void> {
         return core.HttpResponsePromise.fromPromise(this.__delete(requestOptions));
     }
 
-    private async __delete(requestOptions?: Self.RequestOptions): Promise<core.WithRawResponse<void>> {
+    private async __delete(requestOptions?: SelfClient.RequestOptions): Promise<core.WithRawResponse<void>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
-            }),
+            mergeOnlyDefinedHeaders({ "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -404,6 +365,8 @@ export class Self {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return { data: undefined, rawResponse: _response.rawResponse };
@@ -444,25 +407,6 @@ export class Self {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling DELETE /tenants/self.");
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    protected async _getCustomAuthorizationHeaders(): Promise<Record<string, string | undefined>> {
-        const apiKeyValue = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["BT-API-KEY"];
-        return { "BT-API-KEY": apiKeyValue };
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/tenants/self");
     }
 }

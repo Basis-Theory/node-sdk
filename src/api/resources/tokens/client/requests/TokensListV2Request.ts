@@ -2,13 +2,19 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         type: "type",
+ *         container: "container",
+ *         fingerprint: "fingerprint",
+ *         start: "start",
+ *         size: 1
+ *     }
  */
 export interface TokensListV2Request {
     type?: string;
     container?: string;
     fingerprint?: string;
-    metadata?: Record<string, string | undefined>;
+    metadata?: Record<string, string>;
     start?: string;
     size?: number;
 }

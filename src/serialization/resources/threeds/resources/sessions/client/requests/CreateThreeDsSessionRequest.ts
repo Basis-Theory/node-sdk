@@ -23,7 +23,7 @@ export const CreateThreeDsSessionRequest: core.serialization.Schema<
         AuthenticateThreeDsSessionRequest.optional(),
     ),
     callbackUrls: core.serialization.property("callback_urls", ThreeDsCallbackUrls.optional()),
-    metadata: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
+    metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace CreateThreeDsSessionRequest {
@@ -37,6 +37,6 @@ export declare namespace CreateThreeDsSessionRequest {
         device_info?: ThreeDsDeviceInfo.Raw | null;
         authentication_request?: AuthenticateThreeDsSessionRequest.Raw | null;
         callback_urls?: ThreeDsCallbackUrls.Raw | null;
-        metadata?: Record<string, string | null | undefined> | null;
+        metadata?: Record<string, string | null> | null;
     }
 }

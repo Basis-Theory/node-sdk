@@ -5,77 +5,67 @@ import type {
     BaseIdempotentRequestOptions,
     BaseRequestOptions,
 } from "../../../../../../BaseClient.js";
+import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../../../BaseClient.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
 import * as core from "../../../../../../core/index.js";
 import * as environments from "../../../../../../environments.js";
+import { handleNonStatusCodeError } from "../../../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../../../errors/index.js";
 import * as serializers from "../../../../../../serialization/index.js";
 import * as BasisTheory from "../../../../../index.js";
 
-export declare namespace Members {
-    export interface Options extends BaseClientOptions {}
+export declare namespace MembersClient {
+    export type Options = BaseClientOptions;
 
     export interface RequestOptions extends BaseRequestOptions {}
 
     export interface IdempotentRequestOptions extends RequestOptions, BaseIdempotentRequestOptions {}
 }
 
-export class Members {
-    protected readonly _options: Members.Options;
+export class MembersClient {
+    protected readonly _options: NormalizedClientOptionsWithAuth<MembersClient.Options>;
 
-    constructor(_options: Members.Options = {}) {
-        this._options = _options;
+    constructor(options: MembersClient.Options = {}) {
+        this._options = normalizeClientOptionsWithAuth(options);
     }
 
     /**
      * @param {BasisTheory.tenants.MembersListRequest} request
-     * @param {Members.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {MembersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
      *
      * @example
-     *     await client.tenants.members.list()
+     *     await client.tenants.members.list({
+     *         page: 1,
+     *         start: "start",
+     *         size: 1
+     *     })
      */
     public list(
         request: BasisTheory.tenants.MembersListRequest = {},
-        requestOptions?: Members.RequestOptions,
+        requestOptions?: MembersClient.RequestOptions,
     ): core.HttpResponsePromise<BasisTheory.TenantMemberResponsePaginatedList> {
         return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
     }
 
     private async __list(
         request: BasisTheory.tenants.MembersListRequest = {},
-        requestOptions?: Members.RequestOptions,
+        requestOptions?: MembersClient.RequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.TenantMemberResponsePaginatedList>> {
         const { userId, page, start, size } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (userId != null) {
-            if (Array.isArray(userId)) {
-                _queryParams.user_id = userId.map((item) => item);
-            } else {
-                _queryParams.user_id = userId;
-            }
-        }
-
-        if (page != null) {
-            _queryParams.page = page.toString();
-        }
-
-        if (start != null) {
-            _queryParams.start = start;
-        }
-
-        if (size != null) {
-            _queryParams.size = size.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            user_id: userId,
+            page,
+            start,
+            size,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
-            }),
+            mergeOnlyDefinedHeaders({ "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -91,6 +81,8 @@ export class Members {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return {
@@ -138,27 +130,13 @@ export class Members {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError("Timeout exceeded when calling GET /tenants/self/members.");
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/tenants/self/members");
     }
 
     /**
      * @param {string} memberId
      * @param {BasisTheory.tenants.UpdateTenantMemberRequest} request
-     * @param {Members.IdempotentRequestOptions} requestOptions - Request-specific configuration.
+     * @param {MembersClient.IdempotentRequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
@@ -172,7 +150,7 @@ export class Members {
     public update(
         memberId: string,
         request: BasisTheory.tenants.UpdateTenantMemberRequest,
-        requestOptions?: Members.IdempotentRequestOptions,
+        requestOptions?: MembersClient.IdempotentRequestOptions,
     ): core.HttpResponsePromise<BasisTheory.TenantMemberResponse> {
         return core.HttpResponsePromise.fromPromise(this.__update(memberId, request, requestOptions));
     }
@@ -180,15 +158,15 @@ export class Members {
     private async __update(
         memberId: string,
         request: BasisTheory.tenants.UpdateTenantMemberRequest,
-        requestOptions?: Members.IdempotentRequestOptions,
+        requestOptions?: MembersClient.IdempotentRequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.TenantMemberResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
             mergeOnlyDefinedHeaders({
-                "BT-IDEMPOTENCY-KEY":
-                    requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
+                "BT-IDEMPOTENCY-KEY": requestOptions?.idempotencyKey,
                 "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
             }),
             requestOptions?.headers,
         );
@@ -211,6 +189,8 @@ export class Members {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return {
@@ -260,28 +240,17 @@ export class Members {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling PUT /tenants/self/members/{memberId}.",
-                );
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "PUT",
+            "/tenants/self/members/{memberId}",
+        );
     }
 
     /**
      * @param {string} memberId
-     * @param {Members.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {MembersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
@@ -291,20 +260,19 @@ export class Members {
      * @example
      *     await client.tenants.members.delete("memberId")
      */
-    public delete(memberId: string, requestOptions?: Members.RequestOptions): core.HttpResponsePromise<void> {
+    public delete(memberId: string, requestOptions?: MembersClient.RequestOptions): core.HttpResponsePromise<void> {
         return core.HttpResponsePromise.fromPromise(this.__delete(memberId, requestOptions));
     }
 
     private async __delete(
         memberId: string,
-        requestOptions?: Members.RequestOptions,
+        requestOptions?: MembersClient.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
-            }),
+            mergeOnlyDefinedHeaders({ "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -320,6 +288,8 @@ export class Members {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return { data: undefined, rawResponse: _response.rawResponse };
@@ -371,27 +341,11 @@ export class Members {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling DELETE /tenants/self/members/{memberId}.",
-                );
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    protected async _getCustomAuthorizationHeaders(): Promise<Record<string, string | undefined>> {
-        const apiKeyValue = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["BT-API-KEY"];
-        return { "BT-API-KEY": apiKeyValue };
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/tenants/self/members/{memberId}",
+        );
     }
 }

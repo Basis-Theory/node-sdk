@@ -4,10 +4,15 @@ import * as BasisTheory from "../../../src/api/index";
 import { BasisTheoryClient } from "../../../src/Client";
 import { mockServerPool } from "../../mock-server/MockServerPool";
 
-describe("Jobs", () => {
+describe("JobsClient", () => {
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             id: "7a70e388-9c78-4c1b-85dd-f2b4e7a823f6",
@@ -21,6 +26,7 @@ describe("Jobs", () => {
             requests: 1000,
             results: { UPD_PAN: 45, NO_UPDATE: 856, WRN_CLOSED_ACCOUNT: 8 },
         };
+
         server
             .mockEndpoint()
             .get("/account-updater/jobs/id")
@@ -50,9 +56,15 @@ describe("Jobs", () => {
 
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/account-updater/jobs/id")
@@ -68,9 +80,15 @@ describe("Jobs", () => {
 
     test("get (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/account-updater/jobs/id")
@@ -86,9 +104,15 @@ describe("Jobs", () => {
 
     test("get (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/account-updater/jobs/id")
@@ -104,7 +128,12 @@ describe("Jobs", () => {
 
     test("list (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             pagination: { page_size: 1, next: "AgAAAA==" },
@@ -123,6 +152,7 @@ describe("Jobs", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/account-updater/jobs")
@@ -131,7 +161,10 @@ describe("Jobs", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accountUpdater.jobs.list();
+        const response = await client.accountUpdater.jobs.list({
+            size: 1,
+            start: "start",
+        });
         expect(response).toEqual({
             pagination: {
                 pageSize: 1,
@@ -160,9 +193,15 @@ describe("Jobs", () => {
 
     test("list (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/account-updater/jobs")
@@ -178,9 +217,15 @@ describe("Jobs", () => {
 
     test("list (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/account-updater/jobs")
@@ -196,7 +241,12 @@ describe("Jobs", () => {
 
     test("create (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             id: "7a70e388-9c78-4c1b-85dd-f2b4e7a823f6",
@@ -210,6 +260,7 @@ describe("Jobs", () => {
             requests: 1000,
             results: { UPD_PAN: 45, NO_UPDATE: 856, WRN_CLOSED_ACCOUNT: 8 },
         };
+
         server
             .mockEndpoint()
             .post("/account-updater/jobs")
@@ -239,9 +290,15 @@ describe("Jobs", () => {
 
     test("create (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/account-updater/jobs")
@@ -257,9 +314,15 @@ describe("Jobs", () => {
 
     test("create (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/account-updater/jobs")
@@ -275,9 +338,15 @@ describe("Jobs", () => {
 
     test("create (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/account-updater/jobs")

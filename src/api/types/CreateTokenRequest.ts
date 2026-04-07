@@ -8,7 +8,7 @@ export interface CreateTokenRequest {
     data?: unknown;
     encrypted?: string;
     privacy?: BasisTheory.Privacy;
-    metadata?: Record<string, string | undefined>;
+    metadata?: Record<string, string>;
     searchIndexes?: string[];
     fingerprintExpression?: string;
     mask?: unknown;

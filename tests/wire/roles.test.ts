@@ -4,12 +4,18 @@ import * as BasisTheory from "../../src/api/index";
 import { BasisTheoryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
-describe("Roles", () => {
+describe("RolesClient", () => {
     test("list (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = [{ name: "name" }];
+
         server.mockEndpoint().get("/roles").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.roles.list();
@@ -22,9 +28,15 @@ describe("Roles", () => {
 
     test("list (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server.mockEndpoint().get("/roles").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -34,9 +46,15 @@ describe("Roles", () => {
 
     test("list (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server.mockEndpoint().get("/roles").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {

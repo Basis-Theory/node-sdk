@@ -9,9 +9,7 @@ export const GetTokensV2: core.serialization.ObjectSchema<serializers.GetTokensV
         type: core.serialization.string().optional(),
         container: core.serialization.string().optional(),
         fingerprint: core.serialization.string().optional(),
-        metadata: core.serialization
-            .record(core.serialization.string(), core.serialization.string().optional())
-            .optional(),
+        metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
         start: core.serialization.string().optional(),
         size: core.serialization.number().optional(),
     });
@@ -21,7 +19,7 @@ export declare namespace GetTokensV2 {
         type?: string | null;
         container?: string | null;
         fingerprint?: string | null;
-        metadata?: Record<string, string | null | undefined> | null;
+        metadata?: Record<string, string | null> | null;
         start?: string | null;
         size?: number | null;
     }

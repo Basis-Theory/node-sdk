@@ -2,7 +2,12 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         name: "name",
+ *         page: 1,
+ *         start: "start",
+ *         size: 1
+ *     }
  */
 export interface ReactorsListRequest {
     id?: string | string[];

@@ -9,5 +9,5 @@ export interface Tenant {
     createdAt?: Date;
     modifiedBy?: string;
     modifiedAt?: Date;
-    settings?: Record<string, string | undefined>;
+    settings?: Record<string, string>;
 }

@@ -4,10 +4,15 @@ import * as BasisTheory from "../../../../src/api/index";
 import { BasisTheoryClient } from "../../../../src/Client";
 import { mockServerPool } from "../../../mock-server/MockServerPool";
 
-describe("Certificates", () => {
+describe("CertificatesClient", () => {
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             id: "id",
@@ -20,6 +25,7 @@ describe("Certificates", () => {
             created_by: "created_by",
             created_at: "2024-01-15T09:30:00Z",
         };
+
         server
             .mockEndpoint()
             .get("/apple-pay/merchant-registration/merchantId/certificates/id")
@@ -44,9 +50,15 @@ describe("Certificates", () => {
 
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/apple-pay/merchant-registration/merchantId/certificates/id")
@@ -62,9 +74,15 @@ describe("Certificates", () => {
 
     test("get (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/apple-pay/merchant-registration/merchantId/certificates/id")
@@ -80,9 +98,15 @@ describe("Certificates", () => {
 
     test("get (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/apple-pay/merchant-registration/merchantId/certificates/id")
@@ -98,7 +122,12 @@ describe("Certificates", () => {
 
     test("delete (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         server
             .mockEndpoint()
@@ -113,9 +142,15 @@ describe("Certificates", () => {
 
     test("delete (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/apple-pay/merchant-registration/merchantId/certificates/id")
@@ -131,9 +166,15 @@ describe("Certificates", () => {
 
     test("delete (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/apple-pay/merchant-registration/merchantId/certificates/id")
@@ -149,9 +190,15 @@ describe("Certificates", () => {
 
     test("delete (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/apple-pay/merchant-registration/merchantId/certificates/id")
@@ -167,7 +214,12 @@ describe("Certificates", () => {
 
     test("create (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {
             id: "id",
@@ -180,6 +232,7 @@ describe("Certificates", () => {
             created_by: "created_by",
             created_at: "2024-01-15T09:30:00Z",
         };
+
         server
             .mockEndpoint()
             .post("/apple-pay/merchant-registration/merchantId/certificates")
@@ -205,9 +258,15 @@ describe("Certificates", () => {
 
     test("create (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/apple-pay/merchant-registration/merchantId/certificates")
@@ -224,9 +283,15 @@ describe("Certificates", () => {
 
     test("create (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/apple-pay/merchant-registration/merchantId/certificates")
@@ -243,9 +308,15 @@ describe("Certificates", () => {
 
     test("create (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/apple-pay/merchant-registration/merchantId/certificates")

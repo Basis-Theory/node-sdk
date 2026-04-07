@@ -23,7 +23,7 @@ export const CreateThreeDsSessionResponse: core.serialization.ObjectSchema<
     directoryServerId: core.serialization.property("directory_server_id", core.serialization.string().optional()),
     recommendedVersion: core.serialization.property("recommended_version", core.serialization.string().optional()),
     redirectUrl: core.serialization.property("redirect_url", core.serialization.string().optional()),
-    metadata: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
+    metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace CreateThreeDsSessionResponse {
@@ -37,6 +37,6 @@ export declare namespace CreateThreeDsSessionResponse {
         directory_server_id?: string | null;
         recommended_version?: string | null;
         redirect_url?: string | null;
-        metadata?: Record<string, string | null | undefined> | null;
+        metadata?: Record<string, string | null> | null;
     }
 }

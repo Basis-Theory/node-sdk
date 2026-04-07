@@ -25,9 +25,7 @@ export const CreateProxyRequest: core.serialization.Schema<
         core.serialization.list(ProxyTransform).optional(),
     ),
     application: Application.optional(),
-    configuration: core.serialization
-        .record(core.serialization.string(), core.serialization.string().optional())
-        .optional(),
+    configuration: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     requireAuth: core.serialization.property("require_auth", core.serialization.boolean().optional()),
     disableDetokenization: core.serialization.property(
         "disable_detokenization",
@@ -46,7 +44,7 @@ export declare namespace CreateProxyRequest {
         request_transforms?: ProxyTransform.Raw[] | null;
         response_transforms?: ProxyTransform.Raw[] | null;
         application?: Application.Raw | null;
-        configuration?: Record<string, string | null | undefined> | null;
+        configuration?: Record<string, string | null> | null;
         require_auth?: boolean | null;
         disable_detokenization?: boolean | null;
     }

@@ -4,10 +4,15 @@ import * as BasisTheory from "../../src/api/index";
 import { BasisTheoryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
-describe("ApplePay", () => {
+describe("ApplePayClient", () => {
     test("create (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {
             apple_pay: {
@@ -40,6 +45,7 @@ describe("ApplePay", () => {
                 fingerprint: "fingerprint",
             },
         };
+
         server
             .mockEndpoint()
             .post("/apple-pay")
@@ -87,9 +93,15 @@ describe("ApplePay", () => {
 
     test("create (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/apple-pay")
@@ -106,9 +118,15 @@ describe("ApplePay", () => {
 
     test("create (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/apple-pay")
@@ -125,9 +143,15 @@ describe("ApplePay", () => {
 
     test("create (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/apple-pay")
@@ -144,9 +168,15 @@ describe("ApplePay", () => {
 
     test("create (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/apple-pay")
@@ -163,7 +193,12 @@ describe("ApplePay", () => {
 
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             id: "id",
@@ -196,6 +231,7 @@ describe("ApplePay", () => {
             },
             fingerprint: "fingerprint",
         };
+
         server.mockEndpoint().get("/apple-pay/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.applePay.get("id");
@@ -243,9 +279,15 @@ describe("ApplePay", () => {
 
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server.mockEndpoint().get("/apple-pay/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -255,9 +297,15 @@ describe("ApplePay", () => {
 
     test("get (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server.mockEndpoint().get("/apple-pay/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -267,9 +315,15 @@ describe("ApplePay", () => {
 
     test("get (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/apple-pay/id").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -279,9 +333,15 @@ describe("ApplePay", () => {
 
     test("delete (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = "string";
+
         server.mockEndpoint().delete("/apple-pay/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.applePay.delete("id");
@@ -290,9 +350,15 @@ describe("ApplePay", () => {
 
     test("delete (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server.mockEndpoint().delete("/apple-pay/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -302,9 +368,15 @@ describe("ApplePay", () => {
 
     test("delete (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server.mockEndpoint().delete("/apple-pay/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -314,9 +386,15 @@ describe("ApplePay", () => {
 
     test("delete (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/apple-pay/id").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {

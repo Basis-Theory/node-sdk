@@ -5,68 +5,72 @@ import type {
     BaseIdempotentRequestOptions,
     BaseRequestOptions,
 } from "../../../../../../BaseClient.js";
+import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../../../BaseClient.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
 import * as core from "../../../../../../core/index.js";
 import * as environments from "../../../../../../environments.js";
+import { handleNonStatusCodeError } from "../../../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../../../errors/index.js";
 import * as serializers from "../../../../../../serialization/index.js";
 import * as BasisTheory from "../../../../../index.js";
 
-export declare namespace Invitations {
-    export interface Options extends BaseClientOptions {}
+export declare namespace InvitationsClient {
+    export type Options = BaseClientOptions;
 
     export interface RequestOptions extends BaseRequestOptions {}
 
     export interface IdempotentRequestOptions extends RequestOptions, BaseIdempotentRequestOptions {}
 }
 
-export class Invitations {
-    protected readonly _options: Invitations.Options;
+export class InvitationsClient {
+    protected readonly _options: NormalizedClientOptionsWithAuth<InvitationsClient.Options>;
 
-    constructor(_options: Invitations.Options = {}) {
-        this._options = _options;
+    constructor(options: InvitationsClient.Options = {}) {
+        this._options = normalizeClientOptionsWithAuth(options);
     }
 
     /**
      * @param {BasisTheory.tenants.InvitationsListRequest} request
-     * @param {Invitations.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {InvitationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
      *
      * @example
-     *     await client.tenants.invitations.list()
+     *     await client.tenants.invitations.list({
+     *         status: "PENDING",
+     *         page: 1,
+     *         start: "start",
+     *         size: 1
+     *     })
      */
     public async list(
         request: BasisTheory.tenants.InvitationsListRequest = {},
-        requestOptions?: Invitations.RequestOptions,
-    ): Promise<core.Page<BasisTheory.TenantInvitationResponse>> {
+        requestOptions?: InvitationsClient.RequestOptions,
+    ): Promise<core.Page<BasisTheory.TenantInvitationResponse, BasisTheory.TenantInvitationResponsePaginatedList>> {
         const list = core.HttpResponsePromise.interceptFunction(
             async (
                 request: BasisTheory.tenants.InvitationsListRequest,
             ): Promise<core.WithRawResponse<BasisTheory.TenantInvitationResponsePaginatedList>> => {
                 const { status, page, start, size } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (status != null) {
-                    _queryParams.status = serializers.TenantInvitationStatus.jsonOrThrow(status, {
-                        unrecognizedObjectKeys: "strip",
-                        omitUndefined: true,
-                    });
-                }
-                if (page != null) {
-                    _queryParams.page = page.toString();
-                }
-                if (start != null) {
-                    _queryParams.start = start;
-                }
-                if (size != null) {
-                    _queryParams.size = size.toString();
-                }
+                const _queryParams: Record<string, unknown> = {
+                    status:
+                        status != null
+                            ? serializers.TenantInvitationStatus.jsonOrThrow(status, {
+                                  unrecognizedObjectKeys: "strip",
+                                  omitUndefined: true,
+                              })
+                            : undefined,
+                    page,
+                    start,
+                    size,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
                     this._options?.headers,
                     mergeOnlyDefinedHeaders({
                         "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                        ...(await this._getCustomAuthorizationHeaders()),
                     }),
                     requestOptions?.headers,
                 );
@@ -83,6 +87,8 @@ export class Invitations {
                     timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
                     maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
                     abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
                 });
                 if (_response.ok) {
                     return {
@@ -128,31 +134,17 @@ export class Invitations {
                             });
                     }
                 }
-                switch (_response.error.reason) {
-                    case "non-json":
-                        throw new errors.BasisTheoryError({
-                            statusCode: _response.error.statusCode,
-                            body: _response.error.rawBody,
-                            rawResponse: _response.rawResponse,
-                        });
-                    case "timeout":
-                        throw new errors.BasisTheoryTimeoutError(
-                            "Timeout exceeded when calling GET /tenants/self/invitations.",
-                        );
-                    case "unknown":
-                        throw new errors.BasisTheoryError({
-                            message: _response.error.errorMessage,
-                            rawResponse: _response.rawResponse,
-                        });
-                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/tenants/self/invitations",
+                );
             },
         );
         let _offset = request?.page != null ? request?.page : 1;
         const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Pageable<
-            BasisTheory.TenantInvitationResponsePaginatedList,
-            BasisTheory.TenantInvitationResponse
-        >({
+        return new core.Page<BasisTheory.TenantInvitationResponse, BasisTheory.TenantInvitationResponsePaginatedList>({
             response: dataWithRawResponse.data,
             rawResponse: dataWithRawResponse.rawResponse,
             hasNextPage: (response) => (response?.data ?? []).length > 0,
@@ -166,7 +158,7 @@ export class Invitations {
 
     /**
      * @param {BasisTheory.tenants.CreateTenantInvitationRequest} request
-     * @param {Invitations.IdempotentRequestOptions} requestOptions - Request-specific configuration.
+     * @param {InvitationsClient.IdempotentRequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
      * @throws {@link BasisTheory.UnauthorizedError}
@@ -179,22 +171,22 @@ export class Invitations {
      */
     public create(
         request: BasisTheory.tenants.CreateTenantInvitationRequest,
-        requestOptions?: Invitations.IdempotentRequestOptions,
+        requestOptions?: InvitationsClient.IdempotentRequestOptions,
     ): core.HttpResponsePromise<BasisTheory.TenantInvitationResponse> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
         request: BasisTheory.tenants.CreateTenantInvitationRequest,
-        requestOptions?: Invitations.IdempotentRequestOptions,
+        requestOptions?: InvitationsClient.IdempotentRequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.TenantInvitationResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
             mergeOnlyDefinedHeaders({
-                "BT-IDEMPOTENCY-KEY":
-                    requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
+                "BT-IDEMPOTENCY-KEY": requestOptions?.idempotencyKey,
                 "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
             }),
             requestOptions?.headers,
         );
@@ -217,6 +209,8 @@ export class Invitations {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return {
@@ -275,28 +269,12 @@ export class Invitations {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling POST /tenants/self/invitations.",
-                );
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/tenants/self/invitations");
     }
 
     /**
      * @param {string} invitationId
-     * @param {Invitations.IdempotentRequestOptions} requestOptions - Request-specific configuration.
+     * @param {InvitationsClient.IdempotentRequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
      * @throws {@link BasisTheory.UnauthorizedError}
@@ -307,22 +285,22 @@ export class Invitations {
      */
     public resend(
         invitationId: string,
-        requestOptions?: Invitations.IdempotentRequestOptions,
+        requestOptions?: InvitationsClient.IdempotentRequestOptions,
     ): core.HttpResponsePromise<BasisTheory.TenantInvitationResponse> {
         return core.HttpResponsePromise.fromPromise(this.__resend(invitationId, requestOptions));
     }
 
     private async __resend(
         invitationId: string,
-        requestOptions?: Invitations.IdempotentRequestOptions,
+        requestOptions?: InvitationsClient.IdempotentRequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.TenantInvitationResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
             mergeOnlyDefinedHeaders({
-                "BT-IDEMPOTENCY-KEY":
-                    requestOptions?.idempotencyKey != null ? requestOptions?.idempotencyKey : undefined,
+                "BT-IDEMPOTENCY-KEY": requestOptions?.idempotencyKey,
                 "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
             }),
             requestOptions?.headers,
         );
@@ -339,6 +317,8 @@ export class Invitations {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return {
@@ -397,28 +377,17 @@ export class Invitations {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling POST /tenants/self/invitations/{invitationId}/resend.",
-                );
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/tenants/self/invitations/{invitationId}/resend",
+        );
     }
 
     /**
      * @param {string} invitationId
-     * @param {Invitations.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {InvitationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
@@ -429,21 +398,20 @@ export class Invitations {
      */
     public get(
         invitationId: string,
-        requestOptions?: Invitations.RequestOptions,
+        requestOptions?: InvitationsClient.RequestOptions,
     ): core.HttpResponsePromise<BasisTheory.TenantInvitationResponse> {
         return core.HttpResponsePromise.fromPromise(this.__get(invitationId, requestOptions));
     }
 
     private async __get(
         invitationId: string,
-        requestOptions?: Invitations.RequestOptions,
+        requestOptions?: InvitationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.TenantInvitationResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
-            }),
+            mergeOnlyDefinedHeaders({ "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -459,6 +427,8 @@ export class Invitations {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return {
@@ -508,28 +478,17 @@ export class Invitations {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling GET /tenants/self/invitations/{invitationId}.",
-                );
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/tenants/self/invitations/{invitationId}",
+        );
     }
 
     /**
      * @param {string} invitationId
-     * @param {Invitations.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {InvitationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
@@ -538,20 +497,22 @@ export class Invitations {
      * @example
      *     await client.tenants.invitations.delete("invitationId")
      */
-    public delete(invitationId: string, requestOptions?: Invitations.RequestOptions): core.HttpResponsePromise<void> {
+    public delete(
+        invitationId: string,
+        requestOptions?: InvitationsClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
         return core.HttpResponsePromise.fromPromise(this.__delete(invitationId, requestOptions));
     }
 
     private async __delete(
         invitationId: string,
-        requestOptions?: Invitations.RequestOptions,
+        requestOptions?: InvitationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
-                ...(await this._getCustomAuthorizationHeaders()),
-            }),
+            mergeOnlyDefinedHeaders({ "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -567,6 +528,8 @@ export class Invitations {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
         if (_response.ok) {
             return { data: undefined, rawResponse: _response.rawResponse };
@@ -607,27 +570,11 @@ export class Invitations {
             }
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.BasisTheoryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.BasisTheoryTimeoutError(
-                    "Timeout exceeded when calling DELETE /tenants/self/invitations/{invitationId}.",
-                );
-            case "unknown":
-                throw new errors.BasisTheoryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    protected async _getCustomAuthorizationHeaders(): Promise<Record<string, string | undefined>> {
-        const apiKeyValue = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["BT-API-KEY"];
-        return { "BT-API-KEY": apiKeyValue };
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/tenants/self/invitations/{invitationId}",
+        );
     }
 }

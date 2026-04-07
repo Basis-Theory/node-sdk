@@ -4,12 +4,18 @@ import * as BasisTheory from "../../../src/api/index";
 import { BasisTheoryClient } from "../../../src/Client";
 import { mockServerPool } from "../../mock-server/MockServerPool";
 
-describe("RealTime", () => {
+describe("RealTimeClient", () => {
     test("invoke (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { token_id: "9a420b15-ddfe-4793-9466-48f53520e47c" };
         const rawResponseBody = { result_code: "UPD_PAN" };
+
         server
             .mockEndpoint()
             .post("/account-updater/real-time")
@@ -29,9 +35,15 @@ describe("RealTime", () => {
 
     test("invoke (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { token_id: "token_id" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/account-updater/real-time")
@@ -50,9 +62,15 @@ describe("RealTime", () => {
 
     test("invoke (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { token_id: "token_id" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/account-updater/real-time")
@@ -71,9 +89,15 @@ describe("RealTime", () => {
 
     test("invoke (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { token_id: "token_id" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/account-updater/real-time")
@@ -92,9 +116,15 @@ describe("RealTime", () => {
 
     test("invoke (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { token_id: "token_id" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/account-updater/real-time")

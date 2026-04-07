@@ -34,7 +34,7 @@ export const ThreeDsSession: core.serialization.ObjectSchema<
     version: ThreeDsVersion.optional(),
     method: ThreeDsMethod.optional(),
     authentication: ThreeDsAuthentication.optional(),
-    metadata: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
+    metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace ThreeDsSession {
@@ -58,6 +58,6 @@ export declare namespace ThreeDsSession {
         version?: ThreeDsVersion.Raw | null;
         method?: ThreeDsMethod.Raw | null;
         authentication?: ThreeDsAuthentication.Raw | null;
-        metadata?: Record<string, string | null | undefined> | null;
+        metadata?: Record<string, string | null> | null;
     }
 }

@@ -7,7 +7,7 @@ export interface Token {
     type?: string;
     tenantId?: string;
     data?: unknown;
-    metadata?: Record<string, string | undefined>;
+    metadata?: Record<string, string>;
     enrichments?: BasisTheory.TokenEnrichments;
     createdBy?: string;
     createdAt?: Date;

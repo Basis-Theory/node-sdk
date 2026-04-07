@@ -13,9 +13,7 @@ export const UpdateReactorRequest: core.serialization.Schema<
     name: core.serialization.string(),
     application: Application.optional(),
     code: core.serialization.string(),
-    configuration: core.serialization
-        .record(core.serialization.string(), core.serialization.string().optional())
-        .optional(),
+    configuration: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     runtime: Runtime.optional(),
 });
 
@@ -24,7 +22,7 @@ export declare namespace UpdateReactorRequest {
         name: string;
         application?: Application.Raw | null;
         code: string;
-        configuration?: Record<string, string | null | undefined> | null;
+        configuration?: Record<string, string | null> | null;
         runtime?: Runtime.Raw | null;
     }
 }
