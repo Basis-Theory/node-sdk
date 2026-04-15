@@ -426,9 +426,33 @@ describe('Reactors', () => {
         // @ts-ignore
         expect(reactAsyncResponse.asyncReactorRequestId).toBeDefined();
 
+        // Poll for the async reactor result before deleting the reactor.
+        // Deleting while the Hangfire job is still queued causes vault-api errors and noisy Datadog alerts.
+        // @ts-ignore
+        const asyncReactorRequestId = reactAsyncResponse.asyncReactorRequestId as string;
+        const pollStart = Date.now();
+        const pollTimeoutMs = 20000;
+        const pollIntervalMs = 500;
+        while (true) {
+            try {
+                await client.reactors.results.get(reactorId, asyncReactorRequestId);
+                break;
+            } catch (err) {
+                if (!(err instanceof NotFoundError)) {
+                    throw err;
+                }
+                if (Date.now() - pollStart >= pollTimeoutMs) {
+                    throw new Error(
+                        `Timed out after ${pollTimeoutMs}ms waiting for async reactor result ${asyncReactorRequestId}`,
+                    );
+                }
+                await sleep(pollIntervalMs);
+            }
+        }
+
         await managementClient.reactors.delete(reactorId);
         await managementClient.applications.delete(applicationId!);
-    });
+    }, 30000);
 });
 
 describe('Tokens', () => {
