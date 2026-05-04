@@ -8,5 +8,17 @@ export interface AgenticCard {
     last4?: string;
     expirationMonth?: number;
     expirationYear?: number;
+    /** Card funding type (e.g. credit, debit, prepaid) */
+    funding?: string;
+    /** Card issuer name */
+    issuer?: string;
+    /** Card issuer country code */
+    issuerCountry?: string;
+    /** Card segment (e.g. consumer, commercial) */
+    segment?: string;
+    /** Card type */
+    type?: string;
     display?: BasisTheory.CardDisplay;
+    /** Accepts any additional properties */
+    [key: string]: any;
 }

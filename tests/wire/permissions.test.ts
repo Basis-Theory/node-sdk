@@ -28,7 +28,7 @@ describe("Permissions", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/permissions").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {

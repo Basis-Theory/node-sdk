@@ -3129,6 +3129,58 @@ await client.sessions.authorize({
 </dl>
 </details>
 
+## Tenants
+<details><summary><code>client.tenants.<a href="/src/api/resources/tenants/client/Client.ts">ownerTransfer</a>({ ...params }) -> BasisTheory.TenantMemberResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.ownerTransfer({
+    memberId: "member_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.TransferTenantOwnerRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tenants.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## TokenIntents
 <details><summary><code>client.tokenIntents.<a href="/src/api/resources/tokenIntents/client/Client.ts">get</a>(id) -> BasisTheory.TokenIntent</code></summary>
 <dl>
@@ -5851,7 +5903,10 @@ await client.applePay.merchant.certificates.delete("merchantId", "id");
 <dd>
 
 ```typescript
-await client.applePay.merchant.certificates.create("merchantId");
+await client.applePay.merchant.certificates.create("merchantId", {
+    paymentProcessorCertificateData: "payment_processor_certificate_data",
+    paymentProcessorCertificatePassword: "payment_processor_certificate_password"
+});
 
 ```
 </dd>

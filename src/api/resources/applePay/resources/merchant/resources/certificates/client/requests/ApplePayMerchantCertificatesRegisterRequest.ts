@@ -2,12 +2,15 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         paymentProcessorCertificateData: "payment_processor_certificate_data",
+ *         paymentProcessorCertificatePassword: "payment_processor_certificate_password"
+ *     }
  */
 export interface ApplePayMerchantCertificatesRegisterRequest {
     merchantCertificateData?: string;
     merchantCertificatePassword?: string;
-    paymentProcessorCertificateData?: string;
-    paymentProcessorCertificatePassword?: string;
+    paymentProcessorCertificateData: string;
+    paymentProcessorCertificatePassword: string;
     domain?: string;
 }

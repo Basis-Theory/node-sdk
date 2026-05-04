@@ -14,6 +14,7 @@ describe("Enrollments", () => {
             data: [
                 {
                     id: "enr_abc123",
+                    token_id: "token_id",
                     provider: "visa",
                     status: "pending_verification",
                     agent_ids: ["agent_ids"],
@@ -37,6 +38,7 @@ describe("Enrollments", () => {
             data: [
                 {
                     id: "enr_abc123",
+                    tokenId: "token_id",
                     provider: "visa",
                     status: "pending_verification",
                     agentIds: ["agent_ids"],
@@ -112,6 +114,7 @@ describe("Enrollments", () => {
         const rawRequestBody = { token_id: "token_id", consumer: { email: "email" } };
         const rawResponseBody = {
             id: "enr_abc123",
+            token_id: "token_id",
             provider: "visa",
             status: "pending_verification",
             card: {
@@ -120,6 +123,11 @@ describe("Enrollments", () => {
                 last4: "last4",
                 expiration_month: 1,
                 expiration_year: 1,
+                funding: "funding",
+                issuer: "issuer",
+                issuer_country: "issuer_country",
+                segment: "segment",
+                type: "type",
                 display: { art_url: "art_url", background_color: "background_color" },
             },
             agent_ids: ["agent_ids"],
@@ -142,6 +150,7 @@ describe("Enrollments", () => {
         });
         expect(response).toEqual({
             id: "enr_abc123",
+            tokenId: "token_id",
             provider: "visa",
             status: "pending_verification",
             card: {
@@ -150,6 +159,11 @@ describe("Enrollments", () => {
                 last4: "last4",
                 expirationMonth: 1,
                 expirationYear: 1,
+                funding: "funding",
+                issuer: "issuer",
+                issuerCountry: "issuer_country",
+                segment: "segment",
+                type: "type",
                 display: {
                     artUrl: "art_url",
                     backgroundColor: "background_color",
@@ -164,7 +178,7 @@ describe("Enrollments", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
         const rawRequestBody = { token_id: "x", consumer: { email: "email" } };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/agentic/enrollments")
@@ -286,6 +300,7 @@ describe("Enrollments", () => {
 
         const rawResponseBody = {
             id: "enr_abc123",
+            token_id: "token_id",
             provider: "visa",
             status: "pending_verification",
             card: {
@@ -294,6 +309,11 @@ describe("Enrollments", () => {
                 last4: "last4",
                 expiration_month: 1,
                 expiration_year: 1,
+                funding: "funding",
+                issuer: "issuer",
+                issuer_country: "issuer_country",
+                segment: "segment",
+                type: "type",
                 display: { art_url: "art_url", background_color: "background_color" },
             },
             agent_ids: ["agent_ids"],
@@ -310,6 +330,7 @@ describe("Enrollments", () => {
         const response = await client.agentic.enrollments.get("enrollment_id");
         expect(response).toEqual({
             id: "enr_abc123",
+            tokenId: "token_id",
             provider: "visa",
             status: "pending_verification",
             card: {
@@ -318,6 +339,11 @@ describe("Enrollments", () => {
                 last4: "last4",
                 expirationMonth: 1,
                 expirationYear: 1,
+                funding: "funding",
+                issuer: "issuer",
+                issuerCountry: "issuer_country",
+                segment: "segment",
+                type: "type",
                 display: {
                     artUrl: "art_url",
                     backgroundColor: "background_color",
@@ -488,6 +514,7 @@ describe("Enrollments", () => {
 
         const rawResponseBody = {
             id: "enr_abc123",
+            token_id: "token_id",
             provider: "visa",
             status: "pending_verification",
             card: {
@@ -496,6 +523,11 @@ describe("Enrollments", () => {
                 last4: "last4",
                 expiration_month: 1,
                 expiration_year: 1,
+                funding: "funding",
+                issuer: "issuer",
+                issuer_country: "issuer_country",
+                segment: "segment",
+                type: "type",
                 display: { art_url: "art_url", background_color: "background_color" },
             },
             agent_ids: ["agent_ids"],
@@ -512,6 +544,7 @@ describe("Enrollments", () => {
         const response = await client.agentic.enrollments.retry("enrollment_id");
         expect(response).toEqual({
             id: "enr_abc123",
+            tokenId: "token_id",
             provider: "visa",
             status: "pending_verification",
             card: {
@@ -520,6 +553,11 @@ describe("Enrollments", () => {
                 last4: "last4",
                 expirationMonth: 1,
                 expirationYear: 1,
+                funding: "funding",
+                issuer: "issuer",
+                issuerCountry: "issuer_country",
+                segment: "segment",
+                type: "type",
                 display: {
                     artUrl: "art_url",
                     backgroundColor: "background_color",
@@ -534,7 +572,7 @@ describe("Enrollments", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/retry")

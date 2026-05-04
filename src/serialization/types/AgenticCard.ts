@@ -7,14 +7,21 @@ import { AgenticCardBrand } from "./AgenticCardBrand.js";
 import { CardDisplay } from "./CardDisplay.js";
 
 export const AgenticCard: core.serialization.ObjectSchema<serializers.AgenticCard.Raw, BasisTheory.AgenticCard> =
-    core.serialization.object({
-        brand: AgenticCardBrand.optional(),
-        bin: core.serialization.string().optional(),
-        last4: core.serialization.string().optional(),
-        expirationMonth: core.serialization.property("expiration_month", core.serialization.number().optional()),
-        expirationYear: core.serialization.property("expiration_year", core.serialization.number().optional()),
-        display: CardDisplay.optional(),
-    });
+    core.serialization
+        .object({
+            brand: AgenticCardBrand.optional(),
+            bin: core.serialization.string().optional(),
+            last4: core.serialization.string().optional(),
+            expirationMonth: core.serialization.property("expiration_month", core.serialization.number().optional()),
+            expirationYear: core.serialization.property("expiration_year", core.serialization.number().optional()),
+            funding: core.serialization.string().optional(),
+            issuer: core.serialization.string().optional(),
+            issuerCountry: core.serialization.property("issuer_country", core.serialization.string().optional()),
+            segment: core.serialization.string().optional(),
+            type: core.serialization.string().optional(),
+            display: CardDisplay.optional(),
+        })
+        .passthrough();
 
 export declare namespace AgenticCard {
     export interface Raw {
@@ -23,6 +30,12 @@ export declare namespace AgenticCard {
         last4?: string | null;
         expiration_month?: number | null;
         expiration_year?: number | null;
+        funding?: string | null;
+        issuer?: string | null;
+        issuer_country?: string | null;
+        segment?: string | null;
+        type?: string | null;
         display?: CardDisplay.Raw | null;
+        [key: string]: any;
     }
 }

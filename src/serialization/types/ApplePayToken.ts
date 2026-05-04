@@ -17,6 +17,12 @@ export const ApplePayToken: core.serialization.ObjectSchema<serializers.ApplePay
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedBy: core.serialization.property("modified_by", core.serialization.string().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
+        transactionId: core.serialization.property("transaction_id", core.serialization.string().optional()),
+        paymentDataType: core.serialization.property("payment_data_type", core.serialization.string().optional()),
+        deviceManufacturerIdentifier: core.serialization.property(
+            "device_manufacturer_identifier",
+            core.serialization.string().optional(),
+        ),
         card: CardDetails.optional(),
         data: core.serialization.unknown().optional(),
         authentication: Authentication.optional(),
@@ -34,6 +40,9 @@ export declare namespace ApplePayToken {
         created_at?: string | null;
         modified_by?: string | null;
         modified_at?: string | null;
+        transaction_id?: string | null;
+        payment_data_type?: string | null;
+        device_manufacturer_identifier?: string | null;
         card?: CardDetails.Raw | null;
         data?: unknown | null;
         authentication?: Authentication.Raw | null;

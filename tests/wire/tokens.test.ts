@@ -31,7 +31,7 @@ describe("Tokens", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
         const rawRequestBody = { key: "value" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/detokenize")
@@ -390,7 +390,7 @@ describe("Tokens", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server.mockEndpoint().delete("/tokens/id").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
