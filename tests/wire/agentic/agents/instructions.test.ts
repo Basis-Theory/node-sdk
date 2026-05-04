@@ -196,7 +196,7 @@ describe("Instructions", () => {
             description: "x",
             expires_at: "2024-01-15T09:30:00Z",
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/agentic/agents/agent_id/instructions")
@@ -617,7 +617,7 @@ describe("Instructions", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .patch("/agentic/agents/agent_id/instructions/instruction_id")

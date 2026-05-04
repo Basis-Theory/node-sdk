@@ -20,6 +20,7 @@ describe("Jobs", () => {
             errors: ["File cannot be empty"],
             requests: 1000,
             results: { UPD_PAN: 45, NO_UPDATE: 856, WRN_CLOSED_ACCOUNT: 8 },
+            downloadUrl: "https://example.s3.amazonaws.com/pre-signed-download-url",
         };
         server
             .mockEndpoint()
@@ -45,6 +46,7 @@ describe("Jobs", () => {
                 NO_UPDATE: 856,
                 WRN_CLOSED_ACCOUNT: 8,
             },
+            downloadUrl: "https://example.s3.amazonaws.com/pre-signed-download-url",
         });
     });
 
@@ -120,6 +122,7 @@ describe("Jobs", () => {
                     errors: ["File cannot be empty"],
                     requests: 1000,
                     results: { UPD_PAN: 45, NO_UPDATE: 856, WRN_CLOSED_ACCOUNT: 8 },
+                    downloadUrl: "https://example.s3.amazonaws.com/pre-signed-download-url",
                 },
             ],
         };
@@ -153,6 +156,7 @@ describe("Jobs", () => {
                         NO_UPDATE: 856,
                         WRN_CLOSED_ACCOUNT: 8,
                     },
+                    downloadUrl: "https://example.s3.amazonaws.com/pre-signed-download-url",
                 },
             ],
         });
@@ -209,6 +213,7 @@ describe("Jobs", () => {
             errors: ["File cannot be empty"],
             requests: 1000,
             results: { UPD_PAN: 45, NO_UPDATE: 856, WRN_CLOSED_ACCOUNT: 8 },
+            downloadUrl: "https://example.s3.amazonaws.com/pre-signed-download-url",
         };
         server
             .mockEndpoint()
@@ -234,6 +239,7 @@ describe("Jobs", () => {
                 NO_UPDATE: 856,
                 WRN_CLOSED_ACCOUNT: 8,
             },
+            downloadUrl: "https://example.s3.amazonaws.com/pre-signed-download-url",
         });
     });
 

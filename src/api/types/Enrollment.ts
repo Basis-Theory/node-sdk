@@ -4,6 +4,8 @@ import type * as BasisTheory from "../index.js";
 
 export interface Enrollment {
     id?: string;
+    /** Basis Theory card token ID used for enrollment */
+    tokenId?: string;
     provider?: BasisTheory.EnrollmentProvider;
     status?: BasisTheory.EnrollmentStatus;
     card?: BasisTheory.AgenticCard;
