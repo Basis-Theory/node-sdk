@@ -20,6 +20,9 @@ describe("ApplePay", () => {
                 created_at: "2024-01-15T09:30:00Z",
                 modified_by: "modified_by",
                 modified_at: "2024-01-15T09:30:00Z",
+                transaction_id: "transaction_id",
+                payment_data_type: "payment_data_type",
+                device_manufacturer_identifier: "device_manufacturer_identifier",
                 card: {
                     bin: "bin",
                     last4: "last4",
@@ -61,6 +64,9 @@ describe("ApplePay", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 modifiedBy: "modified_by",
                 modifiedAt: new Date("2024-01-15T09:30:00.000Z"),
+                transactionId: "transaction_id",
+                paymentDataType: "payment_data_type",
+                deviceManufacturerIdentifier: "device_manufacturer_identifier",
                 card: {
                     bin: "bin",
                     last4: "last4",
@@ -89,7 +95,7 @@ describe("ApplePay", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/apple-pay")
@@ -175,6 +181,9 @@ describe("ApplePay", () => {
             created_at: "2024-01-15T09:30:00Z",
             modified_by: "modified_by",
             modified_at: "2024-01-15T09:30:00Z",
+            transaction_id: "transaction_id",
+            payment_data_type: "payment_data_type",
+            device_manufacturer_identifier: "device_manufacturer_identifier",
             card: {
                 bin: "bin",
                 last4: "last4",
@@ -209,6 +218,9 @@ describe("ApplePay", () => {
             createdAt: new Date("2024-01-15T09:30:00.000Z"),
             modifiedBy: "modified_by",
             modifiedAt: new Date("2024-01-15T09:30:00.000Z"),
+            transactionId: "transaction_id",
+            paymentDataType: "payment_data_type",
+            deviceManufacturerIdentifier: "device_manufacturer_identifier",
             card: {
                 bin: "bin",
                 last4: "last4",

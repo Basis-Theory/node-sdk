@@ -61,7 +61,7 @@ describe("Logs", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/logs").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {

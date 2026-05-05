@@ -105,7 +105,7 @@ describe("Verify", () => {
                 platform_type: "WEB",
             },
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify")
@@ -456,7 +456,7 @@ describe("Verify", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
         const rawRequestBody = { method_id: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/method")
@@ -644,7 +644,7 @@ describe("Verify", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
         const rawRequestBody = { otp_code: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/otp")
@@ -830,7 +830,7 @@ describe("Verify", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/complete")

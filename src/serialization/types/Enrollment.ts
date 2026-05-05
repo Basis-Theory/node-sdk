@@ -10,6 +10,7 @@ import { EnrollmentStatus } from "./EnrollmentStatus.js";
 export const Enrollment: core.serialization.ObjectSchema<serializers.Enrollment.Raw, BasisTheory.Enrollment> =
     core.serialization.object({
         id: core.serialization.string().optional(),
+        tokenId: core.serialization.property("token_id", core.serialization.string().optional()),
         provider: EnrollmentProvider.optional(),
         status: EnrollmentStatus.optional(),
         card: AgenticCard.optional(),
@@ -23,6 +24,7 @@ export const Enrollment: core.serialization.ObjectSchema<serializers.Enrollment.
 export declare namespace Enrollment {
     export interface Raw {
         id?: string | null;
+        token_id?: string | null;
         provider?: EnrollmentProvider.Raw | null;
         status?: EnrollmentStatus.Raw | null;
         card?: AgenticCard.Raw | null;
