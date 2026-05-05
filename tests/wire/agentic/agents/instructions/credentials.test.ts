@@ -44,7 +44,7 @@ describe("Credentials", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
         const rawRequestBody = { merchant: { name: "x", url: "x", country_code: "xy" } };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/agentic/agents/agent_id/instructions/instruction_id/credentials")

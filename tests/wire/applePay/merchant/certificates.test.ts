@@ -168,7 +168,10 @@ describe("Certificates", () => {
     test("create (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = {
+            payment_processor_certificate_data: "payment_processor_certificate_data",
+            payment_processor_certificate_password: "payment_processor_certificate_password",
+        };
         const rawResponseBody = {
             id: "id",
             tenant_id: "tenant_id",
@@ -189,7 +192,10 @@ describe("Certificates", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.applePay.merchant.certificates.create("merchantId");
+        const response = await client.applePay.merchant.certificates.create("merchantId", {
+            paymentProcessorCertificateData: "payment_processor_certificate_data",
+            paymentProcessorCertificatePassword: "payment_processor_certificate_password",
+        });
         expect(response).toEqual({
             id: "id",
             tenantId: "tenant_id",
@@ -206,7 +212,7 @@ describe("Certificates", () => {
     test("create (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { payment_processor_certificate_data: "x", payment_processor_certificate_password: "x" };
         const rawResponseBody = {};
         server
             .mockEndpoint()
@@ -218,14 +224,17 @@ describe("Certificates", () => {
             .build();
 
         await expect(async () => {
-            return await client.applePay.merchant.certificates.create("merchantId");
+            return await client.applePay.merchant.certificates.create("merchantId", {
+                paymentProcessorCertificateData: "x",
+                paymentProcessorCertificatePassword: "x",
+            });
         }).rejects.toThrow(BasisTheory.UnauthorizedError);
     });
 
     test("create (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { payment_processor_certificate_data: "x", payment_processor_certificate_password: "x" };
         const rawResponseBody = {};
         server
             .mockEndpoint()
@@ -237,14 +246,17 @@ describe("Certificates", () => {
             .build();
 
         await expect(async () => {
-            return await client.applePay.merchant.certificates.create("merchantId");
+            return await client.applePay.merchant.certificates.create("merchantId", {
+                paymentProcessorCertificateData: "x",
+                paymentProcessorCertificatePassword: "x",
+            });
         }).rejects.toThrow(BasisTheory.ForbiddenError);
     });
 
     test("create (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { payment_processor_certificate_data: "x", payment_processor_certificate_password: "x" };
         const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
@@ -256,7 +268,10 @@ describe("Certificates", () => {
             .build();
 
         await expect(async () => {
-            return await client.applePay.merchant.certificates.create("merchantId");
+            return await client.applePay.merchant.certificates.create("merchantId", {
+                paymentProcessorCertificateData: "x",
+                paymentProcessorCertificatePassword: "x",
+            });
         }).rejects.toThrow(BasisTheory.NotFoundError);
     });
 });

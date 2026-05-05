@@ -87,7 +87,7 @@ describe("Keys", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/keys")

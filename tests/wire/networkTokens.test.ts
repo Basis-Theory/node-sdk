@@ -126,7 +126,7 @@ describe("NetworkTokens", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/network-tokens")
@@ -241,7 +241,7 @@ describe("NetworkTokens", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/network-tokens/id/cryptogram")

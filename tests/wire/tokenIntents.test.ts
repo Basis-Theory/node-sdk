@@ -488,7 +488,7 @@ describe("TokenIntents", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
         const rawRequestBody = { type: "x", data: { key: "value" } };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/token-intents")

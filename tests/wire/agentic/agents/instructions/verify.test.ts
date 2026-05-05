@@ -105,7 +105,7 @@ describe("Verify", () => {
                 platform_type: "WEB",
             },
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/agentic/agents/agent_id/instructions/instruction_id/verify")
@@ -396,7 +396,7 @@ describe("Verify", () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
         const rawRequestBody = { assurance_data: { assurance_data: { key: "value" } } };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
             .post("/agentic/agents/agent_id/instructions/instruction_id/verify/passkey")
