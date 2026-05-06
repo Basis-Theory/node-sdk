@@ -8,4 +8,8 @@ export interface ConfirmationEntry {
     transactionType: BasisTheory.TransactionType;
     transactionTimestamp?: Date;
     mandatesCompleted?: boolean;
+    /** Transaction amount for Visa confirmation */
+    amount?: string;
+    /** ISO 4217 currency code (e.g. USD) */
+    currencyCode?: string;
 }

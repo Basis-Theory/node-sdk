@@ -250,11 +250,14 @@ export class Certificates {
      * @throws {@link BasisTheory.NotFoundError}
      *
      * @example
-     *     await client.applePay.merchant.certificates.create("merchantId")
+     *     await client.applePay.merchant.certificates.create("merchantId", {
+     *         paymentProcessorCertificateData: "payment_processor_certificate_data",
+     *         paymentProcessorCertificatePassword: "payment_processor_certificate_password"
+     *     })
      */
     public create(
         merchantId: string,
-        request: BasisTheory.applePay.merchant.ApplePayMerchantCertificatesRegisterRequest = {},
+        request: BasisTheory.applePay.merchant.ApplePayMerchantCertificatesRegisterRequest,
         requestOptions?: Certificates.RequestOptions,
     ): core.HttpResponsePromise<BasisTheory.ApplePayMerchantCertificates> {
         return core.HttpResponsePromise.fromPromise(this.__create(merchantId, request, requestOptions));
@@ -262,7 +265,7 @@ export class Certificates {
 
     private async __create(
         merchantId: string,
-        request: BasisTheory.applePay.merchant.ApplePayMerchantCertificatesRegisterRequest = {},
+        request: BasisTheory.applePay.merchant.ApplePayMerchantCertificatesRegisterRequest,
         requestOptions?: Certificates.RequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.ApplePayMerchantCertificates>> {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(

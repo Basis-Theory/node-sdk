@@ -21,4 +21,6 @@ export interface AccountUpdaterJob {
     requests?: number;
     /** Summary count breakdown by result code for all processed rows */
     results?: Record<string, number>;
+    /** Pre-signed URL for downloading the job results CSV. Only present on completed jobs. */
+    downloadUrl?: string;
 }

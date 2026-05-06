@@ -18,6 +18,8 @@ export const ConfirmationEntry: core.serialization.ObjectSchema<
     transactionType: core.serialization.property("transaction_type", TransactionType),
     transactionTimestamp: core.serialization.property("transaction_timestamp", core.serialization.date().optional()),
     mandatesCompleted: core.serialization.property("mandates_completed", core.serialization.boolean().optional()),
+    amount: core.serialization.string().optional(),
+    currencyCode: core.serialization.property("currency_code", core.serialization.string().optional()),
 });
 
 export declare namespace ConfirmationEntry {
@@ -27,5 +29,7 @@ export declare namespace ConfirmationEntry {
         transaction_type: TransactionType.Raw;
         transaction_timestamp?: string | null;
         mandates_completed?: boolean | null;
+        amount?: string | null;
+        currency_code?: string | null;
     }
 }

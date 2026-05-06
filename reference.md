@@ -3129,6 +3129,58 @@ await client.sessions.authorize({
 </dl>
 </details>
 
+## Tenants
+<details><summary><code>client.tenants.<a href="/src/api/resources/tenants/client/Client.ts">ownerTransfer</a>({ ...params }) -> BasisTheory.TenantMemberResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.ownerTransfer({
+    memberId: "member_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.TransferTenantOwnerRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tenants.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## TokenIntents
 <details><summary><code>client.tokenIntents.<a href="/src/api/resources/tokenIntents/client/Client.ts">get</a>(id) -> BasisTheory.TokenIntent</code></summary>
 <dl>
@@ -5851,7 +5903,10 @@ await client.applePay.merchant.certificates.delete("merchantId", "id");
 <dd>
 
 ```typescript
-await client.applePay.merchant.certificates.create("merchantId");
+await client.applePay.merchant.certificates.create("merchantId", {
+    paymentProcessorCertificateData: "payment_processor_certificate_data",
+    paymentProcessorCertificatePassword: "payment_processor_certificate_password"
+});
 
 ```
 </dd>
@@ -6914,6 +6969,380 @@ await client.tenants.members.delete("memberId");
 <dd>
 
 **requestOptions:** `Members.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Tenants Merchants
+<details><summary><code>client.tenants.merchants.<a href="/src/api/resources/tenants/resources/merchants/client/Client.ts">list</a>(tenantId, { ...params }) -> core.Page&lt;BasisTheory.TenantMerchant&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.tenants.merchants.list("tenantId");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.tenants.merchants.list("tenantId");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.tenants.MerchantsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchants.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.merchants.<a href="/src/api/resources/tenants/resources/merchants/client/Client.ts">create</a>(tenantId, { ...params }) -> BasisTheory.TenantMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.merchants.create("tenantId", {
+    name: "name",
+    details: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.TenantMerchantRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchants.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.merchants.<a href="/src/api/resources/tenants/resources/merchants/client/Client.ts">get</a>(tenantId, merchantId) -> BasisTheory.TenantMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.merchants.get("tenantId", "merchantId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchants.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.merchants.<a href="/src/api/resources/tenants/resources/merchants/client/Client.ts">delete</a>(tenantId, merchantId) -> BasisTheory.TenantMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.merchants.delete("tenantId", "merchantId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchants.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.merchants.<a href="/src/api/resources/tenants/resources/merchants/client/Client.ts">update</a>(tenantId, merchantId, { ...params }) -> BasisTheory.TenantMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.merchants.update("tenantId", "merchantId", {
+    name: "name",
+    details: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.TenantMerchantRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchants.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.merchants.<a href="/src/api/resources/tenants/resources/merchants/client/Client.ts">requestOnboarding</a>(tenantId, merchantId, { ...params }) -> BasisTheory.TenantMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.merchants.requestOnboarding("tenantId", "merchantId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.tenants.ServiceOnboardingRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchants.RequestOptions` 
     
 </dd>
 </dl>
