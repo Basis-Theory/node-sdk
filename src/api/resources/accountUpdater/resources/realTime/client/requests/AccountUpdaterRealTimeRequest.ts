@@ -15,4 +15,6 @@ export interface AccountUpdaterRealTimeRequest {
     expirationMonth?: number;
     /** Whether deduplication should be enabled when creating the new token. Uses the value of the Deduplicate Tokens setting on the tenant if not set. */
     deduplicateToken?: boolean;
+    /** Tenant merchant identifier */
+    merchantId?: string;
 }

@@ -2,6 +2,13 @@
 
 export const BasisTheoryEnvironment = {
     Default: "https://api.basistheory.com",
+    Us: "https://api.basistheory.com",
+    Eu: "https://api.basistheory.com",
+    Test: "https://api.test.basistheory.com",
 } as const;
 
-export type BasisTheoryEnvironment = typeof BasisTheoryEnvironment.Default;
+export type BasisTheoryEnvironment =
+    | typeof BasisTheoryEnvironment.Default
+    | typeof BasisTheoryEnvironment.Us
+    | typeof BasisTheoryEnvironment.Eu
+    | typeof BasisTheoryEnvironment.Test;

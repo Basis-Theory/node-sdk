@@ -99,7 +99,8 @@ describe("Enrichments", () => {
             funding: "funding",
             segment: "segment",
             issuer: { country: "country", name: "name" },
-            additional: [{ brand: "brand", funding: "funding", segment: "segment" }],
+            binRange: [{ binMin: "binMin", binMax: "binMax" }],
+            additional: [{ brand: "brand", funding: "funding", segment: "segment", binRange: [{}] }],
         };
         server
             .mockEndpoint()
@@ -120,11 +121,18 @@ describe("Enrichments", () => {
                 country: "country",
                 name: "name",
             },
+            binRange: [
+                {
+                    binMin: "binMin",
+                    binMax: "binMax",
+                },
+            ],
             additional: [
                 {
                     brand: "brand",
                     funding: "funding",
                     segment: "segment",
+                    binRange: [{}],
                 },
             ],
         });

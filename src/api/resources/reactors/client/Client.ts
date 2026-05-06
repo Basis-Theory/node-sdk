@@ -757,7 +757,7 @@ export class Reactors {
 
     /**
      * @param {string} id
-     * @param {BasisTheory.ReactRequest} request
+     * @param {unknown} request
      * @param {Reactors.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
@@ -767,11 +767,13 @@ export class Reactors {
      * @throws {@link BasisTheory.UnprocessableEntityError}
      *
      * @example
-     *     await client.reactors.react("id")
+     *     await client.reactors.react("id", {
+     *         "key": "value"
+     *     })
      */
     public react(
         id: string,
-        request: BasisTheory.ReactRequest = {},
+        request?: unknown,
         requestOptions?: Reactors.RequestOptions,
     ): core.HttpResponsePromise<BasisTheory.ReactResponse> {
         return core.HttpResponsePromise.fromPromise(this.__react(id, request, requestOptions));
@@ -779,7 +781,7 @@ export class Reactors {
 
     private async __react(
         id: string,
-        request: BasisTheory.ReactRequest = {},
+        request?: unknown,
         requestOptions?: Reactors.RequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.ReactResponse>> {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -802,10 +804,7 @@ export class Reactors {
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",
-            body: serializers.ReactRequest.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "strip",
-                omitUndefined: true,
-            }),
+            body: request,
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -899,7 +898,7 @@ export class Reactors {
 
     /**
      * @param {string} id
-     * @param {BasisTheory.ReactRequestAsync} request
+     * @param {unknown} request
      * @param {Reactors.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.BadRequestError}
@@ -909,11 +908,13 @@ export class Reactors {
      * @throws {@link BasisTheory.UnprocessableEntityError}
      *
      * @example
-     *     await client.reactors.reactAsync("id")
+     *     await client.reactors.reactAsync("id", {
+     *         "key": "value"
+     *     })
      */
     public reactAsync(
         id: string,
-        request: BasisTheory.ReactRequestAsync = {},
+        request?: unknown,
         requestOptions?: Reactors.RequestOptions,
     ): core.HttpResponsePromise<BasisTheory.AsyncReactResponse> {
         return core.HttpResponsePromise.fromPromise(this.__reactAsync(id, request, requestOptions));
@@ -921,7 +922,7 @@ export class Reactors {
 
     private async __reactAsync(
         id: string,
-        request: BasisTheory.ReactRequestAsync = {},
+        request?: unknown,
         requestOptions?: Reactors.RequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.AsyncReactResponse>> {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -944,10 +945,7 @@ export class Reactors {
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",
-            body: serializers.ReactRequestAsync.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "strip",
-                omitUndefined: true,
-            }),
+            body: request,
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

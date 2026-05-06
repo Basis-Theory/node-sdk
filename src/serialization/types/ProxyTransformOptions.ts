@@ -4,6 +4,7 @@ import type * as BasisTheory from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 import { CreateTokenRequest } from "./CreateTokenRequest.js";
+import { Runtime } from "./Runtime.js";
 
 export const ProxyTransformOptions: core.serialization.ObjectSchema<
     serializers.ProxyTransformOptions.Raw,
@@ -13,10 +14,7 @@ export const ProxyTransformOptions: core.serialization.ObjectSchema<
     identifier: core.serialization.string().optional(),
     value: core.serialization.string().optional(),
     location: core.serialization.string().optional(),
-    runtime: core.serialization.string().optional(),
-    dependencies: core.serialization
-        .record(core.serialization.string(), core.serialization.string().optional())
-        .optional(),
+    runtime: Runtime.optional(),
 });
 
 export declare namespace ProxyTransformOptions {
@@ -25,7 +23,6 @@ export declare namespace ProxyTransformOptions {
         identifier?: string | null;
         value?: string | null;
         location?: string | null;
-        runtime?: string | null;
-        dependencies?: Record<string, string | null | undefined> | null;
+        runtime?: Runtime.Raw | null;
     }
 }

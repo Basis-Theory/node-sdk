@@ -7,4 +7,5 @@ export interface AdditionalCardDetail {
     funding?: string;
     segment?: string;
     issuer?: BasisTheory.CardIssuerDetails;
+    binRange?: BasisTheory.CardBinRange[];
 }

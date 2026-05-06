@@ -19,6 +19,7 @@ describe("Sessions", () => {
             directory_server_id: "directory_server_id",
             recommended_version: "recommended_version",
             redirect_url: "redirect_url",
+            metadata: { key: "value" },
         };
         server
             .mockEndpoint()
@@ -40,6 +41,9 @@ describe("Sessions", () => {
             directoryServerId: "directory_server_id",
             recommendedVersion: "recommended_version",
             redirectUrl: "redirect_url",
+            metadata: {
+                key: "value",
+            },
         });
     });
 
@@ -334,6 +338,7 @@ describe("Sessions", () => {
                 whitelist_status_source: "whitelist_status_source",
                 message_extensions: [{}],
             },
+            metadata: { key: "value" },
         };
         server.mockEndpoint().get("/3ds/sessions/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
@@ -425,6 +430,9 @@ describe("Sessions", () => {
                 whitelistStatus: "whitelist_status",
                 whitelistStatusSource: "whitelist_status_source",
                 messageExtensions: [{}],
+            },
+            metadata: {
+                key: "value",
             },
         });
     });

@@ -3,16 +3,24 @@
 import type * as BasisTheory from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { CreateAccountUpdaterJobRequestResultVersion } from "./CreateAccountUpdaterJobRequestResultVersion.js";
 
 export const CreateAccountUpdaterJobRequest: core.serialization.ObjectSchema<
     serializers.CreateAccountUpdaterJobRequest.Raw,
     BasisTheory.CreateAccountUpdaterJobRequest
 > = core.serialization.object({
     deduplicateTokens: core.serialization.property("deduplicate_tokens", core.serialization.boolean().optional()),
+    merchantId: core.serialization.property("merchant_id", core.serialization.string().optional()),
+    resultVersion: core.serialization.property(
+        "result_version",
+        CreateAccountUpdaterJobRequestResultVersion.optional(),
+    ),
 });
 
 export declare namespace CreateAccountUpdaterJobRequest {
     export interface Raw {
         deduplicate_tokens?: boolean | null;
+        merchant_id?: string | null;
+        result_version?: CreateAccountUpdaterJobRequestResultVersion.Raw | null;
     }
 }

@@ -10,4 +10,5 @@ export interface CreateThreeDsSessionResponse {
     directoryServerId?: string;
     recommendedVersion?: string;
     redirectUrl?: string;
+    metadata?: Record<string, string | undefined>;
 }

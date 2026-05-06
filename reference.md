@@ -1,6 +1,6 @@
 # Reference
 ## Applications
-<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Application></code></summary>
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Application&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1371,7 +1371,7 @@ await client.tokens.create({});
 </dl>
 </details>
 
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">listV2</a>({ ...params }) -> core.Page<BasisTheory.Token></code></summary>
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">listV2</a>({ ...params }) -> core.Page&lt;BasisTheory.Token&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1429,7 +1429,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">searchV2</a>({ ...params }) -> core.Page<BasisTheory.Token></code></summary>
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">searchV2</a>({ ...params }) -> core.Page&lt;BasisTheory.Token&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1780,7 +1780,7 @@ await client.keys.delete("id");
 </details>
 
 ## Logs
-<details><summary><code>client.logs.<a href="/src/api/resources/logs/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Log></code></summary>
+<details><summary><code>client.logs.<a href="/src/api/resources/logs/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Log&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2225,7 +2225,7 @@ await client.permissions.list();
 </details>
 
 ## Proxies
-<details><summary><code>client.proxies.<a href="/src/api/resources/proxies/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Proxy></code></summary>
+<details><summary><code>client.proxies.<a href="/src/api/resources/proxies/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Proxy&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2551,7 +2551,7 @@ await client.proxies.patch("id");
 </details>
 
 ## Reactors
-<details><summary><code>client.reactors.<a href="/src/api/resources/reactors/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.Reactor></code></summary>
+<details><summary><code>client.reactors.<a href="/src/api/resources/reactors/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Reactor&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2889,7 +2889,9 @@ await client.reactors.patch("id");
 <dd>
 
 ```typescript
-await client.reactors.react("id");
+await client.reactors.react("id", {
+    "key": "value"
+});
 
 ```
 </dd>
@@ -2913,7 +2915,7 @@ await client.reactors.react("id");
 <dl>
 <dd>
 
-**request:** `BasisTheory.ReactRequest` 
+**request:** `unknown` 
     
 </dd>
 </dl>
@@ -2946,7 +2948,9 @@ await client.reactors.react("id");
 <dd>
 
 ```typescript
-await client.reactors.reactAsync("id");
+await client.reactors.reactAsync("id", {
+    "key": "value"
+});
 
 ```
 </dd>
@@ -2970,7 +2974,7 @@ await client.reactors.reactAsync("id");
 <dl>
 <dd>
 
-**request:** `BasisTheory.ReactRequestAsync` 
+**request:** `unknown` 
     
 </dd>
 </dl>
@@ -3114,6 +3118,58 @@ await client.sessions.authorize({
 <dd>
 
 **requestOptions:** `Sessions.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Tenants
+<details><summary><code>client.tenants.<a href="/src/api/resources/tenants/client/Client.ts">ownerTransfer</a>({ ...params }) -> BasisTheory.TenantMemberResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.ownerTransfer({
+    memberId: "member_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.TransferTenantOwnerRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tenants.RequestOptions` 
     
 </dd>
 </dl>
@@ -3905,8 +3961,1431 @@ await client.accountUpdater.realTime.invoke({
 </dl>
 </details>
 
+## Agentic Agents
+<details><summary><code>client.agentic.agents.<a href="/src/api/resources/agentic/resources/agents/client/Client.ts">create</a>({ ...params }) -> BasisTheory.Agent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.create({
+    name: "name"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.CreateAgentRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Agents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.<a href="/src/api/resources/agentic/resources/agents/client/Client.ts">get</a>(agentId) -> BasisTheory.Agent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.get("agent_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Agents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.<a href="/src/api/resources/agentic/resources/agents/client/Client.ts">delete</a>(agentId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.delete("agent_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Agents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.<a href="/src/api/resources/agentic/resources/agents/client/Client.ts">update</a>(agentId, { ...params }) -> BasisTheory.Agent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.update("agent_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.UpdateAgentRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Agents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Agentic Enrollments
+<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Enrollment&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all enrollments for the current tenant with cursor-based pagination.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.agentic.enrollments.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.agentic.enrollments.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.EnrollmentsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrollments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">create</a>({ ...params }) -> BasisTheory.Enrollment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Enroll a card token with a card network (Visa or Mastercard).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.create({
+    tokenId: "token_id",
+    consumer: {
+        email: "email"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.CreateEnrollmentRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrollments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">get</a>(enrollmentId) -> BasisTheory.Enrollment</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.get("enrollment_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enrollmentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrollments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">delete</a>(enrollmentId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft-deletes the enrollment by marking its status as deleted.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.delete("enrollment_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enrollmentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrollments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">retry</a>(enrollmentId) -> BasisTheory.Enrollment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retry enrolling a card that previously failed. Only failed enrollments can be retried.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.retry("enrollment_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enrollmentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrollments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Agentic Agents Instructions
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">list</a>(agentId, { ...params }) -> core.Page&lt;BasisTheory.Instruction&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all purchase instructions for an agent with cursor-based pagination and optional enrollment filter.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.agentic.agents.instructions.list("agent_id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.agentic.agents.instructions.list("agent_id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.agents.InstructionsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Instructions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">create</a>(agentId, { ...params }) -> BasisTheory.Instruction</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a new payment instruction for an agent, linked to an enrollment.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.create("agent_id", {
+    enrollmentId: "enrollment_id",
+    amount: {
+        value: "100.00"
+    },
+    description: "description",
+    expiresAt: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.agents.CreateInstructionRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Instructions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">get</a>(agentId, instructionId) -> BasisTheory.Instruction</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.get("agent_id", "instruction_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instructionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Instructions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">delete</a>(agentId, instructionId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.delete("agent_id", "instruction_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instructionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Instructions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">update</a>(agentId, instructionId, { ...params }) -> BasisTheory.Instruction</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.update("agent_id", "instruction_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instructionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.agents.UpdateInstructionRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Instructions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Agentic Agents Instructions Credentials
+<details><summary><code>client.agentic.agents.instructions.credentials.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/resources/credentials/client/Client.ts">create</a>(agentId, instructionId, { ...params }) -> BasisTheory.Credentials</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve payment credentials (card number, expiration, CVC) for a purchase instruction.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id", {
+    merchant: {
+        name: "name",
+        url: "url",
+        countryCode: "country_code"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instructionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.agents.instructions.GetCredentialsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Credentials.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Agentic Agents Instructions Verify
+<details><summary><code>client.agentic.agents.instructions.verify.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/resources/verify/client/Client.ts">start</a>(agentId, instructionId, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Initiate cardholder verification for a purchase instruction that requires it.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.verify.start("agent_id", "instruction_id", {
+    deviceContext: {
+        screenHeight: 1,
+        screenWidth: 1,
+        userAgentString: "user_agent_string",
+        languageCode: "language_code",
+        timeZone: "time_zone",
+        javaScriptEnabled: true,
+        clientDeviceId: "client_device_id",
+        clientReferenceId: "client_reference_id",
+        platformType: "WEB"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instructionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.StartVerificationRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Verify.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.agents.instructions.verify.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/resources/verify/client/Client.ts">passkey</a>(agentId, instructionId, { ...params }) -> BasisTheory.Instruction</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Submit passkey/FIDO assertion data to complete instruction verification.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.agents.instructions.verify.passkey("agent_id", "instruction_id", {
+    assuranceData: {
+        "key": "value"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instructionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.agents.instructions.SubmitPasskeyRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Verify.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Agentic Enrollments Verify
+<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">start</a>(enrollmentId, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Initiates the cardholder verification flow for a pending enrollment.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.verify.start("enrollment_id", {
+    deviceContext: {
+        screenHeight: 1,
+        screenWidth: 1,
+        userAgentString: "user_agent_string",
+        languageCode: "language_code",
+        timeZone: "time_zone",
+        javaScriptEnabled: true,
+        clientDeviceId: "client_device_id",
+        clientReferenceId: "client_reference_id",
+        platformType: "WEB"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enrollmentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.StartVerificationRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Verify.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">method</a>(enrollmentId, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Choose the OTP delivery method (SMS, email, etc.) for enrollment verification.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.verify.method("enrollment_id", {
+    methodId: "method_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enrollmentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.enrollments.SelectMethodRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Verify.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">otp</a>(enrollmentId, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Submit the one-time password received by the cardholder.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.verify.otp("enrollment_id", {
+    otpCode: "otp_code"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enrollmentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.enrollments.SubmitOtpRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Verify.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">complete</a>(enrollmentId, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Complete the verification flow (e.g. after passkey creation). Body is optional — Visa sends empty body, Mastercard sends assurance_data.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentic.enrollments.verify.complete("enrollment_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enrollmentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.agentic.enrollments.CompleteVerificationRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Verify.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## ApplePay Merchant
-<details><summary><code>client.applePay.merchant.<a href="/src/api/resources/applePay/resources/merchant/client/Client.ts">get</a>(id) -> BasisTheory.ApplePayToken</code></summary>
+<details><summary><code>client.applePay.merchant.<a href="/src/api/resources/applePay/resources/merchant/client/Client.ts">get</a>(id) -> BasisTheory.ApplePayMerchant</code></summary>
 <dl>
 <dd>
 
@@ -4296,6 +5775,181 @@ await client.applePay.session.create();
 </dl>
 </details>
 
+## ApplePay Merchant Certificates
+<details><summary><code>client.applePay.merchant.certificates.<a href="/src/api/resources/applePay/resources/merchant/resources/certificates/client/Client.ts">get</a>(merchantId, id) -> BasisTheory.ApplePayMerchantCertificates</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applePay.merchant.certificates.get("merchantId", "id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Certificates.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applePay.merchant.certificates.<a href="/src/api/resources/applePay/resources/merchant/resources/certificates/client/Client.ts">delete</a>(merchantId, id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applePay.merchant.certificates.delete("merchantId", "id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Certificates.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applePay.merchant.certificates.<a href="/src/api/resources/applePay/resources/merchant/resources/certificates/client/Client.ts">create</a>(merchantId, { ...params }) -> BasisTheory.ApplePayMerchantCertificates</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applePay.merchant.certificates.create("merchantId", {
+    paymentProcessorCertificateData: "payment_processor_certificate_data",
+    paymentProcessorCertificatePassword: "payment_processor_certificate_password"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.applePay.merchant.ApplePayMerchantCertificatesRegisterRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Certificates.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Documents Data
 <details><summary><code>client.documents.data.<a href="/src/api/resources/documents/resources/data/client/Client.ts">get</a>(documentId) -> core.BinaryResponse</code></summary>
 <dl>
@@ -4335,6 +5989,326 @@ await client.documents.data.get("documentId");
 <dd>
 
 **requestOptions:** `Data.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## GooglePay Merchant
+<details><summary><code>client.googlePay.merchant.<a href="/src/api/resources/googlePay/resources/merchant/client/Client.ts">get</a>(id) -> BasisTheory.GooglePayMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.merchant.get("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchant.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.googlePay.merchant.<a href="/src/api/resources/googlePay/resources/merchant/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.merchant.delete("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchant.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.googlePay.merchant.<a href="/src/api/resources/googlePay/resources/merchant/client/Client.ts">create</a>({ ...params }) -> BasisTheory.GooglePayMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.merchant.create();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.googlePay.GooglePayMerchantRegisterRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchant.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## GooglePay Merchant Certificates
+<details><summary><code>client.googlePay.merchant.certificates.<a href="/src/api/resources/googlePay/resources/merchant/resources/certificates/client/Client.ts">get</a>(merchantId, id) -> BasisTheory.GooglePayMerchantCertificates</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.merchant.certificates.get("merchantId", "id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Certificates.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.googlePay.merchant.certificates.<a href="/src/api/resources/googlePay/resources/merchant/resources/certificates/client/Client.ts">delete</a>(merchantId, id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.merchant.certificates.delete("merchantId", "id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Certificates.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.googlePay.merchant.certificates.<a href="/src/api/resources/googlePay/resources/merchant/resources/certificates/client/Client.ts">create</a>(merchantId, { ...params }) -> BasisTheory.GooglePayMerchantCertificates</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.googlePay.merchant.certificates.create("merchantId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.googlePay.merchant.GooglePayMerchantCertificatesRegisterRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Certificates.RequestOptions` 
     
 </dd>
 </dl>
@@ -4393,6 +6367,99 @@ await client.reactors.results.get("id", "requestId");
 <dd>
 
 **requestOptions:** `Results.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Tenants SecurityContact
+<details><summary><code>client.tenants.securityContact.<a href="/src/api/resources/tenants/resources/securityContact/client/Client.ts">get</a>() -> BasisTheory.SecurityContactEmailResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.securityContact.get();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `SecurityContact.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.securityContact.<a href="/src/api/resources/tenants/resources/securityContact/client/Client.ts">update</a>({ ...params }) -> BasisTheory.SecurityContactEmailResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.securityContact.update({
+    email: "email"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.tenants.SecurityContactEmailRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SecurityContact.RequestOptions` 
     
 </dd>
 </dl>
@@ -4499,7 +6566,7 @@ await client.tenants.connections.delete();
 </details>
 
 ## Tenants Invitations
-<details><summary><code>client.tenants.invitations.<a href="/src/api/resources/tenants/resources/invitations/client/Client.ts">list</a>({ ...params }) -> core.Page<BasisTheory.TenantInvitationResponse></code></summary>
+<details><summary><code>client.tenants.invitations.<a href="/src/api/resources/tenants/resources/invitations/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.TenantInvitationResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4902,6 +6969,380 @@ await client.tenants.members.delete("memberId");
 <dd>
 
 **requestOptions:** `Members.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Tenants Merchants
+<details><summary><code>client.tenants.merchants.<a href="/src/api/resources/tenants/resources/merchants/client/Client.ts">list</a>(tenantId, { ...params }) -> core.Page&lt;BasisTheory.TenantMerchant&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.tenants.merchants.list("tenantId");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.tenants.merchants.list("tenantId");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.tenants.MerchantsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchants.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.merchants.<a href="/src/api/resources/tenants/resources/merchants/client/Client.ts">create</a>(tenantId, { ...params }) -> BasisTheory.TenantMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.merchants.create("tenantId", {
+    name: "name",
+    details: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.TenantMerchantRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchants.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.merchants.<a href="/src/api/resources/tenants/resources/merchants/client/Client.ts">get</a>(tenantId, merchantId) -> BasisTheory.TenantMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.merchants.get("tenantId", "merchantId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchants.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.merchants.<a href="/src/api/resources/tenants/resources/merchants/client/Client.ts">delete</a>(tenantId, merchantId) -> BasisTheory.TenantMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.merchants.delete("tenantId", "merchantId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchants.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.merchants.<a href="/src/api/resources/tenants/resources/merchants/client/Client.ts">update</a>(tenantId, merchantId, { ...params }) -> BasisTheory.TenantMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.merchants.update("tenantId", "merchantId", {
+    name: "name",
+    details: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.TenantMerchantRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchants.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.merchants.<a href="/src/api/resources/tenants/resources/merchants/client/Client.ts">requestOnboarding</a>(tenantId, merchantId, { ...params }) -> BasisTheory.TenantMerchant</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.merchants.requestOnboarding("tenantId", "merchantId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**merchantId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.tenants.ServiceOnboardingRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Merchants.RequestOptions` 
     
 </dd>
 </dl>

@@ -11,11 +11,16 @@ export const ApplePayCreateRequest: core.serialization.Schema<
 > = core.serialization.object({
     expiresAt: core.serialization.property("expires_at", core.serialization.string().optional()),
     applePaymentData: core.serialization.property("apple_payment_data", ApplePayMethodToken.optional()),
+    merchantRegistrationId: core.serialization.property(
+        "merchant_registration_id",
+        core.serialization.string().optional(),
+    ),
 });
 
 export declare namespace ApplePayCreateRequest {
     export interface Raw {
         expires_at?: string | null;
         apple_payment_data?: ApplePayMethodToken.Raw | null;
+        merchant_registration_id?: string | null;
     }
 }

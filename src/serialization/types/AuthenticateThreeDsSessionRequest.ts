@@ -34,6 +34,7 @@ export const AuthenticateThreeDsSessionRequest: core.serialization.ObjectSchema<
         "message_extensions",
         core.serialization.list(ThreeDsMessageExtension).optional(),
     ),
+    metadata: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
 });
 
 export declare namespace AuthenticateThreeDsSessionRequest {
@@ -50,5 +51,6 @@ export declare namespace AuthenticateThreeDsSessionRequest {
         cardholder_info?: ThreeDsCardholderInfo.Raw | null;
         broadcast_info?: unknown | null;
         message_extensions?: ThreeDsMessageExtension.Raw[] | null;
+        metadata?: Record<string, string | null | undefined> | null;
     }
 }

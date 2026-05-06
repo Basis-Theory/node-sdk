@@ -11,34 +11,10 @@ describe("Merchant", () => {
 
         const rawResponseBody = {
             id: "id",
-            type: "type",
             tenant_id: "tenant_id",
-            status: "status",
-            expires_at: "2024-01-15T09:30:00Z",
+            merchant_identifier: "merchant_identifier",
             created_by: "created_by",
             created_at: "2024-01-15T09:30:00Z",
-            modified_by: "modified_by",
-            modified_at: "2024-01-15T09:30:00Z",
-            card: {
-                bin: "bin",
-                last4: "last4",
-                expiration_month: 1,
-                expiration_year: 1,
-                brand: "brand",
-                funding: "funding",
-                authentication: "authentication",
-                issuer: { country: "country", name: "name" },
-                issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
-                segment: "segment",
-                additional: [{}],
-            },
-            data: { key: "value" },
-            authentication: {
-                threeds_cryptogram: "threeds_cryptogram",
-                eci_indicator: "eci_indicator",
-                authentication_responses: [{}],
-            },
-            fingerprint: "fingerprint",
         };
         server
             .mockEndpoint()
@@ -51,43 +27,10 @@ describe("Merchant", () => {
         const response = await client.applePay.merchant.get("id");
         expect(response).toEqual({
             id: "id",
-            type: "type",
             tenantId: "tenant_id",
-            status: "status",
-            expiresAt: new Date("2024-01-15T09:30:00.000Z"),
+            merchantIdentifier: "merchant_identifier",
             createdBy: "created_by",
             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-            modifiedBy: "modified_by",
-            modifiedAt: new Date("2024-01-15T09:30:00.000Z"),
-            card: {
-                bin: "bin",
-                last4: "last4",
-                expirationMonth: 1,
-                expirationYear: 1,
-                brand: "brand",
-                funding: "funding",
-                authentication: "authentication",
-                issuer: {
-                    country: "country",
-                    name: "name",
-                },
-                issuerCountry: {
-                    alpha2: "alpha2",
-                    name: "name",
-                    numeric: "numeric",
-                },
-                segment: "segment",
-                additional: [{}],
-            },
-            data: {
-                key: "value",
-            },
-            authentication: {
-                threedsCryptogram: "threeds_cryptogram",
-                eciIndicator: "eci_indicator",
-                authenticationResponses: [{}],
-            },
-            fingerprint: "fingerprint",
         });
     });
 

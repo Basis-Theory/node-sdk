@@ -11,6 +11,10 @@ export const ApplePaySessionRequest: core.serialization.Schema<
     validationUrl: core.serialization.property("validation_url", core.serialization.string().optional()),
     displayName: core.serialization.property("display_name", core.serialization.string().optional()),
     domain: core.serialization.string().optional(),
+    merchantRegistrationId: core.serialization.property(
+        "merchant_registration_id",
+        core.serialization.string().optional(),
+    ),
 });
 
 export declare namespace ApplePaySessionRequest {
@@ -18,5 +22,6 @@ export declare namespace ApplePaySessionRequest {
         validation_url?: string | null;
         display_name?: string | null;
         domain?: string | null;
+        merchant_registration_id?: string | null;
     }
 }

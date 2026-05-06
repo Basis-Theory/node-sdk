@@ -11,11 +11,16 @@ export const GooglePayCreateRequest: core.serialization.Schema<
 > = core.serialization.object({
     expiresAt: core.serialization.property("expires_at", core.serialization.string().optional()),
     googlePaymentData: core.serialization.property("google_payment_data", GooglePayMethodToken.optional()),
+    merchantRegistrationId: core.serialization.property(
+        "merchant_registration_id",
+        core.serialization.string().optional(),
+    ),
 });
 
 export declare namespace GooglePayCreateRequest {
     export interface Raw {
         expires_at?: string | null;
         google_payment_data?: GooglePayMethodToken.Raw | null;
+        merchant_registration_id?: string | null;
     }
 }

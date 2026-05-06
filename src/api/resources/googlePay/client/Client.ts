@@ -7,6 +7,7 @@ import * as environments from "../../../../environments.js";
 import * as errors from "../../../../errors/index.js";
 import * as serializers from "../../../../serialization/index.js";
 import * as BasisTheory from "../../../index.js";
+import { Merchant } from "../resources/merchant/client/Client.js";
 
 export declare namespace GooglePay {
     export interface Options extends BaseClientOptions {}
@@ -16,9 +17,14 @@ export declare namespace GooglePay {
 
 export class GooglePay {
     protected readonly _options: GooglePay.Options;
+    protected _merchant: Merchant | undefined;
 
     constructor(_options: GooglePay.Options = {}) {
         this._options = _options;
+    }
+
+    public get merchant(): Merchant {
+        return (this._merchant ??= new Merchant(this._options));
     }
 
     /**

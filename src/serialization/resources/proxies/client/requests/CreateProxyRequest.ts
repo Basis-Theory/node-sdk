@@ -29,6 +29,10 @@ export const CreateProxyRequest: core.serialization.Schema<
         .record(core.serialization.string(), core.serialization.string().optional())
         .optional(),
     requireAuth: core.serialization.property("require_auth", core.serialization.boolean().optional()),
+    disableDetokenization: core.serialization.property(
+        "disable_detokenization",
+        core.serialization.boolean().optional(),
+    ),
 });
 
 export declare namespace CreateProxyRequest {
@@ -44,5 +48,6 @@ export declare namespace CreateProxyRequest {
         application?: Application.Raw | null;
         configuration?: Record<string, string | null | undefined> | null;
         require_auth?: boolean | null;
+        disable_detokenization?: boolean | null;
     }
 }

@@ -21,4 +21,5 @@ export interface UpdateProxyRequest {
     application?: BasisTheory.Application;
     configuration?: Record<string, string | undefined>;
     requireAuth?: boolean;
+    disableDetokenization?: boolean;
 }
