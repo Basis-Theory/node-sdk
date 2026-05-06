@@ -18,11 +18,11 @@ export const ApplePayMerchantCertificatesRegisterRequest: core.serialization.Sch
     ),
     paymentProcessorCertificateData: core.serialization.property(
         "payment_processor_certificate_data",
-        core.serialization.string().optional(),
+        core.serialization.string(),
     ),
     paymentProcessorCertificatePassword: core.serialization.property(
         "payment_processor_certificate_password",
-        core.serialization.string().optional(),
+        core.serialization.string(),
     ),
     domain: core.serialization.string().optional(),
 });
@@ -31,8 +31,8 @@ export declare namespace ApplePayMerchantCertificatesRegisterRequest {
     export interface Raw {
         merchant_certificate_data?: string | null;
         merchant_certificate_password?: string | null;
-        payment_processor_certificate_data?: string | null;
-        payment_processor_certificate_password?: string | null;
+        payment_processor_certificate_data: string;
+        payment_processor_certificate_password: string;
         domain?: string | null;
     }
 }

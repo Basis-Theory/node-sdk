@@ -7,8 +7,8 @@ import type * as serializers from "../index.js";
 export const CreateAccountUpdaterJobRequestResultVersion: core.serialization.Schema<
     serializers.CreateAccountUpdaterJobRequestResultVersion.Raw,
     BasisTheory.CreateAccountUpdaterJobRequestResultVersion
-> = core.serialization.enum_(["1", "1.1"]);
+> = core.serialization.enum_(["1", "1.1", "1.2"]);
 
 export declare namespace CreateAccountUpdaterJobRequestResultVersion {
-    export type Raw = "1" | "1.1";
+    export type Raw = "1" | "1.1" | "1.2";
 }
