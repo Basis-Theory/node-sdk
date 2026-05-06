@@ -10,6 +10,9 @@ export const Runtime: core.serialization.ObjectSchema<serializers.Runtime.Raw, B
         dependencies: core.serialization
             .record(core.serialization.string(), core.serialization.string().optional())
             .optional(),
+        resolutions: core.serialization
+            .record(core.serialization.string(), core.serialization.string().optional())
+            .optional(),
         warmConcurrency: core.serialization.property("warm_concurrency", core.serialization.number().optional()),
         timeout: core.serialization.number().optional(),
         resources: core.serialization.string().optional(),
@@ -20,6 +23,7 @@ export declare namespace Runtime {
     export interface Raw {
         image?: string | null;
         dependencies?: Record<string, string | null | undefined> | null;
+        resolutions?: Record<string, string | null | undefined> | null;
         warm_concurrency?: number | null;
         timeout?: number | null;
         resources?: string | null;

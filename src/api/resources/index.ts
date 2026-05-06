@@ -1,4 +1,5 @@
 export * as accountUpdater from "./accountUpdater/index.js";
+export * as agentic from "./agentic/index.js";
 export * from "./applePay/client/requests/index.js";
 export * as applePay from "./applePay/index.js";
 export * from "./applicationKeys/client/requests/index.js";
@@ -27,6 +28,7 @@ export * as reactors from "./reactors/index.js";
 export * as roles from "./roles/index.js";
 export * from "./sessions/client/requests/index.js";
 export * as sessions from "./sessions/index.js";
+export * from "./tenants/client/requests/index.js";
 export * as tenants from "./tenants/index.js";
 export * as threeds from "./threeds/index.js";
 export * from "./tokenIntents/client/requests/index.js";

@@ -15,4 +15,5 @@ export interface AuthenticateThreeDsSessionRequest {
     cardholderInfo?: BasisTheory.ThreeDsCardholderInfo;
     broadcastInfo?: unknown;
     messageExtensions?: BasisTheory.ThreeDsMessageExtension[];
+    metadata?: Record<string, string | undefined>;
 }

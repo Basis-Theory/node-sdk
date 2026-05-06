@@ -19,6 +19,7 @@ export const AccountUpdaterJob: core.serialization.ObjectSchema<
     errors: core.serialization.list(core.serialization.string()).optional(),
     requests: core.serialization.number().optional(),
     results: core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
+    downloadUrl: core.serialization.string().optional(),
 });
 
 export declare namespace AccountUpdaterJob {
@@ -33,5 +34,6 @@ export declare namespace AccountUpdaterJob {
         errors?: string[] | null;
         requests?: number | null;
         results?: Record<string, number> | null;
+        downloadUrl?: string | null;
     }
 }

@@ -9,6 +9,8 @@
 scripts/build.sh
 scripts/release.sh
 
+tests/integration/**/*.ts
+tests/integration/agentic.test.ts
 tests/integration/canary.test.ts
 
 .gitignore

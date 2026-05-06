@@ -139,6 +139,7 @@ describe("Reactors", () => {
             runtime: {
                 image: "image",
                 dependencies: { key: "value" },
+                resolutions: { key: "value" },
                 warm_concurrency: 1,
                 timeout: 1,
                 resources: "resources",
@@ -208,6 +209,9 @@ describe("Reactors", () => {
             runtime: {
                 image: "image",
                 dependencies: {
+                    key: "value",
+                },
+                resolutions: {
                     key: "value",
                 },
                 warmConcurrency: 1,

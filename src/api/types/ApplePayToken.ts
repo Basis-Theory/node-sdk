@@ -12,6 +12,9 @@ export interface ApplePayToken {
     createdAt?: Date;
     modifiedBy?: string;
     modifiedAt?: Date;
+    transactionId?: string;
+    paymentDataType?: string;
+    deviceManufacturerIdentifier?: string;
     card?: BasisTheory.CardDetails;
     data?: unknown;
     authentication?: BasisTheory.Authentication;
