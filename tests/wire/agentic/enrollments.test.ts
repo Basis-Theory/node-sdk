@@ -14,6 +14,7 @@ describe("Enrollments", () => {
             data: [
                 {
                     id: "enr_abc123",
+                    token_id: "token_id",
                     provider: "visa",
                     status: "pending_verification",
                     agent_ids: ["agent_ids"],
@@ -37,6 +38,7 @@ describe("Enrollments", () => {
             data: [
                 {
                     id: "enr_abc123",
+                    tokenId: "token_id",
                     provider: "visa",
                     status: "pending_verification",
                     agentIds: ["agent_ids"],
@@ -112,6 +114,7 @@ describe("Enrollments", () => {
         const rawRequestBody = { token_id: "token_id", consumer: { email: "email" } };
         const rawResponseBody = {
             id: "enr_abc123",
+            token_id: "token_id",
             provider: "visa",
             status: "pending_verification",
             card: {
@@ -120,6 +123,11 @@ describe("Enrollments", () => {
                 last4: "last4",
                 expiration_month: 1,
                 expiration_year: 1,
+                funding: "funding",
+                issuer: { name: "name", country: "country" },
+                issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
+                segment: "segment",
+                type: "type",
                 display: { art_url: "art_url", background_color: "background_color" },
             },
             agent_ids: ["agent_ids"],
@@ -142,6 +150,7 @@ describe("Enrollments", () => {
         });
         expect(response).toEqual({
             id: "enr_abc123",
+            tokenId: "token_id",
             provider: "visa",
             status: "pending_verification",
             card: {
@@ -150,6 +159,18 @@ describe("Enrollments", () => {
                 last4: "last4",
                 expirationMonth: 1,
                 expirationYear: 1,
+                funding: "funding",
+                issuer: {
+                    name: "name",
+                    country: "country",
+                },
+                issuerCountry: {
+                    alpha2: "alpha2",
+                    name: "name",
+                    numeric: "numeric",
+                },
+                segment: "segment",
+                type: "type",
                 display: {
                     artUrl: "art_url",
                     backgroundColor: "background_color",
@@ -286,6 +307,7 @@ describe("Enrollments", () => {
 
         const rawResponseBody = {
             id: "enr_abc123",
+            token_id: "token_id",
             provider: "visa",
             status: "pending_verification",
             card: {
@@ -294,6 +316,11 @@ describe("Enrollments", () => {
                 last4: "last4",
                 expiration_month: 1,
                 expiration_year: 1,
+                funding: "funding",
+                issuer: { name: "name", country: "country" },
+                issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
+                segment: "segment",
+                type: "type",
                 display: { art_url: "art_url", background_color: "background_color" },
             },
             agent_ids: ["agent_ids"],
@@ -310,6 +337,7 @@ describe("Enrollments", () => {
         const response = await client.agentic.enrollments.get("enrollment_id");
         expect(response).toEqual({
             id: "enr_abc123",
+            tokenId: "token_id",
             provider: "visa",
             status: "pending_verification",
             card: {
@@ -318,6 +346,18 @@ describe("Enrollments", () => {
                 last4: "last4",
                 expirationMonth: 1,
                 expirationYear: 1,
+                funding: "funding",
+                issuer: {
+                    name: "name",
+                    country: "country",
+                },
+                issuerCountry: {
+                    alpha2: "alpha2",
+                    name: "name",
+                    numeric: "numeric",
+                },
+                segment: "segment",
+                type: "type",
                 display: {
                     artUrl: "art_url",
                     backgroundColor: "background_color",
@@ -488,6 +528,7 @@ describe("Enrollments", () => {
 
         const rawResponseBody = {
             id: "enr_abc123",
+            token_id: "token_id",
             provider: "visa",
             status: "pending_verification",
             card: {
@@ -496,6 +537,11 @@ describe("Enrollments", () => {
                 last4: "last4",
                 expiration_month: 1,
                 expiration_year: 1,
+                funding: "funding",
+                issuer: { name: "name", country: "country" },
+                issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
+                segment: "segment",
+                type: "type",
                 display: { art_url: "art_url", background_color: "background_color" },
             },
             agent_ids: ["agent_ids"],
@@ -512,6 +558,7 @@ describe("Enrollments", () => {
         const response = await client.agentic.enrollments.retry("enrollment_id");
         expect(response).toEqual({
             id: "enr_abc123",
+            tokenId: "token_id",
             provider: "visa",
             status: "pending_verification",
             card: {
@@ -520,6 +567,18 @@ describe("Enrollments", () => {
                 last4: "last4",
                 expirationMonth: 1,
                 expirationYear: 1,
+                funding: "funding",
+                issuer: {
+                    name: "name",
+                    country: "country",
+                },
+                issuerCountry: {
+                    alpha2: "alpha2",
+                    name: "name",
+                    numeric: "numeric",
+                },
+                segment: "segment",
+                type: "type",
                 display: {
                     artUrl: "art_url",
                     backgroundColor: "background_color",
