@@ -3840,7 +3840,7 @@ await client.accountUpdater.jobs.list();
 </dl>
 </details>
 
-<details><summary><code>client.accountUpdater.jobs.<a href="/src/api/resources/accountUpdater/resources/jobs/client/Client.ts">create</a>() -> BasisTheory.AccountUpdaterJob</code></summary>
+<details><summary><code>client.accountUpdater.jobs.<a href="/src/api/resources/accountUpdater/resources/jobs/client/Client.ts">create</a>({ ...params }) -> BasisTheory.AccountUpdaterJob</code></summary>
 <dl>
 <dd>
 
@@ -3879,6 +3879,14 @@ await client.accountUpdater.jobs.create();
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.accountUpdater.CreateAccountUpdaterJobRequest` 
+    
+</dd>
+</dl>
 
 <dl>
 <dd>

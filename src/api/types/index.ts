@@ -54,8 +54,6 @@ export * from "./ClientEncryptionKeyResponse.js";
 export * from "./Condition.js";
 export * from "./ConfirmationEntry.js";
 export * from "./Consumer.js";
-export * from "./CreateAccountUpdaterJobRequest.js";
-export * from "./CreateAccountUpdaterJobRequestResultVersion.js";
 export * from "./CreateDocumentRequest.js";
 export * from "./CreateReactorFormulaRequest.js";
 export * from "./CreateSessionResponse.js";
