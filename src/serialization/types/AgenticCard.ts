@@ -9,21 +9,19 @@ import { AgenticCardIssuerCountry } from "./AgenticCardIssuerCountry.js";
 import { CardDisplay } from "./CardDisplay.js";
 
 export const AgenticCard: core.serialization.ObjectSchema<serializers.AgenticCard.Raw, BasisTheory.AgenticCard> =
-    core.serialization
-        .object({
-            brand: AgenticCardBrand.optional(),
-            bin: core.serialization.string().optional(),
-            last4: core.serialization.string().optional(),
-            expirationMonth: core.serialization.property("expiration_month", core.serialization.number().optional()),
-            expirationYear: core.serialization.property("expiration_year", core.serialization.number().optional()),
-            funding: core.serialization.string().optional(),
-            issuer: AgenticCardIssuer.optional(),
-            issuerCountry: core.serialization.property("issuer_country", AgenticCardIssuerCountry.optional()),
-            segment: core.serialization.string().optional(),
-            type: core.serialization.string().optional(),
-            display: CardDisplay.optional(),
-        })
-        .passthrough();
+    core.serialization.object({
+        brand: AgenticCardBrand.optional(),
+        bin: core.serialization.string().optional(),
+        last4: core.serialization.string().optional(),
+        expirationMonth: core.serialization.property("expiration_month", core.serialization.number().optional()),
+        expirationYear: core.serialization.property("expiration_year", core.serialization.number().optional()),
+        funding: core.serialization.string().optional(),
+        issuer: AgenticCardIssuer.optional(),
+        issuerCountry: core.serialization.property("issuer_country", AgenticCardIssuerCountry.optional()),
+        segment: core.serialization.string().optional(),
+        type: core.serialization.string().optional(),
+        display: CardDisplay.optional(),
+    });
 
 export declare namespace AgenticCard {
     export interface Raw {
@@ -38,6 +36,5 @@ export declare namespace AgenticCard {
         segment?: string | null;
         type?: string | null;
         display?: CardDisplay.Raw | null;
-        [key: string]: any;
     }
 }

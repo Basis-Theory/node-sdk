@@ -6,6 +6,7 @@ import type * as serializers from "../index.js";
 import { VerificationResponseBrand } from "./VerificationResponseBrand.js";
 import { VerificationResponseMethodsItem } from "./VerificationResponseMethodsItem.js";
 import { VerificationResponsePasskeyContext } from "./VerificationResponsePasskeyContext.js";
+import { VerificationResponseRedirect } from "./VerificationResponseRedirect.js";
 import { VerificationResponseStatus } from "./VerificationResponseStatus.js";
 
 export const VerificationResponse: core.serialization.ObjectSchema<
@@ -13,6 +14,7 @@ export const VerificationResponse: core.serialization.ObjectSchema<
     BasisTheory.VerificationResponse
 > = core.serialization.object({
     status: VerificationResponseStatus.optional(),
+    redirect: VerificationResponseRedirect.optional(),
     methods: core.serialization.list(VerificationResponseMethodsItem).optional(),
     passkeyContext: core.serialization.property("passkey_context", VerificationResponsePasskeyContext.optional()),
     brand: VerificationResponseBrand.optional(),
@@ -25,6 +27,7 @@ export const VerificationResponse: core.serialization.ObjectSchema<
 export declare namespace VerificationResponse {
     export interface Raw {
         status?: VerificationResponseStatus.Raw | null;
+        redirect?: VerificationResponseRedirect.Raw | null;
         methods?: VerificationResponseMethodsItem.Raw[] | null;
         passkey_context?: VerificationResponsePasskeyContext.Raw | null;
         brand?: VerificationResponseBrand.Raw | null;

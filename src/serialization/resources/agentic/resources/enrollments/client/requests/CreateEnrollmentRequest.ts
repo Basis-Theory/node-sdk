@@ -4,6 +4,7 @@ import type * as BasisTheory from "../../../../../../../api/index.js";
 import * as core from "../../../../../../../core/index.js";
 import type * as serializers from "../../../../../../index.js";
 import { Consumer } from "../../../../../../types/Consumer.js";
+import { CreateEnrollmentRequestType } from "../../types/CreateEnrollmentRequestType.js";
 
 export const CreateEnrollmentRequest: core.serialization.Schema<
     serializers.agentic.CreateEnrollmentRequest.Raw,
@@ -13,6 +14,8 @@ export const CreateEnrollmentRequest: core.serialization.Schema<
     consumer: Consumer,
     agentId: core.serialization.property("agent_id", core.serialization.string().optional()),
     agentIds: core.serialization.property("agent_ids", core.serialization.list(core.serialization.string()).optional()),
+    walletName: core.serialization.property("wallet_name", core.serialization.string().optional()),
+    type: CreateEnrollmentRequestType.optional(),
 });
 
 export declare namespace CreateEnrollmentRequest {
@@ -21,5 +24,7 @@ export declare namespace CreateEnrollmentRequest {
         consumer: Consumer.Raw;
         agent_id?: string | null;
         agent_ids?: string[] | null;
+        wallet_name?: string | null;
+        type?: CreateEnrollmentRequestType.Raw | null;
     }
 }

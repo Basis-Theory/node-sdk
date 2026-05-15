@@ -18,6 +18,8 @@ describe("Enrollments", () => {
                     provider: "visa",
                     status: "pending_verification",
                     agent_ids: ["agent_ids"],
+                    wallet_name: "wallet_name",
+                    type: "agentic",
                     created_at: "2024-01-15T09:30:00Z",
                 },
             ],
@@ -42,6 +44,8 @@ describe("Enrollments", () => {
                     provider: "visa",
                     status: "pending_verification",
                     agentIds: ["agent_ids"],
+                    walletName: "wallet_name",
+                    type: "agentic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
             ],
@@ -131,6 +135,8 @@ describe("Enrollments", () => {
                 display: { art_url: "art_url", background_color: "background_color" },
             },
             agent_ids: ["agent_ids"],
+            wallet_name: "wallet_name",
+            type: "agentic",
             created_at: "2024-01-15T09:30:00Z",
         };
         server
@@ -158,9 +164,7 @@ describe("Enrollments", () => {
                 bin: "bin",
                 last4: "last4",
                 expirationMonth: 1,
-                expiration_month: 1,
                 expirationYear: 1,
-                expiration_year: 1,
                 funding: "funding",
                 issuer: {
                     name: "name",
@@ -171,7 +175,6 @@ describe("Enrollments", () => {
                     name: "name",
                     numeric: "numeric",
                 },
-                issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
                 segment: "segment",
                 type: "type",
                 display: {
@@ -180,6 +183,8 @@ describe("Enrollments", () => {
                 },
             },
             agentIds: ["agent_ids"],
+            walletName: "wallet_name",
+            type: "agentic",
             createdAt: new Date("2024-01-15T09:30:00.000Z"),
         });
     });
@@ -317,19 +322,18 @@ describe("Enrollments", () => {
                 brand: "visa",
                 bin: "bin",
                 last4: "last4",
-                expirationMonth: 1,
                 expiration_month: 1,
-                expirationYear: 1,
                 expiration_year: 1,
                 funding: "funding",
                 issuer: { name: "name", country: "country" },
-                issuerCountry: { alpha2: "alpha2", name: "name", numeric: "numeric" },
                 issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
                 segment: "segment",
                 type: "type",
                 display: { art_url: "art_url", background_color: "background_color" },
             },
             agent_ids: ["agent_ids"],
+            wallet_name: "wallet_name",
+            type: "agentic",
             created_at: "2024-01-15T09:30:00Z",
         };
         server
@@ -351,13 +355,17 @@ describe("Enrollments", () => {
                 bin: "bin",
                 last4: "last4",
                 expirationMonth: 1,
-                expiration_month: 1,
                 expirationYear: 1,
-                expiration_year: 1,
                 funding: "funding",
-                issuer: { name: "name", country: "country" },
-                issuerCountry: { alpha2: "alpha2", name: "name", numeric: "numeric" },
-                issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
+                issuer: {
+                    name: "name",
+                    country: "country",
+                },
+                issuerCountry: {
+                    alpha2: "alpha2",
+                    name: "name",
+                    numeric: "numeric",
+                },
                 segment: "segment",
                 type: "type",
                 display: {
@@ -366,6 +374,8 @@ describe("Enrollments", () => {
                 },
             },
             agentIds: ["agent_ids"],
+            walletName: "wallet_name",
+            type: "agentic",
             createdAt: new Date("2024-01-15T09:30:00.000Z"),
         });
     });
@@ -547,6 +557,8 @@ describe("Enrollments", () => {
                 display: { art_url: "art_url", background_color: "background_color" },
             },
             agent_ids: ["agent_ids"],
+            wallet_name: "wallet_name",
+            type: "agentic",
             created_at: "2024-01-15T09:30:00Z",
         };
         server
@@ -568,13 +580,17 @@ describe("Enrollments", () => {
                 bin: "bin",
                 last4: "last4",
                 expirationMonth: 1,
-                expiration_month: 1,
                 expirationYear: 1,
-                expiration_year: 1,
                 funding: "funding",
-                issuer: { name: "name", country: "country" },
-                issuerCountry: { alpha2: "alpha2", name: "name", numeric: "numeric" },
-                issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
+                issuer: {
+                    name: "name",
+                    country: "country",
+                },
+                issuerCountry: {
+                    alpha2: "alpha2",
+                    name: "name",
+                    numeric: "numeric",
+                },
                 segment: "segment",
                 type: "type",
                 display: {
@@ -583,6 +599,8 @@ describe("Enrollments", () => {
                 },
             },
             agentIds: ["agent_ids"],
+            walletName: "wallet_name",
+            type: "agentic",
             createdAt: new Date("2024-01-15T09:30:00.000Z"),
         });
     });

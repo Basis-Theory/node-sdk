@@ -7,8 +7,23 @@ import type * as serializers from "../index.js";
 export const VerificationResponseStatus: core.serialization.Schema<
     serializers.VerificationResponseStatus.Raw,
     BasisTheory.VerificationResponseStatus
-> = core.serialization.enum_(["approved", "challenge", "otp_sent", "device_bound", "passkey_required", "verified"]);
+> = core.serialization.enum_([
+    "approved",
+    "challenge",
+    "otp_sent",
+    "device_bound",
+    "passkey_required",
+    "redirect_required",
+    "verified",
+]);
 
 export declare namespace VerificationResponseStatus {
-    export type Raw = "approved" | "challenge" | "otp_sent" | "device_bound" | "passkey_required" | "verified";
+    export type Raw =
+        | "approved"
+        | "challenge"
+        | "otp_sent"
+        | "device_bound"
+        | "passkey_required"
+        | "redirect_required"
+        | "verified";
 }
