@@ -4,6 +4,8 @@ import type * as BasisTheory from "../index.js";
 
 export interface VerificationResponse {
     status?: BasisTheory.VerificationResponseStatus;
+    /** Present when status is redirect_required (Mastercard Managed Authentication). The cardholder must be redirected to `redirect.uri` to complete authentication; once they return via the hosted callback the SDK can call `/verify/complete` (enrollment) or `/verify/passkey` (instruction) to finalise. */
+    redirect?: BasisTheory.VerificationResponseRedirect;
     methods?: BasisTheory.VerificationResponseMethodsItem[];
     /** Visa passkey/FIDO context for device binding or authentication */
     passkeyContext?: BasisTheory.VerificationResponsePasskeyContext;

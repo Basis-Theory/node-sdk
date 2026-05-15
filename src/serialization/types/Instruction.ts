@@ -5,6 +5,7 @@ import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 import { Amount } from "./Amount.js";
 import { InstructionStatus } from "./InstructionStatus.js";
+import { InstructionType } from "./InstructionType.js";
 import { Recurring } from "./Recurring.js";
 
 export const Instruction: core.serialization.ObjectSchema<serializers.Instruction.Raw, BasisTheory.Instruction> =
@@ -12,6 +13,7 @@ export const Instruction: core.serialization.ObjectSchema<serializers.Instructio
         id: core.serialization.string().optional(),
         enrollmentId: core.serialization.property("enrollment_id", core.serialization.string().optional()),
         status: InstructionStatus.optional(),
+        type: InstructionType.optional(),
         amount: Amount.optional(),
         description: core.serialization.string().optional(),
         expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
@@ -24,6 +26,7 @@ export declare namespace Instruction {
         id?: string | null;
         enrollment_id?: string | null;
         status?: InstructionStatus.Raw | null;
+        type?: InstructionType.Raw | null;
         amount?: Amount.Raw | null;
         description?: string | null;
         expires_at?: string | null;

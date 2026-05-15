@@ -18,4 +18,12 @@ export interface CreateEnrollmentRequest {
     agentId?: string;
     /** Multiple agent IDs (mutually exclusive with agent_id) */
     agentIds?: string[];
+    /** Display label shown to the cardholder during Mastercard managed-authentication challenges. Defaults to "Agent Wallet" when not provided. */
+    walletName?: string;
+    /**
+     * Enrollment type. `agentic` (default) enrolls the card for agent-driven payments and requires verification.
+     * `autofill` enrolls the card for direct autofill credential retrieval, skips verification, and is currently
+     * available to test tenants only.
+     */
+    type?: BasisTheory.agentic.CreateEnrollmentRequestType;
 }
