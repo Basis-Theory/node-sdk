@@ -23,6 +23,7 @@ describe("Verify", () => {
         };
         const rawResponseBody = {
             status: "approved",
+            redirect: { uri: "uri", uri_type: "WEB_URI", expires_at: "2024-01-15T09:30:00Z" },
             methods: [{ id: "id", type: "type", value: "value" }],
             passkey_context: {
                 endpoint: "endpoint",
@@ -60,6 +61,11 @@ describe("Verify", () => {
         });
         expect(response).toEqual({
             status: "approved",
+            redirect: {
+                uri: "uri",
+                uriType: "WEB_URI",
+                expiresAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
             methods: [
                 {
                     id: "id",
@@ -396,6 +402,7 @@ describe("Verify", () => {
         const rawRequestBody = { method_id: "method_id" };
         const rawResponseBody = {
             status: "approved",
+            redirect: { uri: "uri", uri_type: "WEB_URI", expires_at: "2024-01-15T09:30:00Z" },
             methods: [{ id: "id", type: "type", value: "value" }],
             passkey_context: {
                 endpoint: "endpoint",
@@ -423,6 +430,11 @@ describe("Verify", () => {
         });
         expect(response).toEqual({
             status: "approved",
+            redirect: {
+                uri: "uri",
+                uriType: "WEB_URI",
+                expiresAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
             methods: [
                 {
                     id: "id",
@@ -584,6 +596,7 @@ describe("Verify", () => {
         const rawRequestBody = { otp_code: "otp_code" };
         const rawResponseBody = {
             status: "approved",
+            redirect: { uri: "uri", uri_type: "WEB_URI", expires_at: "2024-01-15T09:30:00Z" },
             methods: [{ id: "id", type: "type", value: "value" }],
             passkey_context: {
                 endpoint: "endpoint",
@@ -611,6 +624,11 @@ describe("Verify", () => {
         });
         expect(response).toEqual({
             status: "approved",
+            redirect: {
+                uri: "uri",
+                uriType: "WEB_URI",
+                expiresAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
             methods: [
                 {
                     id: "id",
@@ -772,6 +790,7 @@ describe("Verify", () => {
         const rawRequestBody = {};
         const rawResponseBody = {
             status: "approved",
+            redirect: { uri: "uri", uri_type: "WEB_URI", expires_at: "2024-01-15T09:30:00Z" },
             methods: [{ id: "id", type: "type", value: "value" }],
             passkey_context: {
                 endpoint: "endpoint",
@@ -797,6 +816,11 @@ describe("Verify", () => {
         const response = await client.agentic.enrollments.verify.complete("enrollment_id");
         expect(response).toEqual({
             status: "approved",
+            redirect: {
+                uri: "uri",
+                uriType: "WEB_URI",
+                expiresAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
             methods: [
                 {
                     id: "id",

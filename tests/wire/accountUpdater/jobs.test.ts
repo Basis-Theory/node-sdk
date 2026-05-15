@@ -201,7 +201,7 @@ describe("Jobs", () => {
     test("create (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-
+        const rawRequestBody = {};
         const rawResponseBody = {
             id: "7a70e388-9c78-4c1b-85dd-f2b4e7a823f6",
             tenantId: "064bbc70-204b-4ef1-a757-ec0878be5945",
@@ -218,6 +218,7 @@ describe("Jobs", () => {
         server
             .mockEndpoint()
             .post("/account-updater/jobs")
+            .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -246,11 +247,12 @@ describe("Jobs", () => {
     test("create (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-
+        const rawRequestBody = {};
         const rawResponseBody = {};
         server
             .mockEndpoint()
             .post("/account-updater/jobs")
+            .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(401)
             .jsonBody(rawResponseBody)
@@ -264,11 +266,12 @@ describe("Jobs", () => {
     test("create (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-
+        const rawRequestBody = {};
         const rawResponseBody = {};
         server
             .mockEndpoint()
             .post("/account-updater/jobs")
+            .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(403)
             .jsonBody(rawResponseBody)
@@ -282,11 +285,12 @@ describe("Jobs", () => {
     test("create (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-
+        const rawRequestBody = {};
         const rawResponseBody = {};
         server
             .mockEndpoint()
             .post("/account-updater/jobs")
+            .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(422)
             .jsonBody(rawResponseBody)

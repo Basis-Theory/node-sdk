@@ -6,6 +6,12 @@ export interface Instruction {
     id?: string;
     enrollmentId?: string;
     status?: BasisTheory.InstructionStatus;
+    /**
+     * Inherited from the parent enrollment. `agentic` instructions require cardholder
+     * verification before credentials can be retrieved; `autofill` instructions are
+     * auto-approved on creation and credentials can be retrieved immediately.
+     */
+    type?: BasisTheory.InstructionType;
     amount?: BasisTheory.Amount;
     description?: string;
     expiresAt?: Date;

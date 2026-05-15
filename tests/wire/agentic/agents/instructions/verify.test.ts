@@ -23,6 +23,7 @@ describe("Verify", () => {
         };
         const rawResponseBody = {
             status: "approved",
+            redirect: { uri: "uri", uri_type: "WEB_URI", expires_at: "2024-01-15T09:30:00Z" },
             methods: [{ id: "id", type: "type", value: "value" }],
             passkey_context: {
                 endpoint: "endpoint",
@@ -60,6 +61,11 @@ describe("Verify", () => {
         });
         expect(response).toEqual({
             status: "approved",
+            redirect: {
+                uri: "uri",
+                uriType: "WEB_URI",
+                expiresAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
             methods: [
                 {
                     id: "id",
@@ -355,6 +361,7 @@ describe("Verify", () => {
             id: "ins_abc123",
             enrollment_id: "enrollment_id",
             status: "active",
+            type: "agentic",
             amount: { value: "100.00", currency: "currency" },
             description: "description",
             expires_at: "2024-01-15T09:30:00Z",
@@ -379,6 +386,7 @@ describe("Verify", () => {
             id: "ins_abc123",
             enrollmentId: "enrollment_id",
             status: "active",
+            type: "agentic",
             amount: {
                 value: "100.00",
                 currency: "currency",

@@ -6,6 +6,7 @@ export const VerificationResponseStatus = {
     OtpSent: "otp_sent",
     DeviceBound: "device_bound",
     PasskeyRequired: "passkey_required",
+    RedirectRequired: "redirect_required",
     Verified: "verified",
 } as const;
 export type VerificationResponseStatus = (typeof VerificationResponseStatus)[keyof typeof VerificationResponseStatus];

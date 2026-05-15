@@ -10,5 +10,9 @@ export interface Enrollment {
     status?: BasisTheory.EnrollmentStatus;
     card?: BasisTheory.AgenticCard;
     agentIds?: string[];
+    /** Display label shown to the cardholder during Mastercard managed-authentication challenges. */
+    walletName?: string;
+    /** Enrollment type — `agentic` (default) for agent-driven payments, `autofill` for direct credential autofill. */
+    type?: BasisTheory.EnrollmentType;
     createdAt?: Date;
 }
