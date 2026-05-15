@@ -255,6 +255,7 @@ export class Jobs {
     /**
      * Returns the created account updater batch job
      *
+     * @param {BasisTheory.accountUpdater.CreateAccountUpdaterJobRequest} request
      * @param {Jobs.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link BasisTheory.UnauthorizedError}
@@ -264,11 +265,15 @@ export class Jobs {
      * @example
      *     await client.accountUpdater.jobs.create()
      */
-    public create(requestOptions?: Jobs.RequestOptions): core.HttpResponsePromise<BasisTheory.AccountUpdaterJob> {
-        return core.HttpResponsePromise.fromPromise(this.__create(requestOptions));
+    public create(
+        request: BasisTheory.accountUpdater.CreateAccountUpdaterJobRequest = {},
+        requestOptions?: Jobs.RequestOptions,
+    ): core.HttpResponsePromise<BasisTheory.AccountUpdaterJob> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
+        request: BasisTheory.accountUpdater.CreateAccountUpdaterJobRequest = {},
         requestOptions?: Jobs.RequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.AccountUpdaterJob>> {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -288,7 +293,13 @@ export class Jobs {
             ),
             method: "POST",
             headers: _headers,
+            contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: serializers.accountUpdater.CreateAccountUpdaterJobRequest.jsonOrThrow(request, {
+                unrecognizedObjectKeys: "strip",
+                omitUndefined: true,
+            }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

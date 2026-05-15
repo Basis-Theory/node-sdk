@@ -19,6 +19,4 @@ export interface AgenticCard {
     /** Card type */
     type?: string;
     display?: BasisTheory.CardDisplay;
-    /** Accepts any additional properties */
-    [key: string]: any;
 }

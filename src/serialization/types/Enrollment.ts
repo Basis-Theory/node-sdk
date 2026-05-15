@@ -6,6 +6,7 @@ import type * as serializers from "../index.js";
 import { AgenticCard } from "./AgenticCard.js";
 import { EnrollmentProvider } from "./EnrollmentProvider.js";
 import { EnrollmentStatus } from "./EnrollmentStatus.js";
+import { EnrollmentType } from "./EnrollmentType.js";
 
 export const Enrollment: core.serialization.ObjectSchema<serializers.Enrollment.Raw, BasisTheory.Enrollment> =
     core.serialization.object({
@@ -18,6 +19,8 @@ export const Enrollment: core.serialization.ObjectSchema<serializers.Enrollment.
             "agent_ids",
             core.serialization.list(core.serialization.string()).optional(),
         ),
+        walletName: core.serialization.property("wallet_name", core.serialization.string().optional()),
+        type: EnrollmentType.optional(),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     });
 
@@ -29,6 +32,8 @@ export declare namespace Enrollment {
         status?: EnrollmentStatus.Raw | null;
         card?: AgenticCard.Raw | null;
         agent_ids?: string[] | null;
+        wallet_name?: string | null;
+        type?: EnrollmentType.Raw | null;
         created_at?: string | null;
     }
 }
