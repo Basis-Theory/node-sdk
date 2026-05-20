@@ -3294,10 +3294,7 @@ await client.tokenIntents.delete("id");
 
 ```typescript
 await client.tokenIntents.create({
-    type: "x",
-    data: {
-        "key": "value"
-    }
+    type: "type"
 });
 
 ```

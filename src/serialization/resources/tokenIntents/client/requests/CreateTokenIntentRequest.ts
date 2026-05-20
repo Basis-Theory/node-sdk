@@ -9,12 +9,14 @@ export const CreateTokenIntentRequest: core.serialization.Schema<
     BasisTheory.CreateTokenIntentRequest
 > = core.serialization.object({
     type: core.serialization.string(),
-    data: core.serialization.unknown(),
+    data: core.serialization.unknown().optional(),
+    encrypted: core.serialization.string().optional(),
 });
 
 export declare namespace CreateTokenIntentRequest {
     export interface Raw {
         type: string;
-        data?: unknown;
+        data?: unknown | null;
+        encrypted?: string | null;
     }
 }

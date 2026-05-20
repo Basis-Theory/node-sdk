@@ -10,6 +10,8 @@ export interface CreateNetworkTokenRequest {
     data?: BasisTheory.Card;
     tokenId?: string;
     tokenIntentId?: string;
+    expirationMonth?: number;
+    expirationYear?: number;
     cardholderInfo?: BasisTheory.CardholderInfo;
     merchantId?: string;
 }
