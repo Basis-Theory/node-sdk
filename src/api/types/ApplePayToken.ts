@@ -19,4 +19,5 @@ export interface ApplePayToken {
     data?: unknown;
     authentication?: BasisTheory.Authentication;
     fingerprint?: string;
+    ingestSource?: string;
 }

@@ -3,13 +3,11 @@
 /**
  * @example
  *     {
- *         type: "x",
- *         data: {
- *             "key": "value"
- *         }
+ *         type: "type"
  *     }
  */
 export interface CreateTokenIntentRequest {
     type: string;
     data?: unknown;
+    encrypted?: string;
 }

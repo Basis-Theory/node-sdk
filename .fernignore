@@ -19,3 +19,6 @@ bump.js
 CHANGELOG.md
 LICENSE
 prepare.js
+.fern/replay.lock
+.fern/replay.yml
+.gitattributes

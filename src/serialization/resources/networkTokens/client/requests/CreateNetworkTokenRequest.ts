@@ -13,6 +13,8 @@ export const CreateNetworkTokenRequest: core.serialization.Schema<
     data: Card.optional(),
     tokenId: core.serialization.property("token_id", core.serialization.string().optional()),
     tokenIntentId: core.serialization.property("token_intent_id", core.serialization.string().optional()),
+    expirationMonth: core.serialization.property("expiration_month", core.serialization.number().optional()),
+    expirationYear: core.serialization.property("expiration_year", core.serialization.number().optional()),
     cardholderInfo: core.serialization.property("cardholder_info", CardholderInfo.optional()),
     merchantId: core.serialization.property("merchant_id", core.serialization.string().optional()),
 });
@@ -22,6 +24,8 @@ export declare namespace CreateNetworkTokenRequest {
         data?: Card.Raw | null;
         token_id?: string | null;
         token_intent_id?: string | null;
+        expiration_month?: number | null;
+        expiration_year?: number | null;
         cardholder_info?: CardholderInfo.Raw | null;
         merchant_id?: string | null;
     }
