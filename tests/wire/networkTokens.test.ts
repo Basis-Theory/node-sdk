@@ -122,6 +122,28 @@ describe("NetworkTokens", () => {
         });
     });
 
+    test("create sends expiration override with token_id", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const rawRequestBody = { token_id: "token_id", expiration_month: 12, expiration_year: 2030 };
+        const rawResponseBody = {};
+        server
+            .mockEndpoint()
+            .post("/network-tokens")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.networkTokens.create({
+            tokenId: "token_id",
+            expirationMonth: 12,
+            expirationYear: 2030,
+        });
+        expect(response).toEqual({});
+    });
+
     test("create (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
