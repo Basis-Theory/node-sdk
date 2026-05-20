@@ -24,6 +24,8 @@ export const GooglePayToken: core.serialization.ObjectSchema<
     authentication: TokenAuthentication.optional(),
     details: TokenServiceProviderDetails.optional(),
     fingerprint: core.serialization.string().optional(),
+    type: core.serialization.string().optional(),
+    ingestSource: core.serialization.property("ingest_source", core.serialization.string().optional()),
 });
 
 export declare namespace GooglePayToken {
@@ -41,5 +43,7 @@ export declare namespace GooglePayToken {
         authentication?: TokenAuthentication.Raw | null;
         details?: TokenServiceProviderDetails.Raw | null;
         fingerprint?: string | null;
+        type?: string | null;
+        ingest_source?: string | null;
     }
 }

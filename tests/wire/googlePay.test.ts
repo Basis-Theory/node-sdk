@@ -48,6 +48,8 @@ describe("GooglePay", () => {
                     status: "status",
                 },
                 fingerprint: "fingerprint",
+                type: "type",
+                ingest_source: "ingest_source",
             },
             token_intent: {
                 id: "id",
@@ -138,6 +140,8 @@ describe("GooglePay", () => {
                     status: "status",
                 },
                 fingerprint: "fingerprint",
+                type: "type",
+                ingestSource: "ingest_source",
             },
             tokenIntent: {
                 id: "id",
@@ -323,6 +327,8 @@ describe("GooglePay", () => {
                 status: "status",
             },
             fingerprint: "fingerprint",
+            type: "type",
+            ingest_source: "ingest_source",
         };
         server.mockEndpoint().get("/google-pay/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
@@ -383,6 +389,8 @@ describe("GooglePay", () => {
                 status: "status",
             },
             fingerprint: "fingerprint",
+            type: "type",
+            ingestSource: "ingest_source",
         });
     });
 

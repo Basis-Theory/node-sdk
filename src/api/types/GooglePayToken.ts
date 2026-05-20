@@ -16,4 +16,6 @@ export interface GooglePayToken {
     authentication?: BasisTheory.TokenAuthentication;
     details?: BasisTheory.TokenServiceProviderDetails;
     fingerprint?: string;
+    type?: string;
+    ingestSource?: string;
 }

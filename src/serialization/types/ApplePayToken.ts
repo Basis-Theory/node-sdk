@@ -27,6 +27,7 @@ export const ApplePayToken: core.serialization.ObjectSchema<serializers.ApplePay
         data: core.serialization.unknown().optional(),
         authentication: Authentication.optional(),
         fingerprint: core.serialization.string().optional(),
+        ingestSource: core.serialization.property("ingest_source", core.serialization.string().optional()),
     });
 
 export declare namespace ApplePayToken {
@@ -47,5 +48,6 @@ export declare namespace ApplePayToken {
         data?: unknown | null;
         authentication?: Authentication.Raw | null;
         fingerprint?: string | null;
+        ingest_source?: string | null;
     }
 }

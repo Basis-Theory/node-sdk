@@ -41,6 +41,7 @@ describe("ApplePay", () => {
                     authentication_responses: [{}],
                 },
                 fingerprint: "fingerprint",
+                ingest_source: "ingest_source",
             },
         };
         server
@@ -87,6 +88,7 @@ describe("ApplePay", () => {
                     authenticationResponses: [{}],
                 },
                 fingerprint: "fingerprint",
+                ingestSource: "ingest_source",
             },
         });
     });
@@ -204,6 +206,7 @@ describe("ApplePay", () => {
                 authentication_responses: [{}],
             },
             fingerprint: "fingerprint",
+            ingest_source: "ingest_source",
         };
         server.mockEndpoint().get("/apple-pay/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
@@ -250,6 +253,7 @@ describe("ApplePay", () => {
                 authenticationResponses: [{}],
             },
             fingerprint: "fingerprint",
+            ingestSource: "ingest_source",
         });
     });
 

@@ -246,7 +246,7 @@ describe("TokenIntents", () => {
     test("create (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = { type: "x", data: { key: "value" } };
+        const rawRequestBody = { type: "type" };
         const rawResponseBody = {
             id: "id",
             type: "type",
@@ -266,20 +266,7 @@ describe("TokenIntents", () => {
                 issuer: { country: "country", name: "name" },
                 issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
                 segment: "segment",
-                additional: [
-                    {
-                        brand: "brand",
-                        funding: "funding",
-                        authentication: "authentication",
-                        issuer: { country: "country", name: "name" },
-                    },
-                    {
-                        brand: "brand",
-                        funding: "funding",
-                        authentication: "authentication",
-                        issuer: { country: "country", name: "name" },
-                    },
-                ],
+                additional: [{}],
             },
             bank: { routing_number: "routing_number", account_number_last4: "account_number_last4" },
             network_token: {
@@ -293,20 +280,7 @@ describe("TokenIntents", () => {
                 issuer: { country: "country", name: "name" },
                 issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
                 segment: "segment",
-                additional: [
-                    {
-                        brand: "brand",
-                        funding: "funding",
-                        authentication: "authentication",
-                        issuer: { country: "country", name: "name" },
-                    },
-                    {
-                        brand: "brand",
-                        funding: "funding",
-                        authentication: "authentication",
-                        issuer: { country: "country", name: "name" },
-                    },
-                ],
+                additional: [{}],
             },
             authentication: { key: "value" },
             _extras: {
@@ -315,7 +289,6 @@ describe("TokenIntents", () => {
                     auth_method: "auth_method",
                     message_id: "message_id",
                     eci_indicator: "eci_indicator",
-                    assurance_details: { account_verified: true, card_holder_authenticated: true },
                     transaction_id: "transaction_id",
                     currency_code: "currency_code",
                     transaction_amount: 1000000,
@@ -323,21 +296,10 @@ describe("TokenIntents", () => {
                     device_manufacturer_identifier: "device_manufacturer_identifier",
                     payment_data_type: "payment_data_type",
                     merchant_token_identifier: "merchant_token_identifier",
-                    authentication_responses: [
-                        {
-                            merchant_identifier: "merchant_identifier",
-                            authentication_data: "authentication_data",
-                            transaction_amount: "transaction_amount",
-                        },
-                        {
-                            merchant_identifier: "merchant_identifier",
-                            authentication_data: "authentication_data",
-                            transaction_amount: "transaction_amount",
-                        },
-                    ],
+                    authentication_responses: [{}],
                     status: "status",
                 },
-                network_token_ids: ["network_token_ids", "network_token_ids"],
+                network_token_ids: ["network_token_ids"],
             },
         };
         server
@@ -350,10 +312,7 @@ describe("TokenIntents", () => {
             .build();
 
         const response = await client.tokenIntents.create({
-            type: "x",
-            data: {
-                key: "value",
-            },
+            type: "type",
         });
         expect(response).toEqual({
             id: "id",
@@ -381,26 +340,7 @@ describe("TokenIntents", () => {
                     numeric: "numeric",
                 },
                 segment: "segment",
-                additional: [
-                    {
-                        brand: "brand",
-                        funding: "funding",
-                        authentication: "authentication",
-                        issuer: {
-                            country: "country",
-                            name: "name",
-                        },
-                    },
-                    {
-                        brand: "brand",
-                        funding: "funding",
-                        authentication: "authentication",
-                        issuer: {
-                            country: "country",
-                            name: "name",
-                        },
-                    },
-                ],
+                additional: [{}],
             },
             bank: {
                 routingNumber: "routing_number",
@@ -424,26 +364,7 @@ describe("TokenIntents", () => {
                     numeric: "numeric",
                 },
                 segment: "segment",
-                additional: [
-                    {
-                        brand: "brand",
-                        funding: "funding",
-                        authentication: "authentication",
-                        issuer: {
-                            country: "country",
-                            name: "name",
-                        },
-                    },
-                    {
-                        brand: "brand",
-                        funding: "funding",
-                        authentication: "authentication",
-                        issuer: {
-                            country: "country",
-                            name: "name",
-                        },
-                    },
-                ],
+                additional: [{}],
             },
             authentication: {
                 key: "value",
@@ -454,10 +375,6 @@ describe("TokenIntents", () => {
                     authMethod: "auth_method",
                     messageId: "message_id",
                     eciIndicator: "eci_indicator",
-                    assuranceDetails: {
-                        accountVerified: true,
-                        cardHolderAuthenticated: true,
-                    },
                     transactionId: "transaction_id",
                     currencyCode: "currency_code",
                     transactionAmount: 1000000,
@@ -465,29 +382,40 @@ describe("TokenIntents", () => {
                     deviceManufacturerIdentifier: "device_manufacturer_identifier",
                     paymentDataType: "payment_data_type",
                     merchantTokenIdentifier: "merchant_token_identifier",
-                    authenticationResponses: [
-                        {
-                            merchantIdentifier: "merchant_identifier",
-                            authenticationData: "authentication_data",
-                            transactionAmount: "transaction_amount",
-                        },
-                        {
-                            merchantIdentifier: "merchant_identifier",
-                            authenticationData: "authentication_data",
-                            transactionAmount: "transaction_amount",
-                        },
-                    ],
+                    authenticationResponses: [{}],
                     status: "status",
                 },
-                networkTokenIds: ["network_token_ids", "network_token_ids"],
+                networkTokenIds: ["network_token_ids"],
             },
         });
+    });
+
+    test("create sends encrypted payload without data", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const encryptedPayload = "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoiY2xpZW50LWtleSJ9..aXY.Y2lwaGVydGV4dA.dGFn";
+        const rawRequestBody = { type: "card", encrypted: encryptedPayload };
+        const rawResponseBody = {};
+        server
+            .mockEndpoint()
+            .post("/token-intents")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.tokenIntents.create({
+            type: "card",
+            encrypted: encryptedPayload,
+        });
+        expect(response).toEqual({});
     });
 
     test("create (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = { type: "x", data: { key: "value" } };
+        const rawRequestBody = { type: "x" };
         const rawResponseBody = {};
         server
             .mockEndpoint()
@@ -501,9 +429,6 @@ describe("TokenIntents", () => {
         await expect(async () => {
             return await client.tokenIntents.create({
                 type: "x",
-                data: {
-                    key: "value",
-                },
             });
         }).rejects.toThrow(BasisTheory.BadRequestError);
     });
@@ -511,7 +436,7 @@ describe("TokenIntents", () => {
     test("create (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = { type: "x", data: { key: "value" } };
+        const rawRequestBody = { type: "x" };
         const rawResponseBody = {};
         server
             .mockEndpoint()
@@ -525,9 +450,6 @@ describe("TokenIntents", () => {
         await expect(async () => {
             return await client.tokenIntents.create({
                 type: "x",
-                data: {
-                    key: "value",
-                },
             });
         }).rejects.toThrow(BasisTheory.UnauthorizedError);
     });
@@ -535,7 +457,7 @@ describe("TokenIntents", () => {
     test("create (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const rawRequestBody = { type: "x", data: { key: "value" } };
+        const rawRequestBody = { type: "x" };
         const rawResponseBody = {};
         server
             .mockEndpoint()
@@ -549,10 +471,28 @@ describe("TokenIntents", () => {
         await expect(async () => {
             return await client.tokenIntents.create({
                 type: "x",
-                data: {
-                    key: "value",
-                },
             });
         }).rejects.toThrow(BasisTheory.ForbiddenError);
+    });
+
+    test("create (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "x" };
+        const rawResponseBody = {};
+        server
+            .mockEndpoint()
+            .post("/token-intents")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.tokenIntents.create({
+                type: "x",
+            });
+        }).rejects.toThrow(BasisTheory.UnprocessableEntityError);
     });
 });
