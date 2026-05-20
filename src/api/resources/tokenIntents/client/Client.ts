@@ -234,13 +234,11 @@ export class TokenIntents {
      * @throws {@link BasisTheory.BadRequestError}
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
+     * @throws {@link BasisTheory.UnprocessableEntityError}
      *
      * @example
      *     await client.tokenIntents.create({
-     *         type: "x",
-     *         data: {
-     *             "key": "value"
-     *         }
+     *         type: "type"
      *     })
      */
     public create(
@@ -321,6 +319,17 @@ export class TokenIntents {
                     );
                 case 403:
                     throw new BasisTheory.ForbiddenError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 422:
+                    throw new BasisTheory.UnprocessableEntityError(
                         serializers.ProblemDetails.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
