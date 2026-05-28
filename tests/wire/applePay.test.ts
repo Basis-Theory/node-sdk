@@ -197,6 +197,7 @@ describe("ApplePay", () => {
                 issuer: { country: "country", name: "name" },
                 issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
                 segment: "segment",
+                product: { code: "code" },
                 additional: [{}],
             },
             data: { key: "value" },
@@ -242,6 +243,9 @@ describe("ApplePay", () => {
                     numeric: "numeric",
                 },
                 segment: "segment",
+                product: {
+                    code: "code",
+                },
                 additional: [{}],
             },
             data: {
