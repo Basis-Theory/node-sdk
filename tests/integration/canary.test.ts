@@ -352,7 +352,9 @@ describe('Proxies', () => {
             if (proxyId) {
                 await safeDelete("proxy " + proxyId, () => client.proxies.delete(proxyId!));
             }
-            await safeDelete("application " + applicationId, () => client.applications.delete(applicationId!));
+            if (applicationId) {
+                await safeDelete("application " + applicationId, () => client.applications.delete(applicationId!));
+            }
         }
     });
 });
@@ -471,7 +473,9 @@ describe('Reactors', () => {
             if (reactorId) {
                 await safeDelete("reactor " + reactorId, () => managementClient.reactors.delete(reactorId!));
             }
-            await safeDelete("application " + applicationId, () => managementClient.applications.delete(applicationId!));
+            if (applicationId) {
+                await safeDelete("application " + applicationId, () => managementClient.applications.delete(applicationId!));
+            }
         }
     }, 30000);
 });
