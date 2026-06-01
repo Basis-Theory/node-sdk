@@ -49,7 +49,15 @@ describe("Logs", () => {
                 },
             ],
         };
-        const page = await client.logs.list();
+        const page = await client.logs.list({
+            entityType: "entity_type",
+            entityId: "entity_id",
+            startDate: new Date("2024-01-15T09:30:00.000Z"),
+            endDate: new Date("2024-01-15T09:30:00.000Z"),
+            page: 1,
+            start: "start",
+            size: 1,
+        });
 
         expect(expected.data).toEqual(page.data);
         expect(page.hasNextPage()).toBe(true);

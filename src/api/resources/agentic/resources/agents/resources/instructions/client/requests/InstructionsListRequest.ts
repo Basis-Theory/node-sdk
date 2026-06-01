@@ -2,7 +2,11 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         enrollmentId: "enrollment_id",
+ *         limit: 1,
+ *         cursor: "cursor"
+ *     }
  */
 export interface InstructionsListRequest {
     /** Filter instructions by enrollment ID */

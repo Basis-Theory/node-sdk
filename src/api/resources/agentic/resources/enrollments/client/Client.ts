@@ -38,7 +38,10 @@ export class Enrollments {
      * @throws {@link BasisTheory.InternalServerError}
      *
      * @example
-     *     await client.agentic.enrollments.list()
+     *     await client.agentic.enrollments.list({
+     *         limit: 1,
+     *         cursor: "cursor"
+     *     })
      */
     public async list(
         request: BasisTheory.agentic.EnrollmentsListRequest = {},

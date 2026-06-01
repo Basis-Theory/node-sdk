@@ -51,7 +51,11 @@ describe("Merchants", () => {
                 },
             ],
         };
-        const page = await client.tenants.merchants.list("tenantId");
+        const page = await client.tenants.merchants.list("tenantId", {
+            page: 1,
+            start: "start",
+            size: 1,
+        });
 
         expect(expected.data).toEqual(page.data);
         expect(page.hasNextPage()).toBe(true);

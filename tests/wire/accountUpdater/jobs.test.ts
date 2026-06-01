@@ -134,7 +134,10 @@ describe("Jobs", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accountUpdater.jobs.list();
+        const response = await client.accountUpdater.jobs.list({
+            size: 1,
+            start: "start",
+        });
         expect(response).toEqual({
             pagination: {
                 pageSize: 1,

@@ -14,7 +14,9 @@ describe("Permissions", () => {
         ];
         server.mockEndpoint().get("/permissions").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.permissions.list();
+        const response = await client.permissions.list({
+            applicationType: "application_type",
+        });
         expect(response).toEqual([
             {
                 type: "type",

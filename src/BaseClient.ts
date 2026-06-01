@@ -7,7 +7,7 @@ export interface BaseClientOptions {
     environment?: core.Supplier<environments.BasisTheoryEnvironment | string>;
     /** Specify a custom URL to connect the client to. */
     baseUrl?: core.Supplier<string>;
-    apiKey?: core.Supplier<string | undefined>;
+    apiKey?: core.Supplier<string>;
     /** Override the BT-TRACE-ID header */
     correlationId?: core.Supplier<string | undefined>;
     /** Additional headers to include in requests. */

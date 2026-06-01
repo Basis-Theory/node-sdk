@@ -31,7 +31,12 @@ describe("Members", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.tenants.members.list();
+        const response = await client.tenants.members.list({
+            userId: ["user_id"],
+            page: 1,
+            start: "start",
+            size: 1,
+        });
         expect(response).toEqual({
             pagination: {
                 totalItems: 1,

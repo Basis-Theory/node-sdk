@@ -50,7 +50,10 @@ describe("Enrollments", () => {
                 },
             ],
         };
-        const page = await client.agentic.enrollments.list();
+        const page = await client.agentic.enrollments.list({
+            limit: 1,
+            cursor: "cursor",
+        });
 
         expect(expected.data).toEqual(page.data);
         expect(page.hasNextPage()).toBe(true);

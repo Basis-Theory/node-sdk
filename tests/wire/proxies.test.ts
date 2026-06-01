@@ -71,7 +71,13 @@ describe("Proxies", () => {
                 },
             ],
         };
-        const page = await client.proxies.list();
+        const page = await client.proxies.list({
+            id: ["id"],
+            name: "name",
+            page: 1,
+            start: "start",
+            size: 1,
+        });
 
         expect(expected.data).toEqual(page.data);
         expect(page.hasNextPage()).toBe(true);

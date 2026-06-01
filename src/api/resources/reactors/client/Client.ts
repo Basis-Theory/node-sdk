@@ -38,7 +38,13 @@ export class Reactors {
      * @throws {@link BasisTheory.NotFoundError}
      *
      * @example
-     *     await client.reactors.list()
+     *     await client.reactors.list({
+     *         id: ["id"],
+     *         name: "name",
+     *         page: 1,
+     *         start: "start",
+     *         size: 1
+     *     })
      */
     public async list(
         request: BasisTheory.ReactorsListRequest = {},

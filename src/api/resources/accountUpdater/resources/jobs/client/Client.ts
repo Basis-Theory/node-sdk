@@ -144,7 +144,10 @@ export class Jobs {
      * @throws {@link BasisTheory.ForbiddenError}
      *
      * @example
-     *     await client.accountUpdater.jobs.list()
+     *     await client.accountUpdater.jobs.list({
+     *         size: 1,
+     *         start: "start"
+     *     })
      */
     public list(
         request: BasisTheory.accountUpdater.JobsListRequest = {},

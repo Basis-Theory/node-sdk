@@ -57,7 +57,12 @@ describe("Invitations", () => {
                 },
             ],
         };
-        const page = await client.tenants.invitations.list();
+        const page = await client.tenants.invitations.list({
+            status: "PENDING",
+            page: 1,
+            start: "start",
+            size: 1,
+        });
 
         expect(expected.data).toEqual(page.data);
         expect(page.hasNextPage()).toBe(true);

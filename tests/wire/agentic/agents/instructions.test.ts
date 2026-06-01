@@ -56,7 +56,11 @@ describe("Instructions", () => {
                 },
             ],
         };
-        const page = await client.agentic.agents.instructions.list("agent_id");
+        const page = await client.agentic.agents.instructions.list("agent_id", {
+            enrollmentId: "enrollment_id",
+            limit: 1,
+            cursor: "cursor",
+        });
 
         expect(expected.data).toEqual(page.data);
         expect(page.hasNextPage()).toBe(true);

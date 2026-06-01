@@ -2,7 +2,13 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         type: "type",
+ *         container: "container",
+ *         fingerprint: "fingerprint",
+ *         start: "start",
+ *         size: 1
+ *     }
  */
 export interface TokensListV2Request {
     type?: string;

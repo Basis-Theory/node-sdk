@@ -32,7 +32,13 @@ export class Applications {
      * @throws {@link BasisTheory.NotFoundError}
      *
      * @example
-     *     await client.applications.list()
+     *     await client.applications.list({
+     *         id: ["id"],
+     *         type: ["type"],
+     *         page: 1,
+     *         start: "start",
+     *         size: 1
+     *     })
      */
     public async list(
         request: BasisTheory.ApplicationsListRequest = {},

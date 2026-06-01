@@ -156,6 +156,7 @@ describe("Tokens", () => {
                 issuer: { country: "country", name: "name" },
                 issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
                 segment: "segment",
+                product: { code: "code" },
                 additional: [{}],
             },
             bank: { routing_number: "routing_number", account_number_last4: "account_number_last4" },
@@ -170,6 +171,7 @@ describe("Tokens", () => {
                 issuer: { country: "country", name: "name" },
                 issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
                 segment: "segment",
+                product: { code: "code" },
                 additional: [{}],
             },
             modified_by: "modified_by",
@@ -271,6 +273,9 @@ describe("Tokens", () => {
                     numeric: "numeric",
                 },
                 segment: "segment",
+                product: {
+                    code: "code",
+                },
                 additional: [{}],
             },
             bank: {
@@ -295,6 +300,9 @@ describe("Tokens", () => {
                     numeric: "numeric",
                 },
                 segment: "segment",
+                product: {
+                    code: "code",
+                },
                 additional: [{}],
             },
             modifiedBy: "modified_by",
@@ -495,7 +503,13 @@ describe("Tokens", () => {
                 },
             ],
         };
-        const page = await client.tokens.listV2();
+        const page = await client.tokens.listV2({
+            type: "type",
+            container: "container",
+            fingerprint: "fingerprint",
+            start: "start",
+            size: 1,
+        });
 
         expect(expected.data).toEqual(page.data);
         expect(page.hasNextPage()).toBe(true);

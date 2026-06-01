@@ -35,7 +35,12 @@ export class Members {
      * @throws {@link BasisTheory.ForbiddenError}
      *
      * @example
-     *     await client.tenants.members.list()
+     *     await client.tenants.members.list({
+     *         userId: ["user_id"],
+     *         page: 1,
+     *         start: "start",
+     *         size: 1
+     *     })
      */
     public list(
         request: BasisTheory.tenants.MembersListRequest = {},

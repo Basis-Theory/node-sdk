@@ -33,7 +33,10 @@ export class ApplicationKeys {
      * @throws {@link BasisTheory.NotFoundError}
      *
      * @example
-     *     await client.applicationKeys.list("id")
+     *     await client.applicationKeys.list("id", {
+     *         id: ["id"],
+     *         type: ["type"]
+     *     })
      */
     public list(
         id: string,

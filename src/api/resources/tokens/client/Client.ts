@@ -777,7 +777,13 @@ export class Tokens {
      * @throws {@link BasisTheory.ForbiddenError}
      *
      * @example
-     *     await client.tokens.listV2()
+     *     await client.tokens.listV2({
+     *         type: "type",
+     *         container: "container",
+     *         fingerprint: "fingerprint",
+     *         start: "start",
+     *         size: 1
+     *     })
      */
     public async listV2(
         request: BasisTheory.TokensListV2Request = {},

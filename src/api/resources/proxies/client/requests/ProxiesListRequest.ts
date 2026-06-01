@@ -2,7 +2,13 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         id: ["id"],
+ *         name: "name",
+ *         page: 1,
+ *         start: "start",
+ *         size: 1
+ *     }
  */
 export interface ProxiesListRequest {
     id?: string | string[];
