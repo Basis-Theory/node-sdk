@@ -6325,6 +6325,56 @@ await client.googlePay.merchant.certificates.create("merchantId");
 </dl>
 </details>
 
+## NetworkTokens Account
+<details><summary><code>client.networkTokens.account.<a href="/src/api/resources/networkTokens/resources/account/client/Client.ts">get</a>(id) -> BasisTheory.NetworkTokenAccount</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.networkTokens.account.get("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Account.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Reactors Results
 <details><summary><code>client.reactors.results.<a href="/src/api/resources/reactors/resources/results/client/Client.ts">get</a>(id, requestId) -> unknown</code></summary>
 <dl>

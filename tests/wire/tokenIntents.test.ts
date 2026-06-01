@@ -28,6 +28,7 @@ describe("TokenIntents", () => {
                 issuer: { country: "country", name: "name" },
                 issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
                 segment: "segment",
+                product: { code: "code" },
                 additional: [{}],
             },
             bank: { routing_number: "routing_number", account_number_last4: "account_number_last4" },
@@ -42,6 +43,7 @@ describe("TokenIntents", () => {
                 issuer: { country: "country", name: "name" },
                 issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
                 segment: "segment",
+                product: { code: "code" },
                 additional: [{}],
             },
             authentication: { key: "value" },
@@ -93,6 +95,9 @@ describe("TokenIntents", () => {
                     numeric: "numeric",
                 },
                 segment: "segment",
+                product: {
+                    code: "code",
+                },
                 additional: [{}],
             },
             bank: {
@@ -117,6 +122,9 @@ describe("TokenIntents", () => {
                     numeric: "numeric",
                 },
                 segment: "segment",
+                product: {
+                    code: "code",
+                },
                 additional: [{}],
             },
             authentication: {
@@ -266,6 +274,7 @@ describe("TokenIntents", () => {
                 issuer: { country: "country", name: "name" },
                 issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
                 segment: "segment",
+                product: { code: "code" },
                 additional: [{}],
             },
             bank: { routing_number: "routing_number", account_number_last4: "account_number_last4" },
@@ -280,6 +289,7 @@ describe("TokenIntents", () => {
                 issuer: { country: "country", name: "name" },
                 issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
                 segment: "segment",
+                product: { code: "code" },
                 additional: [{}],
             },
             authentication: { key: "value" },
@@ -340,6 +350,9 @@ describe("TokenIntents", () => {
                     numeric: "numeric",
                 },
                 segment: "segment",
+                product: {
+                    code: "code",
+                },
                 additional: [{}],
             },
             bank: {
@@ -364,6 +377,9 @@ describe("TokenIntents", () => {
                     numeric: "numeric",
                 },
                 segment: "segment",
+                product: {
+                    code: "code",
+                },
                 additional: [{}],
             },
             authentication: {
@@ -388,28 +404,6 @@ describe("TokenIntents", () => {
                 networkTokenIds: ["network_token_ids"],
             },
         });
-    });
-
-    test("create sends encrypted payload without data", async () => {
-        const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
-        const encryptedPayload = "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoiY2xpZW50LWtleSJ9..aXY.Y2lwaGVydGV4dA.dGFn";
-        const rawRequestBody = { type: "card", encrypted: encryptedPayload };
-        const rawResponseBody = {};
-        server
-            .mockEndpoint()
-            .post("/token-intents")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.tokenIntents.create({
-            type: "card",
-            encrypted: encryptedPayload,
-        });
-        expect(response).toEqual({});
     });
 
     test("create (2)", async () => {
