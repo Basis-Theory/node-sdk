@@ -49,6 +49,7 @@ export * from "./CardIssuerCountry.js";
 export * from "./CardIssuerDetails.js";
 export * from "./CardNetworkInfo.js";
 export * from "./CardNetworkStatus.js";
+export * from "./CardProduct.js";
 export * from "./ClientEncryptionKeyMetadataResponse.js";
 export * from "./ClientEncryptionKeyResponse.js";
 export * from "./Condition.js";
