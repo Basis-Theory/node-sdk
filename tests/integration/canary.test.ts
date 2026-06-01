@@ -161,6 +161,16 @@ async function updateToken(client: BasisTheoryClient, tokenId: string, updateCar
     });
 }
 
+async function safeDelete(label: string, deleteFn: () => Promise<unknown>) {
+    try {
+        await deleteFn();
+    } catch (err) {
+        // Best-effort cleanup: a failed delete must not mask the test result
+        // or prevent deleting the other resources.
+        console.warn(`Failed to clean up ${label}:`, err);
+    }
+}
+
 async function createApplication(managementClient: BasisTheoryClient) {
     const application = await managementClient.applications.create({
         type: "private",
@@ -253,6 +263,8 @@ describe('Proxies', () => {
     it('should support lifecycle', async () => {
         const client = getManagementClient();
         const applicationId = await createApplication(client);
+        let proxyId: string | undefined;
+        try {
         const proxy = await client.proxies.create({
             name: "(Deletable) node-SDK-" + randomUUID(),
             destinationUrl: 'https://example.com/api',
@@ -288,7 +300,7 @@ describe('Proxies', () => {
             },
             requireAuth: true
         });
-        const proxyId = proxy.id!;
+        proxyId = proxy.id!;
 
         const updatedProxy = await client.proxies.update(
             proxyId,
@@ -336,9 +348,12 @@ describe('Proxies', () => {
                 SERVICE_API_KEY: "key_abcd1234",
             }
         });
-
-        await client.proxies.delete(proxyId);
-        await client.applications.delete(applicationId!);
+        } finally {
+            if (proxyId) {
+                await safeDelete("proxy " + proxyId, () => client.proxies.delete(proxyId!));
+            }
+            await safeDelete("application " + applicationId, () => client.applications.delete(applicationId!));
+        }
     });
 });
 
@@ -346,6 +361,8 @@ describe('Reactors', () => {
     it('should support lifecycle', async () => {
         const managementClient = getManagementClient();
         const applicationId = await createApplication(managementClient);
+        let reactorId: string | undefined;
+        try {
         const reactor = await managementClient.reactors.create({
             name: "(Deletable) node-SDK-" + randomUUID(),
             code: `
@@ -366,7 +383,7 @@ describe('Reactors', () => {
                 id: applicationId,
             }
         });
-        const reactorId = reactor.id!;
+        reactorId = reactor.id!;
 
         const updateReactor = await managementClient.reactors.update(
             reactorId,
@@ -450,8 +467,12 @@ describe('Reactors', () => {
             }
         }
 
-        await managementClient.reactors.delete(reactorId);
-        await managementClient.applications.delete(applicationId!);
+        } finally {
+            if (reactorId) {
+                await safeDelete("reactor " + reactorId, () => managementClient.reactors.delete(reactorId!));
+            }
+            await safeDelete("application " + applicationId, () => managementClient.applications.delete(applicationId!));
+        }
     }, 30000);
 });
 
@@ -727,38 +748,61 @@ describe('Canary', () => {
         const client = getPrivateClient();
         const managementClient = getManagementClient();
 
-        // Create Token
-        const cardNumber = "6011000990139424";
-        let tokenId = await createToken(client, cardNumber);
-        await getAndValidateCardNumber(client, tokenId!, cardNumber);
+        let tokenId: string | undefined;
+        let applicationId: string | undefined;
+        let proxyId: string | undefined;
+        let reactorId: string | undefined;
+        try {
+            // Create Token
+            const cardNumber = "6011000990139424";
+            tokenId = await createToken(client, cardNumber);
+            await getAndValidateCardNumber(client, tokenId!, cardNumber);
 
-        const updateCardNumber = "4242424242424242";
-        await updateToken(client, tokenId!, updateCardNumber);
-        await getAndValidateCardNumber(client, tokenId!, updateCardNumber);
+            const updateCardNumber = "4242424242424242";
+            await updateToken(client, tokenId!, updateCardNumber);
+            await getAndValidateCardNumber(client, tokenId!, updateCardNumber);
 
-        // Create Application
-        const application = await managementClient.applications.create({
-            type: 'private',
-            name: '(Deletable) node-SDK-' + randomUUID(),
-            permissions: ['token:use']
-        });
-        let applicationId = application.id;
+            // Create Application
+            const application = await managementClient.applications.create({
+                type: 'private',
+                name: '(Deletable) node-SDK-' + randomUUID(),
+                permissions: ['token:use']
+            });
+            applicationId = application.id;
 
-        // Create / Delete Proxy
-        let proxyId = await createProxy(managementClient, applicationId!);
-        // Missing ability to call proxies from SDK
-        // The definition is missing from the Basis Theory OpenApi specs
-        await deleteProxy(managementClient, proxyId!);
+            // Create / Delete Proxy
+            proxyId = await createProxy(managementClient, applicationId!);
+            // Missing ability to call proxies from SDK
+            // The definition is missing from the Basis Theory OpenApi specs
+            await deleteProxy(managementClient, proxyId!);
+            proxyId = undefined;
 
-        // Reactors
-        let reactorId = await createReactor(managementClient, applicationId!);
-        await react(client, reactorId!);
-        await deleteReactor(managementClient, reactorId!);
+            // Reactors
+            reactorId = await createReactor(managementClient, applicationId!);
+            await react(client, reactorId!);
+            await deleteReactor(managementClient, reactorId!);
+            reactorId = undefined;
 
-        await managementClient.applications.delete(applicationId!)
+            await managementClient.applications.delete(applicationId!)
+            applicationId = undefined;
 
-        await client.tokens.delete(tokenId!);
-        await ensureTokenDeleted(client, tokenId!);
+            await client.tokens.delete(tokenId!);
+            await ensureTokenDeleted(client, tokenId!);
+            tokenId = undefined;
+        } finally {
+            if (proxyId) {
+                await safeDelete("proxy " + proxyId, () => deleteProxy(managementClient, proxyId!));
+            }
+            if (reactorId) {
+                await safeDelete("reactor " + reactorId, () => deleteReactor(managementClient, reactorId!));
+            }
+            if (applicationId) {
+                await safeDelete("application " + applicationId, () => managementClient.applications.delete(applicationId!));
+            }
+            if (tokenId) {
+                await safeDelete("token " + tokenId, () => client.tokens.delete(tokenId!));
+            }
+        }
     }, 10000);
 
     it('should support idempotency headers', async () => {
