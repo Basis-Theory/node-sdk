@@ -156,6 +156,7 @@ describe("Tokens", () => {
                 issuer: { country: "country", name: "name" },
                 issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
                 segment: "segment",
+                product: { code: "code" },
                 additional: [{}],
             },
             bank: { routing_number: "routing_number", account_number_last4: "account_number_last4" },
@@ -170,6 +171,7 @@ describe("Tokens", () => {
                 issuer: { country: "country", name: "name" },
                 issuer_country: { alpha2: "alpha2", name: "name", numeric: "numeric" },
                 segment: "segment",
+                product: { code: "code" },
                 additional: [{}],
             },
             modified_by: "modified_by",
@@ -271,6 +273,9 @@ describe("Tokens", () => {
                     numeric: "numeric",
                 },
                 segment: "segment",
+                product: {
+                    code: "code",
+                },
                 additional: [{}],
             },
             bank: {
@@ -295,6 +300,9 @@ describe("Tokens", () => {
                     numeric: "numeric",
                 },
                 segment: "segment",
+                product: {
+                    code: "code",
+                },
                 additional: [{}],
             },
             modifiedBy: "modified_by",
