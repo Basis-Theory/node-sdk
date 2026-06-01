@@ -7,6 +7,7 @@ import * as environments from "../../../../environments.js";
 import * as errors from "../../../../errors/index.js";
 import * as serializers from "../../../../serialization/index.js";
 import * as BasisTheory from "../../../index.js";
+import { Account } from "../resources/account/client/Client.js";
 
 export declare namespace NetworkTokens {
     export interface Options extends BaseClientOptions {}
@@ -16,9 +17,14 @@ export declare namespace NetworkTokens {
 
 export class NetworkTokens {
     protected readonly _options: NetworkTokens.Options;
+    protected _account: Account | undefined;
 
     constructor(_options: NetworkTokens.Options = {}) {
         this._options = _options;
+    }
+
+    public get account(): Account {
+        return (this._account ??= new Account(this._options));
     }
 
     /**

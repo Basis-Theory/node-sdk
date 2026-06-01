@@ -6,6 +6,7 @@ import type * as serializers from "../index.js";
 import { AdditionalCardDetails } from "./AdditionalCardDetails.js";
 import { CardIssuer } from "./CardIssuer.js";
 import { CardIssuerCountry } from "./CardIssuerCountry.js";
+import { CardProduct } from "./CardProduct.js";
 
 export const CardDetails: core.serialization.ObjectSchema<serializers.CardDetails.Raw, BasisTheory.CardDetails> =
     core.serialization.object({
@@ -19,6 +20,7 @@ export const CardDetails: core.serialization.ObjectSchema<serializers.CardDetail
         issuer: CardIssuer.optional(),
         issuerCountry: core.serialization.property("issuer_country", CardIssuerCountry.optional()),
         segment: core.serialization.string().optional(),
+        product: CardProduct.optional(),
         additional: core.serialization.list(AdditionalCardDetails).optional(),
     });
 
@@ -34,6 +36,7 @@ export declare namespace CardDetails {
         issuer?: CardIssuer.Raw | null;
         issuer_country?: CardIssuerCountry.Raw | null;
         segment?: string | null;
+        product?: CardProduct.Raw | null;
         additional?: AdditionalCardDetails.Raw[] | null;
     }
 }
