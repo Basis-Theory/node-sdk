@@ -13,5 +13,6 @@ export interface CardDetails {
     issuer?: BasisTheory.CardIssuer;
     issuerCountry?: BasisTheory.CardIssuerCountry;
     segment?: string;
+    product?: BasisTheory.CardProduct;
     additional?: BasisTheory.AdditionalCardDetails[];
 }
