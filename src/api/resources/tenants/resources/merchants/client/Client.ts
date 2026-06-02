@@ -30,7 +30,11 @@ export class Merchants {
      * @throws {@link BasisTheory.NotFoundError}
      *
      * @example
-     *     await client.tenants.merchants.list("tenantId")
+     *     await client.tenants.merchants.list("tenantId", {
+     *         page: 1,
+     *         start: "start",
+     *         size: 1
+     *     })
      */
     public async list(
         tenantId: string,

@@ -20,7 +20,10 @@ describe("ApplicationKeys", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.applicationKeys.list("id");
+        const response = await client.applicationKeys.list("id", {
+            id: ["id"],
+            type: ["type"],
+        });
         expect(response).toEqual([
             {
                 id: "id",

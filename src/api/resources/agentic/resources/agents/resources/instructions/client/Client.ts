@@ -46,7 +46,11 @@ export class Instructions {
      * @throws {@link BasisTheory.InternalServerError}
      *
      * @example
-     *     await client.agentic.agents.instructions.list("agent_id")
+     *     await client.agentic.agents.instructions.list("agent_id", {
+     *         enrollmentId: "enrollment_id",
+     *         limit: 1,
+     *         cursor: "cursor"
+     *     })
      */
     public async list(
         agentId: string,

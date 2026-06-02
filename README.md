@@ -92,13 +92,25 @@ List endpoints are paginated. The SDK provides an iterator so that you can simpl
 import { BasisTheoryClient } from "@basis-theory/node-sdk";
 
 const client = new BasisTheoryClient({ apiKey: "YOUR_API_KEY", correlationId: "YOUR_CORRELATION_ID" });
-const response = await client.applications.list();
+const response = await client.applications.list({
+    id: ["id"],
+    type: ["type"],
+    page: 1,
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.applications.list();
+let page = await client.applications.list({
+    id: ["id"],
+    type: ["type"],
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }

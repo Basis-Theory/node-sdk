@@ -13,13 +13,25 @@
 <dd>
 
 ```typescript
-const response = await client.applications.list();
+const response = await client.applications.list({
+    id: ["id"],
+    type: ["type"],
+    page: 1,
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.applications.list();
+let page = await client.applications.list({
+    id: ["id"],
+    type: ["type"],
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -322,7 +334,10 @@ await client.applications.getByKey();
 <dd>
 
 ```typescript
-await client.applicationKeys.list("id");
+await client.applicationKeys.list("id", {
+    id: ["id"],
+    type: ["type"]
+});
 
 ```
 </dd>
@@ -1384,13 +1399,25 @@ await client.tokens.create({});
 <dd>
 
 ```typescript
-const response = await client.tokens.listV2();
+const response = await client.tokens.listV2({
+    type: "type",
+    container: "container",
+    fingerprint: "fingerprint",
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.tokens.listV2();
+let page = await client.tokens.listV2({
+    type: "type",
+    container: "container",
+    fingerprint: "fingerprint",
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -1793,13 +1820,29 @@ await client.keys.delete("id");
 <dd>
 
 ```typescript
-const response = await client.logs.list();
+const response = await client.logs.list({
+    entityType: "entity_type",
+    entityId: "entity_id",
+    startDate: new Date("2024-01-15T09:30:00.000Z"),
+    endDate: new Date("2024-01-15T09:30:00.000Z"),
+    page: 1,
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.logs.list();
+let page = await client.logs.list({
+    entityType: "entity_type",
+    entityId: "entity_id",
+    startDate: new Date("2024-01-15T09:30:00.000Z"),
+    endDate: new Date("2024-01-15T09:30:00.000Z"),
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -2188,7 +2231,9 @@ await client.networkTokens.resume("id");
 <dd>
 
 ```typescript
-await client.permissions.list();
+await client.permissions.list({
+    applicationType: "application_type"
+});
 
 ```
 </dd>
@@ -2238,13 +2283,25 @@ await client.permissions.list();
 <dd>
 
 ```typescript
-const response = await client.proxies.list();
+const response = await client.proxies.list({
+    id: ["id"],
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.proxies.list();
+let page = await client.proxies.list({
+    id: ["id"],
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -2564,13 +2621,25 @@ await client.proxies.patch("id");
 <dd>
 
 ```typescript
-const response = await client.reactors.list();
+const response = await client.reactors.list({
+    id: ["id"],
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.reactors.list();
+let page = await client.reactors.list({
+    id: ["id"],
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -3801,7 +3870,10 @@ Returns a list of account updater batch jobs
 <dd>
 
 ```typescript
-await client.accountUpdater.jobs.list();
+await client.accountUpdater.jobs.list({
+    size: 1,
+    start: "start"
+});
 
 ```
 </dd>
@@ -4201,13 +4273,19 @@ List all enrollments for the current tenant with cursor-based pagination.
 <dd>
 
 ```typescript
-const response = await client.agentic.enrollments.list();
+const response = await client.agentic.enrollments.list({
+    limit: 1,
+    cursor: "cursor"
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.agentic.enrollments.list();
+let page = await client.agentic.enrollments.list({
+    limit: 1,
+    cursor: "cursor"
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -4517,13 +4595,21 @@ List all purchase instructions for an agent with cursor-based pagination and opt
 <dd>
 
 ```typescript
-const response = await client.agentic.agents.instructions.list("agent_id");
+const response = await client.agentic.agents.instructions.list("agent_id", {
+    enrollmentId: "enrollment_id",
+    limit: 1,
+    cursor: "cursor"
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.agentic.agents.instructions.list("agent_id");
+let page = await client.agentic.agents.instructions.list("agent_id", {
+    enrollmentId: "enrollment_id",
+    limit: 1,
+    cursor: "cursor"
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -6634,13 +6720,23 @@ await client.tenants.connections.delete();
 <dd>
 
 ```typescript
-const response = await client.tenants.invitations.list();
+const response = await client.tenants.invitations.list({
+    status: "PENDING",
+    page: 1,
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.tenants.invitations.list();
+let page = await client.tenants.invitations.list({
+    status: "PENDING",
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -6891,7 +6987,12 @@ await client.tenants.invitations.delete("invitationId");
 <dd>
 
 ```typescript
-await client.tenants.members.list();
+await client.tenants.members.list({
+    userId: ["user_id"],
+    page: 1,
+    start: "start",
+    size: 1
+});
 
 ```
 </dd>
@@ -7049,13 +7150,21 @@ await client.tenants.members.delete("memberId");
 <dd>
 
 ```typescript
-const response = await client.tenants.merchants.list("tenantId");
+const response = await client.tenants.merchants.list("tenantId", {
+    page: 1,
+    start: "start",
+    size: 1
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.tenants.merchants.list("tenantId");
+let page = await client.tenants.merchants.list("tenantId", {
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }

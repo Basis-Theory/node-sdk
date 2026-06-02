@@ -32,7 +32,13 @@ export class Proxies {
      * @throws {@link BasisTheory.NotFoundError}
      *
      * @example
-     *     await client.proxies.list()
+     *     await client.proxies.list({
+     *         id: ["id"],
+     *         name: "name",
+     *         page: 1,
+     *         start: "start",
+     *         size: 1
+     *     })
      */
     public async list(
         request: BasisTheory.ProxiesListRequest = {},

@@ -2,7 +2,10 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         id: ["id"],
+ *         type: ["type"]
+ *     }
  */
 export interface ApplicationKeysListRequest {
     id?: string | string[];

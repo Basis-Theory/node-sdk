@@ -2,7 +2,15 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         entityType: "entity_type",
+ *         entityId: "entity_id",
+ *         startDate: new Date("2024-01-15T09:30:00.000Z"),
+ *         endDate: new Date("2024-01-15T09:30:00.000Z"),
+ *         page: 1,
+ *         start: "start",
+ *         size: 1
+ *     }
  */
 export interface LogsListRequest {
     entityType?: string;

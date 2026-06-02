@@ -53,7 +53,13 @@ describe("Applications", () => {
                 },
             ],
         };
-        const page = await client.applications.list();
+        const page = await client.applications.list({
+            id: ["id"],
+            type: ["type"],
+            page: 1,
+            start: "start",
+            size: 1,
+        });
 
         expect(expected.data).toEqual(page.data);
         expect(page.hasNextPage()).toBe(true);

@@ -49,7 +49,13 @@ describe("Reactors", () => {
                 },
             ],
         };
-        const page = await client.reactors.list();
+        const page = await client.reactors.list({
+            id: ["id"],
+            name: "name",
+            page: 1,
+            start: "start",
+            size: 1,
+        });
 
         expect(expected.data).toEqual(page.data);
         expect(page.hasNextPage()).toBe(true);

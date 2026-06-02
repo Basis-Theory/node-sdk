@@ -30,7 +30,9 @@ export class Permissions {
      * @throws {@link BasisTheory.ForbiddenError}
      *
      * @example
-     *     await client.permissions.list()
+     *     await client.permissions.list({
+     *         applicationType: "application_type"
+     *     })
      */
     public list(
         request: BasisTheory.PermissionsListRequest = {},

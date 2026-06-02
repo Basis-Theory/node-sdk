@@ -503,7 +503,13 @@ describe("Tokens", () => {
                 },
             ],
         };
-        const page = await client.tokens.listV2();
+        const page = await client.tokens.listV2({
+            type: "type",
+            container: "container",
+            fingerprint: "fingerprint",
+            start: "start",
+            size: 1,
+        });
 
         expect(expected.data).toEqual(page.data);
         expect(page.hasNextPage()).toBe(true);

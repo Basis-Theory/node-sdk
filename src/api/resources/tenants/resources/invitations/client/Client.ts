@@ -35,7 +35,12 @@ export class Invitations {
      * @throws {@link BasisTheory.ForbiddenError}
      *
      * @example
-     *     await client.tenants.invitations.list()
+     *     await client.tenants.invitations.list({
+     *         status: "PENDING",
+     *         page: 1,
+     *         start: "start",
+     *         size: 1
+     *     })
      */
     public async list(
         request: BasisTheory.tenants.InvitationsListRequest = {},
