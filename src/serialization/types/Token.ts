@@ -15,9 +15,7 @@ export const Token: core.serialization.ObjectSchema<serializers.Token.Raw, Basis
         type: core.serialization.string().optional(),
         tenantId: core.serialization.property("tenant_id", core.serialization.string().optional()),
         data: core.serialization.unknown().optional(),
-        metadata: core.serialization
-            .record(core.serialization.string(), core.serialization.string().optional())
-            .optional(),
+        metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
         enrichments: TokenEnrichments.optional(),
         createdBy: core.serialization.property("created_by", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
@@ -50,7 +48,7 @@ export declare namespace Token {
         type?: string | null;
         tenant_id?: string | null;
         data?: unknown | null;
-        metadata?: Record<string, string | null | undefined> | null;
+        metadata?: Record<string, string | null> | null;
         enrichments?: TokenEnrichments.Raw | null;
         created_by?: string | null;
         created_at?: string | null;

@@ -2,8 +2,8 @@
 
 export interface Runtime {
     image?: string;
-    dependencies?: Record<string, string | undefined>;
-    resolutions?: Record<string, string | undefined>;
+    dependencies?: Record<string, string>;
+    resolutions?: Record<string, string>;
     warmConcurrency?: number;
     timeout?: number;
     resources?: string;

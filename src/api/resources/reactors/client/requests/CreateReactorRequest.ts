@@ -13,6 +13,6 @@ export interface CreateReactorRequest {
     name: string;
     code: string;
     application?: BasisTheory.Application;
-    configuration?: Record<string, string | undefined>;
+    configuration?: Record<string, string>;
     runtime?: BasisTheory.Runtime;
 }

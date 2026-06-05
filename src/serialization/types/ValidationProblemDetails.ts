@@ -10,7 +10,7 @@ export const ValidationProblemDetails: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         errors: core.serialization
-            .record(core.serialization.string(), core.serialization.list(core.serialization.string()).optional())
+            .record(core.serialization.string(), core.serialization.list(core.serialization.string()))
             .optional(),
         type: core.serialization.string().optional(),
         title: core.serialization.string().optional(),
@@ -22,7 +22,7 @@ export const ValidationProblemDetails: core.serialization.ObjectSchema<
 
 export declare namespace ValidationProblemDetails {
     export interface Raw {
-        errors?: Record<string, string[] | null | undefined> | null;
+        errors?: Record<string, string[] | null> | null;
         type?: string | null;
         title?: string | null;
         status?: number | null;

@@ -4,10 +4,15 @@ import * as BasisTheory from "../../../../src/api/index";
 import { BasisTheoryClient } from "../../../../src/Client";
 import { mockServerPool } from "../../../mock-server/MockServerPool";
 
-describe("Verify", () => {
+describe("VerifyClient", () => {
     test("start (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {
             device_context: {
                 screen_height: 1,
@@ -37,6 +42,7 @@ describe("Verify", () => {
             brand: "visa",
             auth_context: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify")
@@ -97,7 +103,12 @@ describe("Verify", () => {
 
     test("start (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {
             device_context: {
                 screen_height: 1,
@@ -112,6 +123,7 @@ describe("Verify", () => {
             },
         };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify")
@@ -140,7 +152,12 @@ describe("Verify", () => {
 
     test("start (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {
             device_context: {
                 screen_height: 1,
@@ -155,6 +172,7 @@ describe("Verify", () => {
             },
         };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify")
@@ -183,7 +201,12 @@ describe("Verify", () => {
 
     test("start (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {
             device_context: {
                 screen_height: 1,
@@ -198,6 +221,7 @@ describe("Verify", () => {
             },
         };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify")
@@ -226,7 +250,12 @@ describe("Verify", () => {
 
     test("start (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {
             device_context: {
                 screen_height: 1,
@@ -241,6 +270,7 @@ describe("Verify", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify")
@@ -269,7 +299,12 @@ describe("Verify", () => {
 
     test("start (6)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {
             device_context: {
                 screen_height: 1,
@@ -284,6 +319,7 @@ describe("Verify", () => {
             },
         };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify")
@@ -312,7 +348,12 @@ describe("Verify", () => {
 
     test("start (7)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {
             device_context: {
                 screen_height: 1,
@@ -327,6 +368,7 @@ describe("Verify", () => {
             },
         };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify")
@@ -355,7 +397,12 @@ describe("Verify", () => {
 
     test("start (8)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {
             device_context: {
                 screen_height: 1,
@@ -370,6 +417,7 @@ describe("Verify", () => {
             },
         };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify")
@@ -398,7 +446,12 @@ describe("Verify", () => {
 
     test("method (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { method_id: "method_id" };
         const rawResponseBody = {
             status: "approved",
@@ -416,6 +469,7 @@ describe("Verify", () => {
             brand: "visa",
             auth_context: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/method")
@@ -466,9 +520,15 @@ describe("Verify", () => {
 
     test("method (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { method_id: "x" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/method")
@@ -487,9 +547,15 @@ describe("Verify", () => {
 
     test("method (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { method_id: "x" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/method")
@@ -508,9 +574,15 @@ describe("Verify", () => {
 
     test("method (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { method_id: "x" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/method")
@@ -529,9 +601,15 @@ describe("Verify", () => {
 
     test("method (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { method_id: "x" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/method")
@@ -550,9 +628,15 @@ describe("Verify", () => {
 
     test("method (6)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { method_id: "x" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/method")
@@ -571,9 +655,15 @@ describe("Verify", () => {
 
     test("method (7)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { method_id: "x" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/method")
@@ -592,7 +682,12 @@ describe("Verify", () => {
 
     test("otp (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { otp_code: "otp_code" };
         const rawResponseBody = {
             status: "approved",
@@ -610,6 +705,7 @@ describe("Verify", () => {
             brand: "visa",
             auth_context: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/otp")
@@ -660,9 +756,15 @@ describe("Verify", () => {
 
     test("otp (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { otp_code: "x" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/otp")
@@ -681,9 +783,15 @@ describe("Verify", () => {
 
     test("otp (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { otp_code: "x" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/otp")
@@ -702,9 +810,15 @@ describe("Verify", () => {
 
     test("otp (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { otp_code: "x" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/otp")
@@ -723,9 +837,15 @@ describe("Verify", () => {
 
     test("otp (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { otp_code: "x" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/otp")
@@ -744,9 +864,15 @@ describe("Verify", () => {
 
     test("otp (6)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { otp_code: "x" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/otp")
@@ -765,9 +891,15 @@ describe("Verify", () => {
 
     test("otp (7)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { otp_code: "x" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/otp")
@@ -786,7 +918,12 @@ describe("Verify", () => {
 
     test("complete (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {
             status: "approved",
@@ -804,6 +941,7 @@ describe("Verify", () => {
             brand: "visa",
             auth_context: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/complete")
@@ -852,9 +990,15 @@ describe("Verify", () => {
 
     test("complete (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/complete")
@@ -871,9 +1015,15 @@ describe("Verify", () => {
 
     test("complete (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/complete")
@@ -890,9 +1040,15 @@ describe("Verify", () => {
 
     test("complete (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/complete")
@@ -909,9 +1065,15 @@ describe("Verify", () => {
 
     test("complete (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/complete")
@@ -928,9 +1090,15 @@ describe("Verify", () => {
 
     test("complete (6)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/complete")
@@ -947,9 +1115,15 @@ describe("Verify", () => {
 
     test("complete (7)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/agentic/enrollments/enrollment_id/verify/complete")

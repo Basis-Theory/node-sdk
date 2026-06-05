@@ -4,7 +4,7 @@ export interface GetTokensV2 {
     type?: string;
     container?: string;
     fingerprint?: string;
-    metadata?: Record<string, string | undefined>;
+    metadata?: Record<string, string>;
     start?: string;
     size?: number;
 }

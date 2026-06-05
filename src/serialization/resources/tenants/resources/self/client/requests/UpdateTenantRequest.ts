@@ -9,12 +9,12 @@ export const UpdateTenantRequest: core.serialization.Schema<
     BasisTheory.tenants.UpdateTenantRequest
 > = core.serialization.object({
     name: core.serialization.string(),
-    settings: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
+    settings: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace UpdateTenantRequest {
     export interface Raw {
         name: string;
-        settings?: Record<string, string | null | undefined> | null;
+        settings?: Record<string, string | null> | null;
     }
 }

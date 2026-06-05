@@ -6,6 +6,6 @@
  *         bin: "bin"
  *     }
  */
-export interface EnrichmentsGetCardDetailsRequest {
+export interface EnrichmentsCardDetailsRequest {
     bin: string;
 }

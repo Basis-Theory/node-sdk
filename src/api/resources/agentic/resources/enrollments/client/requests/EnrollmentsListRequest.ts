@@ -2,7 +2,10 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         limit: 1,
+ *         cursor: "cursor"
+ *     }
  */
 export interface EnrollmentsListRequest {
     limit?: number;

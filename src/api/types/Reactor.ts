@@ -14,7 +14,7 @@ export interface Reactor {
     createdAt?: Date;
     modifiedBy?: string;
     modifiedAt?: Date;
-    configuration?: Record<string, string | undefined>;
+    configuration?: Record<string, string>;
     runtime?: BasisTheory.Runtime;
     requested?: BasisTheory.RequestedReactor;
 }

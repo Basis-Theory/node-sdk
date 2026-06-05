@@ -14,9 +14,7 @@ export const Tenant: core.serialization.ObjectSchema<serializers.Tenant.Raw, Bas
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedBy: core.serialization.property("modified_by", core.serialization.string().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
-        settings: core.serialization
-            .record(core.serialization.string(), core.serialization.string().optional())
-            .optional(),
+        settings: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     });
 
 export declare namespace Tenant {
@@ -29,6 +27,6 @@ export declare namespace Tenant {
         created_at?: string | null;
         modified_by?: string | null;
         modified_at?: string | null;
-        settings?: Record<string, string | null | undefined> | null;
+        settings?: Record<string, string | null> | null;
     }
 }

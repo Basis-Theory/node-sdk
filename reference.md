@@ -1,6 +1,6 @@
 # Reference
 ## Applications
-<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Application&gt;</code></summary>
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Application, BasisTheory.ApplicationPaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13,16 +13,31 @@
 <dd>
 
 ```typescript
-const response = await client.applications.list();
-for await (const item of response) {
+const pageableResponse = await client.applications.list({
+    id: ["id"],
+    type: ["type"],
+    page: 1,
+    start: "start",
+    size: 1
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.applications.list();
+let page = await client.applications.list({
+    id: ["id"],
+    type: ["type"],
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -46,7 +61,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Applications.RequestOptions` 
+**requestOptions:** `ApplicationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -98,7 +113,7 @@ await client.applications.create({
 <dl>
 <dd>
 
-**requestOptions:** `Applications.IdempotentRequestOptions` 
+**requestOptions:** `ApplicationsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -147,7 +162,7 @@ await client.applications.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Applications.RequestOptions` 
+**requestOptions:** `ApplicationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -206,7 +221,7 @@ await client.applications.update("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Applications.IdempotentRequestOptions` 
+**requestOptions:** `ApplicationsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -255,7 +270,7 @@ await client.applications.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Applications.RequestOptions` 
+**requestOptions:** `ApplicationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -296,7 +311,7 @@ await client.applications.getByKey();
 <dl>
 <dd>
 
-**requestOptions:** `Applications.RequestOptions` 
+**requestOptions:** `ApplicationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -322,7 +337,10 @@ await client.applications.getByKey();
 <dd>
 
 ```typescript
-await client.applicationKeys.list("id");
+await client.applicationKeys.list("id", {
+    keyId: ["id"],
+    type: ["type"]
+});
 
 ```
 </dd>
@@ -354,7 +372,7 @@ await client.applicationKeys.list("id");
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationKeys.RequestOptions` 
+**requestOptions:** `ApplicationKeysClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -403,7 +421,7 @@ await client.applicationKeys.create("id");
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationKeys.IdempotentRequestOptions` 
+**requestOptions:** `ApplicationKeysClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -460,7 +478,7 @@ await client.applicationKeys.get("id", "keyId");
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationKeys.RequestOptions` 
+**requestOptions:** `ApplicationKeysClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -517,7 +535,7 @@ await client.applicationKeys.delete("id", "keyId");
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationKeys.RequestOptions` 
+**requestOptions:** `ApplicationKeysClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -559,7 +577,7 @@ await client.applicationTemplates.list();
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationTemplates.RequestOptions` 
+**requestOptions:** `ApplicationTemplatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -608,7 +626,7 @@ await client.applicationTemplates.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `ApplicationTemplates.RequestOptions` 
+**requestOptions:** `ApplicationTemplatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -658,7 +676,7 @@ await client.applePay.create();
 <dl>
 <dd>
 
-**requestOptions:** `ApplePay.RequestOptions` 
+**requestOptions:** `ApplePayClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -707,7 +725,7 @@ await client.applePay.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `ApplePay.RequestOptions` 
+**requestOptions:** `ApplePayClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -756,7 +774,7 @@ await client.applePay.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `ApplePay.RequestOptions` 
+**requestOptions:** `ApplePayClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -806,7 +824,7 @@ await client.googlePay.create();
 <dl>
 <dd>
 
-**requestOptions:** `GooglePay.RequestOptions` 
+**requestOptions:** `GooglePayClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -855,7 +873,7 @@ await client.googlePay.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `GooglePay.RequestOptions` 
+**requestOptions:** `GooglePayClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -904,7 +922,7 @@ await client.googlePay.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `GooglePay.RequestOptions` 
+**requestOptions:** `GooglePayClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -954,7 +972,7 @@ await client.documents.upload({});
 <dl>
 <dd>
 
-**requestOptions:** `Documents.RequestOptions` 
+**requestOptions:** `DocumentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1003,7 +1021,7 @@ await client.documents.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Documents.RequestOptions` 
+**requestOptions:** `DocumentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1052,7 +1070,7 @@ await client.documents.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Documents.RequestOptions` 
+**requestOptions:** `DocumentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1104,7 +1122,7 @@ await client.tokens.detokenize({
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions` 
+**requestOptions:** `TokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1155,7 +1173,7 @@ await client.tokens.tokenize({
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.IdempotentRequestOptions` 
+**requestOptions:** `TokensClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -1204,7 +1222,7 @@ await client.tokens.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions` 
+**requestOptions:** `TokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1253,7 +1271,7 @@ await client.tokens.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions` 
+**requestOptions:** `TokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1310,7 +1328,7 @@ await client.tokens.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.IdempotentRequestOptions` 
+**requestOptions:** `TokensClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -1359,7 +1377,7 @@ await client.tokens.create({});
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.IdempotentRequestOptions` 
+**requestOptions:** `TokensClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -1371,7 +1389,7 @@ await client.tokens.create({});
 </dl>
 </details>
 
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">listV2</a>({ ...params }) -> core.Page&lt;BasisTheory.Token&gt;</code></summary>
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">listV2</a>({ ...params }) -> core.Page&lt;BasisTheory.Token, BasisTheory.TokenCursorPaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1384,16 +1402,31 @@ await client.tokens.create({});
 <dd>
 
 ```typescript
-const response = await client.tokens.listV2();
-for await (const item of response) {
+const pageableResponse = await client.tokens.listV2({
+    type: "type",
+    container: "container",
+    fingerprint: "fingerprint",
+    start: "start",
+    size: 1
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.tokens.listV2();
+let page = await client.tokens.listV2({
+    type: "type",
+    container: "container",
+    fingerprint: "fingerprint",
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -1417,7 +1450,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions` 
+**requestOptions:** `TokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1429,7 +1462,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">searchV2</a>({ ...params }) -> core.Page&lt;BasisTheory.Token&gt;</code></summary>
+<details><summary><code>client.tokens.<a href="/src/api/resources/tokens/client/Client.ts">searchV2</a>({ ...params }) -> core.Page&lt;BasisTheory.Token, BasisTheory.TokenCursorPaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1442,8 +1475,8 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-const response = await client.tokens.searchV2();
-for await (const item of response) {
+const pageableResponse = await client.tokens.searchV2();
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
@@ -1452,6 +1485,9 @@ let page = await client.tokens.searchV2();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -1475,7 +1511,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.IdempotentRequestOptions` 
+**requestOptions:** `TokensClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -1527,7 +1563,7 @@ await client.enrichments.bankAccountVerify({
 <dl>
 <dd>
 
-**requestOptions:** `Enrichments.RequestOptions` 
+**requestOptions:** `EnrichmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1539,7 +1575,7 @@ await client.enrichments.bankAccountVerify({
 </dl>
 </details>
 
-<details><summary><code>client.enrichments.<a href="/src/api/resources/enrichments/client/Client.ts">getcarddetails</a>({ ...params }) -> BasisTheory.CardDetailsResponse</code></summary>
+<details><summary><code>client.enrichments.<a href="/src/api/resources/enrichments/client/Client.ts">cardDetails</a>({ ...params }) -> BasisTheory.CardDetailsResponse</code></summary>
 <dl>
 <dd>
 
@@ -1552,7 +1588,7 @@ await client.enrichments.bankAccountVerify({
 <dd>
 
 ```typescript
-await client.enrichments.getcarddetails({
+await client.enrichments.cardDetails({
     bin: "bin"
 });
 
@@ -1570,7 +1606,7 @@ await client.enrichments.getcarddetails({
 <dl>
 <dd>
 
-**request:** `BasisTheory.EnrichmentsGetCardDetailsRequest` 
+**request:** `BasisTheory.EnrichmentsCardDetailsRequest` 
     
 </dd>
 </dl>
@@ -1578,7 +1614,7 @@ await client.enrichments.getcarddetails({
 <dl>
 <dd>
 
-**requestOptions:** `Enrichments.RequestOptions` 
+**requestOptions:** `EnrichmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1620,7 +1656,7 @@ await client.keys.list();
 <dl>
 <dd>
 
-**requestOptions:** `Keys.RequestOptions` 
+**requestOptions:** `KeysClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1669,7 +1705,7 @@ await client.keys.create();
 <dl>
 <dd>
 
-**requestOptions:** `Keys.RequestOptions` 
+**requestOptions:** `KeysClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1718,7 +1754,7 @@ await client.keys.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Keys.RequestOptions` 
+**requestOptions:** `KeysClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1767,7 +1803,7 @@ await client.keys.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Keys.RequestOptions` 
+**requestOptions:** `KeysClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1780,7 +1816,7 @@ await client.keys.delete("id");
 </details>
 
 ## Logs
-<details><summary><code>client.logs.<a href="/src/api/resources/logs/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Log&gt;</code></summary>
+<details><summary><code>client.logs.<a href="/src/api/resources/logs/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Log, BasisTheory.LogPaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1793,16 +1829,35 @@ await client.keys.delete("id");
 <dd>
 
 ```typescript
-const response = await client.logs.list();
-for await (const item of response) {
+const pageableResponse = await client.logs.list({
+    entityType: "entity_type",
+    entityId: "entity_id",
+    startDate: new Date("2024-01-15T09:30:00.000Z"),
+    endDate: new Date("2024-01-15T09:30:00.000Z"),
+    page: 1,
+    start: "start",
+    size: 1
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.logs.list();
+let page = await client.logs.list({
+    entityType: "entity_type",
+    entityId: "entity_id",
+    startDate: new Date("2024-01-15T09:30:00.000Z"),
+    endDate: new Date("2024-01-15T09:30:00.000Z"),
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -1826,7 +1881,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Logs.RequestOptions` 
+**requestOptions:** `LogsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1867,7 +1922,7 @@ await client.logs.getEntityTypes();
 <dl>
 <dd>
 
-**requestOptions:** `Logs.RequestOptions` 
+**requestOptions:** `LogsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1917,7 +1972,7 @@ await client.networkTokens.create();
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions` 
+**requestOptions:** `NetworkTokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1966,7 +2021,7 @@ await client.networkTokens.cryptogram("id");
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions` 
+**requestOptions:** `NetworkTokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2015,7 +2070,7 @@ await client.networkTokens.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions` 
+**requestOptions:** `NetworkTokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2064,7 +2119,7 @@ await client.networkTokens.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions` 
+**requestOptions:** `NetworkTokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2113,7 +2168,7 @@ await client.networkTokens.suspend("id");
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions` 
+**requestOptions:** `NetworkTokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2162,7 +2217,7 @@ await client.networkTokens.resume("id");
 <dl>
 <dd>
 
-**requestOptions:** `NetworkTokens.RequestOptions` 
+**requestOptions:** `NetworkTokensClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2188,7 +2243,9 @@ await client.networkTokens.resume("id");
 <dd>
 
 ```typescript
-await client.permissions.list();
+await client.permissions.list({
+    applicationType: "application_type"
+});
 
 ```
 </dd>
@@ -2212,7 +2269,7 @@ await client.permissions.list();
 <dl>
 <dd>
 
-**requestOptions:** `Permissions.RequestOptions` 
+**requestOptions:** `PermissionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2225,7 +2282,7 @@ await client.permissions.list();
 </details>
 
 ## Proxies
-<details><summary><code>client.proxies.<a href="/src/api/resources/proxies/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Proxy&gt;</code></summary>
+<details><summary><code>client.proxies.<a href="/src/api/resources/proxies/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Proxy, BasisTheory.ProxyPaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2238,16 +2295,31 @@ await client.permissions.list();
 <dd>
 
 ```typescript
-const response = await client.proxies.list();
-for await (const item of response) {
+const pageableResponse = await client.proxies.list({
+    id: ["id"],
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.proxies.list();
+let page = await client.proxies.list({
+    id: ["id"],
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -2271,7 +2343,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.RequestOptions` 
+**requestOptions:** `ProxiesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2323,7 +2395,7 @@ await client.proxies.create({
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.IdempotentRequestOptions` 
+**requestOptions:** `ProxiesClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -2372,7 +2444,7 @@ await client.proxies.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.RequestOptions` 
+**requestOptions:** `ProxiesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2432,7 +2504,7 @@ await client.proxies.update("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.IdempotentRequestOptions` 
+**requestOptions:** `ProxiesClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -2481,7 +2553,7 @@ await client.proxies.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.RequestOptions` 
+**requestOptions:** `ProxiesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2538,7 +2610,7 @@ await client.proxies.patch("id");
 <dl>
 <dd>
 
-**requestOptions:** `Proxies.IdempotentRequestOptions` 
+**requestOptions:** `ProxiesClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -2551,7 +2623,7 @@ await client.proxies.patch("id");
 </details>
 
 ## Reactors
-<details><summary><code>client.reactors.<a href="/src/api/resources/reactors/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Reactor&gt;</code></summary>
+<details><summary><code>client.reactors.<a href="/src/api/resources/reactors/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Reactor, BasisTheory.ReactorPaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2564,16 +2636,31 @@ await client.proxies.patch("id");
 <dd>
 
 ```typescript
-const response = await client.reactors.list();
-for await (const item of response) {
+const pageableResponse = await client.reactors.list({
+    id: ["id"],
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.reactors.list();
+let page = await client.reactors.list({
+    id: ["id"],
+    name: "name",
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -2597,7 +2684,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions` 
+**requestOptions:** `ReactorsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2649,7 +2736,7 @@ await client.reactors.create({
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.IdempotentRequestOptions` 
+**requestOptions:** `ReactorsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -2698,7 +2785,7 @@ await client.reactors.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions` 
+**requestOptions:** `ReactorsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2758,7 +2845,7 @@ await client.reactors.update("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.IdempotentRequestOptions` 
+**requestOptions:** `ReactorsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -2807,7 +2894,7 @@ await client.reactors.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions` 
+**requestOptions:** `ReactorsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2864,7 +2951,7 @@ await client.reactors.patch("id");
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.IdempotentRequestOptions` 
+**requestOptions:** `ReactorsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -2923,7 +3010,7 @@ await client.reactors.react("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions` 
+**requestOptions:** `ReactorsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2982,7 +3069,7 @@ await client.reactors.reactAsync("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Reactors.RequestOptions` 
+**requestOptions:** `ReactorsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3024,7 +3111,7 @@ await client.roles.list();
 <dl>
 <dd>
 
-**requestOptions:** `Roles.RequestOptions` 
+**requestOptions:** `RolesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3066,7 +3153,7 @@ await client.sessions.create();
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.IdempotentRequestOptions` 
+**requestOptions:** `SessionsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -3117,59 +3204,7 @@ await client.sessions.authorize({
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.IdempotentRequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Tenants
-<details><summary><code>client.tenants.<a href="/src/api/resources/tenants/client/Client.ts">ownerTransfer</a>({ ...params }) -> BasisTheory.TenantMemberResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.tenants.ownerTransfer({
-    memberId: "member_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `BasisTheory.TransferTenantOwnerRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tenants.RequestOptions` 
+**requestOptions:** `SessionsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -3219,7 +3254,7 @@ await client.tokenIntents.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `TokenIntents.RequestOptions` 
+**requestOptions:** `TokenIntentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3268,7 +3303,7 @@ await client.tokenIntents.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `TokenIntents.RequestOptions` 
+**requestOptions:** `TokenIntentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3319,7 +3354,7 @@ await client.tokenIntents.create({
 <dl>
 <dd>
 
-**requestOptions:** `TokenIntents.RequestOptions` 
+**requestOptions:** `TokenIntentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3375,7 +3410,7 @@ await client.webhooks.ping();
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions` 
+**requestOptions:** `WebhooksClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3438,7 +3473,7 @@ await client.webhooks.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions` 
+**requestOptions:** `WebhooksClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3513,7 +3548,7 @@ await client.webhooks.update("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions` 
+**requestOptions:** `WebhooksClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3576,7 +3611,7 @@ await client.webhooks.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions` 
+**requestOptions:** `WebhooksClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3631,7 +3666,7 @@ await client.webhooks.list();
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions` 
+**requestOptions:** `WebhooksClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3698,7 +3733,7 @@ await client.webhooks.create({
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions` 
+**requestOptions:** `WebhooksClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3762,7 +3797,7 @@ await client.accountUpdater.jobs.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Jobs.RequestOptions` 
+**requestOptions:** `JobsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3801,7 +3836,10 @@ Returns a list of account updater batch jobs
 <dd>
 
 ```typescript
-await client.accountUpdater.jobs.list();
+await client.accountUpdater.jobs.list({
+    size: 1,
+    start: "start"
+});
 
 ```
 </dd>
@@ -3825,7 +3863,7 @@ await client.accountUpdater.jobs.list();
 <dl>
 <dd>
 
-**requestOptions:** `Jobs.RequestOptions` 
+**requestOptions:** `JobsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3888,7 +3926,7 @@ await client.accountUpdater.jobs.create();
 <dl>
 <dd>
 
-**requestOptions:** `Jobs.RequestOptions` 
+**requestOptions:** `JobsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3954,7 +3992,7 @@ await client.accountUpdater.realTime.invoke({
 <dl>
 <dd>
 
-**requestOptions:** `RealTime.RequestOptions` 
+**requestOptions:** `RealTimeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4006,7 +4044,7 @@ await client.agentic.agents.create({
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions` 
+**requestOptions:** `AgentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4018,7 +4056,7 @@ await client.agentic.agents.create({
 </dl>
 </details>
 
-<details><summary><code>client.agentic.agents.<a href="/src/api/resources/agentic/resources/agents/client/Client.ts">get</a>(agentId) -> BasisTheory.Agent</code></summary>
+<details><summary><code>client.agentic.agents.<a href="/src/api/resources/agentic/resources/agents/client/Client.ts">get</a>(agent_id) -> BasisTheory.Agent</code></summary>
 <dl>
 <dd>
 
@@ -4047,7 +4085,7 @@ await client.agentic.agents.get("agent_id");
 <dl>
 <dd>
 
-**agentId:** `string` 
+**agent_id:** `string` 
     
 </dd>
 </dl>
@@ -4055,7 +4093,7 @@ await client.agentic.agents.get("agent_id");
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions` 
+**requestOptions:** `AgentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4067,7 +4105,7 @@ await client.agentic.agents.get("agent_id");
 </dl>
 </details>
 
-<details><summary><code>client.agentic.agents.<a href="/src/api/resources/agentic/resources/agents/client/Client.ts">delete</a>(agentId) -> void</code></summary>
+<details><summary><code>client.agentic.agents.<a href="/src/api/resources/agentic/resources/agents/client/Client.ts">delete</a>(agent_id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -4096,7 +4134,7 @@ await client.agentic.agents.delete("agent_id");
 <dl>
 <dd>
 
-**agentId:** `string` 
+**agent_id:** `string` 
     
 </dd>
 </dl>
@@ -4104,7 +4142,7 @@ await client.agentic.agents.delete("agent_id");
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions` 
+**requestOptions:** `AgentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4116,7 +4154,7 @@ await client.agentic.agents.delete("agent_id");
 </dl>
 </details>
 
-<details><summary><code>client.agentic.agents.<a href="/src/api/resources/agentic/resources/agents/client/Client.ts">update</a>(agentId, { ...params }) -> BasisTheory.Agent</code></summary>
+<details><summary><code>client.agentic.agents.<a href="/src/api/resources/agentic/resources/agents/client/Client.ts">update</a>(agent_id, { ...params }) -> BasisTheory.Agent</code></summary>
 <dl>
 <dd>
 
@@ -4145,7 +4183,7 @@ await client.agentic.agents.update("agent_id");
 <dl>
 <dd>
 
-**agentId:** `string` 
+**agent_id:** `string` 
     
 </dd>
 </dl>
@@ -4161,7 +4199,7 @@ await client.agentic.agents.update("agent_id");
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions` 
+**requestOptions:** `AgentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4174,7 +4212,7 @@ await client.agentic.agents.update("agent_id");
 </details>
 
 ## Agentic Enrollments
-<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Enrollment&gt;</code></summary>
+<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Enrollment, BasisTheory.EnrollmentList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4201,16 +4239,25 @@ List all enrollments for the current tenant with cursor-based pagination.
 <dd>
 
 ```typescript
-const response = await client.agentic.enrollments.list();
-for await (const item of response) {
+const pageableResponse = await client.agentic.enrollments.list({
+    limit: 1,
+    cursor: "cursor"
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.agentic.enrollments.list();
+let page = await client.agentic.enrollments.list({
+    limit: 1,
+    cursor: "cursor"
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -4234,7 +4281,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Enrollments.RequestOptions` 
+**requestOptions:** `EnrollmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4302,7 +4349,7 @@ await client.agentic.enrollments.create({
 <dl>
 <dd>
 
-**requestOptions:** `Enrollments.RequestOptions` 
+**requestOptions:** `EnrollmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4314,7 +4361,7 @@ await client.agentic.enrollments.create({
 </dl>
 </details>
 
-<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">get</a>(enrollmentId) -> BasisTheory.Enrollment</code></summary>
+<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">get</a>(enrollment_id) -> BasisTheory.Enrollment</code></summary>
 <dl>
 <dd>
 
@@ -4343,7 +4390,7 @@ await client.agentic.enrollments.get("enrollment_id");
 <dl>
 <dd>
 
-**enrollmentId:** `string` 
+**enrollment_id:** `string` 
     
 </dd>
 </dl>
@@ -4351,7 +4398,7 @@ await client.agentic.enrollments.get("enrollment_id");
 <dl>
 <dd>
 
-**requestOptions:** `Enrollments.RequestOptions` 
+**requestOptions:** `EnrollmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4363,7 +4410,7 @@ await client.agentic.enrollments.get("enrollment_id");
 </dl>
 </details>
 
-<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">delete</a>(enrollmentId) -> void</code></summary>
+<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">delete</a>(enrollment_id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -4406,7 +4453,7 @@ await client.agentic.enrollments.delete("enrollment_id");
 <dl>
 <dd>
 
-**enrollmentId:** `string` 
+**enrollment_id:** `string` 
     
 </dd>
 </dl>
@@ -4414,7 +4461,7 @@ await client.agentic.enrollments.delete("enrollment_id");
 <dl>
 <dd>
 
-**requestOptions:** `Enrollments.RequestOptions` 
+**requestOptions:** `EnrollmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4426,7 +4473,7 @@ await client.agentic.enrollments.delete("enrollment_id");
 </dl>
 </details>
 
-<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">retry</a>(enrollmentId) -> BasisTheory.Enrollment</code></summary>
+<details><summary><code>client.agentic.enrollments.<a href="/src/api/resources/agentic/resources/enrollments/client/Client.ts">retry</a>(enrollment_id) -> BasisTheory.Enrollment</code></summary>
 <dl>
 <dd>
 
@@ -4469,7 +4516,7 @@ await client.agentic.enrollments.retry("enrollment_id");
 <dl>
 <dd>
 
-**enrollmentId:** `string` 
+**enrollment_id:** `string` 
     
 </dd>
 </dl>
@@ -4477,7 +4524,7 @@ await client.agentic.enrollments.retry("enrollment_id");
 <dl>
 <dd>
 
-**requestOptions:** `Enrollments.RequestOptions` 
+**requestOptions:** `EnrollmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4490,7 +4537,7 @@ await client.agentic.enrollments.retry("enrollment_id");
 </details>
 
 ## Agentic Agents Instructions
-<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">list</a>(agentId, { ...params }) -> core.Page&lt;BasisTheory.Instruction&gt;</code></summary>
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">list</a>(agent_id, { ...params }) -> core.Page&lt;BasisTheory.Instruction, BasisTheory.InstructionList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4517,16 +4564,27 @@ List all purchase instructions for an agent with cursor-based pagination and opt
 <dd>
 
 ```typescript
-const response = await client.agentic.agents.instructions.list("agent_id");
-for await (const item of response) {
+const pageableResponse = await client.agentic.agents.instructions.list("agent_id", {
+    enrollmentId: "enrollment_id",
+    limit: 1,
+    cursor: "cursor"
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.agentic.agents.instructions.list("agent_id");
+let page = await client.agentic.agents.instructions.list("agent_id", {
+    enrollmentId: "enrollment_id",
+    limit: 1,
+    cursor: "cursor"
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -4542,7 +4600,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**agentId:** `string` 
+**agent_id:** `string` 
     
 </dd>
 </dl>
@@ -4558,7 +4616,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Instructions.RequestOptions` 
+**requestOptions:** `InstructionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4570,7 +4628,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">create</a>(agentId, { ...params }) -> BasisTheory.Instruction</code></summary>
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">create</a>(agent_id, { ...params }) -> BasisTheory.Instruction</code></summary>
 <dl>
 <dd>
 
@@ -4620,7 +4678,7 @@ await client.agentic.agents.instructions.create("agent_id", {
 <dl>
 <dd>
 
-**agentId:** `string` 
+**agent_id:** `string` 
     
 </dd>
 </dl>
@@ -4636,7 +4694,7 @@ await client.agentic.agents.instructions.create("agent_id", {
 <dl>
 <dd>
 
-**requestOptions:** `Instructions.RequestOptions` 
+**requestOptions:** `InstructionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4648,7 +4706,7 @@ await client.agentic.agents.instructions.create("agent_id", {
 </dl>
 </details>
 
-<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">get</a>(agentId, instructionId) -> BasisTheory.Instruction</code></summary>
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">get</a>(agent_id, instruction_id) -> BasisTheory.Instruction</code></summary>
 <dl>
 <dd>
 
@@ -4677,7 +4735,7 @@ await client.agentic.agents.instructions.get("agent_id", "instruction_id");
 <dl>
 <dd>
 
-**agentId:** `string` 
+**agent_id:** `string` 
     
 </dd>
 </dl>
@@ -4685,7 +4743,7 @@ await client.agentic.agents.instructions.get("agent_id", "instruction_id");
 <dl>
 <dd>
 
-**instructionId:** `string` 
+**instruction_id:** `string` 
     
 </dd>
 </dl>
@@ -4693,7 +4751,7 @@ await client.agentic.agents.instructions.get("agent_id", "instruction_id");
 <dl>
 <dd>
 
-**requestOptions:** `Instructions.RequestOptions` 
+**requestOptions:** `InstructionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4705,7 +4763,7 @@ await client.agentic.agents.instructions.get("agent_id", "instruction_id");
 </dl>
 </details>
 
-<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">delete</a>(agentId, instructionId) -> void</code></summary>
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">delete</a>(agent_id, instruction_id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -4734,7 +4792,7 @@ await client.agentic.agents.instructions.delete("agent_id", "instruction_id");
 <dl>
 <dd>
 
-**agentId:** `string` 
+**agent_id:** `string` 
     
 </dd>
 </dl>
@@ -4742,7 +4800,7 @@ await client.agentic.agents.instructions.delete("agent_id", "instruction_id");
 <dl>
 <dd>
 
-**instructionId:** `string` 
+**instruction_id:** `string` 
     
 </dd>
 </dl>
@@ -4750,7 +4808,7 @@ await client.agentic.agents.instructions.delete("agent_id", "instruction_id");
 <dl>
 <dd>
 
-**requestOptions:** `Instructions.RequestOptions` 
+**requestOptions:** `InstructionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4762,7 +4820,7 @@ await client.agentic.agents.instructions.delete("agent_id", "instruction_id");
 </dl>
 </details>
 
-<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">update</a>(agentId, instructionId, { ...params }) -> BasisTheory.Instruction</code></summary>
+<details><summary><code>client.agentic.agents.instructions.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/client/Client.ts">update</a>(agent_id, instruction_id, { ...params }) -> BasisTheory.Instruction</code></summary>
 <dl>
 <dd>
 
@@ -4791,7 +4849,7 @@ await client.agentic.agents.instructions.update("agent_id", "instruction_id");
 <dl>
 <dd>
 
-**agentId:** `string` 
+**agent_id:** `string` 
     
 </dd>
 </dl>
@@ -4799,7 +4857,7 @@ await client.agentic.agents.instructions.update("agent_id", "instruction_id");
 <dl>
 <dd>
 
-**instructionId:** `string` 
+**instruction_id:** `string` 
     
 </dd>
 </dl>
@@ -4815,7 +4873,7 @@ await client.agentic.agents.instructions.update("agent_id", "instruction_id");
 <dl>
 <dd>
 
-**requestOptions:** `Instructions.RequestOptions` 
+**requestOptions:** `InstructionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4828,7 +4886,7 @@ await client.agentic.agents.instructions.update("agent_id", "instruction_id");
 </details>
 
 ## Agentic Agents Instructions Credentials
-<details><summary><code>client.agentic.agents.instructions.credentials.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/resources/credentials/client/Client.ts">create</a>(agentId, instructionId, { ...params }) -> BasisTheory.Credentials</code></summary>
+<details><summary><code>client.agentic.agents.instructions.credentials.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/resources/credentials/client/Client.ts">create</a>(agent_id, instruction_id, { ...params }) -> BasisTheory.Credentials</code></summary>
 <dl>
 <dd>
 
@@ -4877,7 +4935,7 @@ await client.agentic.agents.instructions.credentials.create("agent_id", "instruc
 <dl>
 <dd>
 
-**agentId:** `string` 
+**agent_id:** `string` 
     
 </dd>
 </dl>
@@ -4885,7 +4943,7 @@ await client.agentic.agents.instructions.credentials.create("agent_id", "instruc
 <dl>
 <dd>
 
-**instructionId:** `string` 
+**instruction_id:** `string` 
     
 </dd>
 </dl>
@@ -4901,7 +4959,7 @@ await client.agentic.agents.instructions.credentials.create("agent_id", "instruc
 <dl>
 <dd>
 
-**requestOptions:** `Credentials.RequestOptions` 
+**requestOptions:** `CredentialsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4914,7 +4972,7 @@ await client.agentic.agents.instructions.credentials.create("agent_id", "instruc
 </details>
 
 ## Agentic Agents Instructions Verify
-<details><summary><code>client.agentic.agents.instructions.verify.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/resources/verify/client/Client.ts">start</a>(agentId, instructionId, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
+<details><summary><code>client.agentic.agents.instructions.verify.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/resources/verify/client/Client.ts">start</a>(agent_id, instruction_id, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
 <dl>
 <dd>
 
@@ -4969,7 +5027,7 @@ await client.agentic.agents.instructions.verify.start("agent_id", "instruction_i
 <dl>
 <dd>
 
-**agentId:** `string` 
+**agent_id:** `string` 
     
 </dd>
 </dl>
@@ -4977,7 +5035,7 @@ await client.agentic.agents.instructions.verify.start("agent_id", "instruction_i
 <dl>
 <dd>
 
-**instructionId:** `string` 
+**instruction_id:** `string` 
     
 </dd>
 </dl>
@@ -4993,7 +5051,7 @@ await client.agentic.agents.instructions.verify.start("agent_id", "instruction_i
 <dl>
 <dd>
 
-**requestOptions:** `Verify.RequestOptions` 
+**requestOptions:** `VerifyClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5005,7 +5063,7 @@ await client.agentic.agents.instructions.verify.start("agent_id", "instruction_i
 </dl>
 </details>
 
-<details><summary><code>client.agentic.agents.instructions.verify.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/resources/verify/client/Client.ts">passkey</a>(agentId, instructionId, { ...params }) -> BasisTheory.Instruction</code></summary>
+<details><summary><code>client.agentic.agents.instructions.verify.<a href="/src/api/resources/agentic/resources/agents/resources/instructions/resources/verify/client/Client.ts">passkey</a>(agent_id, instruction_id, { ...params }) -> BasisTheory.Instruction</code></summary>
 <dl>
 <dd>
 
@@ -5052,7 +5110,7 @@ await client.agentic.agents.instructions.verify.passkey("agent_id", "instruction
 <dl>
 <dd>
 
-**agentId:** `string` 
+**agent_id:** `string` 
     
 </dd>
 </dl>
@@ -5060,7 +5118,7 @@ await client.agentic.agents.instructions.verify.passkey("agent_id", "instruction
 <dl>
 <dd>
 
-**instructionId:** `string` 
+**instruction_id:** `string` 
     
 </dd>
 </dl>
@@ -5076,7 +5134,7 @@ await client.agentic.agents.instructions.verify.passkey("agent_id", "instruction
 <dl>
 <dd>
 
-**requestOptions:** `Verify.RequestOptions` 
+**requestOptions:** `VerifyClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5089,7 +5147,7 @@ await client.agentic.agents.instructions.verify.passkey("agent_id", "instruction
 </details>
 
 ## Agentic Enrollments Verify
-<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">start</a>(enrollmentId, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
+<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">start</a>(enrollment_id, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
 <dl>
 <dd>
 
@@ -5144,7 +5202,7 @@ await client.agentic.enrollments.verify.start("enrollment_id", {
 <dl>
 <dd>
 
-**enrollmentId:** `string` 
+**enrollment_id:** `string` 
     
 </dd>
 </dl>
@@ -5160,7 +5218,7 @@ await client.agentic.enrollments.verify.start("enrollment_id", {
 <dl>
 <dd>
 
-**requestOptions:** `Verify.RequestOptions` 
+**requestOptions:** `VerifyClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5172,7 +5230,7 @@ await client.agentic.enrollments.verify.start("enrollment_id", {
 </dl>
 </details>
 
-<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">method</a>(enrollmentId, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
+<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">method</a>(enrollment_id, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
 <dl>
 <dd>
 
@@ -5217,7 +5275,7 @@ await client.agentic.enrollments.verify.method("enrollment_id", {
 <dl>
 <dd>
 
-**enrollmentId:** `string` 
+**enrollment_id:** `string` 
     
 </dd>
 </dl>
@@ -5233,7 +5291,7 @@ await client.agentic.enrollments.verify.method("enrollment_id", {
 <dl>
 <dd>
 
-**requestOptions:** `Verify.RequestOptions` 
+**requestOptions:** `VerifyClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5245,7 +5303,7 @@ await client.agentic.enrollments.verify.method("enrollment_id", {
 </dl>
 </details>
 
-<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">otp</a>(enrollmentId, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
+<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">otp</a>(enrollment_id, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
 <dl>
 <dd>
 
@@ -5290,7 +5348,7 @@ await client.agentic.enrollments.verify.otp("enrollment_id", {
 <dl>
 <dd>
 
-**enrollmentId:** `string` 
+**enrollment_id:** `string` 
     
 </dd>
 </dl>
@@ -5306,7 +5364,7 @@ await client.agentic.enrollments.verify.otp("enrollment_id", {
 <dl>
 <dd>
 
-**requestOptions:** `Verify.RequestOptions` 
+**requestOptions:** `VerifyClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5318,7 +5376,7 @@ await client.agentic.enrollments.verify.otp("enrollment_id", {
 </dl>
 </details>
 
-<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">complete</a>(enrollmentId, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
+<details><summary><code>client.agentic.enrollments.verify.<a href="/src/api/resources/agentic/resources/enrollments/resources/verify/client/Client.ts">complete</a>(enrollment_id, { ...params }) -> BasisTheory.VerificationResponse</code></summary>
 <dl>
 <dd>
 
@@ -5361,7 +5419,7 @@ await client.agentic.enrollments.verify.complete("enrollment_id");
 <dl>
 <dd>
 
-**enrollmentId:** `string` 
+**enrollment_id:** `string` 
     
 </dd>
 </dl>
@@ -5377,7 +5435,7 @@ await client.agentic.enrollments.verify.complete("enrollment_id");
 <dl>
 <dd>
 
-**requestOptions:** `Verify.RequestOptions` 
+**requestOptions:** `VerifyClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5427,7 +5485,7 @@ await client.applePay.merchant.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Merchant.RequestOptions` 
+**requestOptions:** `MerchantClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5476,7 +5534,7 @@ await client.applePay.merchant.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Merchant.RequestOptions` 
+**requestOptions:** `MerchantClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5525,7 +5583,7 @@ await client.applePay.merchant.create();
 <dl>
 <dd>
 
-**requestOptions:** `Merchant.RequestOptions` 
+**requestOptions:** `MerchantClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5577,7 +5635,7 @@ await client.applePay.domain.deregister({
 <dl>
 <dd>
 
-**requestOptions:** `Domain.RequestOptions` 
+**requestOptions:** `DomainClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5618,7 +5676,7 @@ await client.applePay.domain.get();
 <dl>
 <dd>
 
-**requestOptions:** `Domain.RequestOptions` 
+**requestOptions:** `DomainClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5669,7 +5727,7 @@ await client.applePay.domain.register({
 <dl>
 <dd>
 
-**requestOptions:** `Domain.RequestOptions` 
+**requestOptions:** `DomainClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5718,7 +5776,7 @@ await client.applePay.domain.registerAll();
 <dl>
 <dd>
 
-**requestOptions:** `Domain.RequestOptions` 
+**requestOptions:** `DomainClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5768,7 +5826,7 @@ await client.applePay.session.create();
 <dl>
 <dd>
 
-**requestOptions:** `Session.RequestOptions` 
+**requestOptions:** `SessionClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5826,7 +5884,7 @@ await client.applePay.merchant.certificates.get("merchantId", "id");
 <dl>
 <dd>
 
-**requestOptions:** `Certificates.RequestOptions` 
+**requestOptions:** `CertificatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5883,7 +5941,7 @@ await client.applePay.merchant.certificates.delete("merchantId", "id");
 <dl>
 <dd>
 
-**requestOptions:** `Certificates.RequestOptions` 
+**requestOptions:** `CertificatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5943,7 +6001,7 @@ await client.applePay.merchant.certificates.create("merchantId", {
 <dl>
 <dd>
 
-**requestOptions:** `Certificates.RequestOptions` 
+**requestOptions:** `CertificatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5993,7 +6051,7 @@ await client.documents.data.get("documentId");
 <dl>
 <dd>
 
-**requestOptions:** `Data.RequestOptions` 
+**requestOptions:** `DataClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6043,7 +6101,7 @@ await client.googlePay.merchant.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Merchant.RequestOptions` 
+**requestOptions:** `MerchantClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6092,7 +6150,7 @@ await client.googlePay.merchant.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Merchant.RequestOptions` 
+**requestOptions:** `MerchantClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6141,7 +6199,7 @@ await client.googlePay.merchant.create();
 <dl>
 <dd>
 
-**requestOptions:** `Merchant.RequestOptions` 
+**requestOptions:** `MerchantClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6199,7 +6257,7 @@ await client.googlePay.merchant.certificates.get("merchantId", "id");
 <dl>
 <dd>
 
-**requestOptions:** `Certificates.RequestOptions` 
+**requestOptions:** `CertificatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6256,7 +6314,7 @@ await client.googlePay.merchant.certificates.delete("merchantId", "id");
 <dl>
 <dd>
 
-**requestOptions:** `Certificates.RequestOptions` 
+**requestOptions:** `CertificatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6313,7 +6371,7 @@ await client.googlePay.merchant.certificates.create("merchantId");
 <dl>
 <dd>
 
-**requestOptions:** `Certificates.RequestOptions` 
+**requestOptions:** `CertificatesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6363,7 +6421,7 @@ await client.networkTokens.account.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Account.RequestOptions` 
+**requestOptions:** `AccountClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6421,7 +6479,7 @@ await client.reactors.results.get("id", "requestId");
 <dl>
 <dd>
 
-**requestOptions:** `Results.RequestOptions` 
+**requestOptions:** `ResultsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6463,7 +6521,7 @@ await client.tenants.securityContact.get();
 <dl>
 <dd>
 
-**requestOptions:** `SecurityContact.RequestOptions` 
+**requestOptions:** `SecurityContactClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6514,7 +6572,7 @@ await client.tenants.securityContact.update({
 <dl>
 <dd>
 
-**requestOptions:** `SecurityContact.RequestOptions` 
+**requestOptions:** `SecurityContactClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6567,7 +6625,7 @@ await client.tenants.connections.create({
 <dl>
 <dd>
 
-**requestOptions:** `Connections.IdempotentRequestOptions` 
+**requestOptions:** `ConnectionsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -6579,7 +6637,7 @@ await client.tenants.connections.create({
 </dl>
 </details>
 
-<details><summary><code>client.tenants.connections.<a href="/src/api/resources/tenants/resources/connections/client/Client.ts">delete</a>() -> BasisTheory.CreateTenantConnectionResponse</code></summary>
+<details><summary><code>client.tenants.connections.<a href="/src/api/resources/tenants/resources/connections/client/Client.ts">delete</a>() -> void</code></summary>
 <dl>
 <dd>
 
@@ -6608,7 +6666,7 @@ await client.tenants.connections.delete();
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions` 
+**requestOptions:** `ConnectionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6621,7 +6679,7 @@ await client.tenants.connections.delete();
 </details>
 
 ## Tenants Invitations
-<details><summary><code>client.tenants.invitations.<a href="/src/api/resources/tenants/resources/invitations/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.TenantInvitationResponse&gt;</code></summary>
+<details><summary><code>client.tenants.invitations.<a href="/src/api/resources/tenants/resources/invitations/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.TenantInvitationResponse, BasisTheory.TenantInvitationResponsePaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6634,16 +6692,29 @@ await client.tenants.connections.delete();
 <dd>
 
 ```typescript
-const response = await client.tenants.invitations.list();
-for await (const item of response) {
+const pageableResponse = await client.tenants.invitations.list({
+    status: "PENDING",
+    page: 1,
+    start: "start",
+    size: 1
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.tenants.invitations.list();
+let page = await client.tenants.invitations.list({
+    status: "PENDING",
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -6667,7 +6738,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.RequestOptions` 
+**requestOptions:** `InvitationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6718,7 +6789,7 @@ await client.tenants.invitations.create({
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.IdempotentRequestOptions` 
+**requestOptions:** `InvitationsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -6767,7 +6838,7 @@ await client.tenants.invitations.resend("invitationId");
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.IdempotentRequestOptions` 
+**requestOptions:** `InvitationsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -6816,7 +6887,7 @@ await client.tenants.invitations.get("invitationId");
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.RequestOptions` 
+**requestOptions:** `InvitationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6865,7 +6936,7 @@ await client.tenants.invitations.delete("invitationId");
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.RequestOptions` 
+**requestOptions:** `InvitationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6878,7 +6949,7 @@ await client.tenants.invitations.delete("invitationId");
 </details>
 
 ## Tenants Members
-<details><summary><code>client.tenants.members.<a href="/src/api/resources/tenants/resources/members/client/Client.ts">list</a>({ ...params }) -> BasisTheory.TenantMemberResponsePaginatedList</code></summary>
+<details><summary><code>client.tenants.members.<a href="/src/api/resources/tenants/resources/members/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.TenantMemberResponse, BasisTheory.TenantMemberResponsePaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6891,7 +6962,29 @@ await client.tenants.invitations.delete("invitationId");
 <dd>
 
 ```typescript
-await client.tenants.members.list();
+const pageableResponse = await client.tenants.members.list({
+    userId: ["user_id"],
+    page: 1,
+    start: "start",
+    size: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.tenants.members.list({
+    userId: ["user_id"],
+    page: 1,
+    start: "start",
+    size: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -6915,7 +7008,7 @@ await client.tenants.members.list();
 <dl>
 <dd>
 
-**requestOptions:** `Members.RequestOptions` 
+**requestOptions:** `MembersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6974,7 +7067,7 @@ await client.tenants.members.update("memberId", {
 <dl>
 <dd>
 
-**requestOptions:** `Members.IdempotentRequestOptions` 
+**requestOptions:** `MembersClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -7023,7 +7116,7 @@ await client.tenants.members.delete("memberId");
 <dl>
 <dd>
 
-**requestOptions:** `Members.RequestOptions` 
+**requestOptions:** `MembersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7036,7 +7129,7 @@ await client.tenants.members.delete("memberId");
 </details>
 
 ## Tenants Merchants
-<details><summary><code>client.tenants.merchants.<a href="/src/api/resources/tenants/resources/merchants/client/Client.ts">list</a>(tenantId, { ...params }) -> core.Page&lt;BasisTheory.TenantMerchant&gt;</code></summary>
+<details><summary><code>client.tenants.merchants.<a href="/src/api/resources/tenants/resources/merchants/client/Client.ts">list</a>(tenantId, { ...params }) -> core.Page&lt;BasisTheory.TenantMerchant, BasisTheory.TenantMerchantPaginatedList&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7049,16 +7142,27 @@ await client.tenants.members.delete("memberId");
 <dd>
 
 ```typescript
-const response = await client.tenants.merchants.list("tenantId");
-for await (const item of response) {
+const pageableResponse = await client.tenants.merchants.list("tenantId", {
+    page: 1,
+    start: "start",
+    size: 1
+});
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.tenants.merchants.list("tenantId");
+let page = await client.tenants.merchants.list("tenantId", {
+    page: 1,
+    start: "start",
+    size: 1
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -7090,7 +7194,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**requestOptions:** `Merchants.RequestOptions` 
+**requestOptions:** `MerchantsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7150,7 +7254,7 @@ await client.tenants.merchants.create("tenantId", {
 <dl>
 <dd>
 
-**requestOptions:** `Merchants.RequestOptions` 
+**requestOptions:** `MerchantsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7207,7 +7311,7 @@ await client.tenants.merchants.get("tenantId", "merchantId");
 <dl>
 <dd>
 
-**requestOptions:** `Merchants.RequestOptions` 
+**requestOptions:** `MerchantsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7264,7 +7368,7 @@ await client.tenants.merchants.delete("tenantId", "merchantId");
 <dl>
 <dd>
 
-**requestOptions:** `Merchants.RequestOptions` 
+**requestOptions:** `MerchantsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7332,7 +7436,7 @@ await client.tenants.merchants.update("tenantId", "merchantId", {
 <dl>
 <dd>
 
-**requestOptions:** `Merchants.RequestOptions` 
+**requestOptions:** `MerchantsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7397,7 +7501,7 @@ await client.tenants.merchants.requestOnboarding("tenantId", "merchantId");
 <dl>
 <dd>
 
-**requestOptions:** `Merchants.RequestOptions` 
+**requestOptions:** `MerchantsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7439,7 +7543,58 @@ await client.tenants.owner.get();
 <dl>
 <dd>
 
-**requestOptions:** `Owner.RequestOptions` 
+**requestOptions:** `OwnerClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.owner.<a href="/src/api/resources/tenants/resources/owner/client/Client.ts">transfer</a>({ ...params }) -> BasisTheory.TenantMemberResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.owner.transfer({
+    memberId: "member_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.tenants.TransferTenantOwnerRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `OwnerClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -7481,7 +7636,7 @@ await client.tenants.self.getUsageReports();
 <dl>
 <dd>
 
-**requestOptions:** `Self.RequestOptions` 
+**requestOptions:** `SelfClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7522,7 +7677,7 @@ await client.tenants.self.get();
 <dl>
 <dd>
 
-**requestOptions:** `Self.RequestOptions` 
+**requestOptions:** `SelfClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7573,7 +7728,7 @@ await client.tenants.self.update({
 <dl>
 <dd>
 
-**requestOptions:** `Self.IdempotentRequestOptions` 
+**requestOptions:** `SelfClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -7614,7 +7769,7 @@ await client.tenants.self.delete();
 <dl>
 <dd>
 
-**requestOptions:** `Self.RequestOptions` 
+**requestOptions:** `SelfClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7664,7 +7819,7 @@ await client.threeds.sessions.create();
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions` 
+**requestOptions:** `SessionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7724,7 +7879,7 @@ await client.threeds.sessions.authenticate("sessionId", {
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.IdempotentRequestOptions` 
+**requestOptions:** `SessionsClient.IdempotentRequestOptions` 
     
 </dd>
 </dl>
@@ -7773,7 +7928,7 @@ await client.threeds.sessions.getChallengeResult("sessionId");
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions` 
+**requestOptions:** `SessionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7822,7 +7977,7 @@ await client.threeds.sessions.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions` 
+**requestOptions:** `SessionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7878,7 +8033,7 @@ await client.webhooks.events.list();
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions` 
+**requestOptions:** `EventsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7889,3 +8044,4 @@ await client.webhooks.events.list();
 </dd>
 </dl>
 </details>
+

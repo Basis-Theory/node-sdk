@@ -2,7 +2,10 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         size: 1,
+ *         start: "start"
+ *     }
  */
 export interface JobsListRequest {
     /** The maximum number of jobs to return */

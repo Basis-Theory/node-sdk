@@ -21,9 +21,7 @@ export const Reactor: core.serialization.ObjectSchema<serializers.Reactor.Raw, B
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedBy: core.serialization.property("modified_by", core.serialization.string().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
-        configuration: core.serialization
-            .record(core.serialization.string(), core.serialization.string().optional())
-            .optional(),
+        configuration: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
         runtime: Runtime.optional(),
         requested: RequestedReactor.optional(),
     });
@@ -41,7 +39,7 @@ export declare namespace Reactor {
         created_at?: string | null;
         modified_by?: string | null;
         modified_at?: string | null;
-        configuration?: Record<string, string | null | undefined> | null;
+        configuration?: Record<string, string | null> | null;
         runtime?: Runtime.Raw | null;
         requested?: RequestedReactor.Raw | null;
     }
