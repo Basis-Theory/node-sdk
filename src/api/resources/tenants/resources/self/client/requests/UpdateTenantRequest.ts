@@ -8,5 +8,5 @@
  */
 export interface UpdateTenantRequest {
     name: string;
-    settings?: Record<string, string | undefined>;
+    settings?: Record<string, string>;
 }

@@ -11,15 +11,13 @@ export const PendingReactor: core.serialization.ObjectSchema<
 > = core.serialization.object({
     code: core.serialization.string().optional(),
     runtime: Runtime.optional(),
-    configuration: core.serialization
-        .record(core.serialization.string(), core.serialization.string().optional())
-        .optional(),
+    configuration: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace PendingReactor {
     export interface Raw {
         code?: string | null;
         runtime?: Runtime.Raw | null;
-        configuration?: Record<string, string | null | undefined> | null;
+        configuration?: Record<string, string | null> | null;
     }
 }

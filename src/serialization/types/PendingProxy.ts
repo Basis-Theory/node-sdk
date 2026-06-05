@@ -8,9 +8,7 @@ import { ProxyTransform } from "./ProxyTransform.js";
 export const PendingProxy: core.serialization.ObjectSchema<serializers.PendingProxy.Raw, BasisTheory.PendingProxy> =
     core.serialization.object({
         destinationUrl: core.serialization.property("destination_url", core.serialization.string().optional()),
-        configuration: core.serialization
-            .record(core.serialization.string(), core.serialization.string().optional())
-            .optional(),
+        configuration: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
         requireAuth: core.serialization.property("require_auth", core.serialization.boolean().optional()),
         requestTransforms: core.serialization.property(
             "request_transforms",
@@ -25,7 +23,7 @@ export const PendingProxy: core.serialization.ObjectSchema<serializers.PendingPr
 export declare namespace PendingProxy {
     export interface Raw {
         destination_url?: string | null;
-        configuration?: Record<string, string | null | undefined> | null;
+        configuration?: Record<string, string | null> | null;
         require_auth?: boolean | null;
         request_transforms?: ProxyTransform.Raw[] | null;
         response_transforms?: ProxyTransform.Raw[] | null;

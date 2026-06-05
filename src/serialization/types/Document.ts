@@ -8,9 +8,7 @@ export const Document: core.serialization.ObjectSchema<serializers.Document.Raw,
     core.serialization.object({
         id: core.serialization.string().optional(),
         tenantId: core.serialization.property("tenant_id", core.serialization.string().optional()),
-        metadata: core.serialization
-            .record(core.serialization.string(), core.serialization.string().optional())
-            .optional(),
+        metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
         contentType: core.serialization.property("content_type", core.serialization.string().optional()),
         createdBy: core.serialization.property("created_by", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
@@ -20,7 +18,7 @@ export declare namespace Document {
     export interface Raw {
         id?: string | null;
         tenant_id?: string | null;
-        metadata?: Record<string, string | null | undefined> | null;
+        metadata?: Record<string, string | null> | null;
         content_type?: string | null;
         created_by?: string | null;
         created_at?: string | null;

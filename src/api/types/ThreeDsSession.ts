@@ -22,5 +22,5 @@ export interface ThreeDsSession {
     version?: BasisTheory.ThreeDsVersion;
     method?: BasisTheory.ThreeDsMethod;
     authentication?: BasisTheory.ThreeDsAuthentication;
-    metadata?: Record<string, string | undefined>;
+    metadata?: Record<string, string>;
 }

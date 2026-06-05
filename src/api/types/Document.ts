@@ -3,7 +3,7 @@
 export interface Document {
     id?: string;
     tenantId?: string;
-    metadata?: Record<string, string | undefined>;
+    metadata?: Record<string, string>;
     contentType?: string;
     createdBy?: string;
     createdAt?: Date;

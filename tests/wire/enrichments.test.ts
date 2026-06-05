@@ -4,12 +4,18 @@ import * as BasisTheory from "../../src/api/index";
 import { BasisTheoryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
-describe("Enrichments", () => {
+describe("EnrichmentsClient", () => {
     test("bankAccountVerify (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { token_id: "token_id" };
         const rawResponseBody = { status: "status" };
+
         server
             .mockEndpoint()
             .post("/enrichments/bank-account-verify")
@@ -29,9 +35,15 @@ describe("Enrichments", () => {
 
     test("bankAccountVerify (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { token_id: "x" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/enrichments/bank-account-verify")
@@ -50,9 +62,15 @@ describe("Enrichments", () => {
 
     test("bankAccountVerify (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { token_id: "x" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/enrichments/bank-account-verify")
@@ -71,9 +89,15 @@ describe("Enrichments", () => {
 
     test("bankAccountVerify (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { token_id: "x" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/enrichments/bank-account-verify")
@@ -90,9 +114,14 @@ describe("Enrichments", () => {
         }).rejects.toThrow(BasisTheory.ForbiddenError);
     });
 
-    test("getcarddetails (1)", async () => {
+    test("cardDetails (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             brand: "brand",
@@ -102,6 +131,7 @@ describe("Enrichments", () => {
             binRange: [{ binMin: "binMin", binMax: "binMax" }],
             additional: [{ brand: "brand", funding: "funding", segment: "segment", binRange: [{}] }],
         };
+
         server
             .mockEndpoint()
             .get("/enrichments/card-details")
@@ -110,7 +140,7 @@ describe("Enrichments", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.enrichments.getcarddetails({
+        const response = await client.enrichments.cardDetails({
             bin: "bin",
         });
         expect(response).toEqual({
@@ -138,11 +168,17 @@ describe("Enrichments", () => {
         });
     });
 
-    test("getcarddetails (2)", async () => {
+    test("cardDetails (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/enrichments/card-details")
@@ -152,17 +188,23 @@ describe("Enrichments", () => {
             .build();
 
         await expect(async () => {
-            return await client.enrichments.getcarddetails({
+            return await client.enrichments.cardDetails({
                 bin: "bin",
             });
         }).rejects.toThrow(BasisTheory.UnauthorizedError);
     });
 
-    test("getcarddetails (3)", async () => {
+    test("cardDetails (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new BasisTheoryClient({ apiKey: "test", correlationId: "test", environment: server.baseUrl });
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/enrichments/card-details")
@@ -172,7 +214,7 @@ describe("Enrichments", () => {
             .build();
 
         await expect(async () => {
-            return await client.enrichments.getcarddetails({
+            return await client.enrichments.cardDetails({
                 bin: "bin",
             });
         }).rejects.toThrow(BasisTheory.ForbiddenError);

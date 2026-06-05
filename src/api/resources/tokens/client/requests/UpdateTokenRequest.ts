@@ -9,7 +9,7 @@ import type * as BasisTheory from "../../../../index.js";
 export interface UpdateTokenRequest {
     data?: unknown;
     privacy?: BasisTheory.UpdatePrivacy;
-    metadata?: Record<string, string | undefined>;
+    metadata?: Record<string, string>;
     searchIndexes?: string[];
     fingerprintExpression?: string;
     mask?: unknown;

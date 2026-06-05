@@ -1,0 +1,38 @@
+{
+    "cliVersion": "5.43.0",
+    "generatorName": "fernapi/fern-typescript-sdk",
+    "generatorVersion": "3.70.7",
+    "generatorConfig": {
+        "noSerdeLayer": false,
+        "enableInlineTypes": false,
+        "namespaceExport": "BasisTheory",
+        "allowCustomFetcher": true,
+        "skipResponseValidation": true,
+        "packageManager": "yarn",
+        "testFramework": "jest",
+        "packageJson": {
+            "repository": {
+                "type": "git",
+                "url": "https://github.com/Basis-Theory/node-sdk"
+            },
+            "packageManager": "yarn@1.22.22"
+        },
+        "extraDevDependencies": {
+            "ini": "^4.1.3",
+            "semantic-release": "^19.0.5",
+            "@semantic-release/changelog": "^6.0.3",
+            "@semantic-release/commit-analyzer": "^10.0.4",
+            "@semantic-release/exec": "^6.0.3",
+            "@semantic-release/git": "^10.0.1",
+            "@semantic-release/github": "^9.2.6",
+            "@semantic-release/npm": "^10.0.6",
+            "@semantic-release/release-notes-generator": "^11.0.7"
+        }
+    },
+    "originGitCommit": "653a1ac274c3a576a2273f9bff9371eb0d555ad2",
+    "originGitCommitIsDirty": false,
+    "invokedBy": "ci",
+    "requestedVersion": "0.0.1",
+    "ciProvider": "github",
+    "sdkVersion": "0.0.1"
+}

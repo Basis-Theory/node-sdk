@@ -17,7 +17,7 @@ export interface Proxy {
     requestTransforms?: BasisTheory.ProxyTransform[];
     responseTransforms?: BasisTheory.ProxyTransform[];
     applicationId?: string;
-    configuration?: Record<string, string | undefined>;
+    configuration?: Record<string, string>;
     proxyHost?: string;
     timeout?: number;
     disableDetokenization?: boolean;
