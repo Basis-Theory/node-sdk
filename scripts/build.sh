@@ -16,7 +16,7 @@ fi
 # emitted headers match the published release instead of the 0.0.1 placeholder.
 # Done here (build time) rather than in `Client.ts` so Fern can own it and keep
 # tracking new API resources on regeneration.
-CLIENT_FILE="../src/Client.ts"
+CLIENT_FILE="../src/BaseClient.ts"
 SDK_VERSION=$(node -p "require('../package.json').version")
 
 # Fail closed on a non-semver version. SDK_VERSION is interpolated into the sed
