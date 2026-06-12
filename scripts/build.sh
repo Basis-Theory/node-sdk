@@ -27,27 +27,10 @@ if [[ ! "$SDK_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-+][0-9A-Za-z.-]+)?$ ]]; then
   exit 1
 fi
 
-echo "Stamping SDK version ${SDK_VERSION} into src/Client.ts"
-
-# Replace one header value, failing loudly if the expected pattern is absent.
-# sed exits 0 even when nothing matches, so without this guard a Fern change to the
-# generated header would silently publish the stale 0.0.1 placeholder.
-stamp_header() {
-  local pattern="$1"
-  if ! grep -qE "$pattern" "$CLIENT_FILE"; then
-    echo "ERROR: pattern not found in ${CLIENT_FILE}: ${pattern}" >&2
-    echo "Fern may have changed the generated client; update scripts/build.sh." >&2
-    exit 1
-  fi
-  sed -i -E "s#${pattern}#\1${SDK_VERSION}\2#" "$CLIENT_FILE"
-}
-
-stamp_header "(\"X-Fern-SDK-Version\": \")[^\"]*(\")"
-stamp_header "(\"User-Agent\": \"@basis-theory/node-sdk/)[^\"]*(\")"
+echo "Stamping SDK version ${SDK_VERSION} into ${CLIENT_FILE}"
+node ./stamp-sdk-version.js "$CLIENT_FILE" "$SDK_VERSION"
 
 yarn build
-
-
 
 cd "$current_directory"
 
