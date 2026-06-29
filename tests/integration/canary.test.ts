@@ -696,7 +696,7 @@ describe('google pay', () => {
             });
         } catch (err) {
             expect(err).toBeInstanceOf(UnprocessableEntityError);
-            expect((err as any).body.detail).toContain('Failed to decrypt Google payment request');
+            expect((err as any).body.detail).toContain('Failed to process the Google Pay token; the token payload is invalid or malformed.');
         }
     });
 });
