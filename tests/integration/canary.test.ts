@@ -690,13 +690,18 @@ describe('google pay', () => {
 
         const jsonObject = JSON.parse(jsonString);
 
+        expect.assertions(2);
         try {
             await client.googlePay.create({
                 googlePaymentData: jsonObject
             });
         } catch (err) {
             expect(err).toBeInstanceOf(UnprocessableEntityError);
-            expect((err as any).body.detail).toContain('Failed to decrypt Google payment request');
+            // The API returns either the legacy "decrypt" wording or the newer
+            // "process ... invalid or malformed" wording for an expired signing key.
+            expect((err as any).body.detail).toMatch(
+                /Failed to (decrypt Google payment request|process the Google Pay token)/
+            );
         }
     });
 });
