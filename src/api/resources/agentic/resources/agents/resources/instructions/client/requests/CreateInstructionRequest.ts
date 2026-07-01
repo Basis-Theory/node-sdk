@@ -21,4 +21,17 @@ export interface CreateInstructionRequest {
     assuranceData?: Record<string, unknown>;
     recurring?: BasisTheory.Recurring;
     instanceDetails?: BasisTheory.InstanceDetails;
+    /**
+     * Stripe network business profile identifier (`profile_...`) of the seller allowed to use the
+     * shared payment token. Maps to Stripe's `seller_details[network_business_profile]`.
+     * Only valid for `spt` (Stripe) enrollments; required unless an MPP challenge with Stripe
+     * network details is provided.
+     */
+    networkBusinessProfile?: string;
+    /**
+     * MPP mode — provide the merchant's MPP challenge to receive an MPP credential from the
+     * credentials endpoint instead of a raw shared payment token ID. The challenge must carry
+     * Stripe values (`method: stripe`). Only valid for `spt` (Stripe) enrollments.
+     */
+    mpp?: BasisTheory.agentic.agents.CreateInstructionRequestMpp;
 }

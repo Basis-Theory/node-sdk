@@ -3,10 +3,12 @@
 /**
  * Inherited from the parent enrollment. `agentic` instructions require cardholder
  * verification before credentials can be retrieved; `autofill` instructions are
- * auto-approved on creation and credentials can be retrieved immediately.
+ * auto-approved on creation and credentials can be retrieved immediately; `spt`
+ * instructions create a shared payment token that is approved on creation.
  */
 export const InstructionType = {
     Agentic: "agentic",
     Autofill: "autofill",
+    Spt: "spt",
 } as const;
 export type InstructionType = (typeof InstructionType)[keyof typeof InstructionType];

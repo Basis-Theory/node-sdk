@@ -13,9 +13,11 @@ describe("CredentialsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { merchant: { name: "name", url: "url", country_code: "country_code" } };
+        const rawRequestBody = {};
         const rawResponseBody = {
             card: { number: "number", expiration_month: 1, expiration_year: 1, cvc: "cvc" },
+            spt: { id: "spt_1RgaZcFPC5QUO6ZCDVZuVA8q" },
+            mpp: { credential: "credential" },
             expires_at: "2024-01-15T09:30:00Z",
         };
 
@@ -28,19 +30,19 @@ describe("CredentialsClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id", {
-            merchant: {
-                name: "name",
-                url: "url",
-                countryCode: "country_code",
-            },
-        });
+        const response = await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id");
         expect(response).toEqual({
             card: {
                 number: "number",
                 expirationMonth: 1,
                 expirationYear: 1,
                 cvc: "cvc",
+            },
+            spt: {
+                id: "spt_1RgaZcFPC5QUO6ZCDVZuVA8q",
+            },
+            mpp: {
+                credential: "credential",
             },
             expiresAt: new Date("2024-01-15T09:30:00.000Z"),
         });
@@ -54,7 +56,7 @@ describe("CredentialsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { merchant: { name: "x", url: "x", country_code: "xy" } };
+        const rawRequestBody = {};
         const rawResponseBody = {};
 
         server
@@ -67,13 +69,7 @@ describe("CredentialsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id", {
-                merchant: {
-                    name: "x",
-                    url: "x",
-                    countryCode: "xy",
-                },
-            });
+            return await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id");
         }).rejects.toThrow(BasisTheory.BadRequestError);
     });
 
@@ -85,7 +81,7 @@ describe("CredentialsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { merchant: { name: "x", url: "x", country_code: "xy" } };
+        const rawRequestBody = {};
         const rawResponseBody = {};
 
         server
@@ -98,13 +94,7 @@ describe("CredentialsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id", {
-                merchant: {
-                    name: "x",
-                    url: "x",
-                    countryCode: "xy",
-                },
-            });
+            return await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id");
         }).rejects.toThrow(BasisTheory.UnauthorizedError);
     });
 
@@ -116,7 +106,7 @@ describe("CredentialsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { merchant: { name: "x", url: "x", country_code: "xy" } };
+        const rawRequestBody = {};
         const rawResponseBody = {};
 
         server
@@ -129,13 +119,7 @@ describe("CredentialsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id", {
-                merchant: {
-                    name: "x",
-                    url: "x",
-                    countryCode: "xy",
-                },
-            });
+            return await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id");
         }).rejects.toThrow(BasisTheory.ForbiddenError);
     });
 
@@ -147,7 +131,7 @@ describe("CredentialsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { merchant: { name: "x", url: "x", country_code: "xy" } };
+        const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
 
         server
@@ -160,13 +144,7 @@ describe("CredentialsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id", {
-                merchant: {
-                    name: "x",
-                    url: "x",
-                    countryCode: "xy",
-                },
-            });
+            return await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id");
         }).rejects.toThrow(BasisTheory.NotFoundError);
     });
 
@@ -178,7 +156,7 @@ describe("CredentialsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { merchant: { name: "x", url: "x", country_code: "xy" } };
+        const rawRequestBody = {};
         const rawResponseBody = {};
 
         server
@@ -191,13 +169,7 @@ describe("CredentialsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id", {
-                merchant: {
-                    name: "x",
-                    url: "x",
-                    countryCode: "xy",
-                },
-            });
+            return await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id");
         }).rejects.toThrow(BasisTheory.UnprocessableEntityError);
     });
 
@@ -209,7 +181,7 @@ describe("CredentialsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { merchant: { name: "x", url: "x", country_code: "xy" } };
+        const rawRequestBody = {};
         const rawResponseBody = {};
 
         server
@@ -222,13 +194,7 @@ describe("CredentialsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id", {
-                merchant: {
-                    name: "x",
-                    url: "x",
-                    countryCode: "xy",
-                },
-            });
+            return await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id");
         }).rejects.toThrow(BasisTheory.InternalServerError);
     });
 });

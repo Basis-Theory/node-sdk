@@ -6,6 +6,7 @@ import type * as serializers from "../../../../../../../../index.js";
 import { Amount } from "../../../../../../../../types/Amount.js";
 import { InstanceDetails } from "../../../../../../../../types/InstanceDetails.js";
 import { Recurring } from "../../../../../../../../types/Recurring.js";
+import { CreateInstructionRequestMpp } from "../../types/CreateInstructionRequestMpp.js";
 
 export const CreateInstructionRequest: core.serialization.Schema<
     serializers.agentic.agents.CreateInstructionRequest.Raw,
@@ -21,6 +22,11 @@ export const CreateInstructionRequest: core.serialization.Schema<
     ),
     recurring: Recurring.optional(),
     instanceDetails: core.serialization.property("instance_details", InstanceDetails.optional()),
+    networkBusinessProfile: core.serialization.property(
+        "network_business_profile",
+        core.serialization.string().optional(),
+    ),
+    mpp: CreateInstructionRequestMpp.optional(),
 });
 
 export declare namespace CreateInstructionRequest {
@@ -32,5 +38,7 @@ export declare namespace CreateInstructionRequest {
         assurance_data?: Record<string, unknown> | null;
         recurring?: Recurring.Raw | null;
         instance_details?: InstanceDetails.Raw | null;
+        network_business_profile?: string | null;
+        mpp?: CreateInstructionRequestMpp.Raw | null;
     }
 }

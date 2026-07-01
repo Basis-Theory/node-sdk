@@ -4,10 +4,13 @@
  * Enrollment type. `agentic` (default) enrolls the card for agent-driven payments and requires verification.
  * `autofill` enrolls the card for direct autofill credential retrieval, skips verification, and is currently
  * available to test tenants only.
+ * `spt` enrolls the card for shared payment tokens, requires `provider` to be set, skips verification, and
+ * activates immediately.
  */
 export const CreateEnrollmentRequestType = {
     Agentic: "agentic",
     Autofill: "autofill",
+    Spt: "spt",
 } as const;
 export type CreateEnrollmentRequestType =
     (typeof CreateEnrollmentRequestType)[keyof typeof CreateEnrollmentRequestType];

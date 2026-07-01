@@ -7,8 +7,8 @@ import type * as serializers from "../../../../../index.js";
 export const CreateEnrollmentRequestType: core.serialization.Schema<
     serializers.agentic.CreateEnrollmentRequestType.Raw,
     BasisTheory.agentic.CreateEnrollmentRequestType
-> = core.serialization.enum_(["agentic", "autofill"]);
+> = core.serialization.enum_(["agentic", "autofill", "spt"]);
 
 export declare namespace CreateEnrollmentRequestType {
-    export type Raw = "agentic" | "autofill";
+    export type Raw = "agentic" | "autofill" | "spt";
 }

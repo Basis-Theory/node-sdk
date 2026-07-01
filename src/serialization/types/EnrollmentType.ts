@@ -5,8 +5,8 @@ import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 
 export const EnrollmentType: core.serialization.Schema<serializers.EnrollmentType.Raw, BasisTheory.EnrollmentType> =
-    core.serialization.enum_(["agentic", "autofill"]);
+    core.serialization.enum_(["agentic", "autofill", "spt"]);
 
 export declare namespace EnrollmentType {
-    export type Raw = "agentic" | "autofill";
+    export type Raw = "agentic" | "autofill" | "spt";
 }

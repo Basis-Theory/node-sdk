@@ -7,8 +7,8 @@ import type * as serializers from "../index.js";
 export const EnrollmentProvider: core.serialization.Schema<
     serializers.EnrollmentProvider.Raw,
     BasisTheory.EnrollmentProvider
-> = core.serialization.enum_(["visa", "mastercard", "visa-mock", "mastercard-mock"]);
+> = core.serialization.enum_(["visa", "mastercard", "stripe", "visa-mock", "mastercard-mock", "stripe-mock"]);
 
 export declare namespace EnrollmentProvider {
-    export type Raw = "visa" | "mastercard" | "visa-mock" | "mastercard-mock";
+    export type Raw = "visa" | "mastercard" | "stripe" | "visa-mock" | "mastercard-mock" | "stripe-mock";
 }

@@ -4913,13 +4913,7 @@ Retrieve payment credentials (card number, expiration, CVC) for a purchase instr
 <dd>
 
 ```typescript
-await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id", {
-    merchant: {
-        name: "name",
-        url: "url",
-        countryCode: "country_code"
-    }
-});
+await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id");
 
 ```
 </dd>

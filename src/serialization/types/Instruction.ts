@@ -4,6 +4,7 @@ import type * as BasisTheory from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 import { Amount } from "./Amount.js";
+import { InstructionCredentialType } from "./InstructionCredentialType.js";
 import { InstructionStatus } from "./InstructionStatus.js";
 import { InstructionType } from "./InstructionType.js";
 import { Recurring } from "./Recurring.js";
@@ -14,6 +15,7 @@ export const Instruction: core.serialization.ObjectSchema<serializers.Instructio
         enrollmentId: core.serialization.property("enrollment_id", core.serialization.string().optional()),
         status: InstructionStatus.optional(),
         type: InstructionType.optional(),
+        credentialType: core.serialization.property("credential_type", InstructionCredentialType.optional()),
         amount: Amount.optional(),
         description: core.serialization.string().optional(),
         expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
@@ -27,6 +29,7 @@ export declare namespace Instruction {
         enrollment_id?: string | null;
         status?: InstructionStatus.Raw | null;
         type?: InstructionType.Raw | null;
+        credential_type?: InstructionCredentialType.Raw | null;
         amount?: Amount.Raw | null;
         description?: string | null;
         expires_at?: string | null;

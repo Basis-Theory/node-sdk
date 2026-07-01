@@ -9,9 +9,16 @@ export interface Instruction {
     /**
      * Inherited from the parent enrollment. `agentic` instructions require cardholder
      * verification before credentials can be retrieved; `autofill` instructions are
-     * auto-approved on creation and credentials can be retrieved immediately.
+     * auto-approved on creation and credentials can be retrieved immediately; `spt`
+     * instructions create a shared payment token that is approved on creation.
      */
     type?: BasisTheory.InstructionType;
+    /**
+     * Indicates the shape the credentials endpoint returns for this instruction:
+     * `card` (Visa/Mastercard virtual card credentials), `spt` (Stripe shared payment
+     * token ID), or `mpp` (MPP credential built from the challenge provided at creation).
+     */
+    credentialType?: BasisTheory.InstructionCredentialType;
     amount?: BasisTheory.Amount;
     description?: string;
     expiresAt?: Date;

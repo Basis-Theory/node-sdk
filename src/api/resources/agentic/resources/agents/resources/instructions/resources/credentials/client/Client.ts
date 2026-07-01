@@ -42,18 +42,12 @@ export class CredentialsClient {
      * @throws {@link BasisTheory.InternalServerError}
      *
      * @example
-     *     await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id", {
-     *         merchant: {
-     *             name: "name",
-     *             url: "url",
-     *             countryCode: "country_code"
-     *         }
-     *     })
+     *     await client.agentic.agents.instructions.credentials.create("agent_id", "instruction_id")
      */
     public create(
         agent_id: string,
         instruction_id: string,
-        request: BasisTheory.agentic.agents.instructions.GetCredentialsRequest,
+        request: BasisTheory.agentic.agents.instructions.GetCredentialsRequest = {},
         requestOptions?: CredentialsClient.RequestOptions,
     ): core.HttpResponsePromise<BasisTheory.Credentials> {
         return core.HttpResponsePromise.fromPromise(this.__create(agent_id, instruction_id, request, requestOptions));
@@ -62,7 +56,7 @@ export class CredentialsClient {
     private async __create(
         agent_id: string,
         instruction_id: string,
-        request: BasisTheory.agentic.agents.instructions.GetCredentialsRequest,
+        request: BasisTheory.agentic.agents.instructions.GetCredentialsRequest = {},
         requestOptions?: CredentialsClient.RequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.Credentials>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();

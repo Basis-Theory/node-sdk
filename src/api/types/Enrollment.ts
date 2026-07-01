@@ -12,7 +12,7 @@ export interface Enrollment {
     agentIds?: string[];
     /** Display label shown to the cardholder during Mastercard managed-authentication challenges. */
     walletName?: string;
-    /** Enrollment type — `agentic` (default) for agent-driven payments, `autofill` for direct credential autofill. */
+    /** Enrollment type — `agentic` (default) for agent-driven payments, `autofill` for direct credential autofill, `spt` for shared payment tokens. */
     type?: BasisTheory.EnrollmentType;
     createdAt?: Date;
 }
