@@ -5,8 +5,8 @@ import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 
 export const InstructionType: core.serialization.Schema<serializers.InstructionType.Raw, BasisTheory.InstructionType> =
-    core.serialization.enum_(["agentic", "autofill"]);
+    core.serialization.enum_(["agentic", "autofill", "spt"]);
 
 export declare namespace InstructionType {
-    export type Raw = "agentic" | "autofill";
+    export type Raw = "agentic" | "autofill" | "spt";
 }

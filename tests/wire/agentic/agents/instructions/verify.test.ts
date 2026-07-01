@@ -409,6 +409,7 @@ describe("VerifyClient", () => {
             enrollment_id: "enrollment_id",
             status: "active",
             type: "agentic",
+            credential_type: "card",
             amount: { value: "100.00", currency: "currency" },
             description: "description",
             expires_at: "2024-01-15T09:30:00Z",
@@ -435,6 +436,7 @@ describe("VerifyClient", () => {
             enrollmentId: "enrollment_id",
             status: "active",
             type: "agentic",
+            credentialType: "card",
             amount: {
                 value: "100.00",
                 currency: "currency",

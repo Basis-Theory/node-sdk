@@ -16,6 +16,7 @@ export const CreateEnrollmentRequest: core.serialization.Schema<
     agentIds: core.serialization.property("agent_ids", core.serialization.list(core.serialization.string()).optional()),
     walletName: core.serialization.property("wallet_name", core.serialization.string().optional()),
     type: CreateEnrollmentRequestType.optional(),
+    provider: core.serialization.stringLiteral("stripe").optional(),
 });
 
 export declare namespace CreateEnrollmentRequest {
@@ -26,5 +27,6 @@ export declare namespace CreateEnrollmentRequest {
         agent_ids?: string[] | null;
         wallet_name?: string | null;
         type?: CreateEnrollmentRequestType.Raw | null;
+        provider?: "stripe" | null;
     }
 }

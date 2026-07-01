@@ -4,17 +4,15 @@ import type * as BasisTheory from "../../../../../../../../../../index.js";
 
 /**
  * @example
- *     {
- *         merchant: {
- *             name: "name",
- *             url: "url",
- *             countryCode: "country_code"
- *         }
- *     }
+ *     {}
  */
 export interface GetCredentialsRequest {
     products?: BasisTheory.Product[];
-    merchant: BasisTheory.AgenticMerchant;
+    /**
+     * Required for card (Visa/Mastercard) instructions unless provided at instruction
+     * creation. Not used for `spt` instructions.
+     */
+    merchant?: BasisTheory.AgenticMerchant;
     amount?: BasisTheory.Amount;
     deliveryMethod?: BasisTheory.DeliveryMethod;
     shippingAddress?: BasisTheory.ShippingAddress;

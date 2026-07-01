@@ -14,7 +14,7 @@ export const GetCredentialsRequest: core.serialization.Schema<
     BasisTheory.agentic.agents.instructions.GetCredentialsRequest
 > = core.serialization.object({
     products: core.serialization.list(Product).optional(),
-    merchant: AgenticMerchant,
+    merchant: AgenticMerchant.optional(),
     amount: Amount.optional(),
     deliveryMethod: core.serialization.property("delivery_method", DeliveryMethod.optional()),
     shippingAddress: core.serialization.property("shipping_address", ShippingAddress.optional()),
@@ -23,7 +23,7 @@ export const GetCredentialsRequest: core.serialization.Schema<
 export declare namespace GetCredentialsRequest {
     export interface Raw {
         products?: Product.Raw[] | null;
-        merchant: AgenticMerchant.Raw;
+        merchant?: AgenticMerchant.Raw | null;
         amount?: Amount.Raw | null;
         delivery_method?: DeliveryMethod.Raw | null;
         shipping_address?: ShippingAddress.Raw | null;

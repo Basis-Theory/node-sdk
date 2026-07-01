@@ -2,7 +2,16 @@
 
 import type * as BasisTheory from "../index.js";
 
+/**
+ * Credential payload for the instruction. Exactly one of `card`, `spt`, or `mpp` is present:
+ * `card` for Visa/Mastercard virtual card credentials, `spt` for Stripe shared payment token
+ * instructions (raw mode), `mpp` for Stripe instructions created with an MPP challenge.
+ */
 export interface Credentials {
     card?: BasisTheory.CredentialsCard;
+    /** Stripe shared payment token (raw mode) */
+    spt?: BasisTheory.CredentialsSpt;
+    /** MPP credential (MPP mode) */
+    mpp?: BasisTheory.CredentialsMpp;
     expiresAt?: Date;
 }

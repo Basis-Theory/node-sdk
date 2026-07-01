@@ -3,7 +3,9 @@
 export const EnrollmentProvider = {
     Visa: "visa",
     Mastercard: "mastercard",
+    Stripe: "stripe",
     VisaMock: "visa-mock",
     MastercardMock: "mastercard-mock",
+    StripeMock: "stripe-mock",
 } as const;
 export type EnrollmentProvider = (typeof EnrollmentProvider)[keyof typeof EnrollmentProvider];

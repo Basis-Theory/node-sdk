@@ -4,16 +4,22 @@ import type * as BasisTheory from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 import { CredentialsCard } from "./CredentialsCard.js";
+import { CredentialsMpp } from "./CredentialsMpp.js";
+import { CredentialsSpt } from "./CredentialsSpt.js";
 
 export const Credentials: core.serialization.ObjectSchema<serializers.Credentials.Raw, BasisTheory.Credentials> =
     core.serialization.object({
         card: CredentialsCard.optional(),
+        spt: CredentialsSpt.optional(),
+        mpp: CredentialsMpp.optional(),
         expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
     });
 
 export declare namespace Credentials {
     export interface Raw {
         card?: CredentialsCard.Raw | null;
+        spt?: CredentialsSpt.Raw | null;
+        mpp?: CredentialsMpp.Raw | null;
         expires_at?: string | null;
     }
 }

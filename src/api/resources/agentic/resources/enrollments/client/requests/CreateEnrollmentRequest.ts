@@ -24,6 +24,10 @@ export interface CreateEnrollmentRequest {
      * Enrollment type. `agentic` (default) enrolls the card for agent-driven payments and requires verification.
      * `autofill` enrolls the card for direct autofill credential retrieval, skips verification, and is currently
      * available to test tenants only.
+     * `spt` enrolls the card for shared payment tokens, requires `provider` to be set, skips verification, and
+     * activates immediately.
      */
     type?: BasisTheory.agentic.CreateEnrollmentRequestType;
+    /** Token provider for `spt` enrollments. Required when `type` is `spt`; not allowed otherwise. */
+    provider?: "stripe";
 }
