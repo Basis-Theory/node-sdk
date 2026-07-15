@@ -4,7 +4,7 @@ import type * as BasisTheory from "../../../../../api/index.js";
 import * as core from "../../../../../core/index.js";
 import type * as serializers from "../../../../index.js";
 import { Application } from "../../../../types/Application.js";
-import { Runtime } from "../../../../types/Runtime.js";
+import { ReactorRuntime } from "../../../../types/ReactorRuntime.js";
 
 export const CreateReactorRequest: core.serialization.Schema<
     serializers.CreateReactorRequest.Raw,
@@ -14,7 +14,7 @@ export const CreateReactorRequest: core.serialization.Schema<
     code: core.serialization.string(),
     application: Application.optional(),
     configuration: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
-    runtime: Runtime.optional(),
+    runtime: ReactorRuntime.optional(),
 });
 
 export declare namespace CreateReactorRequest {
@@ -23,6 +23,6 @@ export declare namespace CreateReactorRequest {
         code: string;
         application?: Application.Raw | null;
         configuration?: Record<string, string | null> | null;
-        runtime?: Runtime.Raw | null;
+        runtime?: ReactorRuntime.Raw | null;
     }
 }

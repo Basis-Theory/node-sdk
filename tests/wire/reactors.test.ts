@@ -196,6 +196,7 @@ describe("ReactorsClient", () => {
             modified_at: "2024-01-15T09:30:00Z",
             configuration: { key: "value" },
             runtime: {
+                async: true,
                 image: "image",
                 dependencies: { key: "value" },
                 resolutions: { key: "value" },
@@ -267,6 +268,7 @@ describe("ReactorsClient", () => {
                 key: "value",
             },
             runtime: {
+                async: true,
                 image: "image",
                 dependencies: {
                     key: "value",
