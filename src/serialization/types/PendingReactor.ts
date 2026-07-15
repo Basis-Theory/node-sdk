@@ -3,21 +3,21 @@
 import type * as BasisTheory from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
-import { Runtime } from "./Runtime.js";
+import { ReactorRuntime } from "./ReactorRuntime.js";
 
 export const PendingReactor: core.serialization.ObjectSchema<
     serializers.PendingReactor.Raw,
     BasisTheory.PendingReactor
 > = core.serialization.object({
     code: core.serialization.string().optional(),
-    runtime: Runtime.optional(),
+    runtime: ReactorRuntime.optional(),
     configuration: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace PendingReactor {
     export interface Raw {
         code?: string | null;
-        runtime?: Runtime.Raw | null;
+        runtime?: ReactorRuntime.Raw | null;
         configuration?: Record<string, string | null> | null;
     }
 }

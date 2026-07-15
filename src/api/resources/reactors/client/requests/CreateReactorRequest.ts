@@ -14,5 +14,5 @@ export interface CreateReactorRequest {
     code: string;
     application?: BasisTheory.Application;
     configuration?: Record<string, string>;
-    runtime?: BasisTheory.Runtime;
+    runtime?: BasisTheory.ReactorRuntime;
 }
