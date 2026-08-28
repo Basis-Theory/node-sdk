@@ -125,7 +125,7 @@ describe("MerchantsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { name: "name", details: {} };
+        const rawRequestBody = { name: "name" };
         const rawResponseBody = {
             id: "id",
             tenant_id: "tenant_id",
@@ -163,7 +163,6 @@ describe("MerchantsClient", () => {
 
         const response = await client.tenants.merchants.create("tenantId", {
             name: "name",
-            details: {},
         });
         expect(response).toEqual({
             id: "id",
@@ -209,7 +208,7 @@ describe("MerchantsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { name: "x", details: {} };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = {};
 
         server
@@ -224,7 +223,6 @@ describe("MerchantsClient", () => {
         await expect(async () => {
             return await client.tenants.merchants.create("tenantId", {
                 name: "x",
-                details: {},
             });
         }).rejects.toThrow(BasisTheory.UnauthorizedError);
     });
@@ -237,7 +235,7 @@ describe("MerchantsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { name: "x", details: {} };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = {};
 
         server
@@ -252,7 +250,6 @@ describe("MerchantsClient", () => {
         await expect(async () => {
             return await client.tenants.merchants.create("tenantId", {
                 name: "x",
-                details: {},
             });
         }).rejects.toThrow(BasisTheory.ForbiddenError);
     });
@@ -265,7 +262,7 @@ describe("MerchantsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { name: "x", details: {} };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = { key: "value" };
 
         server
@@ -280,7 +277,6 @@ describe("MerchantsClient", () => {
         await expect(async () => {
             return await client.tenants.merchants.create("tenantId", {
                 name: "x",
-                details: {},
             });
         }).rejects.toThrow(BasisTheory.NotFoundError);
     });
@@ -573,7 +569,7 @@ describe("MerchantsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { name: "name", details: {} };
+        const rawRequestBody = { name: "name" };
         const rawResponseBody = {
             id: "id",
             tenant_id: "tenant_id",
@@ -611,7 +607,6 @@ describe("MerchantsClient", () => {
 
         const response = await client.tenants.merchants.update("tenantId", "merchantId", {
             name: "name",
-            details: {},
         });
         expect(response).toEqual({
             id: "id",
@@ -657,7 +652,7 @@ describe("MerchantsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { name: "x", details: {} };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = {};
 
         server
@@ -672,7 +667,6 @@ describe("MerchantsClient", () => {
         await expect(async () => {
             return await client.tenants.merchants.update("tenantId", "merchantId", {
                 name: "x",
-                details: {},
             });
         }).rejects.toThrow(BasisTheory.UnauthorizedError);
     });
@@ -685,7 +679,7 @@ describe("MerchantsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { name: "x", details: {} };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = {};
 
         server
@@ -700,7 +694,6 @@ describe("MerchantsClient", () => {
         await expect(async () => {
             return await client.tenants.merchants.update("tenantId", "merchantId", {
                 name: "x",
-                details: {},
             });
         }).rejects.toThrow(BasisTheory.ForbiddenError);
     });
@@ -713,7 +706,7 @@ describe("MerchantsClient", () => {
             correlationId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { name: "x", details: {} };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = { key: "value" };
 
         server
@@ -728,7 +721,6 @@ describe("MerchantsClient", () => {
         await expect(async () => {
             return await client.tenants.merchants.update("tenantId", "merchantId", {
                 name: "x",
-                details: {},
             });
         }).rejects.toThrow(BasisTheory.NotFoundError);
     });

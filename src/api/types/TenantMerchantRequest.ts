@@ -4,5 +4,5 @@ import type * as BasisTheory from "../index.js";
 
 export interface TenantMerchantRequest {
     name: string;
-    details: BasisTheory.MerchantDetails;
+    details?: BasisTheory.MerchantDetails;
 }

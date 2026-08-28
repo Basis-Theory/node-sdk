@@ -10,12 +10,12 @@ export const TenantMerchantRequest: core.serialization.ObjectSchema<
     BasisTheory.TenantMerchantRequest
 > = core.serialization.object({
     name: core.serialization.string(),
-    details: MerchantDetails,
+    details: MerchantDetails.optional(),
 });
 
 export declare namespace TenantMerchantRequest {
     export interface Raw {
         name: string;
-        details: MerchantDetails.Raw;
+        details?: MerchantDetails.Raw | null;
     }
 }
