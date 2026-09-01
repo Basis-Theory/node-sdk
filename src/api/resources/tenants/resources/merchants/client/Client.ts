@@ -150,8 +150,7 @@ export class MerchantsClient {
      *
      * @example
      *     await client.tenants.merchants.create("tenantId", {
-     *         name: "name",
-     *         details: {}
+     *         name: "name"
      *     })
      */
     public create(
@@ -460,8 +459,7 @@ export class MerchantsClient {
      *
      * @example
      *     await client.tenants.merchants.update("tenantId", "merchantId", {
-     *         name: "name",
-     *         details: {}
+     *         name: "name"
      *     })
      */
     public update(

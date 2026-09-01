@@ -7214,8 +7214,7 @@ const response = page.response;
 
 ```typescript
 await client.tenants.merchants.create("tenantId", {
-    name: "name",
-    details: {}
+    name: "name"
 });
 
 ```
@@ -7388,8 +7387,7 @@ await client.tenants.merchants.delete("tenantId", "merchantId");
 
 ```typescript
 await client.tenants.merchants.update("tenantId", "merchantId", {
-    name: "name",
-    details: {}
+    name: "name"
 });
 
 ```
