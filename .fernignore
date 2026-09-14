@@ -10,6 +10,7 @@ scripts/build.sh
 scripts/release.sh
 scripts/stamp-sdk-version.js
 
+tests/unit/environments.test.ts
 tests/integration/**/*.ts
 tests/integration/agentic.test.ts
 tests/integration/canary.test.ts
