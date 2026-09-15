@@ -39,7 +39,7 @@ describe("SecurityContactClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -63,7 +63,7 @@ describe("SecurityContactClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -139,7 +139,7 @@ describe("SecurityContactClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { email: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -166,7 +166,7 @@ describe("SecurityContactClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { email: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -193,7 +193,7 @@ describe("SecurityContactClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { email: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()

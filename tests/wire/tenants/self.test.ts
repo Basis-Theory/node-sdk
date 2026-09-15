@@ -39,7 +39,7 @@ describe("SelfClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -63,7 +63,7 @@ describe("SelfClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -150,7 +150,7 @@ describe("SelfClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/tenants/self").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -168,7 +168,7 @@ describe("SelfClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/tenants/self").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
@@ -219,7 +219,7 @@ describe("SelfClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/tenants/self").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -237,7 +237,7 @@ describe("SelfClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/tenants/self").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 

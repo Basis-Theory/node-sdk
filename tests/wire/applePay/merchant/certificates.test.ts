@@ -57,7 +57,7 @@ describe("CertificatesClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -81,7 +81,7 @@ describe("CertificatesClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -149,7 +149,7 @@ describe("CertificatesClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -173,7 +173,7 @@ describe("CertificatesClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -271,7 +271,7 @@ describe("CertificatesClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { payment_processor_certificate_data: "x", payment_processor_certificate_password: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -299,7 +299,7 @@ describe("CertificatesClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { payment_processor_certificate_data: "x", payment_processor_certificate_password: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()

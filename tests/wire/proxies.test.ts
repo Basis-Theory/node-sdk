@@ -106,7 +106,7 @@ describe("ProxiesClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint({ once: false })
@@ -130,7 +130,7 @@ describe("ProxiesClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint({ once: false })
@@ -337,7 +337,7 @@ describe("ProxiesClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/proxies/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -355,7 +355,7 @@ describe("ProxiesClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/proxies/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
@@ -406,7 +406,7 @@ describe("ProxiesClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/proxies/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -424,7 +424,7 @@ describe("ProxiesClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/proxies/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 

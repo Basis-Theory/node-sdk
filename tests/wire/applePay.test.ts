@@ -108,7 +108,7 @@ describe("ApplePayClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -133,7 +133,7 @@ describe("ApplePayClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -158,7 +158,7 @@ describe("ApplePayClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -306,7 +306,7 @@ describe("ApplePayClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/apple-pay/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -324,7 +324,7 @@ describe("ApplePayClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/apple-pay/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
@@ -377,7 +377,7 @@ describe("ApplePayClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/apple-pay/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -395,7 +395,7 @@ describe("ApplePayClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/apple-pay/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 

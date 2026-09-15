@@ -86,7 +86,7 @@ describe("LogsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint({ once: false })
@@ -110,7 +110,7 @@ describe("LogsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint({ once: false })
@@ -134,7 +134,7 @@ describe("LogsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint({ once: false })
@@ -180,7 +180,7 @@ describe("LogsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/logs/entity-types").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -198,7 +198,7 @@ describe("LogsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/logs/entity-types").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 

@@ -7,6 +7,8 @@
  *     }
  */
 export interface AccountUpdaterRealTimeRequest {
+    /** Tenant merchant the request acts as. The card token is read within this merchant's scope and the updated token is associated with it. Responds 404 if the merchant does not exist in the tenant. */
+    btMerchantId?: string;
     /** Card Token identifier */
     tokenId: string;
     /** The 4-digit expiration year of the account number. Not required if the card token already stores this value. */
@@ -15,6 +17,8 @@ export interface AccountUpdaterRealTimeRequest {
     expirationMonth?: number;
     /** Whether deduplication should be enabled when creating the new token. Uses the value of the Deduplicate Tokens setting on the tenant if not set. */
     deduplicateToken?: boolean;
-    /** Tenant merchant identifier */
+    /** Tenant merchant whose provider configuration is used for this request. Selects configuration only; it does not scope token access or associate the new token with the merchant. Takes precedence over merchant_id; defaults to the BT-MERCHANT-ID header merchant, then the tenant-level configuration. */
+    configurationMerchantId?: string;
+    /** Deprecated: use configuration_merchant_id instead. Legacy alias kept for backward compatibility with lower precedence. Selects configuration only. */
     merchantId?: string;
 }

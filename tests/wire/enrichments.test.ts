@@ -42,7 +42,7 @@ describe("EnrichmentsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { token_id: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -69,7 +69,7 @@ describe("EnrichmentsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { token_id: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -96,7 +96,7 @@ describe("EnrichmentsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { token_id: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -177,7 +177,7 @@ describe("EnrichmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -203,7 +203,7 @@ describe("EnrichmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()

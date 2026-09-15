@@ -35,7 +35,7 @@ describe("RolesClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/roles").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -53,7 +53,7 @@ describe("RolesClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/roles").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 

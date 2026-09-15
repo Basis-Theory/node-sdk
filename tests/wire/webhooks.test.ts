@@ -70,7 +70,7 @@ describe("WebhooksClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/webhooks/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -88,7 +88,7 @@ describe("WebhooksClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/webhooks/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
@@ -176,7 +176,7 @@ describe("WebhooksClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { name: "name", url: "url", events: ["events", "events"] };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -205,7 +205,7 @@ describe("WebhooksClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { name: "name", url: "url", events: ["events", "events"] };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -234,7 +234,7 @@ describe("WebhooksClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { name: "name", url: "url", events: ["events", "events"] };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -307,7 +307,7 @@ describe("WebhooksClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/webhooks/id").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
@@ -325,7 +325,7 @@ describe("WebhooksClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/webhooks/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -343,7 +343,7 @@ describe("WebhooksClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/webhooks/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
@@ -433,7 +433,7 @@ describe("WebhooksClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/webhooks").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
@@ -451,7 +451,7 @@ describe("WebhooksClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/webhooks").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -469,7 +469,7 @@ describe("WebhooksClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/webhooks").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
@@ -539,7 +539,7 @@ describe("WebhooksClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { name: "name", url: "url", events: ["events", "events"] };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -568,7 +568,7 @@ describe("WebhooksClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { name: "name", url: "url", events: ["events", "events"] };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -597,7 +597,7 @@ describe("WebhooksClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { name: "name", url: "url", events: ["events", "events"] };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()

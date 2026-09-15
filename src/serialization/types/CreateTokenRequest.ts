@@ -28,6 +28,7 @@ export const CreateTokenRequest: core.serialization.ObjectSchema<
     expiresAt: core.serialization.property("expires_at", core.serialization.string().optional()),
     containers: core.serialization.list(core.serialization.string()).optional(),
     tokenIntentId: core.serialization.property("token_intent_id", core.serialization.string().optional()),
+    ownerMerchantId: core.serialization.property("owner_merchant_id", core.serialization.string().optional()),
 });
 
 export declare namespace CreateTokenRequest {
@@ -45,5 +46,6 @@ export declare namespace CreateTokenRequest {
         expires_at?: string | null;
         containers?: string[] | null;
         token_intent_id?: string | null;
+        owner_merchant_id?: string | null;
     }
 }

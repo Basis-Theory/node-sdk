@@ -16,6 +16,7 @@ export const TokenIntent: core.serialization.ObjectSchema<serializers.TokenInten
         createdBy: core.serialization.property("created_by", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
+        data: core.serialization.unknown().optional(),
         card: CardDetails.optional(),
         bank: BankDetails.optional(),
         networkToken: core.serialization.property("network_token", CardDetails.optional()),
@@ -32,6 +33,7 @@ export declare namespace TokenIntent {
         created_by?: string | null;
         created_at?: string | null;
         expires_at?: string | null;
+        data?: unknown | null;
         card?: CardDetails.Raw | null;
         bank?: BankDetails.Raw | null;
         network_token?: CardDetails.Raw | null;

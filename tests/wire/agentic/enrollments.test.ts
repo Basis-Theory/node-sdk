@@ -76,7 +76,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -100,7 +100,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -124,7 +124,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -231,7 +231,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { token_id: "x", consumer: { email: "email" } };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -261,7 +261,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { token_id: "x", consumer: { email: "email" } };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -291,7 +291,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { token_id: "x", consumer: { email: "email" } };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -351,7 +351,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { token_id: "x", consumer: { email: "email" } };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -458,7 +458,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -482,7 +482,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -530,7 +530,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -569,7 +569,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -593,7 +593,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -641,7 +641,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -742,7 +742,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -766,7 +766,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -790,7 +790,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -862,7 +862,7 @@ describe("EnrollmentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()

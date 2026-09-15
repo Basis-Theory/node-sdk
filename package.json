@@ -276,6 +276,17 @@
             },
             "default": "./dist/cjs/api/resources/agentic/exports.js"
         },
+        "./agentic/enrollments": {
+            "import": {
+                "types": "./dist/esm/api/resources/agentic/resources/enrollments/exports.d.mts",
+                "default": "./dist/esm/api/resources/agentic/resources/enrollments/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/agentic/resources/enrollments/exports.d.ts",
+                "default": "./dist/cjs/api/resources/agentic/resources/enrollments/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/agentic/resources/enrollments/exports.js"
+        },
         "./agentic/agents": {
             "import": {
                 "types": "./dist/esm/api/resources/agentic/resources/agents/exports.d.mts",
@@ -287,16 +298,38 @@
             },
             "default": "./dist/cjs/api/resources/agentic/resources/agents/exports.js"
         },
-        "./agentic/enrollments": {
+        "./agentic/paymentMethods": {
             "import": {
-                "types": "./dist/esm/api/resources/agentic/resources/enrollments/exports.d.mts",
-                "default": "./dist/esm/api/resources/agentic/resources/enrollments/exports.mjs"
+                "types": "./dist/esm/api/resources/agentic/resources/paymentMethods/exports.d.mts",
+                "default": "./dist/esm/api/resources/agentic/resources/paymentMethods/exports.mjs"
             },
             "require": {
-                "types": "./dist/cjs/api/resources/agentic/resources/enrollments/exports.d.ts",
-                "default": "./dist/cjs/api/resources/agentic/resources/enrollments/exports.js"
+                "types": "./dist/cjs/api/resources/agentic/resources/paymentMethods/exports.d.ts",
+                "default": "./dist/cjs/api/resources/agentic/resources/paymentMethods/exports.js"
             },
-            "default": "./dist/cjs/api/resources/agentic/resources/enrollments/exports.js"
+            "default": "./dist/cjs/api/resources/agentic/resources/paymentMethods/exports.js"
+        },
+        "./agentic/paymentCredentials": {
+            "import": {
+                "types": "./dist/esm/api/resources/agentic/resources/paymentCredentials/exports.d.mts",
+                "default": "./dist/esm/api/resources/agentic/resources/paymentCredentials/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/agentic/resources/paymentCredentials/exports.d.ts",
+                "default": "./dist/cjs/api/resources/agentic/resources/paymentCredentials/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/agentic/resources/paymentCredentials/exports.js"
+        },
+        "./agentic/allowances": {
+            "import": {
+                "types": "./dist/esm/api/resources/agentic/resources/allowances/exports.d.mts",
+                "default": "./dist/esm/api/resources/agentic/resources/allowances/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/agentic/resources/allowances/exports.d.ts",
+                "default": "./dist/cjs/api/resources/agentic/resources/allowances/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/agentic/resources/allowances/exports.js"
         },
         "./agentic/agents/instructions": {
             "import": {
@@ -331,6 +364,28 @@
             },
             "default": "./dist/cjs/api/resources/agentic/resources/agents/resources/instructions/resources/verify/exports.js"
         },
+        "./agentic/allowances/rails": {
+            "import": {
+                "types": "./dist/esm/api/resources/agentic/resources/allowances/resources/rails/exports.d.mts",
+                "default": "./dist/esm/api/resources/agentic/resources/allowances/resources/rails/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/agentic/resources/allowances/resources/rails/exports.d.ts",
+                "default": "./dist/cjs/api/resources/agentic/resources/allowances/resources/rails/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/agentic/resources/allowances/resources/rails/exports.js"
+        },
+        "./agentic/allowances/credentials": {
+            "import": {
+                "types": "./dist/esm/api/resources/agentic/resources/allowances/resources/credentials/exports.d.mts",
+                "default": "./dist/esm/api/resources/agentic/resources/allowances/resources/credentials/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/agentic/resources/allowances/resources/credentials/exports.d.ts",
+                "default": "./dist/cjs/api/resources/agentic/resources/allowances/resources/credentials/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/agentic/resources/allowances/resources/credentials/exports.js"
+        },
         "./agentic/enrollments/verify": {
             "import": {
                 "types": "./dist/esm/api/resources/agentic/resources/enrollments/resources/verify/exports.d.mts",
@@ -341,6 +396,17 @@
                 "default": "./dist/cjs/api/resources/agentic/resources/enrollments/resources/verify/exports.js"
             },
             "default": "./dist/cjs/api/resources/agentic/resources/enrollments/resources/verify/exports.js"
+        },
+        "./agentic/paymentMethods/rails": {
+            "import": {
+                "types": "./dist/esm/api/resources/agentic/resources/paymentMethods/resources/rails/exports.d.mts",
+                "default": "./dist/esm/api/resources/agentic/resources/paymentMethods/resources/rails/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/agentic/resources/paymentMethods/resources/rails/exports.d.ts",
+                "default": "./dist/cjs/api/resources/agentic/resources/paymentMethods/resources/rails/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/agentic/resources/paymentMethods/resources/rails/exports.js"
         },
         "./applePay/merchant": {
             "import": {

@@ -64,6 +64,7 @@ describe("GooglePayClient", () => {
                 created_by: "created_by",
                 created_at: "2024-01-15T09:30:00Z",
                 expires_at: "2024-01-15T09:30:00Z",
+                data: { key: "value" },
                 card: {
                     bin: "bin",
                     last4: "last4",
@@ -157,6 +158,9 @@ describe("GooglePayClient", () => {
                 createdBy: "created_by",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 expiresAt: new Date("2024-01-15T09:30:00.000Z"),
+                data: {
+                    key: "value",
+                },
                 card: {
                     bin: "bin",
                     last4: "last4",
@@ -202,7 +206,7 @@ describe("GooglePayClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -227,7 +231,7 @@ describe("GooglePayClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -252,7 +256,7 @@ describe("GooglePayClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -277,7 +281,7 @@ describe("GooglePayClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -449,7 +453,7 @@ describe("GooglePayClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/google-pay/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -467,7 +471,7 @@ describe("GooglePayClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/google-pay/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
@@ -520,7 +524,7 @@ describe("GooglePayClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/google-pay/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -538,7 +542,7 @@ describe("GooglePayClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/google-pay/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 

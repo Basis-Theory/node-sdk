@@ -1,5 +1,11 @@
 export * from "./agents/client/requests/index.js";
 export * as agents from "./agents/index.js";
+export * from "./allowances/client/requests/index.js";
+export * as allowances from "./allowances/index.js";
+export * from "./allowances/types/index.js";
 export * from "./enrollments/client/requests/index.js";
 export * as enrollments from "./enrollments/index.js";
 export * from "./enrollments/types/index.js";
+export * from "./paymentMethods/client/requests/index.js";
+export * as paymentMethods from "./paymentMethods/index.js";
+export * from "./paymentMethods/types/index.js";

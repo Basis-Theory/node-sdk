@@ -85,7 +85,7 @@ describe("InstructionsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -109,7 +109,7 @@ describe("InstructionsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -157,7 +157,7 @@ describe("InstructionsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -249,7 +249,7 @@ describe("InstructionsClient", () => {
             description: "x",
             expires_at: "2024-01-15T09:30:00Z",
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -286,7 +286,7 @@ describe("InstructionsClient", () => {
             description: "x",
             expires_at: "2024-01-15T09:30:00Z",
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -323,7 +323,7 @@ describe("InstructionsClient", () => {
             description: "x",
             expires_at: "2024-01-15T09:30:00Z",
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -434,7 +434,7 @@ describe("InstructionsClient", () => {
             description: "x",
             expires_at: "2024-01-15T09:30:00Z",
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -516,7 +516,7 @@ describe("InstructionsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -540,7 +540,7 @@ describe("InstructionsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -588,7 +588,7 @@ describe("InstructionsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -632,7 +632,7 @@ describe("InstructionsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -656,7 +656,7 @@ describe("InstructionsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -704,7 +704,7 @@ describe("InstructionsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -779,7 +779,7 @@ describe("InstructionsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -804,7 +804,7 @@ describe("InstructionsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -829,7 +829,7 @@ describe("InstructionsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -904,7 +904,7 @@ describe("InstructionsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -917,6 +917,287 @@ describe("InstructionsClient", () => {
 
         await expect(async () => {
             return await client.agentic.agents.instructions.update("agent_id", "instruction_id");
+        }).rejects.toThrow(BasisTheory.InternalServerError);
+    });
+
+    test("confirmations (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            confirmation_data: [{ transaction_status: "approved", transaction_type: "purchase" }],
+        };
+        const rawResponseBody = { client_reference_id: "client_reference_id" };
+
+        server
+            .mockEndpoint()
+            .post("/agentic/agents/agent_id/instructions/instruction_id/confirmations")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.agentic.agents.instructions.confirmations("agent_id", "instruction_id", {
+            confirmationData: [
+                {
+                    transactionStatus: "approved",
+                    transactionType: "purchase",
+                },
+            ],
+        });
+        expect(response).toEqual({
+            clientReferenceId: "client_reference_id",
+        });
+    });
+
+    test("confirmations (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            confirmation_data: [
+                { transaction_status: "approved", transaction_type: "purchase" },
+                { transaction_status: "approved", transaction_type: "purchase" },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/agentic/agents/agent_id/instructions/instruction_id/confirmations")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agentic.agents.instructions.confirmations("agent_id", "instruction_id", {
+                confirmationData: [
+                    {
+                        transactionStatus: "approved",
+                        transactionType: "purchase",
+                    },
+                    {
+                        transactionStatus: "approved",
+                        transactionType: "purchase",
+                    },
+                ],
+            });
+        }).rejects.toThrow(BasisTheory.BadRequestError);
+    });
+
+    test("confirmations (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            confirmation_data: [
+                { transaction_status: "approved", transaction_type: "purchase" },
+                { transaction_status: "approved", transaction_type: "purchase" },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/agentic/agents/agent_id/instructions/instruction_id/confirmations")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agentic.agents.instructions.confirmations("agent_id", "instruction_id", {
+                confirmationData: [
+                    {
+                        transactionStatus: "approved",
+                        transactionType: "purchase",
+                    },
+                    {
+                        transactionStatus: "approved",
+                        transactionType: "purchase",
+                    },
+                ],
+            });
+        }).rejects.toThrow(BasisTheory.UnauthorizedError);
+    });
+
+    test("confirmations (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            confirmation_data: [
+                { transaction_status: "approved", transaction_type: "purchase" },
+                { transaction_status: "approved", transaction_type: "purchase" },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/agentic/agents/agent_id/instructions/instruction_id/confirmations")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agentic.agents.instructions.confirmations("agent_id", "instruction_id", {
+                confirmationData: [
+                    {
+                        transactionStatus: "approved",
+                        transactionType: "purchase",
+                    },
+                    {
+                        transactionStatus: "approved",
+                        transactionType: "purchase",
+                    },
+                ],
+            });
+        }).rejects.toThrow(BasisTheory.ForbiddenError);
+    });
+
+    test("confirmations (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            confirmation_data: [
+                { transaction_status: "approved", transaction_type: "purchase" },
+                { transaction_status: "approved", transaction_type: "purchase" },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/agentic/agents/agent_id/instructions/instruction_id/confirmations")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agentic.agents.instructions.confirmations("agent_id", "instruction_id", {
+                confirmationData: [
+                    {
+                        transactionStatus: "approved",
+                        transactionType: "purchase",
+                    },
+                    {
+                        transactionStatus: "approved",
+                        transactionType: "purchase",
+                    },
+                ],
+            });
+        }).rejects.toThrow(BasisTheory.NotFoundError);
+    });
+
+    test("confirmations (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            confirmation_data: [
+                { transaction_status: "approved", transaction_type: "purchase" },
+                { transaction_status: "approved", transaction_type: "purchase" },
+            ],
+        };
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/agentic/agents/agent_id/instructions/instruction_id/confirmations")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agentic.agents.instructions.confirmations("agent_id", "instruction_id", {
+                confirmationData: [
+                    {
+                        transactionStatus: "approved",
+                        transactionType: "purchase",
+                    },
+                    {
+                        transactionStatus: "approved",
+                        transactionType: "purchase",
+                    },
+                ],
+            });
+        }).rejects.toThrow(BasisTheory.UnprocessableEntityError);
+    });
+
+    test("confirmations (7)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            confirmation_data: [
+                { transaction_status: "approved", transaction_type: "purchase" },
+                { transaction_status: "approved", transaction_type: "purchase" },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/agentic/agents/agent_id/instructions/instruction_id/confirmations")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agentic.agents.instructions.confirmations("agent_id", "instruction_id", {
+                confirmationData: [
+                    {
+                        transactionStatus: "approved",
+                        transactionType: "purchase",
+                    },
+                    {
+                        transactionStatus: "approved",
+                        transactionType: "purchase",
+                    },
+                ],
+            });
         }).rejects.toThrow(BasisTheory.InternalServerError);
     });
 });

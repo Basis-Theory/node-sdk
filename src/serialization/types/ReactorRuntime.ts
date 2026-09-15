@@ -3,6 +3,7 @@
 import type * as BasisTheory from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { RuntimeLogOptions } from "./RuntimeLogOptions.js";
 
 export const ReactorRuntime: core.serialization.ObjectSchema<
     serializers.ReactorRuntime.Raw,
@@ -16,6 +17,7 @@ export const ReactorRuntime: core.serialization.ObjectSchema<
     timeout: core.serialization.number().optional(),
     resources: core.serialization.string().optional(),
     permissions: core.serialization.list(core.serialization.string()).optional(),
+    logs: RuntimeLogOptions.optional(),
 });
 
 export declare namespace ReactorRuntime {
@@ -28,5 +30,6 @@ export declare namespace ReactorRuntime {
         timeout?: number | null;
         resources?: string | null;
         permissions?: string[] | null;
+        logs?: RuntimeLogOptions.Raw | null;
     }
 }

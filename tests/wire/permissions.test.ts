@@ -41,7 +41,7 @@ describe("PermissionsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/permissions").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
@@ -59,7 +59,7 @@ describe("PermissionsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/permissions").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -77,7 +77,7 @@ describe("PermissionsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/permissions").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 

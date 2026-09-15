@@ -42,7 +42,7 @@ describe("TokensClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { key: "value" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -69,7 +69,7 @@ describe("TokensClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { key: "value" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -96,7 +96,7 @@ describe("TokensClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { key: "value" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -123,7 +123,7 @@ describe("TokensClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { key: "value" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -393,7 +393,7 @@ describe("TokensClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/tokens/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -411,7 +411,7 @@ describe("TokensClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/tokens/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
@@ -462,7 +462,7 @@ describe("TokensClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/tokens/id").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
@@ -480,7 +480,7 @@ describe("TokensClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/tokens/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -498,7 +498,7 @@ describe("TokensClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/tokens/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
@@ -621,7 +621,7 @@ describe("TokensClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/v2/tokens").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -639,7 +639,7 @@ describe("TokensClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/v2/tokens").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 

@@ -4,7 +4,7 @@ export interface MppStripeChallenge {
     /** Challenge identifier issued by the merchant */
     id: string;
     /** Payment method of the challenge — must be `stripe` */
-    method: "stripe";
+    method: string;
     realm?: string;
     /** Challenge intent (e.g. `charge`) */
     intent?: string;

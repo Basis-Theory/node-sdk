@@ -122,7 +122,7 @@ describe("VerifyClient", () => {
                 platform_type: "WEB",
             },
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -171,7 +171,7 @@ describe("VerifyClient", () => {
                 platform_type: "WEB",
             },
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -220,7 +220,7 @@ describe("VerifyClient", () => {
                 platform_type: "WEB",
             },
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -318,7 +318,7 @@ describe("VerifyClient", () => {
                 platform_type: "WEB",
             },
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -416,7 +416,7 @@ describe("VerifyClient", () => {
                 platform_type: "WEB",
             },
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -527,7 +527,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { method_id: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -554,7 +554,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { method_id: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -581,7 +581,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { method_id: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -662,7 +662,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { method_id: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -763,7 +763,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { otp_code: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -790,7 +790,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { otp_code: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -817,7 +817,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { otp_code: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -898,7 +898,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { otp_code: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -997,7 +997,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -1022,7 +1022,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -1047,7 +1047,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -1122,7 +1122,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()

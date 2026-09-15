@@ -47,7 +47,7 @@ describe("DocumentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/documents/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -65,7 +65,7 @@ describe("DocumentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/documents/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
@@ -116,7 +116,7 @@ describe("DocumentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/documents/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -134,7 +134,7 @@ describe("DocumentsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().delete("/documents/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 

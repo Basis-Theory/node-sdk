@@ -122,7 +122,7 @@ describe("VerifyClient", () => {
                 platform_type: "WEB",
             },
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -171,7 +171,7 @@ describe("VerifyClient", () => {
                 platform_type: "WEB",
             },
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -220,7 +220,7 @@ describe("VerifyClient", () => {
                 platform_type: "WEB",
             },
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -367,7 +367,7 @@ describe("VerifyClient", () => {
                 platform_type: "WEB",
             },
         };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -459,7 +459,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { assurance_data: { assurance_data: { key: "value" } } };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -490,7 +490,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { assurance_data: { assurance_data: { key: "value" } } };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -521,7 +521,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { assurance_data: { assurance_data: { key: "value" } } };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -614,7 +614,7 @@ describe("VerifyClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { assurance_data: { assurance_data: { key: "value" } } };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()

@@ -3,7 +3,10 @@
 import type { BaseClientOptions } from "../../../../BaseClient.js";
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient.js";
 import { AgentsClient } from "../resources/agents/client/Client.js";
+import { AllowancesClient } from "../resources/allowances/client/Client.js";
 import { EnrollmentsClient } from "../resources/enrollments/client/Client.js";
+import { PaymentCredentialsClient } from "../resources/paymentCredentials/client/Client.js";
+import { PaymentMethodsClient } from "../resources/paymentMethods/client/Client.js";
 
 export declare namespace AgenticClient {
     export type Options = BaseClientOptions;
@@ -11,18 +14,33 @@ export declare namespace AgenticClient {
 
 export class AgenticClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<AgenticClient.Options>;
-    protected _agents: AgentsClient | undefined;
     protected _enrollments: EnrollmentsClient | undefined;
+    protected _agents: AgentsClient | undefined;
+    protected _paymentMethods: PaymentMethodsClient | undefined;
+    protected _paymentCredentials: PaymentCredentialsClient | undefined;
+    protected _allowances: AllowancesClient | undefined;
 
     constructor(options: AgenticClient.Options = {}) {
         this._options = normalizeClientOptionsWithAuth(options);
+    }
+
+    public get enrollments(): EnrollmentsClient {
+        return (this._enrollments ??= new EnrollmentsClient(this._options));
     }
 
     public get agents(): AgentsClient {
         return (this._agents ??= new AgentsClient(this._options));
     }
 
-    public get enrollments(): EnrollmentsClient {
-        return (this._enrollments ??= new EnrollmentsClient(this._options));
+    public get paymentMethods(): PaymentMethodsClient {
+        return (this._paymentMethods ??= new PaymentMethodsClient(this._options));
+    }
+
+    public get paymentCredentials(): PaymentCredentialsClient {
+        return (this._paymentCredentials ??= new PaymentCredentialsClient(this._options));
+    }
+
+    public get allowances(): AllowancesClient {
+        return (this._allowances ??= new AllowancesClient(this._options));
     }
 }

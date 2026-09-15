@@ -10,7 +10,7 @@ export const MppStripeChallenge: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         id: core.serialization.string(),
-        method: core.serialization.stringLiteral("stripe"),
+        method: core.serialization.string(),
         realm: core.serialization.string().optional(),
         intent: core.serialization.string().optional(),
         request: core.serialization.string().optional(),
@@ -21,7 +21,7 @@ export const MppStripeChallenge: core.serialization.ObjectSchema<
 export declare namespace MppStripeChallenge {
     export interface Raw {
         id: string;
-        method: "stripe";
+        method: string;
         realm?: string | null;
         intent?: string | null;
         request?: string | null;

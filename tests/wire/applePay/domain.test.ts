@@ -38,7 +38,7 @@ describe("DomainClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { domain: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -65,7 +65,7 @@ describe("DomainClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { domain: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -122,7 +122,7 @@ describe("DomainClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -179,7 +179,7 @@ describe("DomainClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { domain: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -206,7 +206,7 @@ describe("DomainClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { domain: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -233,7 +233,7 @@ describe("DomainClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { domain: "x" };
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -345,7 +345,7 @@ describe("DomainClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -370,7 +370,7 @@ describe("DomainClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -395,7 +395,7 @@ describe("DomainClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()

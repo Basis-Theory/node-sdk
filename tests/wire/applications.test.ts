@@ -88,7 +88,7 @@ describe("ApplicationsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint({ once: false })
@@ -112,7 +112,7 @@ describe("ApplicationsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint({ once: false })
@@ -235,7 +235,7 @@ describe("ApplicationsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/applications/id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -253,7 +253,7 @@ describe("ApplicationsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/applications/id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
@@ -304,7 +304,7 @@ describe("ApplicationsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -328,7 +328,7 @@ describe("ApplicationsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -451,7 +451,7 @@ describe("ApplicationsClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/applications/key").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
