@@ -7,9 +7,13 @@ import { CreateAccountUpdaterJobRequestResultVersion } from "../../types/CreateA
 
 export const CreateAccountUpdaterJobRequest: core.serialization.Schema<
     serializers.accountUpdater.CreateAccountUpdaterJobRequest.Raw,
-    BasisTheory.accountUpdater.CreateAccountUpdaterJobRequest
+    Omit<BasisTheory.accountUpdater.CreateAccountUpdaterJobRequest, "btMerchantId">
 > = core.serialization.object({
     deduplicateTokens: core.serialization.property("deduplicate_tokens", core.serialization.boolean().optional()),
+    configurationMerchantId: core.serialization.property(
+        "configuration_merchant_id",
+        core.serialization.string().optional(),
+    ),
     merchantId: core.serialization.property("merchant_id", core.serialization.string().optional()),
     resultVersion: core.serialization.property(
         "result_version",
@@ -20,6 +24,7 @@ export const CreateAccountUpdaterJobRequest: core.serialization.Schema<
 export declare namespace CreateAccountUpdaterJobRequest {
     export interface Raw {
         deduplicate_tokens?: boolean | null;
+        configuration_merchant_id?: string | null;
         merchant_id?: string | null;
         result_version?: CreateAccountUpdaterJobRequestResultVersion.Raw | null;
     }

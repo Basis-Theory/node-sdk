@@ -10,6 +10,7 @@ export interface CreateTokenIntentResponse {
     createdBy?: string;
     createdAt?: Date;
     expiresAt?: Date;
+    data?: unknown;
     card?: BasisTheory.CardDetails;
     bank?: BasisTheory.BankDetails;
     networkToken?: BasisTheory.CardDetails;

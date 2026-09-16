@@ -123,6 +123,33 @@ describe("RealTimeClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { token_id: "token_id" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/account-updater/real-time")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accountUpdater.realTime.invoke({
+                tokenId: "token_id",
+            });
+        }).rejects.toThrow(BasisTheory.NotFoundError);
+    });
+
+    test("invoke (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { token_id: "token_id" };
         const rawResponseBody = {};
 
         server

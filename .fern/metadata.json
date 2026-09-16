@@ -29,7 +29,7 @@
             "@semantic-release/release-notes-generator": "^11.0.7"
         }
     },
-    "originGitCommit": "e8a5a3e88aba1ef1cdb1336f9de294ad948cfe84",
+    "originGitCommit": "c86a718e834ab2ef1d549454180d2bc0358539ba",
     "originGitCommitIsDirty": false,
     "invokedBy": "ci",
     "requestedVersion": "0.0.1",

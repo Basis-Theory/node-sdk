@@ -17,6 +17,11 @@ export const CreateNetworkTokenRequest: core.serialization.Schema<
     expirationYear: core.serialization.property("expiration_year", core.serialization.number().optional()),
     cardholderInfo: core.serialization.property("cardholder_info", CardholderInfo.optional()),
     merchantId: core.serialization.property("merchant_id", core.serialization.string().optional()),
+    configurationMerchantId: core.serialization.property(
+        "configuration_merchant_id",
+        core.serialization.string().optional(),
+    ),
+    ownerMerchantId: core.serialization.property("owner_merchant_id", core.serialization.string().optional()),
 });
 
 export declare namespace CreateNetworkTokenRequest {
@@ -28,5 +33,7 @@ export declare namespace CreateNetworkTokenRequest {
         expiration_year?: number | null;
         cardholder_info?: CardholderInfo.Raw | null;
         merchant_id?: string | null;
+        configuration_merchant_id?: string | null;
+        owner_merchant_id?: string | null;
     }
 }

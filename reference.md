@@ -2622,6 +2622,65 @@ await client.proxies.patch("id");
 </dl>
 </details>
 
+<details><summary><code>client.proxies.<a href="/src/api/resources/proxies/client/Client.ts">transferHostname</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.proxies.transferHostname("id", {
+    proxyHost: "proxy_host"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `BasisTheory.TransferProxyHostnameRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ProxiesClient.IdempotentRequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Reactors
 <details><summary><code>client.reactors.<a href="/src/api/resources/reactors/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;BasisTheory.Reactor, BasisTheory.ReactorPaginatedList&gt;</code></summary>
 <dl>

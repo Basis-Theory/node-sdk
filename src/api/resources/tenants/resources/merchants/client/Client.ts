@@ -456,6 +456,7 @@ export class MerchantsClient {
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
      * @throws {@link BasisTheory.NotFoundError}
+     * @throws {@link BasisTheory.ConflictError}
      *
      * @example
      *     await client.tenants.merchants.update("tenantId", "merchantId", {
@@ -545,6 +546,17 @@ export class MerchantsClient {
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body, _response.rawResponse);
+                case 409:
+                    throw new BasisTheory.ConflictError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.BasisTheoryError({
                         statusCode: _response.error.statusCode,
