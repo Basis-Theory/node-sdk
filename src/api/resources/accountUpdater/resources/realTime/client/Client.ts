@@ -32,6 +32,7 @@ export class RealTimeClient {
      * @throws {@link BasisTheory.BadRequestError}
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
+     * @throws {@link BasisTheory.NotFoundError}
      * @throws {@link BasisTheory.UnprocessableEntityError}
      *
      * @example
@@ -50,11 +51,15 @@ export class RealTimeClient {
         request: BasisTheory.accountUpdater.AccountUpdaterRealTimeRequest,
         requestOptions?: RealTimeClient.RequestOptions,
     ): Promise<core.WithRawResponse<BasisTheory.AccountUpdaterRealTimeResponse>> {
+        const { btMerchantId, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId }),
+            mergeOnlyDefinedHeaders({
+                "BT-MERCHANT-ID": btMerchantId,
+                "BT-TRACE-ID": requestOptions?.correlationId ?? this._options?.correlationId,
+            }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -69,7 +74,7 @@ export class RealTimeClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.accountUpdater.AccountUpdaterRealTimeRequest.jsonOrThrow(request, {
+            body: serializers.accountUpdater.AccountUpdaterRealTimeRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
                 omitUndefined: true,
             }),
@@ -127,6 +132,8 @@ export class RealTimeClient {
                         }),
                         _response.rawResponse,
                     );
+                case 404:
+                    throw new BasisTheory.NotFoundError(_response.error.body, _response.rawResponse);
                 case 422:
                     throw new BasisTheory.UnprocessableEntityError(
                         serializers.ProblemDetails.parseOrThrow(_response.error.body, {

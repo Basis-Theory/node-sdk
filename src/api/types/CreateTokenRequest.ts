@@ -16,4 +16,5 @@ export interface CreateTokenRequest {
     expiresAt?: string;
     containers?: string[];
     tokenIntentId?: string;
+    ownerMerchantId?: string;
 }

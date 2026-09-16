@@ -354,6 +354,31 @@ describe("JobsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/account-updater/jobs")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accountUpdater.jobs.create();
+        }).rejects.toThrow(BasisTheory.NotFoundError);
+    });
+
+    test("create (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
         const rawResponseBody = {};
 
         server

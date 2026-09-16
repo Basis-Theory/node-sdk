@@ -204,6 +204,7 @@ describe("ReactorsClient", () => {
                 timeout: 1,
                 resources: "resources",
                 permissions: ["permissions"],
+                logs: { enabled: true, level: "level" },
             },
             requested: {
                 reactor: { code: "code" },
@@ -280,6 +281,10 @@ describe("ReactorsClient", () => {
                 timeout: 1,
                 resources: "resources",
                 permissions: ["permissions"],
+                logs: {
+                    enabled: true,
+                    level: "level",
+                },
             },
             requested: {
                 reactor: {
@@ -594,6 +599,33 @@ describe("ReactorsClient", () => {
                 key: "value",
             });
         }).rejects.toThrow(BasisTheory.UnprocessableEntityError);
+    });
+
+    test("react (7)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { key: "value" };
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/reactors/id/react")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.reactors.react("id", {
+                key: "value",
+            });
+        }).rejects.toThrow(BasisTheory.ServiceUnavailableError);
     });
 
     test("reactAsync (1)", async () => {

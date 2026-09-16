@@ -14,4 +14,6 @@ export interface CreateNetworkTokenRequest {
     expirationYear?: number;
     cardholderInfo?: BasisTheory.CardholderInfo;
     merchantId?: string;
+    configurationMerchantId?: string;
+    ownerMerchantId?: string;
 }

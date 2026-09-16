@@ -725,6 +725,33 @@ describe("MerchantsClient", () => {
         }).rejects.toThrow(BasisTheory.NotFoundError);
     });
 
+    test("update (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { name: "x" };
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .patch("/tenants/tenantId/merchants/merchantId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.tenants.merchants.update("tenantId", "merchantId", {
+                name: "x",
+            });
+        }).rejects.toThrow(BasisTheory.ConflictError);
+    });
+
     test("requestOnboarding (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new BasisTheoryClient({
