@@ -3854,7 +3854,7 @@ let page = await client.events.list({
     traceId: "trace_id"
 });
 while (page.hasNextPage()) {
-    page = page.getNextPage();
+    page = await page.getNextPage();
 }
 
 // You can also access the underlying response
