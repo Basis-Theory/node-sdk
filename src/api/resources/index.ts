@@ -11,6 +11,8 @@ export * from "./documents/client/requests/index.js";
 export * as documents from "./documents/index.js";
 export * from "./enrichments/client/requests/index.js";
 export * as enrichments from "./enrichments/index.js";
+export * from "./events/client/requests/index.js";
+export * as events from "./events/index.js";
 export * from "./googlePay/client/requests/index.js";
 export * as googlePay from "./googlePay/index.js";
 export * from "./keys/client/requests/index.js";

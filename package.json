@@ -232,6 +232,17 @@
             },
             "default": "./dist/cjs/api/resources/webhooks/exports.js"
         },
+        "./events": {
+            "import": {
+                "types": "./dist/esm/api/resources/events/exports.d.mts",
+                "default": "./dist/esm/api/resources/events/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/events/exports.d.ts",
+                "default": "./dist/cjs/api/resources/events/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/events/exports.js"
+        },
         "./accountUpdater": {
             "import": {
                 "types": "./dist/esm/api/resources/accountUpdater/exports.d.mts",

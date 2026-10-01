@@ -8,6 +8,7 @@ import { ApplicationsClient } from "./api/resources/applications/client/Client.j
 import { ApplicationTemplatesClient } from "./api/resources/applicationTemplates/client/Client.js";
 import { DocumentsClient } from "./api/resources/documents/client/Client.js";
 import { EnrichmentsClient } from "./api/resources/enrichments/client/Client.js";
+import { EventsClient } from "./api/resources/events/client/Client.js";
 import { GooglePayClient } from "./api/resources/googlePay/client/Client.js";
 import { KeysClient } from "./api/resources/keys/client/Client.js";
 import { LogsClient } from "./api/resources/logs/client/Client.js";
@@ -52,6 +53,7 @@ export class BasisTheoryClient {
     protected _sessions: SessionsClient | undefined;
     protected _tokenIntents: TokenIntentsClient | undefined;
     protected _webhooks: WebhooksClient | undefined;
+    protected _events: EventsClient | undefined;
     protected _accountUpdater: AccountUpdaterClient | undefined;
     protected _agentic: AgenticClient | undefined;
     protected _tenants: TenantsClient | undefined;
@@ -131,6 +133,10 @@ export class BasisTheoryClient {
 
     public get webhooks(): WebhooksClient {
         return (this._webhooks ??= new WebhooksClient(this._options));
+    }
+
+    public get events(): EventsClient {
+        return (this._events ??= new EventsClient(this._options));
     }
 
     public get accountUpdater(): AccountUpdaterClient {
