@@ -232,6 +232,28 @@
             },
             "default": "./dist/cjs/api/resources/webhooks/exports.js"
         },
+        "./reactorLogs": {
+            "import": {
+                "types": "./dist/esm/api/resources/reactorLogs/exports.d.mts",
+                "default": "./dist/esm/api/resources/reactorLogs/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/reactorLogs/exports.d.ts",
+                "default": "./dist/cjs/api/resources/reactorLogs/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/reactorLogs/exports.js"
+        },
+        "./proxyLogs": {
+            "import": {
+                "types": "./dist/esm/api/resources/proxyLogs/exports.d.mts",
+                "default": "./dist/esm/api/resources/proxyLogs/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/proxyLogs/exports.d.ts",
+                "default": "./dist/cjs/api/resources/proxyLogs/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/proxyLogs/exports.js"
+        },
         "./events": {
             "import": {
                 "types": "./dist/esm/api/resources/events/exports.d.mts",

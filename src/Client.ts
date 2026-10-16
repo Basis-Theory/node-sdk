@@ -15,6 +15,8 @@ import { LogsClient } from "./api/resources/logs/client/Client.js";
 import { NetworkTokensClient } from "./api/resources/networkTokens/client/Client.js";
 import { PermissionsClient } from "./api/resources/permissions/client/Client.js";
 import { ProxiesClient } from "./api/resources/proxies/client/Client.js";
+import { ProxyLogsClient } from "./api/resources/proxyLogs/client/Client.js";
+import { ReactorLogsClient } from "./api/resources/reactorLogs/client/Client.js";
 import { ReactorsClient } from "./api/resources/reactors/client/Client.js";
 import { RolesClient } from "./api/resources/roles/client/Client.js";
 import { SessionsClient } from "./api/resources/sessions/client/Client.js";
@@ -53,6 +55,8 @@ export class BasisTheoryClient {
     protected _sessions: SessionsClient | undefined;
     protected _tokenIntents: TokenIntentsClient | undefined;
     protected _webhooks: WebhooksClient | undefined;
+    protected _reactorLogs: ReactorLogsClient | undefined;
+    protected _proxyLogs: ProxyLogsClient | undefined;
     protected _events: EventsClient | undefined;
     protected _accountUpdater: AccountUpdaterClient | undefined;
     protected _agentic: AgenticClient | undefined;
@@ -133,6 +137,14 @@ export class BasisTheoryClient {
 
     public get webhooks(): WebhooksClient {
         return (this._webhooks ??= new WebhooksClient(this._options));
+    }
+
+    public get reactorLogs(): ReactorLogsClient {
+        return (this._reactorLogs ??= new ReactorLogsClient(this._options));
+    }
+
+    public get proxyLogs(): ProxyLogsClient {
+        return (this._proxyLogs ??= new ProxyLogsClient(this._options));
     }
 
     public get events(): EventsClient {
