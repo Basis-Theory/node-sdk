@@ -3,5 +3,7 @@
 import type * as BasisTheory from "../index.js";
 
 export interface NetworkTokenAccount {
+    shortDescription?: string;
+    longDescription?: string;
     cardArt?: BasisTheory.CardArt;
 }

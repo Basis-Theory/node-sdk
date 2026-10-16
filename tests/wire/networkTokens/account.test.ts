@@ -15,6 +15,8 @@ describe("AccountClient", () => {
         });
 
         const rawResponseBody = {
+            short_description: "short_description",
+            long_description: "long_description",
             card_art: {
                 background_color: "background_color",
                 logo: { url: "url", description: "description", height: 1, width: 1 },
@@ -32,6 +34,8 @@ describe("AccountClient", () => {
 
         const response = await client.networkTokens.account.get("id");
         expect(response).toEqual({
+            shortDescription: "short_description",
+            longDescription: "long_description",
             cardArt: {
                 backgroundColor: "background_color",
                 logo: {

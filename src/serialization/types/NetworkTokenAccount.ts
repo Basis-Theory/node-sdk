@@ -9,11 +9,15 @@ export const NetworkTokenAccount: core.serialization.ObjectSchema<
     serializers.NetworkTokenAccount.Raw,
     BasisTheory.NetworkTokenAccount
 > = core.serialization.object({
+    shortDescription: core.serialization.property("short_description", core.serialization.string().optional()),
+    longDescription: core.serialization.property("long_description", core.serialization.string().optional()),
     cardArt: core.serialization.property("card_art", CardArt.optional()),
 });
 
 export declare namespace NetworkTokenAccount {
     export interface Raw {
+        short_description?: string | null;
+        long_description?: string | null;
         card_art?: CardArt.Raw | null;
     }
 }
