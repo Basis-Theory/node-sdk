@@ -271,14 +271,17 @@ export class GooglePayClient {
      * @example
      *     await client.googlePay.delete("id")
      */
-    public delete(id: string, requestOptions?: GooglePayClient.RequestOptions): core.HttpResponsePromise<string> {
+    public delete(
+        id: string,
+        requestOptions?: GooglePayClient.RequestOptions,
+    ): core.HttpResponsePromise<BasisTheory.GooglePayDeleteResponse> {
         return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
     }
 
     private async __delete(
         id: string,
         requestOptions?: GooglePayClient.RequestOptions,
-    ): Promise<core.WithRawResponse<string>> {
+    ): Promise<core.WithRawResponse<BasisTheory.GooglePayDeleteResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -304,7 +307,7 @@ export class GooglePayClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.googlePay.delete.Response.parseOrThrow(_response.body, {
+                data: serializers.GooglePayDeleteResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,

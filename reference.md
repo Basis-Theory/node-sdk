@@ -737,7 +737,7 @@ await client.applePay.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.applePay.<a href="/src/api/resources/applePay/client/Client.ts">delete</a>(id) -> string</code></summary>
+<details><summary><code>client.applePay.<a href="/src/api/resources/applePay/client/Client.ts">delete</a>(id) -> BasisTheory.ApplePayDeleteResponse</code></summary>
 <dl>
 <dd>
 
@@ -885,7 +885,7 @@ await client.googlePay.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.googlePay.<a href="/src/api/resources/googlePay/client/Client.ts">delete</a>(id) -> string</code></summary>
+<details><summary><code>client.googlePay.<a href="/src/api/resources/googlePay/client/Client.ts">delete</a>(id) -> BasisTheory.GooglePayDeleteResponse</code></summary>
 <dl>
 <dd>
 

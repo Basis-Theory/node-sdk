@@ -507,12 +507,28 @@ describe("GooglePayClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = "string";
+        const rawResponseBody = {
+            google_pay: {
+                id: "id",
+                type: "type",
+                tenant_id: "tenant_id",
+                status: "status",
+                expires_at: "2024-01-15T09:30:00Z",
+            },
+        };
 
         server.mockEndpoint().delete("/google-pay/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.googlePay.delete("id");
-        expect(response).toEqual("string");
+        expect(response).toEqual({
+            googlePay: {
+                id: "id",
+                type: "type",
+                tenantId: "tenant_id",
+                status: "status",
+                expiresAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+        });
     });
 
     test("delete (2)", async () => {
