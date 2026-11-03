@@ -271,14 +271,17 @@ export class ApplePayClient {
      * @example
      *     await client.applePay.delete("id")
      */
-    public delete(id: string, requestOptions?: ApplePayClient.RequestOptions): core.HttpResponsePromise<string> {
+    public delete(
+        id: string,
+        requestOptions?: ApplePayClient.RequestOptions,
+    ): core.HttpResponsePromise<BasisTheory.ApplePayDeleteResponse> {
         return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
     }
 
     private async __delete(
         id: string,
         requestOptions?: ApplePayClient.RequestOptions,
-    ): Promise<core.WithRawResponse<string>> {
+    ): Promise<core.WithRawResponse<BasisTheory.ApplePayDeleteResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -304,7 +307,7 @@ export class ApplePayClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.applePay.delete.Response.parseOrThrow(_response.body, {
+                data: serializers.ApplePayDeleteResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
