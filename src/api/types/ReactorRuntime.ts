@@ -11,5 +11,6 @@ export interface ReactorRuntime {
     timeout?: number;
     resources?: string;
     permissions?: string[];
+    executionRole?: BasisTheory.ExecutionRole;
     logs?: BasisTheory.RuntimeLogOptions;
 }

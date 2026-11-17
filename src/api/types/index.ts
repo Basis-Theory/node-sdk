@@ -89,6 +89,7 @@ export * from "./Event.js";
 export * from "./EventPage.js";
 export * from "./EventPagePagination.js";
 export * from "./EventTypes.js";
+export * from "./ExecutionRole.js";
 export * from "./FunctionSourceDetection.js";
 export * from "./FunctionSourceValidation.js";
 export * from "./GetApplications.js";

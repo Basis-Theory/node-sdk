@@ -10,5 +10,6 @@ export interface Runtime {
     timeout?: number;
     resources?: string;
     permissions?: string[];
+    executionRole?: BasisTheory.ExecutionRole;
     logs?: BasisTheory.RuntimeLogOptions;
 }
