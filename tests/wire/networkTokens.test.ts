@@ -705,6 +705,30 @@ describe("NetworkTokensClient", () => {
             .mockEndpoint()
             .delete("/network-tokens/id")
             .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.networkTokens.delete("id");
+        }).rejects.toThrow(BasisTheory.ConflictError);
+    });
+
+    test("delete (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new BasisTheoryClient({
+            maxRetries: 0,
+            apiKey: "test",
+            correlationId: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .delete("/network-tokens/id")
+            .respondWith()
             .statusCode(500)
             .jsonBody(rawResponseBody)
             .build();
