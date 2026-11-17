@@ -204,6 +204,7 @@ describe("ReactorsClient", () => {
                 timeout: 1,
                 resources: "resources",
                 permissions: ["permissions"],
+                execution_role: { permissions: ["permissions"], rules: [{}] },
                 logs: { enabled: true, level: "level" },
             },
             requested: {
@@ -281,6 +282,10 @@ describe("ReactorsClient", () => {
                 timeout: 1,
                 resources: "resources",
                 permissions: ["permissions"],
+                executionRole: {
+                    permissions: ["permissions"],
+                    rules: [{}],
+                },
                 logs: {
                     enabled: true,
                     level: "level",

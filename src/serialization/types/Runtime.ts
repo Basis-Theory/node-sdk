@@ -3,6 +3,7 @@
 import type * as BasisTheory from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { ExecutionRole } from "./ExecutionRole.js";
 import { RuntimeLogOptions } from "./RuntimeLogOptions.js";
 
 export const Runtime: core.serialization.ObjectSchema<serializers.Runtime.Raw, BasisTheory.Runtime> =
@@ -14,6 +15,7 @@ export const Runtime: core.serialization.ObjectSchema<serializers.Runtime.Raw, B
         timeout: core.serialization.number().optional(),
         resources: core.serialization.string().optional(),
         permissions: core.serialization.list(core.serialization.string()).optional(),
+        executionRole: core.serialization.property("execution_role", ExecutionRole.optional()),
         logs: RuntimeLogOptions.optional(),
     });
 
@@ -26,6 +28,7 @@ export declare namespace Runtime {
         timeout?: number | null;
         resources?: string | null;
         permissions?: string[] | null;
+        execution_role?: ExecutionRole.Raw | null;
         logs?: RuntimeLogOptions.Raw | null;
     }
 }
