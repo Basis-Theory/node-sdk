@@ -404,6 +404,7 @@ export class NetworkTokensClient {
      * @throws {@link BasisTheory.UnauthorizedError}
      * @throws {@link BasisTheory.ForbiddenError}
      * @throws {@link BasisTheory.NotFoundError}
+     * @throws {@link BasisTheory.ConflictError}
      * @throws {@link BasisTheory.InternalServerError}
      *
      * @example
@@ -470,6 +471,17 @@ export class NetworkTokensClient {
                     );
                 case 404:
                     throw new BasisTheory.NotFoundError(_response.error.body, _response.rawResponse);
+                case 409:
+                    throw new BasisTheory.ConflictError(
+                        serializers.ProblemDetails.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new BasisTheory.InternalServerError(
                         serializers.ProblemDetails.parseOrThrow(_response.error.body, {
